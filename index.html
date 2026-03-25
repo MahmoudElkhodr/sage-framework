@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAGE Framework — Structured AI-Guided Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --paper: #f5f2eb;
+      --sage: #7a9e7e;
+      --sage-light: #b8d4bb;
+      --sage-dark: #4a6b4e;
+      --rule: #d4cfc4;
+      --muted: #8a8578;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Decorative vertical line */
+    .v-rule {
+      position: fixed;
+      left: 3.5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--rule);
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 4rem 4rem 6rem;
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    /* Animated entry */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.9s ease forwards;
+    }
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.25s; }
+    .fade-up:nth-child(3) { animation-delay: 0.4s; }
+    .fade-up:nth-child(4) { animation-delay: 0.55s; }
+    .fade-up:nth-child(5) { animation-delay: 0.7s; }
+    .fade-up:nth-child(6) { animation-delay: 0.85s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      margin-bottom: 2.2rem;
+    }
+
+    .wordmark {
+      font-size: clamp(5rem, 14vw, 10rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .wordmark span {
+      color: var(--sage);
+    }
+
+    .full-name {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+
+    .rule-h {
+      width: 3rem;
+      height: 1px;
+      background: var(--sage);
+      margin-bottom: 2.4rem;
+    }
+
+    .descriptor {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink);
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+
+    /* Cycle steps */
+    .cycle {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0;
+      margin-bottom: 3.5rem;
+      max-width: 560px;
+    }
+
+    .step {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step::after {
+      content: '→';
+      color: var(--sage-light);
+      font-size: 0.8rem;
+    }
+
+    .step:last-child::after {
+      display: none;
+    }
+
+    /* Authors */
+    .authors {
+      margin-bottom: 3rem;
+    }
+
+    .authors-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .authors-names {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .authors-affiliation {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.2rem;
+    }
+
+    /* Coming soon badge */
+    .coming-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--sage-dark);
+      padding: 0.55rem 1.1rem;
+      border-radius: 0;
+    }
+
+    .coming-soon::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage-light);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* TEQSA note */
+    footer {
+      padding: 1.5rem 4rem 1.5rem 6rem;
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--rule);
+    }
+
+    .teqsa-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+      animation-delay: 1s;
+    }
+
+    .teqsa-note strong {
+      color: var(--sage-dark);
+      font-weight: 400;
+    }
+
+    /* Decorative large background text */
+    .bg-text {
+      position: fixed;
+      bottom: -2rem;
+      right: -1rem;
+      font-size: clamp(10rem, 22vw, 18rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--rule);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 600px) {
+      main { padding: 3rem 1.5rem 2rem 3rem; }
+      footer { padding: 1.2rem 1.5rem 1.2rem 3rem; }
+      .v-rule { left: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="v-rule"></div>
+  <div class="bg-text">SAGE</div>
+
+  <main>
+
+    <div class="label fade-up">A framework for higher education</div>
+
+    <h1 class="wordmark fade-up"><span>SAGE</span></h1>
+
+    <p class="full-name fade-up">Structured AI-Guided Education</p>
+
+    <div class="rule-h fade-up"></div>
+
+    <p class="descriptor fade-up">
+      A validated pedagogical framework for the ethical, critical, and structured integration of generative AI in higher education — placing human judgement, disciplinary reasoning, and academic integrity at the centre of AI-assisted learning.
+    </p>
+
+    <div class="cycle fade-up">
+      <div class="step">Generate</div>
+      <div class="step">Evaluate</div>
+      <div class="step">Refine</div>
+      <div class="step">AI Critic</div>
+      <div class="step">Reflect</div>
+      <div class="step">Defend</div>
+    </div>
+
+    <div class="authors fade-up">
+      <div class="authors-label">Developed by</div>
+      <div class="authors-names">
+        Dr Mahmoud Elkhodr &amp; Professor Ergun Gide
+      </div>
+      <div class="authors-affiliation">
+        Central Queensland University, Australia
+      </div>
+    </div>
+
+    <div class="coming-soon fade-up">Full site launching soon</div>
+
+  </main>
+
+  <footer>
+    <p class="teqsa-note">
+      <strong>TEQSA recognised</strong> &nbsp;·&nbsp; Listed in the TEQSA Generative AI Knowledge Hub &nbsp;·&nbsp; Validated across 800+ students &nbsp;·&nbsp; 
+    </p>
+  </footer>
+
+</body>
+</html>
