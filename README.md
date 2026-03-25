@@ -1,5 +1,5 @@
 # sage-framework
-The SAGE Framework — Structured AI-Guided Education. A six-step educator cycle and five-step student guide for the ethical, critical use of generative AI in higher education. Empirically validated across 500+ students. Adopted internationally. Listed in the TEQSA Generative AI Knowledge Hub. Developed by Elkhodr &amp; Gide, CQUniversity Australia.
+The SAGE Framework — Structured AI-Guided Education. A six-step educator cycle and five-step student guide for the ethical, critical use of generative AI in higher education. Empirically validated across 800+ students. Adopted internationally. Listed in the TEQSA Generative AI Knowledge Hub. Developed by Elkhodr &amp; Gide, CQUniversity Australia.
 
 
 # SAGE Framework — Structured AI-Guided Education
@@ -16,10 +16,8 @@ as two complementary tools:
 
 ## Validation and Recognition
 
-- Empirically validated across 500+ students at multiple 
+- Empirically validated across 800+ students at multiple 
   Australian university campuses
-- Adopted internationally at the University of Warwick (UK) 
-  and National University of Singapore
 - Three resources listed in the TEQSA Generative AI 
   Knowledge Hub (Academic Integrity and Assessment Reform; 
   Student Resources and Support)
