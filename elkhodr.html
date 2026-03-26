@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr Mahmoud Elkhodr</title>
+  <meta name="description" content="Dr Mahmoud Elkhodr — Senior Lecturer in ICT at CQUniversity. Cybersecurity, IoT, blockchain, and AI-enhanced education.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#FDFAF6;--bg2:#F5F0E8;--txt:#2C2926;--mut:#6B635A;
+      --acc:#1A6B52;--acc-l:#E8F4EF;--bdr:#E2DDD5;--card:#FFF;
+      --hd:'Lora',Georgia,serif;--bd:'DM Sans',-apple-system,sans-serif;
+      --mw:1080px;--nh:72px
+    }
+    html{scroll-behavior:smooth;scroll-padding-top:var(--nh)}
+    body{font-family:var(--bd);color:var(--txt);background:var(--bg);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+    .w{max-width:var(--mw);margin:0 auto;padding:0 32px}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nh);background:rgba(253,250,246,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr);transition:box-shadow .3s}
+    nav.scrolled{box-shadow:0 2px 24px rgba(44,41,38,.06)}
+    .ni{max-width:var(--mw);margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between}
+    .nl{font-family:var(--hd);font-size:1.2rem;font-weight:600;color:var(--txt);text-decoration:none}
+    .nk{display:flex;gap:6px;list-style:none}
+    .nk a{font-size:.9rem;font-weight:500;color:var(--mut);text-decoration:none;padding:8px 14px;border-radius:8px;transition:all .2s}
+    .nk a:hover,.nk a.active{color:var(--acc);background:var(--acc-l)}
+    .nh{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .nh i{font-size:1.3rem;color:var(--txt)}
+
+    /* HERO */
+    .hero{padding-top:calc(var(--nh) + 72px);padding-bottom:72px;display:grid;grid-template-columns:1fr 280px;gap:56px;align-items:center}
+    .hero h1{font-family:var(--hd);font-size:2.8rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:18px}
+    .hero h1 span{color:var(--acc)}
+    .hero .tl{font-size:1.05rem;color:var(--mut);line-height:1.7;margin-bottom:24px}
+    .hl{display:flex;gap:10px;flex-wrap:wrap}
+    .hl a{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:500;color:var(--acc);text-decoration:none;padding:8px 16px;border:1.5px solid var(--acc);border-radius:8px;transition:all .2s}
+    .hl a:hover{background:var(--acc);color:#fff}
+    .hp{width:280px;height:340px;border-radius:20px;background:var(--bg2);border:1px solid var(--bdr);overflow:hidden}
+    .hp img{width:100%;height:100%;object-fit:cover}
+
+    /* SECTIONS */
+    .sec{padding:80px 0}
+    .sec-a{background:var(--bg2)}
+    .sh{margin-bottom:48px;padding-bottom:20px;border-bottom:2px solid var(--bdr)}
+    .sh h2{font-family:var(--hd);font-size:1.9rem;font-weight:600;display:flex;align-items:center;gap:12px}
+    .sh h2 i{color:var(--acc);font-size:1.3rem}
+    .sh p{margin-top:8px;color:var(--mut)}
+
+    /* ABOUT */
+    .ab{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+    .ab-p{font-size:1rem;line-height:1.8}
+    .ab-p p+p{margin-top:16px}
+    .ab-h{display:flex;flex-direction:column;gap:16px}
+    .hc{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start;transition:transform .2s,box-shadow .2s}
+    .hc:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(44,41,38,.06)}
+    .hc-i{width:40px;height:40px;border-radius:10px;background:var(--acc-l);color:var(--acc);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+    .hc-l{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin-bottom:4px}
+    .hc-v{font-family:var(--hd);font-size:1rem;font-weight:500;line-height:1.5}
+
+    /* SAGE BANNER */
+    .sb{display:block;text-decoration:none;color:inherit;background:var(--acc-l);border:1.5px solid var(--acc);border-radius:12px;padding:16px 20px;margin:20px 0 8px;transition:transform .2s,box-shadow .2s}
+    .sb:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,107,82,.12)}
+    .sb-in{display:flex;align-items:center;gap:14px}
+    .sb-ic{width:44px;height:44px;border-radius:10px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .sb-t{font-family:var(--hd);font-weight:600;font-size:1rem;color:var(--acc)}
+    .sb-d{font-size:.88rem;color:var(--mut);margin-top:2px}
+
+    /* MEDIA */
+    .mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+    .mc{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:26px;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+    .mc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(44,41,38,.08)}
+    .mc .sr{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+    .mc .sr i{font-size:.85rem}
+    .mc h3{font-family:var(--hd);font-size:1.02rem;font-weight:600;line-height:1.4;margin-bottom:10px;flex:1}
+    .mc .dt{font-size:.82rem;color:var(--mut)}
+    .mc.ft{border-left:4px solid var(--acc)}
+
+    /* OPINION */
+    .ol{display:flex;flex-direction:column;gap:24px}
+    .oc{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:32px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit}
+    .oc:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(44,41,38,.08)}
+    .oc h3{font-family:var(--hd);font-size:1.15rem;font-weight:600;line-height:1.4;margin-bottom:8px}
+    .oc .ex{font-size:.95rem;color:var(--mut);line-height:1.6}
+    .oc .mt{font-size:.82rem;color:var(--mut);white-space:nowrap;padding-top:4px}
+
+    /* GET IN TOUCH */
+    .gi{background:var(--card);border:1px solid var(--bdr);border-radius:18px;padding:48px;text-align:center}
+    .gi h2{font-family:var(--hd);font-size:1.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px}
+    .gi h2 i{color:var(--acc)}
+    .gi .gi-p{font-size:1.02rem;color:var(--mut);line-height:1.7;max-width:680px;margin:0 auto 24px}
+    .gi-s{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:28px}
+    .gi-s span{display:inline-flex;align-items:center;gap:6px;background:var(--acc-l);color:var(--acc);font-size:.85rem;font-weight:500;padding:8px 16px;border-radius:8px}
+    .gi-b{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-size:.95rem;font-weight:600;text-decoration:none;padding:12px 28px;border-radius:10px;transition:background .2s,transform .2s}
+    .gi-b:hover{background:#145842;transform:translateY(-1px)}
+
+    /* PUBLICATIONS */
+    .pl{display:flex;flex-direction:column;gap:20px}
+    .pi{padding:24px 28px;background:var(--card);border:1px solid var(--bdr);border-radius:14px;transition:transform .2s,box-shadow .2s}
+    .pi:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(44,41,38,.06)}
+    .pt{font-size:.73rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);margin-bottom:8px;display:inline-flex;align-items:center;gap:5px;background:var(--acc-l);padding:3px 10px;border-radius:4px}
+    .pi h3{font-family:var(--hd);font-size:1.02rem;font-weight:600;line-height:1.4;margin-bottom:6px}
+    .pd{font-size:.88rem;color:var(--mut);line-height:1.5}
+    .pk{margin-top:10px;display:flex;gap:14px}
+    .pk a{font-size:.82rem;font-weight:500;color:var(--acc);text-decoration:none;display:inline-flex;align-items:center;gap:4px;border-bottom:1px dashed var(--acc);padding-bottom:1px;transition:opacity .2s}
+    .pk a:hover{opacity:.7}
+    .pf{padding:20px 28px;background:var(--acc-l);border:1px solid var(--acc);border-radius:14px;text-align:center;font-size:.9rem;color:var(--acc);font-weight:500}
+    .pf a{color:var(--acc);font-weight:600;text-decoration:none}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--bdr);padding:40px 32px;text-align:center;font-size:.85rem;color:var(--mut)}
+    footer a{color:var(--acc);text-decoration:none}
+    .fl{display:flex;justify-content:center;gap:20px;margin-bottom:12px}
+    .fl a{font-size:1.1rem;color:var(--mut);transition:color .2s}
+    .fl a:hover{color:var(--acc)}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .w{padding:0 20px}
+      .hero{grid-template-columns:1fr;gap:36px;padding-top:calc(var(--nh) + 40px);padding-bottom:40px}
+      .hero h1{font-size:2.1rem}
+      .hp{width:180px;height:220px;margin:0 auto}
+      .ab{grid-template-columns:1fr}
+      .mg{grid-template-columns:1fr}
+      .oc{grid-template-columns:1fr}
+      .oc .mt{white-space:normal}
+      .sec{padding:56px 0}
+      .nk{display:none}
+      .nk.open{display:flex;flex-direction:column;position:absolute;top:var(--nh);left:0;right:0;background:rgba(253,250,246,.98);backdrop-filter:blur(16px);padding:16px 24px;border-bottom:1px solid var(--bdr);gap:4px}
+      .nh{display:block}
+      .gi{padding:32px 20px}
+      .sb-in{flex-direction:column;text-align:center}
+    }
+
+    .fi{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+    .fi.vis{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+
+<nav id="mn">
+  <div class="ni">
+    <a href="#" class="nl">M. Elkhodr</a>
+    <button class="nh" onclick="document.querySelector('.nk').classList.toggle('open')" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    <ul class="nk">
+      <li><a href="#about">About</a></li>
+      <li><a href="#media">In the Media</a></li>
+      <li><a href="#opinion">Opinion</a></li>
+      <li><a href="#contact">Get in Touch</a></li>
+      <li><a href="#pubs">Publications</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="w">
+<div class="hero">
+  <div>
+    <h1>Dr Mahmoud <span>Elkhodr</span></h1>
+    <p class="tl">Senior Lecturer in ICT at CQUniversity, Sydney. Research across cybersecurity, IoT, blockchain, and AI-enhanced education. Author, editor, and public commentator on digital privacy and emerging technologies.</p>
+    <div class="hl">
+      <a href="https://scholar.google.com.au/citations?user=xqeZJm4AAAAJ&hl=en" target="_blank"><i class="fa-solid fa-graduation-cap"></i> Google Scholar</a>
+      <a href="https://orcid.org/0000-0001-9904-7551" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a>
+      <a href="https://au.linkedin.com/in/elkhodr" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://theconversation.com/profiles/mahmoud-elkhodr-984831" target="_blank"><i class="fa-solid fa-pen-nib"></i> The Conversation</a>
+      <a href="mailto:m.elkhodr@cqu.edu.au"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </div>
+  </div>
+  <div class="hp"><img src="photo.png" alt="Dr Mahmoud Elkhodr"></div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div class="sec" id="about">
+<div class="w">
+  <div class="sh fi"><h2><i class="fa-solid fa-user-tie"></i> About</h2></div>
+  <div class="ab fi">
+    <div class="ab-p">
+      <p>Mahmoud Elkhodr is a Senior Lecturer in the School of Engineering and Technology at Central Queensland University, Sydney Campus. His research sits at the intersection of cybersecurity, the Internet of Things, blockchain, and the responsible use of artificial intelligence in higher education.</p>
+      <p>He co-developed the SAGE (Structured AI-Guided Education) framework with Professor Ergun Gide &mdash; a structured approach to integrating generative AI into curriculum design that trains students to critically evaluate, refine, and defend AI-assisted outputs. The framework has been adopted at institutions including the University of Warwick and the National University of Singapore, and three SAGE resources are listed in the TEQSA Generative AI Knowledge Hub.</p>
+      <a href="https://sage-framework.com" target="_blank" class="sb">
+        <div class="sb-in">
+          <div class="sb-ic"><i class="fa-solid fa-brain"></i></div>
+          <div>
+            <div class="sb-t">Explore the SAGE Framework</div>
+            <div class="sb-d">Learn how SAGE integrates generative AI into curriculum design &rarr;</div>
+          </div>
+        </div>
+      </a>
+      <p>His technical work has addressed IoT privacy through the IoT Management Platform and semantic obfuscation techniques for privacy-preserving data disclosure. His commentary on the COVIDSafe contact-tracing application was cited by the Chief Scientist of Australia and informed national public discourse on digital privacy.</p>
+      <p>He holds a PhD, a Master of Science (Honours), and a Master of ICT from Western Sydney University, and a BSc (Honours) from The Open University, UK. He serves the IEEE NSW Section as Nominations Chairman and Education Secretary. He supervises PhD and Master of Research candidates in cybersecurity, IoT, AI, and digital health.</p>
+    </div>
+    <div class="ab-h">
+      <div class="hc"><div class="hc-i"><i class="fa-solid fa-shield-halved"></i></div><div><div class="hc-l">Research Areas</div><div class="hc-v">Cybersecurity &middot; IoT &middot; Blockchain &middot; AI in Education</div></div></div>
+      <div class="hc"><div class="hc-i"><i class="fa-solid fa-brain"></i></div><div><div class="hc-l">SAGE Framework</div><div class="hc-v">Listed in TEQSA GenAI Knowledge Hub &middot; adopted internationally</div></div></div>
+      <div class="hc"><div class="hc-i"><i class="fa-solid fa-microchip"></i></div><div><div class="hc-l">IEEE</div><div class="hc-v">NSW Section Nominations Chairman &amp; Education Secretary</div></div></div>
+      <div class="hc"><div class="hc-i"><i class="fa-solid fa-language"></i></div><div><div class="hc-l">Languages</div><div class="hc-v">English &middot; Arabic &middot; French</div></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- IN THE MEDIA -->
+<div class="sec sec-a" id="media">
+<div class="w">
+  <div class="sh fi"><h2><i class="fa-solid fa-newspaper"></i> In the Media</h2><p>Print, radio, TV, and institutional coverage</p></div>
+  <div class="mg fi">
+
+    <a href="https://www.cqu.edu.au/news/1267512/teaching-students-to-think-with-ai--not-cheat-with-it" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-building-columns"></i> CQUniversity News</div><h3>Teaching students to think with AI &mdash; not cheat with it</h3><div class="dt">2026</div></a>
+
+    <a href="https://www.theeducatoronline.com/k12/news/opinion-teaching-students-to-think-with-ai--not-cheat-with-it/288838" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-pen-fancy"></i> The Educator &middot; Opinion</div><h3>Teaching students to think with AI &mdash; not cheat with it</h3><div class="dt">2026</div></a>
+
+    <a href="https://www.cqu.edu.au/news/1270316" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-building-columns"></i> CQUniversity News</div><h3>CQUniversity AI education resources recognised in national TEQSA Knowledge Hub</h3><div class="dt">2026</div></a>
+
+    <a href="https://scienmag.com/empowering-cybersecurity-education-with-responsible-ai-framework/" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-flask"></i> ScienMag</div><h3>Empowering cybersecurity education with responsible AI framework</h3><div class="dt">2025</div></a>
+
+    <a href="https://youtu.be/69JF8VD3_4Q" target="_blank" class="mc ft"><div class="sr"><i class="fa-solid fa-tv"></i> TV Appearance</div><h3>Expert commentary on cybersecurity and digital privacy</h3><div class="dt"><i class="fa-solid fa-play"></i> Video</div></a>
+
+    <a href="https://www.abc.net.au/news/2020-10-20/work-from-home-revolution-during-coronavirus/12795218" target="_blank" class="mc ft"><div class="sr"><i class="fa-solid fa-radio"></i> ABC &middot; Radio</div><h3>Work from home revolution during coronavirus</h3><div class="dt">October 2020</div></a>
+
+    <a href="https://www.smh.com.au/national/i-m-the-chief-scientist-and-privacy-matters-to-me-and-here-s-why-i-ve-got-the-covidsafe-app-20200508-p54qzs.html" target="_blank" class="mc ft"><div class="sr"><i class="fa-solid fa-star"></i> Sydney Morning Herald &middot; Chief Scientist Citation</div><h3>COVIDSafe privacy analysis cited by the Chief Scientist of Australia</h3><div class="dt">May 2020</div></a>
+
+    <a href="https://theconversation.com/an-australia-nz-travel-bubble-needs-a-unified-covid-contact-tracing-app-were-not-there-151761" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-comment-dots"></i> The Conversation</div><h3>An Australia&ndash;NZ travel bubble needs a unified COVID contact-tracing app. We're not there</h3><div class="dt">2021</div></a>
+
+    <a href="https://theconversation.com/australia-is-under-sustained-cyber-attack-warns-the-government-whats-going-on-and-what-should-businesses-do-141119" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-comment-dots"></i> The Conversation</div><h3>Australia is under sustained cyber attack, warns the government. What's going on?</h3><div class="dt">June 2020</div></a>
+
+    <a href="https://theconversation.com/giving-your-details-to-restaurants-and-cafes-your-rights-their-obligations-and-privacy-concerns-141286" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-comment-dots"></i> The Conversation</div><h3>Giving your details to restaurants and cafes: your rights, their obligations and privacy concerns</h3><div class="dt">2020</div></a>
+
+    <a href="https://theconversation.com/covidsafe-tracking-app-reviewed-the-government-delivers-on-data-security-but-other-issues-remain-137249" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-comment-dots"></i> The Conversation</div><h3>COVIDSafe tracking app reviewed: the government delivers on data security, but other issues remain</h3><div class="dt">April 2020</div></a>
+
+    <a href="https://www.sbs.com.au/news/dateline/why-new-zealand-s-covid-19-tracer-app-won-t-help-open-a-travel-bubble-with-australia-anytime-soon" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-globe"></i> SBS Dateline</div><h3>Why New Zealand's COVID-19 Tracer app won't help open a travel bubble with Australia</h3><div class="dt">2020</div></a>
+
+    <a href="https://www.itnews.com.au/news/privacy-boffins-call-for-legislated-protections-from-coronavirus-tracker-app-546950" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-laptop-code"></i> iTnews</div><h3>Privacy boffins call for legislated protections from coronavirus tracker app</h3><div class="dt">April 2020</div></a>
+
+    <a href="https://www.smh.com.au/business/consumer-affairs/fears-overseas-visitors-and-expats-may-be-deterred-from-covidsafe-20200505-p54q2i.html" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-newspaper"></i> Sydney Morning Herald</div><h3>Fears overseas visitors and expats may be deterred from COVIDSafe</h3><div class="dt">May 2020</div></a>
+
+    <a href="https://www.techrepublic.com/article/covid-19-contact-tracing-the-tricky-balance-between-privacy-and-relief-efforts/" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-laptop-code"></i> TechRepublic</div><h3>COVID-19 contact tracing: the tricky balance between privacy and relief efforts</h3><div class="dt">2020</div></a>
+
+    <a href="https://www.cqu.edu.au/cquninews/stories/general-category/2020-general/new-covidsafe-test-reveals-much-needed-areas-of-improvement,-including-battery-optimisation" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-building-columns"></i> CQUniversity News</div><h3>New COVIDSafe app reveals much-needed areas of improvement, including battery optimisation</h3><div class="dt">2020</div></a>
+
+    <a href="https://www.cqu.edu.au/cquninews/stories/general-category/2020-general/a-range-of-safeguards-would-offer-peace-of-mind-for-tracetogether-users" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-building-columns"></i> CQUniversity News</div><h3>A range of safeguards would offer peace of mind for TraceTogether users</h3><div class="dt">2020</div></a>
+
+    <a href="https://theconversation.com/the-governments-coronavirus-mobile-app-is-a-solid-effort-but-it-could-do-even-better-135030" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-comment-dots"></i> The Conversation</div><h3>The government's coronavirus mobile app is a solid effort, but it could do even better</h3><div class="dt">March 2020</div></a>
+
+    <a href="https://theconversation.com/studying-a-uni-course-online-here-are-4-tips-to-get-yourself-tech-ready-134549" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-comment-dots"></i> The Conversation / Social Science Space</div><h3>Studying a uni course online? Here are 4 tips to get yourself tech ready</h3><div class="dt">2020</div></a>
+
+    <a href="https://theconversation.com/covid-19-death-toll-estimated-to-reach-3-900-by-next-friday-according-to-ai-modelling-133052" target="_blank" class="mc"><div class="sr"><i class="fa-solid fa-comment-dots"></i> The Conversation</div><h3>COVID-19 death toll estimated to reach 3,900 by next Friday, according to AI modelling</h3><div class="dt">2020</div></a>
+
+  </div>
+</div>
+</div>
+
+<!-- OPINION -->
+<div class="sec" id="opinion">
+<div class="w">
+  <div class="sh fi"><h2><i class="fa-solid fa-lightbulb"></i> Opinion &amp; Perspectives</h2><p>Short-form commentary on AI, cybersecurity, and higher education</p></div>
+  <div class="ol fi">
+    <a href="https://doi.org/10.5281/zenodo.19024109" target="_blank" class="oc">
+      <div><h3>Protect Your Research in the Age of Generative AI: Rethinking the Preprint Bargain</h3><p class="ex">An examination of IP leakage risks arising from GenAI scraping, researcher self-upload practices, and reviewer uploads of unpublished manuscripts.</p></div>
+      <div class="mt">March 2026</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- GET IN TOUCH -->
+<div class="sec sec-a" id="contact">
+<div class="w">
+  <div class="gi fi">
+    <h2><i class="fa-solid fa-handshake"></i> Get in Touch</h2>
+    <p class="gi-p">I have delivered cybersecurity consultancy, keynote addresses, and professional development workshops for organisations across industry, government, and higher education. I welcome enquiries for speaking engagements, advisory work, training sessions, and research collaborations.</p>
+    <div class="gi-s">
+      <span><i class="fa-solid fa-microphone"></i> Keynotes</span>
+      <span><i class="fa-solid fa-chalkboard-user"></i> Workshops</span>
+      <span><i class="fa-solid fa-shield-halved"></i> Cybersecurity Consultancy</span>
+      <span><i class="fa-solid fa-users"></i> Research Collaboration</span>
+    </div>
+    <a href="mailto:m.elkhodr@cqu.edu.au" class="gi-b"><i class="fa-solid fa-envelope"></i> m.elkhodr@cqu.edu.au</a>
+  </div>
+</div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="sec" id="pubs">
+<div class="w">
+  <div class="sh fi"><h2><i class="fa-solid fa-book-open"></i> Selected Publications</h2><p>Books, edited volumes, frameworks, and selected journal articles</p></div>
+  <div class="pl fi">
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-book"></i> Authored Book</span><h3>Next-Generation Smart Cities: The Integration of AI, Blockchain, IoT and Emergent Networks</h3><div class="pd">Taylor and Francis / CRC Press, 2026</div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-book"></i> Edited Book</span><h3>Generative Artificial Intelligence Empowered Learning: A New Frontier in Educational Technology</h3><div class="pd">M. Elkhodr and E. Gide (Eds.) &middot; Routledge / Taylor and Francis, 2026</div><div class="pk"><a href="https://www.routledge.com/Generative-Artificial-Intelligence-Empowered-Learning-A-New-Frontier-in-Educational-Technology/Elkhodr-Gide/p/book/9781032727516" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Routledge</a></div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-book"></i> Edited Book</span><h3>Enabling Technologies and Architectures for Next-Generation Networking Capabilities</h3><div class="pd">M. Elkhodr (Ed.) &middot; IGI Global, 2019</div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-book"></i> Edited Book</span><h3>Networks of the Future: Architectures, Technologies, and Implementations</h3><div class="pd">M. Elkhodr, Q. F. Hassan, and S. Shahrestani (Eds.) &middot; CRC Press / Taylor and Francis, 2017</div><div class="pk"><a href="https://www.routledge.com/Networks-of-the-Future-Architectures-Technologies-and-Implementations/Elkhodr-Hassan-Shahrestani/p/book/9781315155517" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Routledge</a></div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-check-double"></i> Framework &middot; TEQSA Listed</span><h3>SAGE: Structured AI-Guided Education Framework</h3><div class="pd">Co-developed with E. Gide &middot; Listed in the TEQSA Generative AI Knowledge Hub (Academic Integrity and Assessment Reform; Student Resources and Support)</div><div class="pk"><a href="https://sage-framework.com" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> sage-framework.com</a><a href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-academic-integrity-and-assessment-reform" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> TEQSA Hub</a></div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-file-lines"></i> Journal Article</span><h3>The SAGE Framework for Developing Critical Thinking and Responsible Generative AI Use in Cybersecurity Education</h3><div class="pd">Discover Education (Springer Nature), 2025</div><div class="pk"><a href="https://link.springer.com/article/10.1007/s44217-025-00935-3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Springer</a></div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-file-code"></i> Preprint</span><h3>Embedding Generative AI into Systems Analysis and Design Curriculum: Framework, Case Study, and Cross-Campus Empirical Evidence</h3><div class="pd">M. Elkhodr and E. Gide &middot; arXiv:2511.17515, 2025</div><div class="pk"><a href="https://arxiv.org/abs/2511.17515" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> arXiv</a></div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-file-code"></i> Preprint</span><h3>Integrating Generative AI in Cybersecurity Education: Pedagogical Strategies, Critical Thinking, and Responsible AI Use</h3><div class="pd">M. Elkhodr and E. Gide &middot; arXiv:2502.15357, 2025</div><div class="pk"><a href="https://arxiv.org/abs/2502.15357" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> arXiv</a></div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-file-code"></i> Preprint</span><h3>Protect Your Research in the Age of Generative AI: Rethinking the Preprint Bargain</h3><div class="pd">Zenodo, March 2026 &middot; DOI: 10.5281/zenodo.19024109</div><div class="pk"><a href="https://doi.org/10.5281/zenodo.19024109" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Zenodo</a></div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-layer-group"></i> Special Issue (Editor)</span><h3>Next-Generation Healthcare: Leveraging AI, IoT, Blockchain, and Other Emerging Technologies</h3><div class="pd">Discover Health Systems (Springer Nature), Collection</div></div>
+
+    <div class="pi"><span class="pt"><i class="fa-solid fa-layer-group"></i> Special Issue (Guest Editor)</span><h3>Realising Digital Futures Through Green AI, Cybersecurity and Sustainable Societies</h3><div class="pd">M. Elkhodr and F. Farid &middot; Sustainability (MDPI)</div></div>
+
+    <div class="pf"><i class="fa-solid fa-graduation-cap"></i>&ensp;Full publication list on <a href="https://scholar.google.com.au/citations?user=xqeZJm4AAAAJ&hl=en" target="_blank">Google Scholar</a> &middot; ORCID: <a href="https://orcid.org/0000-0001-9904-7551" target="_blank">0000-0001-9904-7551</a></div>
+
+  </div>
+</div>
+</div>
+
+<footer>
+  <div class="fl">
+    <a href="https://scholar.google.com.au/citations?user=xqeZJm4AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+    <a href="https://orcid.org/0000-0001-9904-7551" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+    <a href="https://au.linkedin.com/in/elkhodr" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="https://theconversation.com/profiles/mahmoud-elkhodr-984831" target="_blank" title="The Conversation"><i class="fa-solid fa-pen-nib"></i></a>
+    <a href="mailto:m.elkhodr@cqu.edu.au" title="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+  <p>&copy; 2026 Dr Mahmoud Elkhodr &middot; <a href="https://staff-profiles.cqu.edu.au/home/view/1633" target="_blank">CQU Profile</a></p>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('mn').classList.toggle('scrolled',window.scrollY>10)});
+const ids=document.querySelectorAll('[id]'),na=document.querySelectorAll('.nk a');
+window.addEventListener('scroll',()=>{let c='';ids.forEach(s=>{if(s.id&&window.scrollY>=s.offsetTop-120)c=s.id});na.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
+const ob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
+document.querySelectorAll('.fi').forEach(el=>ob.observe(el));
+document.querySelectorAll('.nk a').forEach(a=>{a.addEventListener('click',()=>document.querySelector('.nk').classList.remove('open'))});
+</script>
+
+</body>
+</html>
