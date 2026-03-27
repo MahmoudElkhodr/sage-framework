@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAGE Student Guide — Five Steps for Responsible AI Use</title>
+  <meta name="description" content="The SAGE student-facing guide: a five-step process for using generative AI responsibly in coursework and assessment. Download, adapt, and hand directly to your students. Developed by Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
+  <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sage-framework.com/student-guide.html" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0d1f16;
+      --forest:     #1b4332;
+      --sage:       #2d6a4f;
+      --sage-mid:   #40916c;
+      --sage-light: #74c69d;
+      --sage-pale:  #eef6f1;
+      --cream:      #f8f6f1;
+      --amber:      #b7410e;
+      --amber-pale: #fdf0eb;
+      --slate:      #374151;
+      --muted:      #6b7a72;
+      --rule:       #dde5e0;
+      --white:      #ffffff;
+      --shadow:     0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+      --shadow-md:  0 2px 8px rgba(0,0,0,0.09), 0 8px 32px rgba(0,0,0,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--slate);
+      font-family: 'Instrument Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,246,241,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--forest);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+
+    .nav-wordmark small {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { background: var(--sage-pale); color: var(--forest); }
+    .nav-links a.active { background: var(--sage-pale); color: var(--forest); font-weight: 600; }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); padding-top:0.4rem; z-index:110; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown-panel { background:var(--white); border:1px solid var(--rule); border-radius:10px; box-shadow:var(--shadow-md); padding:0.5rem; min-width:220px; }
+    .nav-dropdown-panel a { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.75rem; border-radius:7px; font-size:0.8rem; font-weight:500; color:var(--slate); text-decoration:none; transition:background 0.12s; }
+    .nav-dropdown-panel a:hover { background:var(--sage-pale); color:var(--forest); }
+    .nav-dropdown-panel .dd-icon { font-size:0.9rem; flex-shrink:0; width:1.2rem; text-align:center; }
+    .nav-dropdown-panel .dd-label { font-weight:600; color:var(--ink); font-size:0.78rem; }
+    .nav-dropdown-panel .dd-desc { font-size:0.68rem; color:var(--muted); margin-top:0.1rem; }
+
+    .nav-links .nav-cta { background: var(--forest); color: var(--white); }
+    .nav-links .nav-cta:hover { background: var(--sage); color: var(--white); }
+
+    /* ─── RESOURCE TAB BAR ─── */
+    .resource-tabs { background:var(--white); border-bottom:1px solid var(--rule); }
+    .resource-tabs-inner { max-width:1160px; margin:0 auto; padding:0 2rem; display:flex; gap:0; }
+    .resource-tab { display:flex; align-items:center; gap:0.45rem; padding:0.7rem 1.1rem; font-size:0.8rem; font-weight:500; color:var(--muted); text-decoration:none; border-bottom:2px solid transparent; transition:color 0.15s, border-color 0.15s; white-space:nowrap; }
+    .resource-tab:hover { color:var(--forest); }
+    .resource-tab.active { color:var(--forest); font-weight:600; border-bottom-color:var(--sage); }
+    .resource-tab .tab-icon { font-size:0.85rem; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 22px;
+      height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+    }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 200;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--slate);
+    }
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb {
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      padding: 0.65rem 2rem;
+    }
+
+    .breadcrumb-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .breadcrumb a {
+      color: var(--sage);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .breadcrumb-sep { color: var(--rule); }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      background: var(--forest);
+      padding: 3rem 2rem 2.5rem;
+      border-bottom: 3px solid var(--sage-mid);
+    }
+
+    .page-header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .page-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.12);
+      color: var(--sage-light);
+      padding: 0.25rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-header .subtitle {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      max-width: 600px;
+    }
+
+    /* ─── CONTENT ─── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ─── EDUCATOR INTRO BOX ─── */
+    .educator-intro {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .educator-intro-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+    }
+
+    .educator-intro-label::before {
+      content: '';
+      width: 14px;
+      height: 2px;
+      background: var(--sage-mid);
+      border-radius: 2px;
+    }
+
+    .educator-intro h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .educator-intro p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .educator-intro p:last-of-type { margin-bottom: 0; }
+
+    /* ─── ADAPT NOTE ─── */
+    .adapt-note {
+      background: var(--sage-pale);
+      border: 1px solid #c2ddd0;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .adapt-note-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+    .adapt-note p {
+      font-size: 0.82rem;
+      color: var(--forest);
+      line-height: 1.6;
+      margin: 0 !important;
+    }
+
+    .adapt-note strong { font-weight: 600; }
+
+    /* ─── DOWNLOAD BAR ─── */
+    .download-bar {
+      background: var(--ink);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .download-bar-text {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .download-bar-sub {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.15rem;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Instrument Sans', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .btn-download svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .btn-download-word {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .btn-download-word:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .btn-download-pdf {
+      background: var(--sage-mid);
+      color: var(--white);
+      border: 1px solid transparent;
+    }
+
+    .btn-download-pdf:hover {
+      background: var(--sage);
+    }
+
+    /* ─── SECTION DIVIDER ─── */
+    .guide-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+
+    .guide-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .guide-divider-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ─── GUIDE PREVIEW WRAPPER ─── */
+    .guide-preview {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .guide-preview-header {
+      background: var(--forest);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .guide-preview-header h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.25;
+    }
+
+    .guide-preview-header .guide-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.12);
+      color: var(--sage-light);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .guide-body {
+      padding: 2rem;
+    }
+
+    /* ─── GUIDE INTRO ─── */
+    .guide-intro {
+      font-size: 0.95rem;
+      color: var(--slate);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ─── STEP CARDS ─── */
+    .step-card {
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-card:last-child { margin-bottom: 0; }
+
+    .step-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 1rem 1.25rem;
+      background: var(--sage-pale);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .step-num-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-name-wrap {}
+
+    .step-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .step-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .step-imperative {
+      font-style: italic;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-left: auto;
+      text-align: right;
+      max-width: 280px;
+      line-height: 1.4;
+    }
+
+    .step-card-body {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .step-card-body p {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+    }
+
+    .step-card-body p:last-child { margin-bottom: 0; }
+
+    .step-card-body strong { font-weight: 600; color: var(--ink); }
+
+    /* Pathway blocks inside steps */
+    .pathway-block {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .pathway-block-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.4rem;
+    }
+
+    .pathway-block p {
+      font-size: 0.875rem !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Log table */
+    .log-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.82rem;
+      margin: 0.75rem 0;
+    }
+
+    .log-table th {
+      background: var(--sage-pale);
+      color: var(--sage);
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .log-table td {
+      padding: 0.65rem 0.9rem;
+      border-bottom: 1px solid var(--rule);
+      color: var(--muted);
+      font-style: italic;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .log-table tr:last-child td { border-bottom: none; }
+
+    /* Decision badges */
+    .decision-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+
+    .decision-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .decision-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .badge-accept { background: #dcfce7; color: #166534; }
+    .badge-modify { background: #fef9c3; color: #854d0e; }
+    .badge-reject { background: #fee2e2; color: #991b1b; }
+
+    .decision-item p {
+      font-size: 0.875rem !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Audit highlight */
+    .audit-note {
+      background: var(--amber-pale);
+      border: 1px solid #f0c4b4;
+      border-radius: 8px;
+      padding: 0.85rem 1.1rem;
+      margin: 0.75rem 0;
+      font-size: 0.875rem;
+      color: var(--amber);
+      line-height: 1.6;
+    }
+
+    .audit-note strong { color: var(--amber); font-weight: 600; }
+
+    /* ─── ATTRIBUTION BLOCK ─── */
+    .attribution-block {
+      background: var(--sage-pale);
+      border: 1px solid #c2ddd0;
+      border-top: 3px solid var(--sage-mid);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 2.5rem;
+      font-size: 0.82rem;
+      color: var(--forest);
+      line-height: 1.65;
+    }
+
+    .attribution-block strong { font-weight: 600; }
+
+    .attribution-block .attribution-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Instrument Sans', sans-serif;
+    }
+
+    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .btn-primary { background: var(--forest); color: var(--white); }
+    .btn-primary:hover { background: var(--sage); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(27,67,50,0.22); }
+
+    .btn-secondary { background: var(--white); color: var(--forest); border: 1.5px solid var(--rule); }
+    .btn-secondary:hover { border-color: var(--sage-mid); background: var(--sage-pale); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 3rem 2rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-inner { max-width: 1160px; margin: 0 auto; }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      max-width: 280px;
+      line-height: 1.55;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--sage-light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-citation {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.65;
+      max-width: 640px;
+    }
+
+    .footer-citation a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-licence { font-size: 0.7rem; color: rgba(255,255,255,0.28); align-self: flex-end; white-space: nowrap; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      .content { padding: 2rem 1.25rem 3.5rem; }
+      .page-header { padding: 2rem 1.25rem 1.75rem; }
+      footer { padding: 2.5rem 1.25rem 1.5rem; }
+      .breadcrumb { padding: 0.65rem 1.25rem; }
+      .step-imperative { display: none; }
+      .download-bar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-wordmark">SAGE <small>Framework</small></a>
+    <ul class="nav-links">
+      <li><a href="sage.html">The Framework</a></li>
+      <li class="nav-dropdown">
+        <a href="student_resources.html" class="active">Student Resources</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
+          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+          <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design your assurance checkpoint</div></div></a>
+        </div></div>
+      </li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="index.html#research">Publications</a></li>
+      <li><a href="index.html#community">Community</a></li>
+      <li><a href="index.html#about" class="nav-cta">About</a></li>
+    </ul>
+    <button class="hamburger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav">
+  <button class="mobile-nav-close" onclick="document.querySelector('.mobile-nav').classList.remove('open')">&#x2715;</button>
+  <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">The Framework</a>
+  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Student Resources</a>
+  <a href="student-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student Guide</a>
+  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101 Module</a>
+  <a href="defend_tool.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Defend Tool</a>
+  <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Downloads</a>
+  <a href="index.html#research" onclick="this.closest('.mobile-nav').classList.remove('open')">Publications</a>
+  <a href="index.html#community" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
+  <a href="index.html#about" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
+</div>
+
+<!-- ─── RESOURCE TAB BAR ─── -->
+<div class="resource-tabs">
+  <div class="resource-tabs-inner">
+    <a href="student-guide.html" class="resource-tab active"><span class="tab-icon">📄</span> Student Guide</a>
+    <a href="genai-101.html" class="resource-tab"><span class="tab-icon">📖</span> GenAI-101 Module</a>
+    <a href="defend_tool.html" class="resource-tab"><span class="tab-icon">🛡️</span> Defend Tool</a>
+  </div>
+</div>
+
+<!-- ─── PAGE HEADER ─── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-header-badge">For Educators</div>
+    <h1>The SAGE Student Guide</h1>
+    <p class="subtitle">A five-step guide for responsible AI use in coursework and assessment. Download, adapt for your unit context, and hand directly to your students.</p>
+  </div>
+</div>
+
+<!-- ─── CONTENT ─── -->
+<div class="content">
+
+  <!-- EDUCATOR INTRO -->
+  <div class="educator-intro">
+    <div class="educator-intro-label">Note for educators</div>
+    <h2>What this guide is and how to use it</h2>
+    <p>This is the student-facing component of the SAGE framework. It does not tell students whether they may use AI — that is determined by your unit policy and the AI Assessment Scale level you have set. It tells them <em>how</em> to use AI in a way that develops genuine learning and maintains academic integrity.</p>
+    <p>The guide is designed to be handed to students at the start of a unit or before a SAGE-integrated assessment task. You can use it verbatim, adapt the step names for your discipline, or reframe the examples to match your context. The log template in Step 3 can be provided as a separate document or embedded in your assessment instructions.</p>
+    <p>The guide works alongside the educator-facing six-step SAGE cycle. Steps 1–5 here correspond to Steps 1–5 of the full SAGE cycle. The sixth step — Defend — is not included in this guide because it is a supervised assessment checkpoint, not a student-led process. The closing note in Step 5 prepares students for it without revealing the assurance design.</p>
+
+    <div class="adapt-note">
+      <div class="adapt-note-icon">✏️</div>
+      <p><strong>Adapting this guide:</strong> You are free to modify the step names, examples, and language for your discipline and student cohort under a CC BY 4.0 licence. The only requirement is that you retain the attribution line: <em>Adapted from the SAGE Framework (Elkhodr &amp; Gide, 2026). sage-framework.com</em></p>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="guide-divider">
+    <div class="guide-divider-line"></div>
+    <div class="guide-divider-label">Student guide preview — as your students will see it</div>
+    <div class="guide-divider-line"></div>
+  </div>
+
+  <!-- GUIDE PREVIEW -->
+  <div class="guide-preview">
+
+    <div class="guide-preview-header">
+      <h2>SAGE: A Student Guide to Working with Generative AI</h2>
+      <span class="guide-badge">Student-facing document</span>
+    </div>
+
+    <div class="guide-body">
+
+      <!-- Intro -->
+      <p class="guide-intro">Generative AI can produce fluent, confident, and convincing output on almost any topic within seconds. That is precisely why using it well requires a structured process. SAGE guides you through five steps that ensure the thinking behind your work is yours — not the AI's. Each step builds on the last, creating a documented trail of your reasoning that demonstrates what you know.</p>
+
+      <!-- ─── STEP 1 ─── -->
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num-badge">1</div>
+          <div class="step-name-wrap">
+            <div class="step-label">Step 1</div>
+            <div class="step-name">Generate</div>
+          </div>
+          <div class="step-imperative">AI should receive your thinking, not just your task.</div>
+        </div>
+        <div class="step-card-body">
+          <p>Before you use generative AI, you need to bring something of your own to the conversation. AI is a tool for extending your thinking, not a substitute for starting it. Your educator will set up this step in one of two ways.</p>
+
+          <div class="pathway-block">
+            <div class="pathway-block-label">If you are given a base prompt</div>
+            <p>Your lecturer has provided a specific prompt with instructions, constraints, and context built in. Use it exactly as provided. This prompt has been designed to produce output that is useful but imperfect — your job in the steps that follow is to identify what is missing, wrong, or incomplete.</p>
+          </div>
+
+          <div class="pathway-block">
+            <div class="pathway-block-label">If you are not given a base prompt</div>
+            <p>Before you open any AI tool, attempt to answer the task yourself. This does not need to be polished — bullet points, rough notes, a sketch, or a half-formed argument. The standard is not quality. It is that your own thinking exists before the AI is involved. Once you have your pre-attempt, build it into your prompt alongside the task description and any standards or readings your lecturer has provided.</p>
+          </div>
+
+          <p>If you feel you have no knowledge of the topic at all, write down what you understand the task to be asking, which terms or concepts you recognise, and where your understanding breaks down. A structured statement of what you do not yet know is still a pre-attempt — and it is far more useful than a blank prompt.</p>
+          <p><strong>In an assessment context:</strong> you are expected to arrive with enough understanding of your discipline to construct a starting point. If you cannot produce anything at all before using AI, that is worth pausing on — it may be a signal about your preparation rather than a limitation of the tool.</p>
+        </div>
+      </div>
+
+      <!-- ─── STEP 2 ─── -->
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num-badge">2</div>
+          <div class="step-name-wrap">
+            <div class="step-label">Step 2</div>
+            <div class="step-name">Evaluate</div>
+          </div>
+          <div class="step-imperative">Do not accept AI output at face value. Hold it against something authoritative.</div>
+        </div>
+        <div class="step-card-body">
+          <p>The output you received in Step 1 will look competent. It may be well-structured, clearly written, and appear to answer the task. That does not mean it is accurate, complete, or appropriate for your context.</p>
+          <p>Your job is to compare the AI output against the anchors your lecturer has provided. An anchor is any authoritative reference point for the task — a marking rubric, a professional standard, a regulatory guideline, a research paper, a disciplinary framework, or an industry code of practice.</p>
+          <p>Go through the AI output point by point. For each claim, recommendation, or assertion the AI has made, ask: does this align with what the anchor says? Is anything oversimplified? Is anything missing? Is anything wrong?</p>
+          <p><strong>If no anchor has been provided:</strong> identify the most authoritative standard or source relevant to this task and use that as your reference point. This might be a key reading from your unit, a professional body's guidelines, or the foundational framework in your discipline. If you are unsure what the right anchor is, finding out is part of the work — and it is a skill you will need in every professional context you enter after graduation.</p>
+          <p>Document every misalignment, gap, or error you find. This documentation feeds directly into Step 3.</p>
+        </div>
+      </div>
+
+      <!-- ─── STEP 3 ─── -->
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num-badge">3</div>
+          <div class="step-name-wrap">
+            <div class="step-label">Step 3</div>
+            <div class="step-name">Refine</div>
+          </div>
+          <div class="step-imperative">Make it yours. Document every decision.</div>
+        </div>
+        <div class="step-card-body">
+          <p>This is where you take ownership of the output. Using what you found in Step 2, work through the AI-generated content and make deliberate decisions about every significant element. You may move between Evaluate and Refine more than once — this iteration is expected. The only step designed as a single bounded pass is Step 4.</p>
+          <p>For each decision, record it in your log using three categories:</p>
+
+          <div class="decision-row">
+            <div class="decision-item">
+              <span class="decision-badge badge-accept">Accept</span>
+              <p>The AI output is accurate and appropriate as it stands, and you can explain why with reference to your anchor.</p>
+            </div>
+            <div class="decision-item">
+              <span class="decision-badge badge-modify">Modify</span>
+              <p>The AI output is partially correct but needs adjustment. Record what you changed and why, citing the specific standard, evidence, or reasoning that informed your modification.</p>
+            </div>
+            <div class="decision-item">
+              <span class="decision-badge badge-reject">Reject</span>
+              <p>The AI output is wrong, misleading, or inappropriate for the context. Record what you rejected and why, with reference to what the correct position is according to your anchor.</p>
+            </div>
+          </div>
+
+          <p>Record each decision using the following structure. Your educator may provide a customised version — if not, use this format as your default.</p>
+
+          <table class="log-table">
+            <thead>
+              <tr>
+                <th style="width:35%">AI Output (relevant excerpt)</th>
+                <th style="width:25%">Decision</th>
+                <th style="width:40%">Justification (~50–75 words)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Paste or summarise the relevant AI claim here</td>
+                <td>Accept / Modify / Reject</td>
+                <td>Explain your reasoning with reference to your anchor or professional judgement</td>
+              </tr>
+              <tr>
+                <td>Continue for each significant element</td>
+                <td>Accept / Modify / Reject</td>
+                <td>Each justification should cite a specific source, standard, or disciplinary principle</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>This log is the core artefact of your work under SAGE. It is not a supplementary document. It is the primary evidence that you engaged critically with the AI output rather than accepting it passively. If you are ever asked to account for your work, this log is your answer.</p>
+        </div>
+      </div>
+
+      <!-- ─── STEP 4 ─── -->
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num-badge">4</div>
+          <div class="step-name-wrap">
+            <div class="step-label">Step 4</div>
+            <div class="step-name">Audit</div>
+          </div>
+          <div class="step-imperative">Turn the AI into your auditor — then audit the auditor.</div>
+        </div>
+        <div class="step-card-body">
+          <p>You have now built a log of documented decisions. In this step, you feed that log back into the AI — but this time you change the AI's role.</p>
+          <p>Construct a new prompt that instructs the AI to act as a professional reviewer matched to the anchor you used in Step 2. The professional role and the anchor always match:</p>
+
+          <div class="audit-note">
+            <strong>Examples:</strong> If your anchor was a cybersecurity standard → the AI becomes a security auditor. If your anchor was a clinical guideline → the AI becomes a clinical reviewer. If your anchor was a legal framework → the AI becomes a compliance officer.
+          </div>
+
+          <p>Give the AI your log from Step 3 and ask it to audit your decisions. Where did you accept something you should have questioned? Where did you reject something that had merit? Where is your justification weak or unsupported?</p>
+          <p>The AI will return a set of concerns about your decisions. Your job is to make a final adjudication on each one:</p>
+
+          <div class="decision-row">
+            <div class="decision-item">
+              <span class="decision-badge badge-accept">Accept the flag</span>
+              <p>The AI has identified a genuine weakness in your reasoning. Record what you will change and why.</p>
+            </div>
+            <div class="decision-item">
+              <span class="decision-badge badge-reject">Reject the flag</span>
+              <p>The AI's critique is itself flawed, generic, or does not apply to your specific context. Record why you are rejecting it with reference to your anchor or professional judgement.</p>
+            </div>
+          </div>
+
+          <p>This adjudication is the final act of this step. The Audit is a single bounded pass — you do not loop back and forth with the AI indefinitely. One critique, one adjudication, documented. You cannot construct a meaningful Audit prompt without a genuine log from Step 3. No log, no meaningful critique. The steps are designed to build on each other.</p>
+        </div>
+      </div>
+
+      <!-- ─── STEP 5 ─── -->
+      <div class="step-card">
+        <div class="step-card-header">
+          <div class="step-num-badge">5</div>
+          <div class="step-name-wrap">
+            <div class="step-label">Step 5</div>
+            <div class="step-name">Reflect</div>
+          </div>
+          <div class="step-imperative">Your log is your evidence. The anchoring habit is your long-term skill.</div>
+        </div>
+        <div class="step-card-body">
+          <p>This step has two layers.</p>
+
+          <div class="pathway-block">
+            <div class="pathway-block-label">Layer 1 — Document your intellectual contribution</div>
+            <p>Review the log you have built across Steps 3 and 4. This record demonstrates what you decided, what you changed, what you rejected, and why. It is your evidence of authorship — not authorship of the AI output, but authorship of the thinking that shaped, corrected, and justified the final work.</p>
+          </div>
+
+          <div class="pathway-block">
+            <div class="pathway-block-label">Layer 2 — Transfer the anchoring habit</div>
+            <p>The anchors your lecturer provided were specific to this task. The AI limitations you identified were specific to this context. But the habit of holding AI output against an authoritative standard is transferable to any context you will encounter. In your career, the anchor may be a regulatory framework, a professional code of conduct, an industry standard, or an organisational policy. The skill SAGE is building is not reliance on a fixed set of references — it is the judgement to identify the right anchor for any situation and to hold AI output accountable against it.</p>
+          </div>
+
+          <p>Take a moment to consider: what did you learn about AI's limitations in this task? What would you do differently next time? Where did your own disciplinary knowledge prove essential in ways the AI could not replicate?</p>
+          <p><strong>A note on what may come next:</strong> In many professional and academic settings, you will be expected to walk others through your reasoning — not just present a finished product. Your educator may include a supervised session where you discuss your work, explain your decisions, and demonstrate your understanding. The log and reflections you have built across these steps are your preparation for that conversation. This is not a test of memory. It is an opportunity to show that the thinking is yours.</p>
+        </div>
+      </div>
+
+      <!-- Attribution -->
+      <div class="attribution-block">
+        <div class="attribution-label">Attribution &amp; Licence</div>
+        The SAGE framework was developed by Dr Mahmoud Elkhodr and Professor Ergun Gide at Central Queensland University. Empirically validated across 800+ students at multiple Australian campuses. Listed in the TEQSA Generative AI Knowledge Hub. Licensed under CC BY 4.0 — free to use and adapt with attribution. If adapting this guide, please include: <em>Adapted from the SAGE Framework (Elkhodr &amp; Gide, 2026). sage-framework.com</em>
+      </div>
+
+    </div><!-- /guide-body -->
+  </div><!-- /guide-preview -->
+
+  <!-- DOWNLOAD BAR (after preview) -->
+  <div class="download-bar" style="margin-top:2rem;">
+    <div>
+      <div class="download-bar-text">Download the student guide</div>
+      <div class="download-bar-sub">Word document for editing &nbsp;·&nbsp; Print-ready PDF for direct distribution</div>
+    </div>
+    <div class="download-buttons">
+      <a href="files/SAGE_Student_Guide.docx" download class="btn-download btn-download-word">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M10 2v4h4"/><path d="M5 9l2 4 2-4"/></svg>
+        Download Word
+      </a>
+      <a href="files/SAGE_Student_Guide.pdf" download class="btn-download btn-download-pdf">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z"/><path d="M10 2v4h4"/><path d="M5 10h6M5 12h4"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-wordmark">SAGE Framework</div>
+        <div class="footer-tagline">Structured AI-Guided Education — a validated pedagogical framework for higher education. Licensed CC BY 4.0.</div>
+      </div>
+      <div class="footer-links">
+        <a href="sage.html">The Framework</a>
+        <a href="student_resources.html">Student Resources</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="index.html#research">Publications</a>
+        <a href="index.html#community">Community of Practice</a>
+        <a href="index.html#about">About</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-citation">
+        Elkhodr, M. &amp; Gide, E. (2026). <em>The SAGE Framework: Structured AI-Guided Education</em>. Central Queensland University. DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener">10.5281/zenodo.18383951</a>
+      </div>
+      <div class="footer-licence">CC BY 4.0 &middot; sage-framework.com</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

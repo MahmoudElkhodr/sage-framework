@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAGE Assurance Guidance Tool — Defend Step Design Tool</title>
+<meta name="description" content="Interactive tool for designing the SAGE Defend checkpoint (Step 6). Select your cohort, delivery mode, and assessment type to receive a recommended assurance format, rubric, sample challenge prompts, and printable implementation brief. Based on 8 empirical studies with 800+ students. By Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
+<meta name="keywords" content="SAGE Defend tool, AI assessment assurance, Defend checkpoint design, viva voce AI, oral assessment GenAI, assessment verification higher education, supervised checkpoint AI, epistemic matching, AI-integrated assessment, assurance format recommender, SAGE design principles, assessment rubric AI, challenge questions AI, Mahmoud Elkhodr, Ergun Gide, CQUniversity, TEQSA assessment assurance, academic integrity verification, Defend planner, interactive oral assessment, structured role-play assessment, cybersecurity assessment AI, programming viva, clinical reasoning AI" />
+<meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://sage-framework.com/defend_tool.html" />
+<meta property="og:title" content="SAGE Assurance Guidance Tool — Design Your Defend Checkpoint" />
+<meta property="og:description" content="Interactive tool for designing AI assessment assurance checkpoints. Select your context, get a recommended format, rubric, and printable brief." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sage-framework.com/defend_tool.html" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="SAGE Defend Tool — Assessment Assurance Design" />
+<meta name="twitter:description" content="Design your Defend checkpoint: format recommender, rubrics, challenge prompts, and printable brief. 800+ students, 8 studies." />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>*{margin:0;padding:0;box-sizing:border-box}
+.sage-top-bar{background:#0d1f16;padding:0.4rem 1.5rem;display:flex;align-items:center;justify-content:space-between;font-family:'Instrument Sans',system-ui,sans-serif;}
+.sage-top-bar a.sage-back-wordmark{font-family:'Fraunces',Georgia,serif;font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.85);text-decoration:none;display:flex;align-items:baseline;gap:0.3rem;}
+.sage-top-bar a.sage-back-wordmark span{font-family:'Instrument Sans',sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-left:0.3rem;}
+.resource-tabs{background:#fff;border-bottom:1px solid #dde5e0;}
+.resource-tabs-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;gap:0;}
+.resource-tab{display:flex;align-items:center;gap:0.45rem;padding:0.65rem 1rem;font-family:'Instrument Sans',system-ui,sans-serif;font-size:0.78rem;font-weight:500;color:#6b7a72;text-decoration:none;border-bottom:2px solid transparent;transition:color 0.15s,border-color 0.15s;white-space:nowrap;}
+.resource-tab:hover{color:#1b4332;}
+.resource-tab.active{color:#1b4332;font-weight:600;border-bottom-color:#2d6a4f;}
+.resource-tab .tab-icon{font-size:0.82rem;}
+</style>
+</head>
+<body>
+<div class="sage-top-bar">
+  <a href="index.html" class="sage-back-wordmark">SAGE <span>Framework</span></a>
+</div>
+<div class="resource-tabs">
+  <div class="resource-tabs-inner">
+    <a href="student-guide.html" class="resource-tab"><span class="tab-icon">📄</span> Student Guide</a>
+    <a href="genai-101.html" class="resource-tab"><span class="tab-icon">📖</span> GenAI-101 Module</a>
+    <a href="defend_tool.html" class="resource-tab active"><span class="tab-icon">🛡️</span> Defend Tool</a>
+  </div>
+</div>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
+
+
+// ─── DATA ───
+
+const SAGE_STEPS = [
+  { step: 1, name: "Generate", focus: "AI Output Generation", desc: "Students use generative AI tools to produce an initial draft, solution, or artefact relevant to the assessment task.", tip: "Encourage students to experiment with different prompts and compare outputs. Document which AI tool was used and the exact prompts given — this becomes evidence for later reflection.", color: "#3b82f6" },
+  { step: 2, name: "Evaluate", focus: "Critical Assessment", desc: "Students critically assess the AI-generated output against the task requirements, disciplinary standards, published research, and professional guidelines. The aim is to identify what the AI got right, what it missed, and what it got wrong.", tip: "Provide students with a checklist tied to the unit's learning outcomes. Ask: does the output meet the marking criteria? Is it consistent with the relevant literature or standards? Would a practitioner accept this?", color: "#8b5cf6" },
+  { step: 3, name: "Refine", focus: "Iterative Improvement", desc: "Students revise and improve the content based on their evaluation, incorporating their own knowledge, research, and professional judgement to produce a higher-quality output.", tip: "This is where students add genuine intellectual value. Track changes or use a comparison document so the difference between AI output and student contribution is visible.", color: "#06b6d4" },
+  { step: 4, name: "AI Critic", focus: "Adversarial AI Analysis", desc: "Students submit their refined work back to an AI tool, this time asking it to critique, challenge, or find weaknesses. The AI acts as a devil's advocate.", tip: "Frame this as a stress-test. Prompt the AI to act as an examiner, industry auditor, or peer reviewer. Students must then decide which criticisms to accept, partially accept, or reject — with reasons.", color: "#f59e0b" },
+  { step: 5, name: "Reflect", focus: "Metacognitive Synthesis", desc: "Students reflect on the entire process: what they learned, how AI helped or hindered, where their own thinking changed, and what they would do differently.", tip: "Reflection should be structured, not open-ended. Ask students to identify one specific moment where they disagreed with the AI and explain why their judgement was better (or worse).", color: "#10b981" },
+  { step: 6, name: "Defend", focus: "Competency Verification", desc: "Students demonstrate, under supervised conditions, that the reasoning documented in their submission has been individually internalised. This is the assurance checkpoint that closes the verification gap.", tip: "The Defend step is not a separate assessment — it is the final checkpoint within the same assessment sequence. Students should expect to explain, justify, or demonstrate any part of their submitted work.", color: "#ef4444", isDefend: true },
+];
+
+const DESIGN_PRINCIPLES = [
+  { id: 1, title: "Mandation", short: "Mandatory, not elective", detail: "Universal assurance requires that the Defend checkpoint be a mandatory condition of the assessment sequence, applied to every student, to prevent self-selection bias.", icon: "⊕",
+    examples: [
+      { discipline: "Nursing", example: "Every student completes a medication calculation viva, not just flagged students." },
+      { discipline: "Business", example: "All team members present individually on their strategic analysis contribution, regardless of group mark." },
+      { discipline: "Engineering", example: "Each student walks through their design calculations live, even in large cohorts using sampled scheduling." },
+    ]},
+  { id: 2, title: "Alignment", short: "Match the checkpoint to the thinking the task required", detail: "A generic oral exam appended to any submission does not constitute a principled Defend. The verification task must target the cognitive operation the assessment required.", icon: "⊞",
+    examples: [
+      { discipline: "Law", example: "For a case analysis essay, students defend their legal argument orally — not answer quiz questions about case names." },
+      { discipline: "IT / Computing", example: "For a programming assignment, students do a live code walkthrough and fix a seeded bug — not explain their code in writing." },
+      { discipline: "Education", example: "For a lesson plan, students teach a micro-lesson to demonstrate pedagogical reasoning — not just describe it." },
+    ]},
+  { id: 3, title: "Structure", short: "Deliberate challenge, not casual Q&A", detail: "Challenge questions must be designed in advance, mapped to learning outcomes, and applied consistently across students — not incidental open Q&A.", icon: "◎",
+    examples: [
+      { discipline: "Health Sciences", example: "Prepare a question bank targeting each learning outcome. Every student faces comparable challenge regardless of tutor." },
+      { discipline: "Cybersecurity", example: "Use a structured rubric so that 'why did you choose this control?' is asked every time, not only when the tutor is curious." },
+      { discipline: "Social Work", example: "Map challenge questions to the ethical reasoning framework students were required to apply." },
+    ]},
+  { id: 4, title: "Security", short: "Layer controls for online delivery", detail: "Online delivery requires synchronous oral or performance components combined with identity verification, session recording, and randomised questioning to mitigate off-camera assistance.", icon: "⊘",
+    examples: [
+      { discipline: "Any (online)", example: "Combine a live video viva with identity check at start, randomised question order, and session recording for moderation." },
+      { discipline: "Any (hybrid)", example: "Conduct the Defend checkpoint in-person even if the rest of the assessment is submitted online." },
+      { discipline: "Large online cohort", example: "Use randomised question pools so no two students receive the same sequence of challenges." },
+    ]},
+  { id: 5, title: "Incentive", short: "Weight it enough that students take it seriously", detail: "A Defend component carrying modest assessment weight may be insufficient to motivate genuine reasoning ownership. The weighting must incentivise authentic preparation.", icon: "△",
+    examples: [
+      { discipline: "Professional Communication", example: "A 10% individual oral within a 40% group task improved separation but did not fully incentivise deep preparation." },
+      { discipline: "Capstone / Thesis", example: "A defence worth 30–40% of the final mark signals that understanding matters as much as the written product." },
+      { discipline: "Any", example: "Consider a gatekeeping model: the written submission is not marked until the Defend checkpoint is passed." },
+    ]},
+  { id: 6, title: "Authenticity", short: "Process logs are transparency, not proof", detail: "Process documentation and AI interaction logs are valuable transparency mechanisms but they do not substitute for live Defend verification. Logs can be fabricated; live reasoning cannot.", icon: "◇",
+    examples: [
+      { discipline: "Data Science", example: "AI interaction logs show the student used ChatGPT — but only the live walkthrough reveals whether they understand the model." },
+      { discipline: "Design", example: "A process journal documents iterations — but only the live critique response shows the student owns the design decisions." },
+      { discipline: "Any", example: "Treat logs as formative evidence and the Defend as summative verification. Both are needed; neither alone is sufficient." },
+    ]},
+];
+
+const TYPOLOGY_FULL = [
+  { name: "Interactive oral assessment (IOA)", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Moderate", support: "Multi-cohort", evidence: "Davey et al. (2025)", function: "Students explain and justify their work in real time through unscripted dialogue with an assessor.", advantages: "Strongest empirical evidence of GenAI-resilience; very difficult to outsource or fake.", limitations: "Time-intensive; difficult to scale beyond small cohorts; requires trained assessors for consistency." },
+  { name: "Viva voce examination", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Moderate", support: "Multi-cohort", evidence: "Brogan et al. (2024)", function: "Students defend their submitted work verbally under direct questioning by an examiner.", advantages: "Strong for verifying conceptual understanding; well-established across many disciplines.", limitations: "Resource-heavy; examiner fatigue affects quality; online delivery introduces new vulnerabilities." },
+  { name: "Live practical demonstration", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Low", support: "Pilot", evidence: "Kofinas et al. (2025)", function: "Students perform an applied task or demonstrate a professional process live under observation.", advantages: "Strong evidence of applied competence; very difficult to outsource convincingly.", limitations: "Not universally applicable; may require specialist equipment or facilities." },
+  { name: "Structured role-play / scenario defence", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Moderate", support: "Pilot", evidence: "Kofinas et al. (2025)", function: "Students respond in real time to a realistic professional scenario they have not seen in advance.", advantages: "Highly authentic for professional disciplines; removes possibility of pre-prepared scripted answers.", limitations: "Quality depends heavily on scenario design; not yet widely validated as a GenAI assurance mechanism." },
+  { name: "Oral presentation + examiner questioning", category: "Primary", subcategory: "Moderate direct verification", scalability: "Moderate", equityRisk: "Moderate", support: "Pilot", evidence: "Jonathan & Walsh (2025)", function: "Students present their work live and respond to targeted questions designed in advance by the assessor.", advantages: "More scalable than a full viva; effective when the examiner challenge is deliberate and outcome-mapped.", limitations: "Open Q&A without structured challenge questions is not sufficient; effectiveness depends entirely on examiner preparation." },
+  { name: "Supervised in-class task", category: "Primary", subcategory: "Moderate direct verification", scalability: "Moderate", equityRisk: "Low", support: "Pilot", evidence: "TEQSA (2025)", function: "Students complete work under direct physical supervision in a classroom, reducing opportunity for AI assistance.", advantages: "Reliable control over authorship conditions; scales well on campus.", limitations: "Not suitable for online cohorts; does not independently verify deep reasoning — best paired with an oral component." },
+  { name: "Timed invigilated exam", category: "Primary", subcategory: "Moderate direct verification", scalability: "High", equityRisk: "Moderate", support: "Multi-cohort", evidence: "Scarfe et al. (2024)", function: "Students demonstrate knowledge within a controlled, supervised time window with restricted access to tools.", advantages: "Familiar to institutions; can be deployed at large scale.", limitations: "May not reveal genuine reasoning depth; only effective if digital access is tightly controlled." },
+  { name: "Computer-lab exam (restricted access)", category: "Primary", subcategory: "Moderate direct verification", scalability: "High", equityRisk: "Low", support: "Pilot", evidence: "Susnjak & McIntosh (2024)", function: "Students complete digital tasks in a supervised lab with restricted software and network access.", advantages: "Well-suited to digital disciplines; physically controls access to AI tools.", limitations: "Significant technical setup required; students may find workarounds through browser extensions." },
+  { name: "Remote proctored exam", category: "Controlled delivery", subcategory: "Environment control (not standalone evidence)", scalability: "High", equityRisk: "High", support: "Multi-cohort", evidence: "Marano et al. (2024)", function: "Webcam monitoring, screen recording, and identity checks control the remote testing environment.", advantages: "Enables controlled conditions for fully remote cohorts; scalable.", limitations: "Significant concerns about student wellbeing, privacy, disability impacts, and digital inequity. Not evidence of learning by itself." },
+  { name: "Locked-down browser + synchronous task", category: "Controlled delivery", subcategory: "Environment control (not standalone evidence)", scalability: "High", equityRisk: "Moderate", support: "Pilot", evidence: "Jonathan & Walsh (2025)", function: "Browser access is restricted to the assessment platform while students work in real time.", advantages: "Adds a layer of control for online settings; reduces casual AI tool access.", limitations: "Not robust against second devices; technical failures can disrupt assessment; does not verify reasoning." },
+  { name: "Behaviour analytics monitoring", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Moderate", support: "Pilot", evidence: "Akcapinar (2025)", function: "Software analyses patterns like tab switching, focus loss, and text selection to flag anomalous behaviour.", advantages: "Can identify suspicious patterns as a supplementary signal to support other evidence.", limitations: "Probabilistic, not conclusive; cannot prove misconduct; must not be used as sole evidence." },
+  { name: "Authorship quiz", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Moderate", support: "Pilot", evidence: "Quesnel & Stoesz (2025)", function: "Students answer questions generated from their own submitted work to demonstrate familiarity with the content.", advantages: "Scalable; directly tied to the specific submission.", limitations: "Research found quiz performance correlated with working memory rather than actual authorship — use with caution." },
+  { name: "Process documentation + AI interaction log", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Low", support: "Pilot", evidence: "Elkhodr & Gide (2026)", function: "Students submit records showing how they interacted with AI tools throughout the assessment task.", advantages: "Encourages transparency; compatible with AI-integrated assessment design.", limitations: "Logs can be fabricated after the fact. At one institution, 74% of students failed to declare AI use even when required." },
+  { name: "Cloze-test / speaker verification", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Moderate", support: "Design-based", evidence: "Foltynek et al. (2025)", function: "Students fill in blanks from their own text, or voice biometrics are matched to verify identity.", advantages: "Potentially scalable; structurally linked to the specific submission.", limitations: "Still at the methodological proposal stage; not yet validated at scale in educational settings." },
+];
+
+const EPISTEMIC_MATCHING = [
+  { format: "Essay / Argument", operation: "Defend claim", task: "Oral examination of claims", detail: "The assessor probes each argument in real time. The student must justify their position, not just restate it.", plain: "If the assessment asked students to argue a position, the checkpoint should test whether they can defend that argument under questioning." },
+  { format: "Literature Review", operation: "Justify selection", task: "Source interrogation viva", detail: "Questions focus on why specific sources were chosen, how they connect, and what was deliberately excluded.", plain: "If students reviewed the literature, they should be able to explain why they chose those sources and how they fit together." },
+  { format: "Code / Programming", operation: "Transfer skill", task: "Live walkthrough + debug", detail: "The student explains their design logic and solves a seeded error introduced live by the assessor.", plain: "If students wrote code, they should be able to walk through it and fix a new problem on the spot — not just describe what it does." },
+  { format: "Data Analysis", operation: "Apply methods", task: "Unseen dataset interpretation", detail: "The student applies the same analytical methods to a new dataset while being observed.", plain: "If students analysed data, they should be able to apply the same techniques to fresh data they have not seen before." },
+  { format: "Industry Case Study", operation: "External witness", task: "Stakeholder presentation + Q&A", detail: "An industry partner challenges the findings and signs off on the engagement.", plain: "If students worked on a real-world case, an external stakeholder should be able to challenge their conclusions directly." },
+  { format: "Security / Risk Audit", operation: "Risk transfer", task: "Timed risk-scoring exercise", detail: "Live prioritisation of an unseen scenario using the same frameworks studied in the unit.", plain: "If students conducted a risk assessment, they should be able to score and prioritise risks in a new scenario under time pressure." },
+  { format: "Research Proposal", operation: "Justify design", task: "Methodology challenge viva", detail: "The student justifies their design choices against rival approaches proposed by the examiner.", plain: "If students designed a research study, they should be able to explain why their method is better than alternatives the examiner suggests." },
+  { format: "Creative Writing / Portfolio", operation: "Explain choices", task: "Reflective oral on craft decisions", detail: "The student explains specific creative choices — structure, voice, revision decisions — and why alternatives were rejected.", plain: "If students produced creative work, they should be able to explain why they made the artistic choices they did and what they changed from the AI draft." },
+  { format: "Clinical Placement / Practicum", operation: "Demonstrate reasoning", task: "Clinical reasoning viva", detail: "The student walks through their decision-making for a specific patient or client scenario encountered during placement.", plain: "If students completed a clinical placement, they should be able to explain the reasoning behind their clinical decisions for a specific case." },
+  { format: "Design Studio", operation: "Defend iteration", task: "Design crit + unseen constraint", detail: "The student presents their design rationale and adapts it live when the assessor introduces a new constraint.", plain: "If students produced a design, they should be able to explain their decisions and adapt when the assessor changes a requirement on the spot." },
+  { format: "Accounting / Financial Analysis", operation: "Apply judgement", task: "Unseen scenario with same standards", detail: "The student applies the same accounting standards or analytical framework to a new financial scenario while observed.", plain: "If students analysed financial data, they should be able to apply the same standards to a new scenario — not just reproduce the one they submitted." },
+  { format: "Music / Performance", operation: "Demonstrate mastery", task: "Live performance + technique questions", detail: "The student performs and then answers questions about interpretive and technical choices.", plain: "If students submitted a performance or composition, they should be able to perform it live and explain the artistic and technical decisions behind it." },
+];
+
+const DECISION_MATRIX = [
+  { context: "Small cohort, in-person, high stakes", cohort: "Small (<30)", delivery: "In-person", stakes: "High", outcomeType: "Explanation / defence", format: "Viva voce / interactive oral assessment", rationale: "Strongest evidence of reasoning ownership. The assessor probes inconsistencies in real time, making it very difficult to mask gaps in understanding.", constraints: "Requires trained assessors; scheduling is time-intensive; assessor fatigue affects quality in back-to-back sessions. Ensure rubric consistency across multiple examiners.", example: "Nursing: student defends clinical reasoning for a patient care plan. Law: student defends case analysis under examiner questioning." },
+  { context: "Small cohort, in-person, applied discipline", cohort: "Small (<30)", delivery: "In-person", stakes: "High", outcomeType: "Applied performance", format: "Live practical demonstration or structured scenario defence", rationale: "Competence is verified through embodied performance. Real-time execution makes delegation immediately detectable.", constraints: "May require specialist equipment or facilities; not applicable to all assessment types. Scenario quality determines assurance value — invest in scenario design.", example: "Engineering: student walks through structural calculations and adjusts for a changed load. Music: student performs and explains interpretive choices." },
+  { context: "Medium cohort, in-person, moderate stakes", cohort: "Medium (30–100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Explanation / judgement", format: "Oral presentation + targeted examiner questioning", rationale: "Deliberate examiner challenge probes individual reasoning at moderate scale.", constraints: "Open Q&A without pre-designed challenge questions is insufficient (Case Study 1). Success depends on tutor preparation — peer questions were absent in practice. Use a structured question protocol.", example: "Business: each team member presents their strategic analysis contribution individually. Education: student teaches a micro-lesson demonstrating pedagogical reasoning." },
+  { context: "Medium cohort, in-person, procedural", cohort: "Medium (30–100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Procedural / applied", format: "Supervised in-class task or computer-lab exam", rationale: "Controls authorship conditions at medium scale and reduces live AI access.", constraints: "Does not independently verify reasoning depth — best paired with a sampled oral component. Not suitable for online-only students.", example: "Accounting: students apply the same standards to an unseen financial scenario under supervision. IT: students debug a seeded error in a restricted lab." },
+  { context: "Large cohort, in-person, moderate stakes", cohort: "Large (>100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Knowledge application", format: "Timed invigilated exam + sampled oral checkpoint", rationale: "Invigilated exam supplemented by sampled oral defence for flagged or randomly selected students.", constraints: "The exam alone may not reveal reasoning depth. Sampling strategy must be transparent to avoid perception of targeting. Resourcing the oral sample is the binding constraint.", example: "Health sciences: exam tests clinical knowledge; sampled students then explain reasoning for selected answers. Any discipline: random 15% oral sample after written exam." },
+  { context: "Any cohort, hybrid delivery, high stakes", cohort: "Any", delivery: "Hybrid", stakes: "High", outcomeType: "AI-integrated process", format: "AI-integrated submission + embedded face-to-face Defend checkpoint", rationale: "Students complete the full SAGE cycle with open AI use, then verify reasoning ownership at a single controlled face-to-face or synchronous checkpoint.", constraints: "Scheduling the face-to-face component for large or dispersed cohorts is the main logistical challenge. The checkpoint must carry sufficient assessment weight to incentivise preparation (Principle 5).", example: "Any discipline using SAGE: students submit AI-integrated work online, then attend one in-person session to defend their reasoning." },
+  { context: "Large cohort, online delivery, high stakes", cohort: "Large (>100)", delivery: "Online", stakes: "High", outcomeType: "Any", format: "Layered controls: synchronous oral + identity check + recording + randomised questions", rationale: "Online-only assurance is structurally weaker than in-person. A layered design with multi-factor identity verification is the minimum standard.", constraints: "Equity concerns are significant: remote proctoring disproportionately affects students with disabilities, limited internet, or shared living spaces. Provide alternative pathways where possible.", example: "Any online unit: 10-minute video viva with ID check, randomised question order, and session recorded for moderation." },
+  { context: "Any cohort, online, low–moderate stakes", cohort: "Any", delivery: "Online", stakes: "Low–Moderate", outcomeType: "Transparency / process", format: "Mandatory AI interaction log + disclosure form (transparency only)", rationale: "A transparency mechanism that signals institutional expectations around AI use. Not stand-alone assurance.", constraints: "This is not a Defend checkpoint — it is a supporting signal only. Logs can be fabricated. At one institution, 74% of students failed to declare AI use even when required.", example: "Low-stakes formative tasks: students submit their AI chat log alongside the task. Sets expectations without adding assessment burden." },
+  { context: "Supplementary signal only — pair with a primary task", cohort: "Any", delivery: "Any", stakes: "Any", outcomeType: "Any", format: "Behaviour analytics, authorship quiz, or AI interaction log", rationale: "These are monitoring and transparency mechanisms that flag potential concerns but cannot independently verify that a student owns their reasoning. They provide a supporting evidentiary signal when used alongside a primary assurance task such as a viva, oral presentation, or live practical.", constraints: "Never use as the sole basis for integrity decisions. Behaviour analytics are probabilistic and cannot prove misconduct. Authorship quizzes correlated with working memory, not authorship (Quesnel & Stoesz, 2025). AI interaction logs can be fabricated retrospectively. Remote proctoring raises significant equity and wellbeing concerns. All three must supplement — not replace — a primary Defend checkpoint.", example: "A cybersecurity unit pairs a viva (primary assurance) with mandatory AI interaction logs (transparency signal). A large online unit uses behaviour analytics to identify students for targeted follow-up oral questioning, not as evidence of misconduct." },
+];
+
+const CASE_STUDIES = [
+  { unit: "COIT12212 Cybersecurity Management", level: "Undergraduate", defendTask: "Group Submission + Open Presentation Q&A", positives: "The open presentation format created an opportunity for students to demonstrate understanding of their group's cybersecurity policy decisions. The SAGE protocol with AI Critic integration produced documented evidence of human–AI interaction across the assessment sequence.", constraints: "Probing depended entirely on tutor initiative rather than a structured question protocol. Peer challenge seldom occurred. Open Q&A without deliberate challenge design was insufficient to generate reliable assurance evidence.", keyLesson: "An unstructured Q&A opportunity is not a Defend checkpoint. Challenge must be deliberate and outcome-mapped (Principle 3).", color: "#3b82f6" },
+  { unit: "COIT11239 Professional Communication Skills", level: "Undergraduate", defendTask: "Group Presentation + Weighted Individual Oral (10% of 40%)", positives: "The formally weighted individual oral component successfully separated individual reasoning from group output. Students who could not explain their own contribution were identifiable. This was the strongest separation of individual competency observed across the three implementations.", constraints: "The individual component carried only 10% of a 40% group task — a modest proportion. Scheduling and staffing for 100+ students made higher weighting logistically difficult. Increasing the weight risked transforming the assessment into a traditional oral exam.", keyLesson: "Weighting matters. Modest weighting improves separation but may not fully incentivise deep preparation (Principle 5).", color: "#10b981" },
+  { unit: "COIT20263 Information Security Management", level: "Postgraduate", defendTask: "Industry-Partnered Case Study + External Witness Sign-off", positives: "The industry-partnered pathway produced the highest assurance of any implementation. Students who engaged an external industry partner and defended findings under stakeholder challenge demonstrated the strongest evidence of reasoning ownership.", constraints: "The pathway was voluntary. Most students defaulted to the simulated alternative because securing an industry partner was logistically difficult within the assessment timeline. Self-selection meant the students most willing to engage were not necessarily those whose work most needed verification.", keyLesson: "Voluntarily accessed high-assurance pathways are self-selecting. Universal assurance requires the Defend checkpoint to be mandatory (Principle 1).", color: "#8b5cf6" },
+];
+
+const ADDITIONAL_IMPLEMENTATIONS = [
+  { unit: "Cybersecurity Management", discipline: "Cybersecurity", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2025), Discover Education" },
+  { unit: "Systems Analysis and Design", discipline: "Information Systems", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2026), Zenodo Implementation Guide" },
+  { unit: "Data Analytics", discipline: "Data Science", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2026), Zenodo Implementation Guide" },
+  { unit: "First-Year ICT Foundations", discipline: "Information Technology", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2025), SAGE GenAI-101 Student Module" },
+  { unit: "Professional Communication (extended cohort)", discipline: "Communication", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2026), JUTLP submission" },
+];
+
+const PLANNING_FIELDS_CONTEXT = [
+  { id: "unit", label: "Unit / Course Name", type: "text", placeholder: "e.g. COIT12212 Cybersecurity Management" },
+  { id: "level", label: "Level", type: "select", options: ["Undergraduate", "Postgraduate", "Foundation / Enabling", "Professional Development"] },
+  { id: "cohort", label: "Cohort Size", type: "select", options: ["Small (<30 students)", "Medium (30–100 students)", "Large (>100 students)"] },
+  { id: "delivery", label: "Delivery Mode", type: "select", options: ["In-person", "Online", "Hybrid"] },
+  { id: "discipline", label: "Discipline Area", type: "select", options: ["Business / Management", "Computing / IT", "Creative Arts / Design", "Education", "Engineering", "Health Sciences / Nursing", "Humanities / Social Sciences", "Law", "Mathematics / Statistics", "Science", "Other"] },
+];
+
+const ASSESSMENT_OPTIONS = [
+  "Essay / Written Argument", "Literature Review", "Code / Programming Assignment", "Data Analysis Report",
+  "Industry Case Study", "Security / Risk Audit", "Research Proposal", "Creative Writing / Portfolio",
+  "Clinical Placement Report", "Design Project", "Group Report with Individual Contribution", "Oral Presentation", "Other"
+];
+
+// Assessment task → recommended format + rationale (from epistemic matching matrix)
+const ASSESSMENT_FORMAT_MAP = {
+  "Essay / Written Argument": { recommended: "Viva voce examination", operation: "Defend claim", why: "The student must justify each argument under direct questioning — restating the essay is not sufficient.", alternates: ["Interactive oral assessment (IOA)", "Oral presentation + targeted examiner questioning"] },
+  "Literature Review": { recommended: "Viva voce examination", operation: "Justify selection", why: "The student must explain why specific sources were chosen, how they connect, and what was deliberately excluded.", alternates: ["Interactive oral assessment (IOA)"] },
+  "Code / Programming Assignment": { recommended: "Live practical demonstration", operation: "Transfer skill", why: "The student walks through their code logic and solves a seeded error introduced live — describing code in writing is not equivalent.", alternates: ["Computer-lab exam (restricted access)", "Structured role-play / scenario defence"] },
+  "Data Analysis Report": { recommended: "Live practical demonstration", operation: "Apply methods", why: "The student applies the same analytical methods to an unseen dataset while being observed.", alternates: ["Supervised in-class task", "Oral presentation + targeted examiner questioning"] },
+  "Industry Case Study": { recommended: "Structured role-play / scenario defence", operation: "External witness", why: "An industry partner or examiner challenges the findings directly. The student defends their professional judgement.", alternates: ["Oral presentation + targeted examiner questioning", "Viva voce examination"] },
+  "Security / Risk Audit": { recommended: "Live practical demonstration", operation: "Risk transfer", why: "The student prioritises risks in an unseen scenario using the same frameworks, under time pressure.", alternates: ["Structured role-play / scenario defence", "Supervised in-class task"] },
+  "Research Proposal": { recommended: "Viva voce examination", operation: "Justify design", why: "The student justifies their design choices against rival approaches proposed by the examiner.", alternates: ["Interactive oral assessment (IOA)"] },
+  "Creative Writing / Portfolio": { recommended: "Interactive oral assessment (IOA)", operation: "Explain choices", why: "The student explains specific creative choices — structure, voice, revision decisions — and why alternatives were rejected.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
+  "Clinical Placement Report": { recommended: "Viva voce examination", operation: "Demonstrate reasoning", why: "The student walks through clinical decision-making for a specific patient or client scenario.", alternates: ["Structured role-play / scenario defence", "Interactive oral assessment (IOA)"] },
+  "Design Project": { recommended: "Live practical demonstration", operation: "Defend iteration", why: "The student presents their design rationale and adapts it live when the assessor introduces a new constraint.", alternates: ["Oral presentation + targeted examiner questioning", "Structured role-play / scenario defence"] },
+  "Group Report with Individual Contribution": { recommended: "Oral presentation + targeted examiner questioning", operation: "Separate individual reasoning", why: "Each group member must demonstrate ownership of their specific contribution under targeted questioning.", alternates: ["Interactive oral assessment (IOA)", "Viva voce examination"] },
+  "Oral Presentation": { recommended: "Oral presentation + targeted examiner questioning", operation: "Defend claims under challenge", why: "The presentation itself is not the Defend — the targeted examiner questioning that follows is. Open Q&A alone is insufficient.", alternates: ["Viva voce examination"] },
+};
+
+const ALL_FORMAT_OPTIONS = [
+  "Interactive oral assessment (IOA)", "Viva voce examination", "Live practical demonstration",
+  "Structured role-play / scenario defence", "Oral presentation + targeted examiner questioning",
+  "Supervised in-class task", "Timed invigilated exam + sampled oral", "Computer-lab exam (restricted access)",
+  "AI-integrated submission + face-to-face Defend checkpoint",
+  "Layered online controls (synchronous oral + identity + recording)",
+];
+
+// Format → compatible question approaches (from the paper's principles and empirical evidence)
+const FORMAT_QUESTION_MAP = {
+  "Interactive oral assessment (IOA)": {
+    recommended: "Structured rubric with mandatory probing questions",
+    compatible: ["Pre-designed question bank mapped to learning outcomes", "Structured rubric with mandatory probing questions", "Combination of structured questions + unseen extension"],
+    incompatible: { "Examiner-led unstructured probing": "Unstructured probing produced inconsistent assurance in empirical testing (Case Study 1). IOAs are strongest when questions are pre-designed and mapped to learning outcomes." }
+  },
+  "Viva voce examination": {
+    recommended: "Pre-designed question bank mapped to learning outcomes",
+    compatible: ["Pre-designed question bank mapped to learning outcomes", "Structured rubric with mandatory probing questions", "Combination of structured questions + unseen extension"],
+    incompatible: { "Examiner-led unstructured probing": "In Case Study 1, unstructured examiner probing depended on tutor initiative and peer questions were absent. Pre-designed questions ensure consistent challenge across all students (Principle 3)." }
+  },
+  "Live practical demonstration": {
+    recommended: "Unseen extension task (new dataset / scenario / constraint)",
+    compatible: ["Unseen extension task (new dataset / scenario / constraint)", "Combination of structured questions + unseen extension"],
+    incompatible: { "Pre-designed question bank mapped to learning outcomes": "Question banks test verbal explanation, not applied skill. Live practicals require an unseen extension — a seeded error, new constraint, or novel dataset — to verify transfer.", "Examiner-led unstructured probing": "Unstructured probing does not test applied competence. Use an unseen task that requires the student to demonstrate the same skills in a new context." }
+  },
+  "Structured role-play / scenario defence": {
+    recommended: "Unseen extension task (new dataset / scenario / constraint)",
+    compatible: ["Unseen extension task (new dataset / scenario / constraint)", "Combination of structured questions + unseen extension"],
+    incompatible: { "Examiner-led unstructured probing": "Role-play scenarios must be designed in advance with specific challenge points. Unstructured probing undermines the controlled scenario design." }
+  },
+  "Oral presentation + targeted examiner questioning": {
+    recommended: "Pre-designed question bank mapped to learning outcomes",
+    compatible: ["Pre-designed question bank mapped to learning outcomes", "Structured rubric with mandatory probing questions", "Combination of structured questions + unseen extension"],
+    incompatible: { "Examiner-led unstructured probing": "This is exactly the failure mode documented in Case Study 1. Open Q&A without deliberate challenge design was insufficient — peer questions were absent and probing depended entirely on tutor initiative. Use pre-designed questions mapped to learning outcomes." }
+  },
+  "Supervised in-class task": {
+    recommended: "Unseen extension task (new dataset / scenario / constraint)",
+    compatible: ["Unseen extension task (new dataset / scenario / constraint)", "Pre-designed question bank mapped to learning outcomes", "Combination of structured questions + unseen extension"],
+    incompatible: {}
+  },
+  "Timed invigilated exam + sampled oral": {
+    recommended: "Combination of structured questions + unseen extension",
+    compatible: ["Pre-designed question bank mapped to learning outcomes", "Randomised question pool (for online delivery)", "Combination of structured questions + unseen extension"],
+    incompatible: { "Examiner-led unstructured probing": "Sampled oral checkpoints must be consistent and defensible. Use structured questions for the oral sample to ensure equitable challenge." }
+  },
+  "Computer-lab exam (restricted access)": {
+    recommended: "Unseen extension task (new dataset / scenario / constraint)",
+    compatible: ["Unseen extension task (new dataset / scenario / constraint)", "Pre-designed question bank mapped to learning outcomes"],
+    incompatible: {}
+  },
+  "AI-integrated submission + face-to-face Defend checkpoint": {
+    recommended: "Combination of structured questions + unseen extension",
+    compatible: ["Pre-designed question bank mapped to learning outcomes", "Structured rubric with mandatory probing questions", "Unseen extension task (new dataset / scenario / constraint)", "Combination of structured questions + unseen extension"],
+    incompatible: { "Examiner-led unstructured probing": "The Defend checkpoint is the single controlled moment in the SAGE sequence. It must be structured to ensure reliable evidence (Principle 3)." }
+  },
+  "Layered online controls (synchronous oral + identity + recording)": {
+    recommended: "Randomised question pool (for online delivery)",
+    compatible: ["Pre-designed question bank mapped to learning outcomes", "Randomised question pool (for online delivery)", "Combination of structured questions + unseen extension"],
+    incompatible: { "Examiner-led unstructured probing": "Online delivery requires extra rigour, not less. Use randomised questions to prevent answer-sharing between students (Principle 4)." }
+  },
+};
+
+const ALL_QUESTION_OPTIONS = [
+  "Pre-designed question bank mapped to learning outcomes",
+  "Structured rubric with mandatory probing questions",
+  "Randomised question pool (for online delivery)",
+  "Examiner-led unstructured probing",
+  "Unseen extension task (new dataset / scenario / constraint)",
+  "Combination of structured questions + unseen extension",
+  "Not yet decided",
+];
+
+const WEIGHT_OPTIONS = ["Gatekeeping (must pass to have submission marked)", "5–10% of total assessment", "10–20% of total assessment", "20–30% of total assessment", "30–40% of total assessment", ">40% of total assessment", "Not yet decided"];
+
+const ONLINE_CONTROL_OPTIONS = ["Identity verification at session start", "Session recording for moderation", "Randomised question order", "Locked-down browser", "Second-camera room view", "Not applicable (in-person only)"];
+
+// ─── IMPLEMENTATION BRIEF DATA ───
+
+// Rubric templates keyed by format — 4 criteria × 3 levels
+const RUBRIC_TEMPLATES = {
+  "Interactive oral assessment (IOA)": {
+    criteria: [
+      { name: "Depth of Explanation", demonstrates: "Explains reasoning with precision, references specific decisions, and connects to disciplinary principles without prompting.", partial: "Provides surface-level explanation; can elaborate when prompted but lacks spontaneous depth.", insufficient: "Cannot explain reasoning beyond restating submission content; relies on memorised phrases." },
+      { name: "Response to Challenge", demonstrates: "Engages constructively with examiner challenges; acknowledges limitations, offers alternative reasoning, or defends position with evidence.", partial: "Responds to some challenges but deflects or becomes uncertain on follow-up probing.", insufficient: "Cannot respond to challenges; contradicts own submission or provides no justification." },
+      { name: "Consistency with Submission", demonstrates: "Oral account is fully consistent with submitted work; student clearly authored and understands all sections discussed.", partial: "Mostly consistent but uncertain on specific sections or details that should be familiar if authored.", insufficient: "Oral account contradicts submission or student cannot locate key content in their own work." },
+      { name: "Independence of Reasoning", demonstrates: "Demonstrates original thinking beyond what AI tools would produce; can articulate where and why they departed from AI output.", partial: "Shows some independent reasoning but cannot clearly distinguish own contribution from AI output.", insufficient: "Reasoning mirrors generic AI output patterns; no evidence of independent critical engagement." },
+    ]
+  },
+  "Viva voce examination": {
+    criteria: [
+      { name: "Conceptual Understanding", demonstrates: "Demonstrates deep understanding of core concepts; explains relationships between ideas accurately and spontaneously.", partial: "Understands key concepts at surface level; struggles with connections or nuance when probed.", insufficient: "Cannot explain core concepts in own words; responses suggest lack of genuine understanding." },
+      { name: "Defence of Choices", demonstrates: "Justifies methodological, analytical, or argumentative choices with clear reasoning; addresses rival approaches proposed by examiner.", partial: "Provides some justification but cannot adequately address alternatives or counter-arguments.", insufficient: "Cannot explain why choices were made; defaults to 'it seemed right' or circular reasoning." },
+      { name: "Engagement with Sources", demonstrates: "Discusses sources with familiarity — can explain why each was selected, what it contributes, and its limitations.", partial: "Recalls some sources but cannot explain selection rationale or contribution beyond surface citation.", insufficient: "Cannot identify or discuss sources cited in own submission when asked." },
+      { name: "Distinction from AI Output", demonstrates: "Clearly articulates what AI generated, what was modified, and why — with specific examples from the submission.", partial: "Acknowledges AI was used but vague about which parts were AI-generated vs. human-revised.", insufficient: "Cannot distinguish AI-generated content from own contribution; unclear about revision process." },
+    ]
+  },
+  "Live practical demonstration": {
+    criteria: [
+      { name: "Procedural Competence", demonstrates: "Executes the required procedure accurately and efficiently; adapts technique appropriately when conditions change.", partial: "Completes the procedure with minor errors; requires some guidance on unfamiliar variations.", insufficient: "Cannot complete the core procedure without substantial assistance; errors suggest lack of practice." },
+      { name: "Adaptation to Unseen Element", demonstrates: "Successfully addresses the seeded error, new constraint, or unseen scenario; explains approach while working.", partial: "Identifies the unseen element but struggles to resolve it fully; reasoning is partially sound.", insufficient: "Does not recognise the unseen element or cannot begin to address it; no transfer of skills demonstrated." },
+      { name: "Articulation During Task", demonstrates: "Narrates reasoning while performing — explains what they are doing and why at each decision point.", partial: "Can explain some decisions when prompted but does not narrate spontaneously.", insufficient: "Cannot explain what they are doing or why; performs by rote without understanding." },
+      { name: "Connection to Submitted Work", demonstrates: "Demonstrates the same skills and reasoning evident in submission; live performance is consistent with documented capability.", partial: "Some consistency but performance suggests gaps between submitted quality and live ability.", insufficient: "Live performance is markedly below the quality of submission; suggests delegation of submitted work." },
+    ]
+  },
+  "Structured role-play / scenario defence": {
+    criteria: [
+      { name: "Contextual Responsiveness", demonstrates: "Responds to the scenario with contextually appropriate professional reasoning; adapts to new information during the role-play.", partial: "Provides reasonable initial response but struggles when scenario evolves or new constraints are introduced.", insufficient: "Response is generic or inappropriate for the scenario context; does not adapt to new information." },
+      { name: "Application of Frameworks", demonstrates: "Applies relevant disciplinary frameworks correctly and explains why they apply to this specific scenario.", partial: "References frameworks but application is imprecise or formulaic.", insufficient: "Cannot apply relevant frameworks to the scenario; responses lack disciplinary grounding." },
+      { name: "Professional Judgement", demonstrates: "Makes defensible decisions under uncertainty; acknowledges trade-offs and explains risk acceptance rationale.", partial: "Makes reasonable decisions but cannot articulate trade-offs or alternative approaches.", insufficient: "Decisions are arbitrary or cannot be justified; no evidence of professional reasoning." },
+      { name: "Authenticity of Engagement", demonstrates: "Engages with the scenario as a genuine professional challenge; demonstrates ownership of the knowledge domain.", partial: "Engages at surface level; some responses suggest rehearsed rather than internalised knowledge.", insufficient: "Disengaged or unable to participate meaningfully; knowledge appears borrowed rather than owned." },
+    ]
+  },
+  "Oral presentation + targeted examiner questioning": {
+    criteria: [
+      { name: "Presentation Clarity", demonstrates: "Presents key findings clearly and concisely; structure aids audience understanding.", partial: "Presentation conveys main points but is disorganised or includes unnecessary detail.", insufficient: "Presentation is unclear; audience cannot identify the key arguments or findings." },
+      { name: "Response to Targeted Questions", demonstrates: "Answers pre-designed challenge questions with depth; provides evidence and reasoning, not just assertions.", partial: "Answers some questions adequately but lacks depth on follow-up probing.", insufficient: "Cannot answer targeted questions about own submission; responses are vague or contradictory." },
+      { name: "Individual Contribution (Group Work)", demonstrates: "Clearly articulates own specific contribution; can explain decisions made within their allocated section.", partial: "Claims contribution but cannot provide specific detail about reasoning or decisions made.", insufficient: "Cannot identify or explain own contribution distinct from the group submission." },
+      { name: "Evidence of Learning Process", demonstrates: "Can describe how their understanding evolved through the SAGE process — including what they changed after AI Critic.", partial: "Recalls using AI but cannot describe specific learning moments or revision decisions.", insufficient: "No evidence of a learning process; appears to have submitted AI output without meaningful engagement." },
+    ]
+  },
+};
+
+// Sample challenge prompts keyed by assessment type
+const SAMPLE_CHALLENGES = {
+  "Essay / Written Argument": [
+    "Your submission argues [position X]. I am going to propose [counter-position Y]. Explain why your argument holds, or identify where the counter-position has merit and how you would address it.",
+    "On page [N], you cite [Source A] to support your claim. What would your argument look like if that source were unavailable? Is there an alternative evidence base?",
+    "You chose not to address [relevant counter-argument]. Was this a deliberate scope decision or an oversight? Walk me through your reasoning.",
+    "If you were writing this essay again with the same AI tools, what would you do differently in the Evaluate step and why?",
+    "Which part of your original AI output did you change the most during the Refine step, and what prompted that revision?",
+  ],
+  "Literature Review": [
+    "You included [Source A] but excluded [well-known Source B] from your review. Walk me through that selection decision.",
+    "How do [Source A] and [Source C] relate to each other? Are their findings complementary, contradictory, or addressing different aspects?",
+    "What is the methodological limitation of the study you rely on most heavily? How does that affect your synthesis?",
+    "If you were to add one more source to strengthen the weakest part of your review, what gap would you target and why?",
+    "Which source did the AI suggest that you ultimately rejected, and what was your reasoning?",
+  ],
+  "Code / Programming Assignment": [
+    "[Examiner introduces a seeded error] — I have changed [variable/function/condition]. Your code now produces [incorrect output]. Find the error and fix it while explaining your reasoning.",
+    "Walk me through the logic of [specific function/module]. Why did you choose this approach over [alternative approach]?",
+    "What happens if the input is [edge case]? How does your code handle it, and is that the correct behaviour?",
+    "If you needed to add [new feature/requirement] to this code, where would you start and what would need to change?",
+    "Which part of your code was initially generated by AI, and what did you modify during the Refine step? Show me the specific changes.",
+  ],
+  "Data Analysis Report": [
+    "[Examiner provides unseen dataset] — Apply the same analytical approach you used in your submission to this new dataset. Talk me through each step.",
+    "Why did you choose [statistical method/visualisation] over [alternative]? Under what conditions would the alternative be more appropriate?",
+    "Your analysis shows [finding]. What are two plausible alternative explanations for this result?",
+    "If the sample size were [larger/smaller], how would that affect the reliability of your conclusions?",
+    "Walk me through how you cleaned or prepared the data. What assumptions did you make, and how did they affect the results?",
+  ],
+  "Industry Case Study": [
+    "Your recommendation is [X]. As the [role — e.g. CTO, CFO, client], I am concerned about [specific risk]. How do you address that?",
+    "What would your recommendation change to if the organisation's budget were halved? Walk me through the prioritisation.",
+    "You identified [risk/issue] but did not propose a mitigation strategy. Was that deliberate? What would you recommend?",
+    "How did you verify that your recommendation is feasible for an organisation of this size and maturity?",
+    "Which part of your analysis was most influenced by AI output, and how did you validate it against real-world constraints?",
+  ],
+  "Security / Risk Audit": [
+    "[Examiner presents unseen scenario] — You have 10 minutes. Using the same risk framework from your submission, score and prioritise the top 5 risks. Explain your reasoning.",
+    "Your submission rates [risk X] as high priority. I would rate it as medium. Defend your scoring.",
+    "If a new vulnerability were disclosed in [system component], how would that change your risk register? Walk me through the update.",
+    "What control would you recommend first if the organisation could only implement one? Why that one over the others?",
+    "Which risks did the AI identify that you disagreed with, and what was your reasoning for overriding the AI assessment?",
+  ],
+  "Research Proposal": [
+    "You have chosen [methodology]. I am going to propose [alternative methodology] as more appropriate for your research question. Defend your choice or explain where my alternative has merit.",
+    "What are the three most significant threats to the validity of your proposed design? How does your proposal address each?",
+    "If your ethics application were rejected on [grounds], how would you redesign the study?",
+    "Your sample size is [N]. Walk me through the rationale — how did you determine this was sufficient?",
+    "Which aspect of your methodology was most shaped by AI suggestions, and how did you evaluate whether those suggestions were appropriate?",
+  ],
+  "Creative Writing / Portfolio": [
+    "Read this passage [examiner selects a section]. Why did you choose this particular [structure/voice/metaphor]? What alternatives did you consider?",
+    "The AI generated an initial draft. Show me the most significant revision you made and explain the creative reasoning behind the change.",
+    "If your audience were [different audience], what would you change about the tone or structure? Why?",
+    "Which section are you most proud of, and why? What makes it distinctly yours rather than AI-generated?",
+    "Walk me through one moment where you disagreed with the AI's creative suggestion and explain your decision.",
+  ],
+  "Clinical Placement Report": [
+    "In your report, you describe the clinical decision at [point]. Walk me through your reasoning — what were the alternatives and why did you choose this course of action?",
+    "If the patient/client had presented with [variation], how would your approach have changed?",
+    "What clinical guideline or evidence base informed your decision at [point]? How confident are you in its applicability here?",
+    "Describe a moment during placement where you were uncertain. What did you do, and what would you do differently now?",
+    "Which aspects of your report were supported by AI-generated content, and how did you verify clinical accuracy?",
+  ],
+  "Design Project": [
+    "[Examiner introduces new constraint — e.g. changed material, reduced budget, new user requirement] — How would you adapt your design? Sketch or describe the key changes.",
+    "Walk me through three design decisions you made and the alternatives you rejected. Why these choices?",
+    "Your design prioritises [quality X] over [quality Y]. Under what circumstances would you reverse that priority?",
+    "Which iteration of your design was most influenced by AI tools, and what did you change during refinement?",
+    "Show me one design decision that the AI suggested which you rejected, and explain why.",
+  ],
+  "Group Report with Individual Contribution": [
+    "Describe your specific contribution to the group submission. What decisions did you make independently?",
+    "If your section were removed from the group report, what would be lost? Why is your contribution essential?",
+    "Walk me through one disagreement with a group member about [content/approach]. How was it resolved, and what was your position?",
+    "How did you use AI tools within your individual contribution? What did you change from the AI output and why?",
+    "If you were to redo your section, what would you improve based on what you learned through the SAGE process?",
+  ],
+  "Oral Presentation": [
+    "You stated [claim] during your presentation. Walk me through the evidence behind that claim.",
+    "I am going to challenge [specific point]. How do you respond?",
+    "Your presentation covered [topic area]. What did you deliberately leave out, and why?",
+    "Which parts of your presentation slides were generated or structured by AI, and how did you revise them?",
+    "If you had 5 additional minutes, what would you add to strengthen your argument?",
+  ],
+};
+
+// Timing and logistics keyed by format
+const TIMING_GUIDANCE = {
+  "Interactive oral assessment (IOA)": { perStudent: "15–20 minutes", sessionsPerDay: "12–15 students per full day", prepTime: "2–3 hours to prepare question bank and calibrate with co-examiners", contingency: "Offer a reschedule within the same assessment period. Record all sessions for moderation and equity." },
+  "Viva voce examination": { perStudent: "10–15 minutes", sessionsPerDay: "15–20 students per full day", prepTime: "2–3 hours to design questions mapped to learning outcomes; 1 hour for examiner calibration", contingency: "Online synchronous viva as fallback. Ensure identity verification and session recording." },
+  "Live practical demonstration": { perStudent: "15–25 minutes (depending on task complexity)", sessionsPerDay: "10–15 students per full day", prepTime: "3–4 hours to prepare unseen tasks/seeded errors and test them; ensure equipment/lab availability", contingency: "If specialist equipment is required, book backup sessions. Unseen tasks must have verified solutions." },
+  "Structured role-play / scenario defence": { perStudent: "10–15 minutes", sessionsPerDay: "15–20 students per full day", prepTime: "3–4 hours to design 2–3 scenario variants with specific challenge points and expected professional responses", contingency: "Prepare written scenario variants for online delivery. Record for moderation." },
+  "Oral presentation + targeted examiner questioning": { perStudent: "8–12 minutes (5 min presentation + 3–7 min questioning)", sessionsPerDay: "20–30 students per full day", prepTime: "1–2 hours to design targeted questions for each learning outcome; prepare question allocation matrix", contingency: "Online presentations with shared screen. Ensure randomised question order if running parallel sessions." },
+  "Supervised in-class task": { perStudent: "30–60 minutes (whole class simultaneously)", sessionsPerDay: "1–2 classes per day", prepTime: "2 hours to prepare task, ensure room booking, and brief invigilators", contingency: "Online proctored alternative with locked-down browser as fallback. Pair with sampled oral." },
+  "Timed invigilated exam + sampled oral": { perStudent: "60–90 min exam + 5–10 min oral for sampled students", sessionsPerDay: "Standard exam schedule + 10–15 oral samples per half day", prepTime: "Standard exam preparation + 1 hour to define sampling strategy and oral question bank", contingency: "Communicate sampling strategy in advance to avoid perception of targeting. Random selection is most defensible." },
+  "Computer-lab exam (restricted access)": { perStudent: "45–90 minutes (whole class simultaneously)", sessionsPerDay: "1–2 lab sessions per day", prepTime: "3–4 hours to configure restricted environment, test all constraints, and prepare task variants", contingency: "Have a technical support person on standby. Prepare paper-based fallback if systems fail." },
+  "AI-integrated submission + face-to-face Defend checkpoint": { perStudent: "10–15 minutes for the Defend checkpoint", sessionsPerDay: "15–20 students per full day", prepTime: "2–3 hours to review submissions and prepare student-specific probing questions", contingency: "Online synchronous checkpoint as fallback for students unable to attend in person." },
+  "Layered online controls (synchronous oral + identity + recording)": { perStudent: "10–15 minutes", sessionsPerDay: "15–20 students per full day", prepTime: "2 hours to set up video platform, test recording, prepare randomised question pools, and brief students on process", contingency: "Technical failures are common. Allow 20% schedule buffer. Have phone-based backup for video failures." },
+};
+
+// Pre-session preparation checklist keyed by format
+const PREP_CHECKLIST = {
+  "Interactive oral assessment (IOA)": ["Question bank designed and mapped to learning outcomes", "Rubric printed/shared with all examiners", "Examiner calibration session completed (mark 2–3 sample responses together)", "Schedule published to students with individual time slots", "Recording equipment tested (if sessions are recorded for moderation)", "Quiet, private room booked for each examiner"],
+  "Viva voce examination": ["Question bank with 3–5 core questions per learning outcome", "2–3 follow-up probes per core question for deeper challenge", "Rubric aligned to the 4 criteria above", "Examiner pairs assigned (if double-marking)", "Student submissions reviewed — flag sections for targeted probing", "Recording consent forms distributed (if applicable)"],
+  "Live practical demonstration": ["Unseen tasks designed and solution-verified (2–3 variants)", "Seeded errors tested to confirm they are detectable and fixable within time limit", "Equipment/software/lab environment confirmed and tested", "Technical support on standby", "Rubric with clear performance descriptors for the practical context", "Student instructions published — what to bring, what to expect"],
+  "Structured role-play / scenario defence": ["2–3 scenario variants designed with specific challenge injection points", "Expected professional responses documented for examiner reference", "Assessor briefing completed — when to introduce new information, how far to push", "Rubric with context-specific criteria", "Room setup supports the scenario format (e.g. interview-style seating)"],
+  "Oral presentation + targeted examiner questioning": ["Targeted questions mapped to each learning outcome — minimum 2 per outcome", "Question allocation matrix ensures each student receives comparable challenge", "Rubric distinguishes presentation quality from response-to-challenge quality", "Timer/bell for presentation time limit", "For group work: questions target individual contribution specifically"],
+  "Supervised in-class task": ["Task designed and tested under the same time constraints", "Room booked with appropriate seating and invigilation coverage", "Network/device restrictions configured and tested (if computer-based)", "Invigilators briefed on permitted and prohibited materials", "Contingency plan for students with accessibility requirements"],
+  "Timed invigilated exam + sampled oral": ["Exam paper reviewed and tested under time conditions", "Sampling strategy documented — random selection recommended; criteria-based selection must be pre-declared", "Oral question bank ready for sampled students", "Communication to students about sampling — include in assessment brief before the exam", "Moderation plan for oral sample consistency"],
+  "Computer-lab exam (restricted access)": ["Lab environment configured — browser restrictions, network blocks, software whitelist", "All restrictions tested on the specific lab machines students will use", "Backup plan for technical failure (alternative machines, paper-based fallback)", "Task variants prepared if running multiple sessions", "Technical support available during exam window"],
+  "AI-integrated submission + face-to-face Defend checkpoint": ["All student submissions reviewed before checkpoint day", "Student-specific probing questions prepared — referencing specific sections of their submission", "General question bank for unexpected gaps", "Schedule published with individual time slots", "Checkpoint weighting clearly communicated in assessment brief"],
+  "Layered online controls (synchronous oral + identity + recording)": ["Video platform tested — recording, screen sharing, breakout rooms if needed", "Randomised question pool loaded — minimum 3× the number of questions each student receives", "Identity verification protocol communicated to students in advance", "Recording storage and privacy protocol confirmed with institutional policy", "20% schedule buffer for technical failures", "Phone-based backup plan for video connection issues"],
+};
+
+const PRINCIPLE_CHECKLIST = [
+  { principle: "Mandation", question: "Is the Defend checkpoint mandatory for every student, not just flagged or volunteer students?" },
+  { principle: "Alignment", question: "Does the checkpoint format match the type of thinking the assessment required?" },
+  { principle: "Structure", question: "Are challenge questions designed in advance and mapped to learning outcomes?" },
+  { principle: "Security", question: "If delivered online, are identity verification, recording, and randomised questioning in place?" },
+  { principle: "Incentive", question: "Does the checkpoint carry enough assessment weight to incentivise genuine preparation?" },
+  { principle: "Authenticity", question: "Is the checkpoint a live demonstration of reasoning, not just a documentation review?" },
+];
+
+// ─── UTILITY ───
+
+const catColors = {
+  "Primary": { bg: "#eff6ff", border: "#3b82f6", text: "#1e40af" },
+  "Controlled delivery": { bg: "#fefce8", border: "#eab308", text: "#854d0e" },
+  "Supporting signals": { bg: "#fdf2f8", border: "#ec4899", text: "#9d174d" },
+};
+const scaleBadge = (v) => v === "Low" ? { bg: "#fee2e2", text: "#991b1b" } : v === "Moderate" ? { bg: "#fef3c7", text: "#92400e" } : { bg: "#dcfce7", text: "#166534" };
+const riskBadge = (v) => v === "Low" ? { bg: "#dcfce7", text: "#166534" } : v === "Moderate" ? { bg: "#fef3c7", text: "#92400e" } : { bg: "#fee2e2", text: "#991b1b" };
+function Badge({ label, colors }) { return <span style={{ background: colors.bg, color: colors.text, padding: "2px 10px", borderRadius: "9999px", fontSize: "11px", fontWeight: 600, whiteSpace: "nowrap" }}>{label}</span>; }
+
+function SectionHeader({ children, accent = "#1e293b", subtitle }) {
+  return (
+    <div style={{ marginBottom: "16px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div style={{ width: "4px", height: "28px", background: accent, borderRadius: "2px", flexShrink: 0 }} />
+        <h2 style={{ fontSize: "20px", fontWeight: 700, color: "#0f172a", margin: 0, letterSpacing: "-0.01em" }}>{children}</h2>
+      </div>
+      {subtitle && <p style={{ color: "#64748b", fontSize: "13px", lineHeight: 1.6, margin: "8px 0 0 16px", maxWidth: "720px" }}>{subtitle}</p>}
+    </div>
+  );
+}
+
+// ─── MAIN ───
+
+function SAGEDefendDashboard() {
+  const hashTab = window.location.hash.replace('#','');
+  const validTabs = ['recommender','typology','matching','principles','cases','plan'];
+  const [showWelcome, setShowWelcome] = useState(validTabs.includes(hashTab) ? false : true);
+  const [activeTab, setActiveTab] = useState(validTabs.includes(hashTab) ? hashTab : "recommender");
+  const [typologyFilter, setTypologyFilter] = useState("All");
+  const [selectedFormat, setSelectedFormat] = useState(null);
+  const [expandedPrinciple, setExpandedPrinciple] = useState(null);
+  const [cohortSize, setCohortSize] = useState("");
+  const [deliveryMode, setDeliveryMode] = useState("");
+  const [assessmentStakes, setAssessmentStakes] = useState("");
+  const [recommendations, setRecommendations] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [planValues, setPlanValues] = useState({});
+  const [checklistValues, setChecklistValues] = useState({});
+  const printRef = useRef(null);
+
+  const runRecommender = () => {
+    setHasSearched(true);
+    setRecommendations(DECISION_MATRIX.filter(row => {
+      const cm = !cohortSize || row.cohort === "Any" || row.cohort === cohortSize;
+      const dm = !deliveryMode || row.delivery === "Any" || row.delivery === deliveryMode;
+      const sm = !assessmentStakes || row.stakes === "Any" || row.stakes === assessmentStakes || row.stakes === "Low–Moderate";
+      return cm && dm && sm;
+    }));
+  };
+  const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setRecommendations([]); setHasSearched(false); };
+
+  const filteredTypology = typologyFilter === "All" ? TYPOLOGY_FULL : TYPOLOGY_FULL.filter(t => t.category === typologyFilter);
+
+  const handlePrint = () => {
+    const w = window.open("", "_blank");
+    const pv = planValues;
+    const assess = pv.assessment || "";
+    const fmt = pv.format || "";
+    const ques = pv.questions || "";
+    const mapping = ASSESSMENT_FORMAT_MAP[assess];
+    const fmtMap = FORMAT_QUESTION_MAP[fmt];
+    const typEntry = TYPOLOGY_FULL.find(t => t.name === fmt);
+    const onlineCtrl = Array.isArray(pv.online) ? pv.online.join(", ") : "";
+    const rubric = RUBRIC_TEMPLATES[fmt];
+    const challenges = SAMPLE_CHALLENGES[assess];
+    const timing = TIMING_GUIDANCE[fmt];
+    const prep = PREP_CHECKLIST[fmt];
+
+    let checkPassed = 0;
+    PRINCIPLE_CHECKLIST.forEach((c, i) => { if (checklistValues[i]) checkPassed++; });
+
+    w.document.write(`<html><head><title>SAGE Defend — Implementation Brief</title><style>
+      body{font-family:'Segoe UI',system-ui,sans-serif;padding:40px;color:#1e293b;max-width:860px;margin:0 auto;line-height:1.6;font-size:12px}
+      h1{font-size:22px;border-bottom:2px solid #1e293b;padding-bottom:8px;margin-bottom:4px}
+      .subtitle{font-size:11px;color:#64748b;margin-bottom:20px}
+      h2{font-size:15px;margin-top:28px;color:#1e40af;border-left:3px solid #3b82f6;padding-left:10px;margin-bottom:12px}
+      h3{font-size:13px;color:#0f172a;margin:16px 0 8px 0}
+      .meta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px;padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px}
+      .meta-item{font-size:11px}.meta-label{font-weight:700;color:#64748b;display:block;margin-bottom:1px}.meta-val{color:#0f172a}
+      .step{margin:12px 0;padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px}
+      .step-title{font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px}
+      .step-body{font-size:12px;color:#475569;line-height:1.55}
+      .warning{background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:8px 12px;margin:8px 0;font-size:11px;color:#92400e}
+      .red-warning{background:#fef2f2;border:1px solid #fecaca;border-radius:6px;padding:8px 12px;margin:8px 0;font-size:11px;color:#991b1b}
+      .check{margin:5px 0;font-size:11px}
+      .prompt{margin:6px 0;padding:8px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:11px;color:#1e293b}
+      .prompt-num{font-weight:700;color:#6366f1;margin-right:6px}
+      table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
+      th{background:#f1f5f9;text-align:left;padding:6px 10px;border:1px solid #e2e8f0;font-weight:700;color:#475569}
+      td{padding:6px 10px;border:1px solid #e2e8f0;vertical-align:top;color:#475569}
+      .timing-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+      .timing-item{padding:8px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:6px}
+      .timing-label{font-weight:700;color:#64748b;font-size:10px;text-transform:uppercase;display:block;margin-bottom:2px}
+      .prep-item{margin:4px 0;padding-left:16px;position:relative}.prep-item::before{content:"☐";position:absolute;left:0}
+      .footer{margin-top:28px;font-size:10px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:10px}
+      @media print{body{padding:20px;font-size:11px}.step{break-inside:avoid}table{break-inside:avoid}}
+    </style></head><body>`);
+
+    w.document.write(`<h1>SAGE Defend — Implementation Brief</h1>`);
+    w.document.write(`<div class="subtitle">Generated from the SAGE Assurance Guidance Tool · Elkhodr & Gide (2026) · ${new Date().toLocaleDateString("en-AU", {day:"numeric",month:"long",year:"numeric"})}</div>`);
+
+    // Context summary
+    w.document.write(`<div class="meta">`);
+    [["Unit", pv.unit], ["Level", pv.level], ["Cohort", pv.cohort], ["Delivery", pv.delivery], ["Discipline", pv.discipline], ["Assessment Task", assess === "Other" ? "Other: " + (pv.assessment_other || "") : assess], ["Defend Format", fmt], ["Weighting", pv.weight], ["Challenge Approach", ques], ["Online Controls", onlineCtrl || "N/A"]].forEach(([l, v]) => {
+      if (v) w.document.write(`<div class="meta-item"><span class="meta-label">${l}</span><span class="meta-val">${v}</span></div>`);
+    });
+    w.document.write(`</div>`);
+
+    // Cascade advisory
+    if (assess && mapping && fmt && fmt !== mapping.recommended && !mapping.alternates.includes(fmt)) {
+      w.document.write(`<div class="warning">⚠ <strong>Alignment note (Principle 2):</strong> The recommended format for "${assess}" is "${mapping.recommended}" (cognitive operation: ${mapping.operation}). Your selection of "${fmt}" may not target the same cognitive operation. This does not prevent you from proceeding, but consider whether the format will genuinely test whether the student can ${mapping.operation.toLowerCase()}.</div>`);
+    }
+    // Question approach warning
+    if (fmt && ques && fmtMap) {
+      const incompKey = Object.keys(fmtMap.incompatible).find(k => ques.startsWith(k));
+      if (incompKey) {
+        w.document.write(`<div class="red-warning">🔴 <strong>Evidence-based concern (Principle 3):</strong> ${fmtMap.incompatible[incompKey]}</div>`);
+      }
+    }
+
+    // ── STEP 1: What you are verifying ──
+    w.document.write(`<h2>Step 1: What You Are Verifying and Why</h2>`);
+    if (assess && mapping) {
+      w.document.write(`<div class="step"><div class="step-body">Your assessment task (<strong>${assess}</strong>) requires the cognitive operation "<strong>${mapping.operation}</strong>." The Defend checkpoint verifies that each student can perform this operation individually — not just that they submitted work containing it.<br/><br/>${mapping.why}</div></div>`);
+    } else {
+      w.document.write(`<div class="step"><div class="step-body">Select an assessment task in the planning template to generate specific guidance.</div></div>`);
+    }
+
+    // ── STEP 2: Format setup + timing + rubric ──
+    w.document.write(`<h2>Step 2: Setting Up the Defend Checkpoint</h2>`);
+    if (fmt && typEntry) {
+      w.document.write(`<div class="step"><div class="step-body"><strong>Format:</strong> ${fmt}<br/><strong>How it works:</strong> ${typEntry.function}<br/><strong>Key strength:</strong> ${typEntry.advantages}</div></div>`);
+    }
+    if (timing) {
+      w.document.write(`<h3>Timing and Logistics</h3>`);
+      w.document.write(`<div class="timing-grid">`);
+      w.document.write(`<div class="timing-item"><span class="timing-label">Time per student</span>${timing.perStudent}</div>`);
+      w.document.write(`<div class="timing-item"><span class="timing-label">Sessions per day</span>${timing.sessionsPerDay}</div>`);
+      w.document.write(`<div class="timing-item"><span class="timing-label">Preparation time</span>${timing.prepTime}</div>`);
+      w.document.write(`<div class="timing-item"><span class="timing-label">Contingency plan</span>${timing.contingency}</div>`);
+      w.document.write(`</div>`);
+    }
+    if (rubric) {
+      w.document.write(`<h3>Suggested Assessment Rubric</h3>`);
+      w.document.write(`<p style="font-size:11px;color:#64748b;margin-bottom:6px">Adapt the descriptors below to your unit's learning outcomes. The three levels indicate strength of evidence that the student owns the reasoning in their submission.</p>`);
+      w.document.write(`<table><tr><th style="width:18%">Criterion</th><th style="width:28%">Demonstrates Ownership</th><th style="width:28%">Partial Ownership</th><th style="width:26%">Insufficient Evidence</th></tr>`);
+      rubric.criteria.forEach(c => {
+        w.document.write(`<tr><td><strong>${c.name}</strong></td><td>${c.demonstrates}</td><td>${c.partial}</td><td>${c.insufficient}</td></tr>`);
+      });
+      w.document.write(`</table>`);
+    }
+
+    // ── STEP 3: Challenge design + sample prompts ──
+    w.document.write(`<h2>Step 3: Challenge Design</h2>`);
+    if (ques && ques !== "Not yet decided") {
+      w.document.write(`<div class="step"><div class="step-body"><strong>Approach:</strong> ${ques}<br/><br/>Design Principle 3 requires that challenge questions are created in advance, mapped to the unit's learning outcomes, and applied consistently across all students. ${ques.includes("Unseen") ? "Prepare 2–3 task variants to prevent answer-sharing. Verify each variant has a confirmed solution before the session." : ques.includes("Randomised") ? "Build a pool of at least 3× the number of questions each student will receive. Randomise at the session level, not the question level." : "Ensure coverage of each learning outcome in your question bank. Every student should face comparable challenge regardless of which examiner they see."}</div></div>`);
+    }
+    if (challenges) {
+      w.document.write(`<h3>Sample Challenge Prompts for "${assess}"</h3>`);
+      w.document.write(`<p style="font-size:11px;color:#64748b;margin-bottom:6px">Adapt these prompts to your unit content. Replace placeholders in [brackets] with specific references from each student's submission. The final prompt in each set targets the SAGE process specifically.</p>`);
+      challenges.forEach((c, i) => {
+        w.document.write(`<div class="prompt"><span class="prompt-num">${i + 1}.</span>${c}</div>`);
+      });
+    }
+
+    // ── STEP 4: Practical constraints + prep checklist ──
+    w.document.write(`<h2>Step 4: Practical Constraints and Preparation</h2>`);
+    let constraints = [];
+    if (typEntry) constraints.push("<strong>Format limitation:</strong> " + typEntry.limitations);
+    if (pv.delivery === "Online" || pv.delivery === "Hybrid") constraints.push("<strong>Online/hybrid delivery (Principle 4):</strong> Identity verification, session recording, and randomised questioning are the minimum layered controls required.");
+    if (pv.cohort === "Large (>100 students)") constraints.push("<strong>Large cohort:</strong> Consider sampled oral checkpoints or timetabled scheduling across multiple sessions. Resourcing the oral component is typically the binding constraint.");
+    const wt = pv.weight || "";
+    if (wt === "5–10% of total assessment") constraints.push("<strong>Weighting concern (Principle 5):</strong> In empirical testing, a 10% individual oral within a 40% group task improved separation but did not fully incentivise deep preparation. Consider whether a higher weighting or gatekeeping model is feasible.");
+    if (constraints.length > 0) {
+      w.document.write(`<div class="step"><div class="step-body">${constraints.join("<br/><br/>")}</div></div>`);
+    }
+    if (prep) {
+      w.document.write(`<h3>Pre-Session Preparation Checklist</h3>`);
+      w.document.write(`<div class="step">`);
+      prep.forEach(p => { w.document.write(`<div class="prep-item">${p}</div>`); });
+      w.document.write(`</div>`);
+    }
+
+    // ── STEP 5: Principles audit ──
+    w.document.write(`<h2>Step 5: Design Principles Audit (${checkPassed}/6 confirmed)</h2>`);
+    w.document.write(`<div class="step"><div class="step-body">Before running the Defend checkpoint, confirm your design meets all six principles. Unconfirmed principles represent gaps that may reduce assurance value.</div>`);
+    PRINCIPLE_CHECKLIST.forEach((c, ci) => {
+      const ch = checklistValues[ci] ? "☑" : "☐";
+      w.document.write(`<div class="check">${ch} <strong>${c.principle}:</strong> ${c.question}</div>`);
+    });
+    w.document.write(`</div>`);
+
+    if (pv.notes) w.document.write(`<div class="step"><div class="step-title">Additional Notes</div><div class="step-body">${pv.notes}</div></div>`);
+
+    w.document.write(`<div class="footer">SAGE Assurance Guidance Tool · Elkhodr & Gide (2026) · Central Queensland University<br/>Companion resource: <em>Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment</em>, Journal of University Teaching and Learning Practice.<br/>Implementation guide: Elkhodr, M. & Gide, E. (2026). <em>Embedding Generative AI in Curriculum: The SAGE Framework and Evidence-Based Implementation Guide</em>. Zenodo. DOI: 10.5281/zenodo.18295619</div>`);
+    w.document.write(`</body></html>`);
+    w.document.close();
+    w.print();
+  };
+
+  const tabs = [
+    { id: "recommender", label: "Format Recommender", icon: "🎯" },
+    { id: "framework", label: "SAGE Cycle", icon: "⟳" },
+    { id: "typology", label: "Assurance Typology", icon: "▦" },
+    { id: "matching", label: "Epistemic Matching", icon: "⇌" },
+    { id: "principles", label: "Design Principles", icon: "◈" },
+    { id: "cases", label: "Evidence Base", icon: "◧" },
+    { id: "plan", label: "Defend Planner", icon: "📋" },
+  ];
+
+  return (
+    <div style={{ fontFamily: "'Instrument Sans', 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif", background: "#f8f6f1", minHeight: "100vh", color: "#1a1a1a" }}>
+
+      {/* HEADER */}
+      <div style={{ background: "linear-gradient(135deg, #1b4332 0%, #2d6a4f 60%, #1b4332 100%)", padding: "24px 24px 18px", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+              <div style={{ width: "42px", height: "42px", borderRadius: "10px", background: "linear-gradient(135deg, #40916c, #d4a03c)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", color: "white", fontWeight: 800 }}>S</div>
+              <div>
+                <h1 style={{ color: "white", fontSize: "20px", fontWeight: 700, margin: 0 }}>Structured AI-Guided Education</h1>
+                <p style={{ color: "#a7c4b5", fontSize: "13px", margin: "1px 0 0 0", fontWeight: 600 }}>SAGE Assurance Guidance Tool</p>
+              </div>
+            </div>
+            <img src="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-australia-logo.svg" alt="CQUniversity Australia" style={{ height: "30px", filter: "brightness(0) invert(1)", opacity: 0.85 }} onError={(e) => { e.target.style.display = "none"; }} />
+          </div>
+        </div>
+      </div>
+
+      {/* WELCOME PANEL */}
+      {showWelcome && (
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 16px 40px" }}>
+
+          {/* HERO — full width: headline + cycle strip */}
+          <div style={{ background: "#1b4332", borderRadius: "16px", padding: "28px 28px 22px", marginBottom: "24px", textAlign: "center" }}>
+            <h2 style={{ fontSize: "24px", fontWeight: 800, color: "white", margin: "0 0 6px 0", lineHeight: 1.35 }}>Your students are using AI.<br/>You cannot tell who did the thinking. You need assurance.</h2>
+            <p style={{ fontSize: "13px", color: "#a7c4b5", margin: "0 0 20px 0" }}>The SAGE framework guides students through AI-integrated assessment — and verifies they own the result.</p>
+            {/* Cycle strip */}
+            <div style={{ display: "flex", alignItems: "center", gap: "4px", maxWidth: "680px", margin: "0 auto" }}>
+              {[
+                { n: "1", name: "Generate", c: "#3b82f6" },
+                { n: "2", name: "Evaluate", c: "#8b5cf6" },
+                { n: "3", name: "Refine", c: "#06b6d4" },
+                { n: "4", name: "AI Critic", c: "#d4a03c" },
+                { n: "5", name: "Reflect", c: "#40916c" },
+                { n: "6", name: "Defend", c: "#c44d3f" },
+              ].map((s, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", flex: 1 }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: 1 }}>
+                    <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: s.c, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", fontWeight: 800 }}>{s.n}</div>
+                    <p style={{ fontSize: "10px", color: "#a7c4b5", margin: "4px 0 0 0", textAlign: "center", fontWeight: 600 }}>{s.name}</p>
+                  </div>
+                  {i < 5 && <div style={{ width: "14px", height: "2px", background: "#40916c", flexShrink: 0, marginBottom: "14px" }} />}
+                </div>
+              ))}
+            </div>
+            <div style={{ display: "flex", maxWidth: "680px", margin: "10px auto 0", gap: "4px" }}>
+              <div style={{ flex: 5, background: "rgba(64,145,108,0.2)", borderRadius: "4px", padding: "4px 8px" }}>
+                <p style={{ fontSize: "9px", color: "#6ee7b7", margin: 0, textAlign: "center", fontWeight: 600 }}>Steps 1–5: Structured AI-Guided Learning</p>
+              </div>
+              <div style={{ flex: 1, background: "rgba(196,77,63,0.2)", borderRadius: "4px", padding: "4px 8px" }}>
+                <p style={{ fontSize: "9px", color: "#f8a49c", margin: 0, textAlign: "center", fontWeight: 600 }}>Assurance</p>
+              </div>
+            </div>
+            <div style={{ display: "flex", maxWidth: "680px", margin: "4px auto 0", gap: "4px" }}>
+              <div style={{ flex: 5 }}>
+                <p style={{ fontSize: "8px", color: "#6a8a7a", margin: 0, textAlign: "center", fontWeight: 600, letterSpacing: "0.05em" }}>TEQSA Lane 2 — Open, AI-integrated</p>
+              </div>
+              <div style={{ flex: 1 }}>
+                <p style={{ fontSize: "8px", color: "#c44d3f", margin: 0, textAlign: "center", fontWeight: 600, letterSpacing: "0.05em" }}>Lane 1</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Two-column grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "24px" }}>
+
+            {/* LEFT: Why SAGE + How it works */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "14px", padding: "22px" }}>
+                <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1b4332", margin: "0 0 10px 0" }}>Why SAGE?</h3>
+                <p style={{ fontSize: "13px", color: "#4a4a4a", lineHeight: 1.6, margin: "0 0 10px 0" }}>
+                  Generative AI has fundamentally changed what students can produce without understanding. Banning AI ignores the professional reality graduates will face. Ignoring AI abandons assessment integrity. Institutions need a structured approach that lets students develop genuine competency <em>through</em> AI interaction — while providing assurance that the learning actually happened.
+                </p>
+                <p style={{ fontSize: "13px", color: "#4a4a4a", lineHeight: 1.6, margin: 0 }}>
+                  The <strong>Structured AI-Guided Education (SAGE)</strong> framework is a validated pedagogy that treats generative AI as a professional tool whose outputs must be critically evaluated, refined with evidence-based reasoning, and defended under supervision.
+                </p>
+              </div>
+
+              <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "14px", padding: "22px" }}>
+                <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1b4332", margin: "0 0 10px 0" }}>How SAGE Works</h3>
+                <div style={{ marginBottom: "12px" }}>
+                  <p style={{ fontSize: "12px", fontWeight: 700, color: "#2d6a4f", margin: "0 0 4px 0" }}>Steps 1–5: Structured AI-Guided Learning</p>
+                  <p style={{ fontSize: "12px", color: "#4a4a4a", lineHeight: 1.55, margin: 0 }}>Students progress through five structured stages — generating AI output, critically evaluating it against disciplinary standards and research, refining it with evidence-based reasoning, stress-testing it through adversarial AI critique, and reflecting on the learning process. Each step builds a higher-order skill. Students are guided, not left to explore AI unsupervised.</p>
+                </div>
+                <div>
+                  <p style={{ fontSize: "12px", fontWeight: 700, color: "#c44d3f", margin: "0 0 4px 0" }}>Step 6: Defend — Supervised Verification</p>
+                  <p style={{ fontSize: "12px", color: "#4a4a4a", lineHeight: 1.55, margin: 0 }}>At one controlled moment, each student demonstrates — live, under supervision — that they can explain, justify, or apply the reasoning in their submission. This verifies that the competency developed through Steps 1–5 has been individually internalised, not merely documented.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: TEQSA + tool purpose with CTA */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              <div style={{ background: "#e8f5ee", border: "1px solid #b7d9c4", borderRadius: "14px", padding: "20px" }}>
+                <h3 style={{ fontSize: "12px", fontWeight: 700, color: "#1a3a2a", margin: "0 0 8px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>Alignment with TEQSA Guidance</h3>
+                <p style={{ fontSize: "12px", color: "#2d6a4f", lineHeight: 1.55, margin: 0 }}>
+                  TEQSA's <em>Enacting Assessment Reform in a Time of Artificial Intelligence</em> (2025) identifies two assessment lanes: <strong>Lane 1</strong> (supervised, AI-restricted, verifying attainment) and <strong>Lane 2</strong> (open, AI-integrated, developing capability). SAGE integrates both lanes within a single pedagogical sequence — Steps 1–5 constitute the open lane where students develop capability through guided AI interaction, and Step 6 constitutes the secure lane where individual attainment is verified under supervised conditions. This eliminates the need for separate assessment instruments for each lane.
+                </p>
+              </div>
+
+              {/* Tool purpose + CTA */}
+              <div style={{ background: "white", border: "2px solid #2d6a4f", borderRadius: "14px", padding: "22px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <div>
+                  <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1b4332", margin: "0 0 10px 0" }}>What This Tool Does</h3>
+                  <p style={{ fontSize: "13px", color: "#4a4a4a", lineHeight: 1.6, margin: "0 0 16px 0" }}>
+                    This interactive resource helps you design the Defend checkpoint for your specific teaching context. Select your cohort size, delivery mode, and assessment type — and receive a recommended assurance format, a suggested rubric, sample challenge prompts, and a printable implementation brief you can take to your course coordinator.
+                  </p>
+                  <p style={{ fontSize: "12px", color: "#4a4a4a", lineHeight: 1.55, margin: "0 0 18px 0" }}>
+                    The Defend step is embedded within the SAGE assessment sequence — it is not a standalone exam bolted onto existing assessment. This tool draws on eight empirical implementations and a systematic synthesis of the assurance task literature to recommend the most appropriate checkpoint format for your context.
+                  </p>
+                </div>
+                <div style={{ textAlign: "center" }}>
+                  <button onClick={() => setShowWelcome(false)} style={{ padding: "14px 36px", borderRadius: "10px", fontSize: "15px", fontWeight: 700, background: "#2d6a4f", color: "white", border: "none", cursor: "pointer", boxShadow: "0 4px 14px rgba(45,106,79,0.3)", width: "100%" }}>
+                    Get Started →
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Understated provenance line */}
+          <p style={{ fontSize: "11px", color: "#6a6a6a", textAlign: "center", margin: 0, lineHeight: 1.5 }}>
+            Developed at Central Queensland University. Based on eight empirical studies involving over 800 students across multiple Australian campuses.
+          </p>
+        </div>
+      )}
+
+      {/* TABS + CONTENT — only shown after welcome dismissed */}
+      {!showWelcome && (<>
+        <div style={{ background: "white", borderBottom: "1px solid #e2e8f0", position: "sticky", top: 0, zIndex: 40 }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", gap: "2px", padding: "0 16px", overflowX: "hidden" }}>
+            {tabs.map(tab => {
+              const isPlan = tab.id === "plan";
+              const isActive = activeTab === tab.id;
+              return (
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
+                padding: isPlan && !isActive ? "8px 12px" : "12px 12px",
+                margin: isPlan && !isActive ? "4px 2px 4px 6px" : "0",
+                fontSize: "13px",
+                fontWeight: isActive ? 700 : isPlan ? 700 : 500,
+                color: isActive ? "#1e40af" : isPlan ? "#ffffff" : "#64748b",
+                background: isActive ? "none" : isPlan ? "linear-gradient(135deg, #10b981, #059669)" : "none",
+                border: "none",
+                borderBottom: isActive ? "2px solid #3b82f6" : "2px solid transparent",
+                borderRadius: isPlan && !isActive ? "8px" : "0",
+                cursor: "pointer", whiteSpace: "nowrap", transition: "all 0.2s",
+                boxShadow: isPlan && !isActive ? "0 2px 8px rgba(45,106,79,0.3)" : "none",
+              }}>
+                <span style={{ marginRight: "5px" }}>{tab.icon}</span>{tab.label}{isPlan && !isActive ? " ✦" : ""}
+              </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "24px 16px 60px" }}>
+
+          {/* ════ RECOMMENDER ════ */}
+          {activeTab === "recommender" && (
+            <div>
+              <SectionHeader accent="#2d6a4f" subtitle="Select your teaching context below to find the most appropriate Defend checkpoint format. The Defend step sits within the SAGE assessment sequence — students complete their AI-integrated work first (Generate → Evaluate → Refine → AI Critic → Reflect), then demonstrate reasoning ownership at a supervised checkpoint.">
+                Defend Format Recommender
+              </SectionHeader>
+              <div style={{ background: "#e8f5ee", border: "1px solid #b7d9c4", borderRadius: "10px", padding: "14px 18px", marginBottom: "20px", display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                <span style={{ fontSize: "16px", flexShrink: 0 }}>💡</span>
+                <p style={{ fontSize: "12px", color: "#1a3a2a", lineHeight: 1.55, margin: 0 }}>
+                  <strong>The Defend step is a checkpoint within an AI-integrated assessment, not a replacement for it.</strong> The goal is to guide students through structured AI interaction using the SAGE cycle — and then verify, at one controlled moment, that they own the reasoning behind their submission. Simply replacing coursework with a proctored exam or quiz would undo 40 years of authentic assessment design and the learning developed through Steps 1–5. SAGE is built on the premise that students should learn <em>with</em> AI under structured guidance, not be tested <em>without</em> it.
+                </p>
+              </div>
+
+              <div style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "14px", padding: "24px", marginBottom: "24px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "16px" }}>
+                  <div>
+                    <label style={labelStyle}>Cohort Size</label>
+                    <select value={cohortSize} onChange={e => setCohortSize(e.target.value)} style={selectStyle}>
+                      <option value="">Any size</option>
+                      <option value="Small (<30)">Small (&lt;30 students)</option>
+                      <option value="Medium (30–100)">Medium (30–100 students)</option>
+                      <option value="Large (>100)">Large (&gt;100 students)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Delivery Mode</label>
+                    <select value={deliveryMode} onChange={e => setDeliveryMode(e.target.value)} style={selectStyle}>
+                      <option value="">Any mode</option>
+                      <option value="In-person">In-person</option>
+                      <option value="Online">Online</option>
+                      <option value="Hybrid">Hybrid</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Assessment Stakes</label>
+                    <select value={assessmentStakes} onChange={e => setAssessmentStakes(e.target.value)} style={selectStyle}>
+                      <option value="">Any level</option>
+                      <option value="High">High stakes</option>
+                      <option value="Moderate">Moderate stakes</option>
+                      <option value="Low–Moderate">Low–Moderate stakes</option>
+                    </select>
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: "10px", marginTop: "18px" }}>
+                  <button onClick={runRecommender} style={{ ...btnStyle, background: "#2d6a4f", color: "white" }}>Find Recommended Formats</button>
+                  <button onClick={resetRecommender} style={{ ...btnStyle, background: "#f1f5f9", color: "#475569" }}>Reset</button>
+                </div>
+              </div>
+
+              {hasSearched && (
+                <div>
+                  <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "12px" }}>{recommendations.length} recommendation{recommendations.length !== 1 ? "s" : ""} found</p>
+                  {recommendations.length === 0 && <div style={{ background: "#fefce8", border: "1px solid #fde68a", borderRadius: "10px", padding: "16px", fontSize: "13px", color: "#92400e" }}>No exact matches. Try broadening your selection criteria.</div>}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                    {recommendations.map((rec, i) => (
+                      <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+                          <div style={{ padding: "20px", borderRight: "1px solid #f1f5f9" }}>
+                            <div style={{ fontSize: "11px", color: "#94a3b8", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "4px" }}>{rec.context}</div>
+                            <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 10px 0" }}>{rec.format}</h3>
+                            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
+                              <Badge label={"Cohort: " + rec.cohort} colors={{ bg: "#eff6ff", text: "#1e40af" }} />
+                              <Badge label={rec.delivery} colors={{ bg: "#f0fdf4", text: "#166534" }} />
+                              <Badge label={"Stakes: " + rec.stakes} colors={{ bg: "#fef3c7", text: "#92400e" }} />
+                            </div>
+                            <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: 0 }}>{rec.rationale}</p>
+                            <p style={{ fontSize: "12px", color: "#6366f1", lineHeight: 1.5, margin: "10px 0 0 0", fontStyle: "italic" }}>Example: {rec.example}</p>
+                          </div>
+                          <div style={{ padding: "20px", background: "#fffbeb" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
+                              <span style={{ fontSize: "14px" }}>⚠️</span>
+                              <span style={{ fontSize: "12px", fontWeight: 700, color: "#92400e", textTransform: "uppercase" }}>Watch out for</span>
+                            </div>
+                            <p style={{ fontSize: "12px", color: "#78350f", lineHeight: 1.55, margin: 0 }}>{rec.constraints}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {!hasSearched && (
+                <div style={{ background: "#f8fafc", border: "1px dashed #cbd5e1", borderRadius: "12px", padding: "32px", textAlign: "center" }}>
+                  <p style={{ color: "#94a3b8", fontSize: "14px", margin: 0 }}>Select your teaching context above and click <strong>Find Recommended Formats</strong> to see evidence-based suggestions.</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ════ SAGE CYCLE ════ */}
+          {activeTab === "framework" && (
+            <div>
+              <SectionHeader accent="#40916c" subtitle="The SAGE framework scaffolds students through six progressive steps. Students are encouraged to use generative AI throughout — the framework teaches them to use it critically, not to avoid it. The final step, Defend, is where students prove they own the reasoning behind their work.">The SAGE Six-Step Cycle</SectionHeader>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+                {SAGE_STEPS.map((step, i) => (
+                  <div key={step.step} style={{ display: "flex", gap: "0", alignItems: "stretch" }}>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "48px", flexShrink: 0 }}>
+                      <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: step.isDefend ? "linear-gradient(135deg, #ef4444, #dc2626)" : step.color, color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: "16px", boxShadow: step.isDefend ? "0 0 20px rgba(239,68,68,0.35)" : "0 0 12px " + step.color + "44" }}>{step.step}</div>
+                      {i < SAGE_STEPS.length - 1 && <div style={{ width: "2px", flex: 1, background: "#e2e8f0", minHeight: "12px" }} />}
+                    </div>
+                    <div style={{ flex: 1, marginBottom: "10px", display: "grid", gridTemplateColumns: "1fr 1fr", borderRadius: "10px", overflow: "hidden", border: "1px solid " + (step.isDefend ? "#fca5a5" : "#e2e8f0") }}>
+                      <div style={{ padding: "14px 18px", background: step.isDefend ? "#fef2f2" : "white" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                          <h3 style={{ fontSize: "15px", fontWeight: 700, color: step.isDefend ? "#dc2626" : "#0f172a", margin: 0 }}>{step.name}</h3>
+                          {step.isDefend && <span style={{ fontSize: "10px", fontWeight: 700, color: "#dc2626", background: "#fee2e2", padding: "1px 8px", borderRadius: "999px" }}>ASSURANCE</span>}
+                        </div>
+                        <p style={{ fontSize: "11px", fontWeight: 600, color: step.color, margin: "4px 0 2px 0" }}>{step.focus}</p>
+                        <p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{step.desc}</p>
+                      </div>
+                      <div style={{ padding: "14px 18px", background: "#f8fafc", borderLeft: "1px solid #f1f5f9" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+                          <span style={{ fontSize: "12px" }}>💡</span>
+                          <span style={{ fontSize: "11px", fontWeight: 700, color: "#64748b", textTransform: "uppercase" }}>Tip for educators</span>
+                        </div>
+                        <p style={{ fontSize: "12px", color: "#64748b", margin: 0, lineHeight: 1.5 }}>{step.tip}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ════ TYPOLOGY ════ */}
+          {activeTab === "typology" && (
+            <div>
+              <SectionHeader accent="#40916c">Assurance Task Typology</SectionHeader>
+              <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "8px", maxWidth: "740px" }}>Not all verification methods are equal. The literature identifies 14 distinct formats, which fall into three categories based on what kind of evidence they provide.</p>
+              <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "16px", maxWidth: "740px" }}>
+                <strong style={{ color: "#1e40af" }}>Primary assurance tasks</strong> require students to demonstrate their reasoning or skills in real time, under observation — these provide direct evidence that the student owns the work.{" "}
+                <strong style={{ color: "#854d0e" }}>Controlled delivery conditions</strong> restrict the testing environment (for example, proctoring or locked browsers) but do not by themselves prove the student learned anything — they control <em>where</em> the work happens, not <em>who</em> did the thinking.{" "}
+                <strong style={{ color: "#9d174d" }}>Supporting signals</strong> are supplementary indicators (analytics, quizzes, logs) that may flag concerns but cannot stand alone as evidence of authentic work.
+              </p>
+              <p style={{ color: "#94a3b8", fontSize: "12px", marginBottom: "20px", fontStyle: "italic" }}>Click any format to expand and see how it works, its strengths, and its limitations.</p>
+              <div style={{ display: "flex", gap: "8px", marginBottom: "20px", flexWrap: "wrap" }}>
+                {["All", "Primary", "Controlled delivery", "Supporting signals"].map(f => (
+                  <button key={f} onClick={() => { setTypologyFilter(f); setSelectedFormat(null); }} style={{ padding: "6px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: typologyFilter === f ? "#1e293b" : "#f1f5f9", color: typologyFilter === f ? "white" : "#475569", border: "none" }}>
+                    {f === "All" ? "All Formats" : f === "Primary" ? "Primary Assurance Tasks" : f === "Controlled delivery" ? "Controlled Delivery Conditions" : "Supporting Signals"}
+                    <span style={{ marginLeft: "6px", opacity: 0.7 }}>({f === "All" ? TYPOLOGY_FULL.length : TYPOLOGY_FULL.filter(t => t.category === f).length})</span>
+                  </button>
+                ))}
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                {filteredTypology.map((t) => {
+                  const cc = catColors[t.category] || catColors.Primary;
+                  const gi = TYPOLOGY_FULL.indexOf(t);
+                  const isExp = selectedFormat === gi;
+                  return (
+                    <div key={gi} onClick={() => setSelectedFormat(isExp ? null : gi)} style={{ background: "white", border: "1px solid " + (isExp ? cc.border : "#e2e8f0"), borderRadius: "10px", padding: "14px 18px", cursor: "pointer", borderLeft: "4px solid " + cc.border }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
+                        <div style={{ flex: 1, minWidth: "200px" }}>
+                          <h4 style={{ fontSize: "14px", fontWeight: 600, color: "#0f172a", margin: 0 }}>{t.name}</h4>
+                          <span style={{ fontSize: "11px", color: cc.text, fontWeight: 600 }}>{t.subcategory}</span>
+                        </div>
+                        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                          <Badge label={"Scale: " + t.scalability} colors={scaleBadge(t.scalability)} />
+                          <Badge label={"Equity risk: " + t.equityRisk} colors={riskBadge(t.equityRisk)} />
+                          <Badge label={t.support} colors={{ bg: "#f1f5f9", text: "#475569" }} />
+                        </div>
+                      </div>
+                      {isExp && (
+                        <div style={{ marginTop: "12px", paddingTop: "12px", borderTop: "1px solid #f1f5f9" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "12px" }}>
+                            <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", margin: "0 0 4px 0" }}>How it works</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.function}</p></div>
+                            <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#16a34a", textTransform: "uppercase", margin: "0 0 4px 0" }}>Strengths</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.advantages}</p></div>
+                            <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#dc2626", textTransform: "uppercase", margin: "0 0 4px 0" }}>Limitations</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.limitations}</p></div>
+                          </div>
+                          <p style={{ fontSize: "11px", color: "#94a3b8", marginTop: "10px", marginBottom: 0 }}>Key evidence: {t.evidence}</p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* ════ MATCHING ════ */}
+          {activeTab === "matching" && (
+            <div>
+              <SectionHeader accent="#1a3a2a">Epistemic Matching: Aligning the Checkpoint to the Task</SectionHeader>
+              <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "8px", maxWidth: "740px" }}>The most common mistake in implementing a Defend step is appending a generic oral exam to every assessment. This does not work. The verification checkpoint must match the <em>type of thinking</em> the assessment originally required.</p>
+              <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "20px", maxWidth: "740px" }}>If the assessment asked students to build an argument, the checkpoint should test whether they can defend it under questioning. If it asked them to write code, they should demonstrate they can walk through it and fix a new problem. The table below shows how different assessment types map to appropriate Defend checkpoints, with the cognitive operation that connects them.</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                {EPISTEMIC_MATCHING.map((m, i) => (
+                  <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "10px", overflow: "hidden" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "0", alignItems: "stretch" }}>
+                      <div style={{ padding: "16px 18px" }}><p style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", margin: 0 }}>{m.format}</p><p style={{ fontSize: "11px", color: "#94a3b8", margin: "2px 0 0 0" }}>Assessment type</p></div>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "8px 14px", background: "#f5f3ff", borderLeft: "1px solid #ede9fe", borderRight: "1px solid #ede9fe", minWidth: "120px" }}>
+                        <span style={{ fontSize: "11px", fontWeight: 700, color: "#6d28d9", textTransform: "uppercase" }}>{m.operation}</span>
+                        <span style={{ fontSize: "9px", color: "#a78bfa", marginTop: "2px" }}>cognitive operation</span>
+                      </div>
+                      <div style={{ padding: "16px 18px" }}><p style={{ fontSize: "14px", fontWeight: 700, color: "#4338ca", margin: 0 }}>{m.task}</p><p style={{ fontSize: "11px", color: "#64748b", margin: "4px 0 0 0", lineHeight: 1.4 }}>{m.detail}</p></div>
+                    </div>
+                    <div style={{ padding: "10px 18px", background: "#fafaf9", borderTop: "1px solid #f1f5f9" }}>
+                      <p style={{ fontSize: "12px", color: "#78716c", margin: 0, lineHeight: 1.5, fontStyle: "italic" }}><span style={{ fontWeight: 600, fontStyle: "normal", color: "#57534e" }}>In plain terms:</span> {m.plain}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ════ PRINCIPLES ════ */}
+          {activeTab === "principles" && (
+            <div>
+              <SectionHeader accent="#d4a03c" subtitle="These six principles define what makes a Defend checkpoint effective. They were derived from a systematic literature review and eight empirical implementations. They do not prescribe one single format — instead, they set the conditions any Defend mechanism must meet to provide genuine assurance.">Six Design Principles for the Defend Step</SectionHeader>
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                {DESIGN_PRINCIPLES.map(p => {
+                  const isExp = expandedPrinciple === p.id;
+                  return (
+                    <div key={p.id} onClick={() => setExpandedPrinciple(isExp ? null : p.id)} style={{ background: "white", border: "1px solid " + (isExp ? "#f59e0b" : "#e2e8f0"), borderRadius: "10px", padding: "16px 20px", cursor: "pointer" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                        <div style={{ width: "36px", height: "36px", borderRadius: "8px", background: "#fffbeb", color: "#d97706", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", fontWeight: 700, flexShrink: 0 }}>{p.icon}</div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><span style={{ fontSize: "11px", fontWeight: 700, color: "#d97706" }}>Principle {p.id}</span><h4 style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", margin: 0 }}>{p.title}</h4></div>
+                          <p style={{ fontSize: "12px", color: "#64748b", margin: "2px 0 0 0" }}>{p.short}</p>
+                        </div>
+                        <span style={{ color: "#94a3b8", fontSize: "14px", transform: isExp ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.15s" }}>▾</span>
+                      </div>
+                      {isExp && (
+                        <div style={{ margin: "14px 0 0 50px", paddingTop: "14px", borderTop: "1px solid #f5f5f5" }}>
+                          <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.6, margin: "0 0 14px 0" }}>{p.detail}</p>
+                          <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "8px", padding: "12px 16px" }}>
+                            <p style={{ fontSize: "11px", fontWeight: 700, color: "#92400e", textTransform: "uppercase", margin: "0 0 8px 0" }}>Examples across disciplines</p>
+                            {p.examples.map((ex, ei) => (
+                              <div key={ei} style={{ display: "flex", gap: "8px", marginBottom: ei < p.examples.length - 1 ? "8px" : "0", alignItems: "flex-start" }}>
+                                <Badge label={ex.discipline} colors={{ bg: "#fef3c7", text: "#92400e" }} />
+                                <p style={{ fontSize: "12px", color: "#78350f", margin: 0, lineHeight: 1.5 }}>{ex.example}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* ════ EVIDENCE BASE ════ */}
+          {activeTab === "cases" && (
+            <div>
+              <SectionHeader accent="#c44d3f" subtitle="The SAGE framework has been implemented across eight empirical studies involving over 800 students at multiple Australian campuses. Three implementations reported in the accompanying JUTLP paper are presented in detail below, with the remaining five summarised.">Evidence Base: Eight Empirical Implementations</SectionHeader>
+
+              {/* Detailed case studies */}
+              <h3 style={{ fontSize: "14px", fontWeight: 700, color: "#475569", margin: "0 0 12px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>Detailed Case Studies (This Paper)</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "28px" }}>
+                {CASE_STUDIES.map((cs, i) => (
+                  <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
+                    <div style={{ padding: "18px 20px", borderBottom: "1px solid #f1f5f9", display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "8px" }}>
+                      <div><h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: 0 }}>{cs.unit}</h3><p style={{ fontSize: "11px", color: "#94a3b8", margin: "2px 0 0 0" }}>{cs.level}</p></div>
+                      <div style={{ background: cs.color + "14", border: "1px solid " + cs.color + "33", borderRadius: "8px", padding: "6px 12px" }}>
+                        <p style={{ fontSize: "10px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", margin: "0 0 2px 0" }}>Defend Task Used</p>
+                        <p style={{ fontSize: "13px", fontWeight: 700, color: cs.color, margin: 0 }}>{cs.defendTask}</p>
+                      </div>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+                      <div style={{ padding: "16px 20px", borderRight: "1px solid #f1f5f9" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}><span style={{ fontSize: "14px" }}>✓</span><span style={{ fontSize: "12px", fontWeight: 700, color: "#16a34a", textTransform: "uppercase" }}>What worked</span></div>
+                        <p style={{ fontSize: "12px", color: "#475569", lineHeight: 1.55, margin: 0 }}>{cs.positives}</p>
+                      </div>
+                      <div style={{ padding: "16px 20px", background: "#fffbeb" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}><span style={{ fontSize: "14px" }}>⚠️</span><span style={{ fontSize: "12px", fontWeight: 700, color: "#92400e", textTransform: "uppercase" }}>Challenges encountered</span></div>
+                        <p style={{ fontSize: "12px", color: "#78350f", lineHeight: 1.55, margin: 0 }}>{cs.constraints}</p>
+                      </div>
+                    </div>
+                    <div style={{ padding: "12px 20px", background: "#f8fafc", borderTop: "1px solid #f1f5f9" }}>
+                      <p style={{ fontSize: "12px", color: "#475569", margin: 0 }}><span style={{ fontWeight: 700, color: "#0f172a" }}>Key lesson:</span> {cs.keyLesson}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Additional implementations */}
+              <h3 style={{ fontSize: "14px", fontWeight: 700, color: "#475569", margin: "0 0 12px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>Additional Implementations</h3>
+              <div style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden", marginBottom: "24px" }}>
+                {ADDITIONAL_IMPLEMENTATIONS.map((impl, i) => (
+                  <div key={i} style={{ padding: "12px 20px", borderBottom: i < ADDITIONAL_IMPLEMENTATIONS.length - 1 ? "1px solid #f1f5f9" : "none", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
+                    <div>
+                      <p style={{ fontSize: "13px", fontWeight: 600, color: "#0f172a", margin: 0 }}>{impl.unit}</p>
+                      <p style={{ fontSize: "11px", color: "#94a3b8", margin: "2px 0 0 0" }}>{impl.level} · {impl.campuses}</p>
+                    </div>
+                    <div style={{ display: "flex", gap: "6px" }}>
+                      <Badge label={impl.discipline} colors={{ bg: "#f1f5f9", text: "#475569" }} />
+                      <Badge label={impl.reference} colors={{ bg: "#eff6ff", text: "#1e40af" }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Synthesis */}
+              <div style={{ background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: "12px", padding: "20px", marginBottom: "16px" }}>
+                <h4 style={{ fontSize: "14px", fontWeight: 700, color: "#0c4a6e", margin: "0 0 8px 0" }}>Synthesis</h4>
+                <p style={{ fontSize: "13px", color: "#0e7490", lineHeight: 1.6, margin: 0 }}>The assurance value of a Defend checkpoint increases with three factors: the degree to which individual reasoning is separated from group output, the deliberateness of the challenge design, and whether participation is mandatory rather than voluntary. Process documentation alone does not close the verification gap — it must be paired with a live demonstration of reasoning ownership.</p>
+              </div>
+
+              {/* Sector signal */}
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "16px 20px" }}>
+                <p style={{ fontSize: "12px", color: "#64748b", margin: 0, lineHeight: 1.5 }}>The SAGE framework has been referenced by the University of Warwick and the National University of Singapore. Three CQUniversity SAGE resources are listed on the TEQSA Generative AI Knowledge Hub under Academic Integrity and Assessment Reform and Student Resources and Support.</p>
+              </div>
+            </div>
+          )}
+
+          {/* ════ GETTING STARTED ════ */}
+          {activeTab === "plan" && (
+            <div>
+              <SectionHeader accent="#2d6a4f" subtitle="Design your Defend checkpoint step by step. The template is interlinked — your assessment task selection drives the recommended Defend format, and your format selection drives compatible challenge approaches. Soft warnings appear if your selections create a weaker design. Print the completed template as a contextual implementation brief.">Defend Planner</SectionHeader>
+
+              <div ref={printRef} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "14px", padding: "24px", marginBottom: "20px" }}>
+
+                {/* Section 1: Context */}
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 16px 0" }}>1. Your Teaching Context</h3>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "14px", marginBottom: "24px" }}>
+                  {PLANNING_FIELDS_CONTEXT.map(f => (
+                    <div key={f.id}>
+                      <label style={labelStyle}>{f.label}</label>
+                      {f.type === "select" ? (
+                        <select value={planValues[f.id] || ""} onChange={e => setPlanValues(prev => ({ ...prev, [f.id]: e.target.value }))} onClick={e => e.stopPropagation()} style={selectStyle}>
+                          <option value="">— Select —</option>
+                          {f.options.map(o => <option key={o} value={o}>{o}</option>)}
+                        </select>
+                      ) : (
+                        <input type="text" placeholder={f.placeholder} value={planValues[f.id] || ""} onChange={e => setPlanValues(prev => ({ ...prev, [f.id]: e.target.value }))} onClick={e => e.stopPropagation()} style={inputStyle} />
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Section 2: Assessment → Format → Questions cascade */}
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 16px 0" }}>2. Assessment, Format, and Challenge Design</h3>
+
+                {/* Assessment task */}
+                <div style={{ marginBottom: "14px" }}>
+                  <label style={labelStyle}>Assessment Task Being Verified</label>
+                  <select value={planValues.assessment || ""} onChange={e => {
+                    const val = e.target.value;
+                    const mapping = ASSESSMENT_FORMAT_MAP[val];
+                    setPlanValues(prev => ({
+                      ...prev,
+                      assessment: val,
+                      assessment_other: val === "Other" ? (prev.assessment_other || "") : "",
+                      format: mapping ? mapping.recommended : prev.format || "",
+                      questions: mapping && FORMAT_QUESTION_MAP[mapping.recommended] ? FORMAT_QUESTION_MAP[mapping.recommended].recommended : prev.questions || "",
+                    }));
+                  }} onClick={e => e.stopPropagation()} style={selectStyle}>
+                    <option value="">— Select —</option>
+                    {ASSESSMENT_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
+                  </select>
+                  {planValues.assessment === "Other" && (
+                    <input type="text" placeholder="Please specify your assessment type" value={planValues.assessment_other || ""} onChange={e => setPlanValues(prev => ({ ...prev, assessment_other: e.target.value }))} onClick={e => e.stopPropagation()} style={{ ...inputStyle, marginTop: "6px" }} />
+                  )}
+                </div>
+
+                {/* Recommendation advisory from assessment */}
+                {planValues.assessment && ASSESSMENT_FORMAT_MAP[planValues.assessment] && (
+                  <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "10px", padding: "14px 18px", marginBottom: "14px" }}>
+                    <p style={{ fontSize: "12px", color: "#166534", margin: 0, lineHeight: 1.55 }}>
+                      <strong>Recommended format for "{planValues.assessment}":</strong> {ASSESSMENT_FORMAT_MAP[planValues.assessment].recommended}
+                      <br/><span style={{ color: "#15803d" }}>Cognitive operation: <em>{ASSESSMENT_FORMAT_MAP[planValues.assessment].operation}</em>. {ASSESSMENT_FORMAT_MAP[planValues.assessment].why}</span>
+                    </p>
+                  </div>
+                )}
+
+                {/* Defend format — sorted with recommended first */}
+                <div style={{ marginBottom: "14px" }}>
+                  <label style={labelStyle}>Chosen Defend Format</label>
+                  {(() => {
+                    const mapping = ASSESSMENT_FORMAT_MAP[planValues.assessment];
+                    const rec = mapping ? mapping.recommended : null;
+                    const alts = mapping ? mapping.alternates : [];
+                    // Sort: recommended first, then alternates, then rest
+                    const sorted = [...ALL_FORMAT_OPTIONS].sort((a, b) => {
+                      if (a === rec) return -1; if (b === rec) return 1;
+                      const aAlt = alts.includes(a); const bAlt = alts.includes(b);
+                      if (aAlt && !bAlt) return -1; if (!aAlt && bAlt) return 1;
+                      return 0;
+                    });
+                    return (
+                      <select value={planValues.format || ""} onChange={e => {
+                        const val = e.target.value;
+                        const fmtMap = FORMAT_QUESTION_MAP[val];
+                        setPlanValues(prev => ({
+                          ...prev,
+                          format: val,
+                          questions: fmtMap ? fmtMap.recommended : prev.questions || "",
+                        }));
+                      }} onClick={e => e.stopPropagation()} style={selectStyle}>
+                        <option value="">— Select —</option>
+                        {sorted.map(o => {
+                          const isRec = o === rec;
+                          const isAlt = alts.includes(o);
+                          const label = isRec ? "★ " + o + " (recommended)" : isAlt ? "○ " + o + " (alternative)" : o;
+                          return <option key={o} value={o}>{label}</option>;
+                        })}
+                      </select>
+                    );
+                  })()}
+                </div>
+
+                {/* Format mismatch warning */}
+                {planValues.assessment && planValues.format && ASSESSMENT_FORMAT_MAP[planValues.assessment] && (() => {
+                  const mapping = ASSESSMENT_FORMAT_MAP[planValues.assessment];
+                  if (planValues.format !== mapping.recommended && !mapping.alternates.includes(planValues.format)) {
+                    return (
+                      <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "10px", padding: "12px 18px", marginBottom: "14px", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+                        <span style={{ fontSize: "14px", flexShrink: 0 }}>⚠️</span>
+                        <p style={{ fontSize: "12px", color: "#92400e", margin: 0, lineHeight: 1.55 }}>
+                          <strong>Alignment concern (Principle 2):</strong> For "{planValues.assessment}", the recommended format is "{mapping.recommended}" (cognitive operation: {mapping.operation}). Your selection of "{planValues.format}" may not target the same cognitive operation. This does not prevent you from proceeding, but the assurance evidence may be weaker. Consider whether the format you have chosen will genuinely test whether the student can {mapping.operation.toLowerCase()}.
+                        </p>
+                      </div>
+                    );
+                  }
+                  return null;
+                })()}
+
+                {/* Challenge question approach — sorted with compatible first */}
+                <div style={{ marginBottom: "14px" }}>
+                  <label style={labelStyle}>Challenge Question Approach</label>
+                  {(() => {
+                    const fmtMap = FORMAT_QUESTION_MAP[planValues.format];
+                    const rec = fmtMap ? fmtMap.recommended : null;
+                    const compat = fmtMap ? fmtMap.compatible : ALL_QUESTION_OPTIONS;
+                    const sorted = [...ALL_QUESTION_OPTIONS].sort((a, b) => {
+                      if (a === rec) return -1; if (b === rec) return 1;
+                      const aC = compat.includes(a); const bC = compat.includes(b);
+                      if (aC && !bC) return -1; if (!aC && bC) return 1;
+                      return 0;
+                    });
+                    return (
+                      <select value={planValues.questions || ""} onChange={e => setPlanValues(prev => ({ ...prev, questions: e.target.value }))} onClick={e => e.stopPropagation()} style={selectStyle}>
+                        <option value="">— Select —</option>
+                        {sorted.map(o => {
+                          const isRec = o === rec;
+                          const isCompat = compat.includes(o);
+                          const isIncompat = fmtMap && Object.keys(fmtMap.incompatible).some(k => o.startsWith(k));
+                          const label = isRec ? "★ " + o + " (recommended)" : isCompat ? "○ " + o : isIncompat ? "⚠ " + o : o;
+                          return <option key={o} value={o}>{label}</option>;
+                        })}
+                      </select>
+                    );
+                  })()}
+                </div>
+
+                {/* Question approach warning */}
+                {planValues.format && planValues.questions && FORMAT_QUESTION_MAP[planValues.format] && (() => {
+                  const fmtMap = FORMAT_QUESTION_MAP[planValues.format];
+                  const incompKey = Object.keys(fmtMap.incompatible).find(k => planValues.questions.startsWith(k));
+                  if (incompKey) {
+                    return (
+                      <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: "10px", padding: "12px 18px", marginBottom: "14px", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+                        <span style={{ fontSize: "14px", flexShrink: 0 }}>🔴</span>
+                        <p style={{ fontSize: "12px", color: "#991b1b", margin: 0, lineHeight: 1.55 }}>
+                          <strong>Evidence-based concern (Principle 3):</strong> {fmtMap.incompatible[incompKey]}
+                        </p>
+                      </div>
+                    );
+                  }
+                  return null;
+                })()}
+
+                {/* Section 3: Weighting and controls */}
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "8px 0 16px 0" }}>3. Weighting and Controls</h3>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "14px", marginBottom: "14px" }}>
+                  <div>
+                    <label style={labelStyle}>Defend Weighting</label>
+                    <select value={planValues.weight || ""} onChange={e => setPlanValues(prev => ({ ...prev, weight: e.target.value }))} onClick={e => e.stopPropagation()} style={selectStyle}>
+                      <option value="">— Select —</option>
+                      {WEIGHT_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
+                    </select>
+                  </div>
+                </div>
+                {planValues.weight === "5–10% of total assessment" && (
+                  <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "10px", padding: "12px 18px", marginBottom: "14px", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+                    <span style={{ fontSize: "14px", flexShrink: 0 }}>⚠️</span>
+                    <p style={{ fontSize: "12px", color: "#92400e", margin: 0, lineHeight: 1.55 }}>
+                      <strong>Weighting concern (Principle 5):</strong> In Case Study 2, a 10% individual oral within a 40% group task improved separation but did not fully incentivise deep preparation. Consider whether this weighting is sufficient for your context, or whether a higher weighting or gatekeeping model would provide stronger assurance.
+                    </p>
+                  </div>
+                )}
+
+                {/* Online controls */}
+                <div style={{ marginBottom: "14px" }}>
+                  <label style={labelStyle}>Online Controls (if applicable)</label>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "4px" }}>
+                    {ONLINE_CONTROL_OPTIONS.map(o => {
+                      const selected = (planValues.online || []).includes(o);
+                      return (
+                        <button key={o} type="button" onClick={e => {
+                          e.stopPropagation();
+                          setPlanValues(prev => {
+                            const current = prev.online || [];
+                            if (o === "Not applicable (in-person only)") return { ...prev, online: selected ? [] : [o] };
+                            const filtered = current.filter(x => x !== "Not applicable (in-person only)");
+                            return { ...prev, online: selected ? filtered.filter(x => x !== o) : [...filtered, o] };
+                          });
+                        }} style={{
+                          padding: "5px 12px", borderRadius: "7px", fontSize: "12px", fontWeight: 500,
+                          background: selected ? "#dbeafe" : "#f8fafc", color: selected ? "#1e40af" : "#64748b",
+                          border: "1px solid " + (selected ? "#93c5fd" : "#e2e8f0"), cursor: "pointer",
+                        }}>{selected ? "✓ " : ""}{o}</button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {(planValues.delivery === "Online" || planValues.delivery === "Hybrid") && !(planValues.online || []).some(x => x !== "Not applicable (in-person only)" && x) && (
+                  <div style={{ background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "10px", padding: "12px 18px", marginBottom: "14px", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+                    <span style={{ fontSize: "14px", flexShrink: 0 }}>⚠️</span>
+                    <p style={{ fontSize: "12px", color: "#92400e", margin: 0, lineHeight: 1.55 }}>
+                      <strong>Security concern (Principle 4):</strong> You have selected {planValues.delivery} delivery but no online controls. Online and hybrid delivery requires layered controls — identity verification, session recording, and randomised questioning at minimum.
+                    </p>
+                  </div>
+                )}
+
+                {/* Notes */}
+                <div style={{ marginBottom: "14px" }}>
+                  <label style={labelStyle}>Additional Notes</label>
+                  <input type="text" placeholder="Any other considerations for your context" value={planValues.notes || ""} onChange={e => setPlanValues(prev => ({ ...prev, notes: e.target.value }))} onClick={e => e.stopPropagation()} style={inputStyle} />
+                </div>
+
+                {/* Section 4: Checklist */}
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "24px 0 12px 0" }}>4. Design Principles Checklist</h3>
+                <p style={{ fontSize: "12px", color: "#64748b", margin: "0 0 12px 0" }}>Check each principle to confirm your Defend design meets the minimum conditions for genuine assurance.</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  {PRINCIPLE_CHECKLIST.map((c, i) => (
+                    <label key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start", padding: "10px 14px", background: checklistValues[i] ? "#f0fdf4" : "#f8fafc", border: "1px solid " + (checklistValues[i] ? "#bbf7d0" : "#e2e8f0"), borderRadius: "8px", cursor: "pointer" }}>
+                      <input type="checkbox" checked={!!checklistValues[i]} onChange={e => { e.stopPropagation(); setChecklistValues(prev => ({ ...prev, [i]: !prev[i] })); }} style={{ marginTop: "2px", accentColor: "#16a34a" }} />
+                      <div>
+                        <span style={{ fontSize: "12px", fontWeight: 700, color: "#d97706" }}>{c.principle}: </span>
+                        <span style={{ fontSize: "12px", color: "#475569" }}>{c.question}</span>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                <button onClick={handlePrint} style={{ ...btnStyle, background: "#2d6a4f", color: "white" }}>Generate Implementation Brief</button>
+                <button onClick={() => { setPlanValues({}); setChecklistValues({}); }} style={{ ...btnStyle, background: "#f1f5f9", color: "#475569" }}>Clear Template</button>
+              </div>
+
+              <div style={{ marginTop: "24px", background: "#e8f5ee", border: "1px solid #b7d9c4", borderRadius: "10px", padding: "16px 18px" }}>
+                <h4 style={{ fontSize: "13px", fontWeight: 700, color: "#1a3a2a", margin: "0 0 6px 0" }}>Further Reading</h4>
+                <p style={{ fontSize: "12px", color: "#2d6a4f", lineHeight: 1.55, margin: 0 }}>
+                  For a comprehensive implementation guide including worked examples, rubric templates, and step-by-step instructions for each SAGE step, see: Elkhodr, M. & Gide, E. (2026). <em>Embedding Generative AI in Curriculum: The SAGE Framework and Evidence-Based Implementation Guide</em>. Zenodo. DOI: 10.5281/zenodo.18295619
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* ── ABOUT THE AUTHORS ── */}
+          <div style={{ marginTop: "48px", paddingTop: "24px", borderTop: "1px solid #e2e8f0" }}>
+            <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#0f172a", margin: "0 0 16px 0" }}>About the Authors</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "16px", marginBottom: "24px" }}>
+              <div style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "18px", display: "flex", gap: "14px", alignItems: "flex-start" }}>
+                <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "#e2e8f0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", fontWeight: 700, color: "#475569", flexShrink: 0 }}>ME</div>
+                <div>
+                  <p style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", margin: 0 }}>Dr Mahmoud Elkhodr</p>
+                  <p style={{ fontSize: "11px", color: "#64748b", margin: "2px 0 6px 0" }}>Senior Lecturer, School of Engineering and Technology<br/>Central Queensland University</p>
+                  <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                    <a href="mailto:m.elkhodr@cqu.edu.au" style={{ fontSize: "11px", color: "#1e40af", textDecoration: "none" }}>m.elkhodr@cqu.edu.au</a>
+                    <a href="https://staff-profiles.cqu.edu.au/home/view/1633" target="_blank" rel="noopener" style={{ fontSize: "11px", color: "#1e40af", textDecoration: "none" }}>Staff Profile</a>
+                  </div>
+                </div>
+              </div>
+              <div style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "18px", display: "flex", gap: "14px", alignItems: "flex-start" }}>
+                <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "#e2e8f0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", fontWeight: 700, color: "#475569", flexShrink: 0 }}>EG</div>
+                <div>
+                  <p style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", margin: 0 }}>Professor Ergun Gide</p>
+                  <p style={{ fontSize: "11px", color: "#64748b", margin: "2px 0 6px 0" }}>Professor of Information Systems, School of Engineering and Technology<br/>Central Queensland University</p>
+                  <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                    <a href="mailto:e.gide1@cqu.edu.au" style={{ fontSize: "11px", color: "#1e40af", textDecoration: "none" }}>e.gide1@cqu.edu.au</a>
+                    <a href="https://staff-profiles.cqu.edu.au/home/view/956" target="_blank" rel="noopener" style={{ fontSize: "11px", color: "#1e40af", textDecoration: "none" }}>Staff Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* SAGE Ecosystem */}
+            <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#0f172a", margin: "0 0 12px 0" }}>The SAGE Ecosystem</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "10px", marginBottom: "24px" }}>
+              <a href="https://doi.org/10.5281/zenodo.18383952" target="_blank" rel="noopener" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px", textDecoration: "none", display: "block" }}>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>Implementation Guide (Version 1)</p>
+                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>Full evidence base, discipline examples, rubrics, marking guides, and tutorial templates.</p>
+              </a>
+              <a href="https://doi.org/10.5281/zenodo.18295618" target="_blank" rel="noopener" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px", textDecoration: "none", display: "block" }}>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>SAGE 101 — Generative AI Foundations Module</p>
+                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>Ready-to-deploy 10-lesson teaching resource for introducing responsible GenAI use from week one.</p>
+              </a>
+              <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px", textDecoration: "none", display: "block" }}>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>Implementation Guide (Version 2)</p>
+                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>Concise practitioner reference introducing the Defend step and TEQSA alignment.</p>
+              </a>
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px" }}>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>SAGE 2026 International Symposium</p>
+                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>Q4 2026, hybrid format. Submissions on GenAI integration in teaching, learning, and assessment across all disciplines. Proceedings in <em>STEM Education</em>.</p>
+              </div>
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px" }}>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>SAGE Community of Practice</p>
+                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>A national network of educators, researchers, and learning designers. Contact m.elkhodr@cqu.edu.au to register your interest.</p>
+              </div>
+              <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px" }}>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>Generative AI Empowered Learning</p>
+                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>Edited book collection (Chapman & Hall / Taylor & Francis). Volume 2 in preparation — expressions of interest welcome.</p>
+              </div>
+            </div>
+
+            {/* Institutional footer */}
+            <div style={{ background: "#1b4332", borderRadius: "14px", padding: "24px", marginBottom: "16px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "20px" }}>
+                <div>
+                  <img src="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-australia-logo.svg" alt="CQUniversity Australia" style={{ height: "36px", marginBottom: "10px", filter: "brightness(0) invert(1)" }} onError={(e) => { e.target.style.display = "none"; }} />
+                  <p style={{ fontSize: "11px", color: "#94a3b8", margin: "0 0 4px 0" }}>Central Queensland University (trading as CQUniversity Australia)</p>
+                  <p style={{ fontSize: "10px", color: "#64748b", margin: 0 }}>Sydney Campus · 400 Kent Street, Sydney NSW 2000</p>
+                  <p style={{ fontSize: "10px", color: "#64748b", margin: "2px 0 0 0" }}>ABN: 39 181 103 288 · CRICOS: 00219C · TEQSA: PRV12073</p>
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <p style={{ fontSize: "10px", color: "#64748b", margin: 0 }}>© 2026 Central Queensland University. All rights reserved.</p>
+                  <p style={{ fontSize: "10px", color: "#64748b", margin: "4px 0 0 0" }}>Licence: Creative Commons Attribution 4.0 International (CC BY 4.0)</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Citation and companion */}
+            <div style={{ textAlign: "center", padding: "0 16px" }}>
+              <p style={{ fontSize: "11px", color: "#94a3b8", margin: "0 0 6px 0" }}>
+                <strong>Suggested Citation:</strong> Elkhodr, M. & Gide, E. (2026). <em>SAGE Assurance Guidance Tool</em>. Central Queensland University.
+              </p>
+              <p style={{ fontSize: "10px", color: "#cbd5e1", margin: "0 0 4px 0" }}>
+                Companion resource for: Elkhodr, M. & Gide, E. (2026). Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment. <em>Journal of University Teaching and Learning Practice</em>.
+              </p>
+              <p style={{ fontSize: "10px", color: "#cbd5e1", margin: 0 }}>
+                SAGE Framework DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" style={{ color: "#94a3b8" }}>10.5281/zenodo.18383951</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </>)}
+    </div>
+  );
+}
+
+const labelStyle = { fontSize: "12px", fontWeight: 600, color: "#475569", display: "block", marginBottom: "6px" };
+const selectStyle = { width: "100%", padding: "10px 12px", borderRadius: "8px", border: "1px solid #d1d5db", fontSize: "13px", color: "#1e293b", background: "white", cursor: "pointer", outline: "none" };
+const inputStyle = { width: "100%", padding: "8px 12px", borderRadius: "8px", border: "1px solid #d1d5db", fontSize: "13px", color: "#1e293b", outline: "none", boxSizing: "border-box" };
+const btnStyle = { padding: "10px 20px", borderRadius: "8px", fontSize: "13px", fontWeight: 600, border: "none", cursor: "pointer", transition: "all 0.15s" };
+
+ReactDOM.createRoot(document.getElementById("root")).render(<SAGEDefendDashboard />);
+</script>
+</body>
+</html>

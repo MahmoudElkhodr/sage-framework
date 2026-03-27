@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Resources — SAGE Framework | Student Guide, GenAI-101 &amp; Defend Tool</title>
+  <meta name="description" content="Ready-to-deploy student resources from the SAGE framework: the five-step student guide for responsible AI use, the GenAI-101 AI literacy module (10 structured lessons), and the interactive Assurance Guidance Tool. By Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity. TEQSA-recognised." />
+  <meta name="keywords" content="SAGE student guide, GenAI-101, AI literacy module, student AI resources, Defend checkpoint tool, assurance guidance tool, responsible AI students, AI assessment preparation, SAGE student guide, generative AI literacy, ChatGPT student training, AI academic integrity students, Mahmoud Elkhodr, Ergun Gide, CQUniversity, TEQSA student resources, AI numeracy, prompt engineering education, first year AI module, SAGE framework resources, AI critical thinking students, accept modify reject log, AI decision log, student AI process" />
+  <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sage-framework.com/student_resources.html" />
+  <meta property="og:title" content="Student Resources — SAGE Framework" />
+  <meta property="og:description" content="Student guide, GenAI-101 literacy module, and Assurance Guidance Tool. Ready-to-deploy resources for responsible AI use in higher education." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sage-framework.com/student_resources.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SAGE Student Resources — Guide, GenAI-101 &amp; Defend Tool" />
+  <meta name="twitter:description" content="Ready-to-deploy AI literacy module, student guide, and assessment assurance tool for higher education." />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0d1f16;
+      --forest:     #1b4332;
+      --sage:       #2d6a4f;
+      --sage-mid:   #40916c;
+      --sage-light: #74c69d;
+      --sage-pale:  #eef6f1;
+      --cream:      #f8f6f1;
+      --amber:      #b7410e;
+      --amber-pale: #fdf0eb;
+      --slate:      #374151;
+      --muted:      #6b7a72;
+      --rule:       #dde5e0;
+      --white:      #ffffff;
+      --shadow:     0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+      --shadow-md:  0 2px 8px rgba(0,0,0,0.09), 0 8px 32px rgba(0,0,0,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--slate);
+      font-family: 'Instrument Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,246,241,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--forest);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+
+    .nav-wordmark small {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { background: var(--sage-pale); color: var(--forest); }
+    .nav-links a.active { background: var(--sage-pale); color: var(--forest); font-weight: 600; }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); padding-top:0.4rem; z-index:110; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown-panel { background:var(--white); border:1px solid var(--rule); border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.09),0 8px 32px rgba(0,0,0,0.07); padding:0.5rem; min-width:220px; }
+    .nav-dropdown-panel a { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.75rem; border-radius:7px; font-size:0.8rem; font-weight:500; color:var(--slate); text-decoration:none; transition:background 0.12s; }
+    .nav-dropdown-panel a:hover { background:var(--sage-pale); color:var(--forest); }
+    .nav-dropdown-panel .dd-icon { font-size:0.9rem; flex-shrink:0; width:1.2rem; text-align:center; }
+    .nav-dropdown-panel .dd-label { font-weight:600; color:#0d1f16; font-size:0.78rem; }
+    .nav-dropdown-panel .dd-desc { font-size:0.68rem; color:var(--muted); margin-top:0.1rem; }
+
+    .nav-links .nav-cta { background: var(--forest); color: var(--white); }
+    .nav-links .nav-cta:hover { background: var(--sage); color: var(--white); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 22px;
+      height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+    }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 200;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--slate);
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      background: var(--forest);
+      padding: 2.5rem 2rem 2rem;
+      border-bottom: 3px solid var(--sage-mid);
+    }
+
+    .page-header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header .subtitle {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ─── CONTENT ─── */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ─── SECTION LABELS ─── */
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 14px;
+      height: 2px;
+      background: var(--sage-mid);
+      border-radius: 2px;
+    }
+
+    /* ─── FEATURED RESOURCE (Student Guide) ─── */
+    .featured-resource {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .featured-resource:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .featured-resource-header {
+      background: var(--sage-pale);
+      border-bottom: 1px solid #c2ddd0;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .featured-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .featured-header-text {}
+
+    .featured-badge {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--forest);
+      color: var(--white);
+      padding: 0.18rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+
+    .featured-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .featured-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .featured-resource-body {
+      padding: 1.75rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .featured-description {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .featured-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .featured-meta strong { color: var(--slate); font-weight: 600; }
+
+    .featured-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex-shrink: 0;
+      min-width: 180px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Instrument Sans', sans-serif;
+      white-space: nowrap;
+    }
+
+    .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .btn-primary { background: var(--forest); color: var(--white); }
+    .btn-primary:hover { background: var(--sage); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(27,67,50,0.2); }
+
+    .btn-secondary { background: var(--white); color: var(--forest); border: 1.5px solid var(--rule); }
+    .btn-secondary:hover { border-color: var(--sage-mid); background: var(--sage-pale); transform: translateY(-1px); }
+
+    .btn-ghost { background: transparent; color: var(--sage); border: 1.5px solid #c2ddd0; }
+    .btn-ghost:hover { background: var(--sage-pale); border-color: var(--sage-mid); transform: translateY(-1px); }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0 1.5rem;
+    }
+
+    .section-divider-line { flex: 1; height: 1px; background: var(--rule); }
+
+    .section-divider-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ─── SECONDARY RESOURCE CARDS ─── */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resource-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .resource-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--sage-mid);
+    }
+
+    .resource-card:hover::after { transform: scaleX(1); }
+    .resource-card.defend::after { background: var(--amber); }
+    .resource-card.genai::after { background: var(--sage-mid); }
+
+    .resource-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+
+    .resource-card.defend .resource-icon { background: var(--amber-pale); }
+    .resource-card.genai .resource-icon { background: var(--sage-pale); }
+
+    .resource-badge {
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.65rem;
+    }
+
+    .resource-card.defend .resource-badge { background: var(--amber-pale); color: var(--amber); }
+    .resource-card.genai .resource-badge { background: var(--sage-pale); color: var(--sage); }
+
+    .resource-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+    }
+
+    .resource-body {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.1rem;
+    }
+
+    .resource-meta {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 1.1rem;
+    }
+
+    .resource-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--sage);
+      transition: gap 0.15s;
+    }
+
+    .resource-card.defend .resource-arrow { color: var(--amber); }
+    .resource-card:hover .resource-arrow { gap: 0.75rem; }
+
+    /* ─── EDUCATOR NOTE ─── */
+    .educator-note {
+      background: var(--sage-pale);
+      border: 1px solid #c2ddd0;
+      border-radius: 12px;
+      padding: 1.1rem 1.4rem;
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .educator-note-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+    .educator-note p {
+      font-size: 0.82rem;
+      color: var(--forest);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .educator-note strong { font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 3rem 2rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-inner { max-width: 1160px; margin: 0 auto; }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      max-width: 280px;
+      line-height: 1.55;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--sage-light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-citation {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.65;
+      max-width: 640px;
+    }
+
+    .footer-citation a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-licence { font-size: 0.7rem; color: rgba(255,255,255,0.28); align-self: flex-end; white-space: nowrap; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 700px) {
+      .featured-resource-body { grid-template-columns: 1fr; }
+      .featured-actions { flex-direction: row; flex-wrap: wrap; min-width: unset; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .content { padding: 2rem 1.25rem 3.5rem; }
+      .page-header { padding: 2rem 1.25rem 1.5rem; }
+      footer { padding: 2.5rem 1.25rem 1.5rem; }
+      .featured-resource-header { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-wordmark">SAGE <small>Framework</small></a>
+    <ul class="nav-links">
+      <li><a href="sage.html">The Framework</a></li>
+      <li class="nav-dropdown">
+        <a href="student_resources.html" class="active">Student Resources</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
+          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+          <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design your assurance checkpoint</div></div></a>
+        </div></div>
+      </li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="index.html#research">Publications</a></li>
+      <li><a href="index.html#community">Community</a></li>
+      <li><a href="index.html#about" class="nav-cta">About</a></li>
+    </ul>
+    <button class="hamburger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav">
+  <button class="mobile-nav-close" onclick="document.querySelector('.mobile-nav').classList.remove('open')">&#x2715;</button>
+  <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">The Framework</a>
+  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Student Resources</a>
+  <a href="student-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student Guide</a>
+  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101 Module</a>
+  <a href="defend_tool.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Defend Tool</a>
+  <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Downloads</a>
+  <a href="index.html#research" onclick="this.closest('.mobile-nav').classList.remove('open')">Publications</a>
+  <a href="index.html#community" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
+  <a href="index.html#about" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
+</div>
+
+<!-- ─── PAGE HEADER ─── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>Resources for Your Students</h1>
+    <p class="subtitle">Ready-to-deploy teaching resources designed for educators to download, adapt, and hand directly to students. All resources are openly licensed under CC BY 4.0.</p>
+  </div>
+</div>
+
+<!-- ─── QUICK-LINK STRIP ─── -->
+<div style="max-width:900px; margin:0 auto; padding:1.25rem 2rem 0;">
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.65rem;">
+    <a href="#student-guide" style="background:var(--white); border:1px solid var(--rule); border-radius:10px; padding:0.75rem 1rem; text-decoration:none; display:flex; align-items:center; gap:0.65rem; transition:box-shadow 0.15s, border-color 0.15s;" onmouseover="this.style.borderColor='#40916c';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.07)'" onmouseout="this.style.borderColor='';this.style.boxShadow=''">
+      <span style="font-size:1.1rem;">&#x1F4C4;</span>
+      <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Student Guide</span>
+      <span style="font-size:0.65rem; color:var(--sage); font-weight:600; margin-left:auto;">PRIMARY</span>
+    </a>
+    <a href="defend_tool.html" style="background:var(--white); border:1px solid var(--rule); border-radius:10px; padding:0.75rem 1rem; text-decoration:none; display:flex; align-items:center; gap:0.65rem; transition:box-shadow 0.15s, border-color 0.15s;" onmouseover="this.style.borderColor='#b7410e';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.07)'" onmouseout="this.style.borderColor='';this.style.boxShadow=''">
+      <span style="font-size:1.1rem;">&#x1F6E1;</span>
+      <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">Defend Tool</span>
+    </a>
+    <a href="genai-101.html" style="background:var(--white); border:1px solid var(--rule); border-radius:10px; padding:0.75rem 1rem; text-decoration:none; display:flex; align-items:center; gap:0.65rem; transition:box-shadow 0.15s, border-color 0.15s;" onmouseover="this.style.borderColor='#40916c';this.style.boxShadow='0 2px 8px rgba(0,0,0,0.07)'" onmouseout="this.style.borderColor='';this.style.boxShadow=''">
+      <span style="font-size:1.1rem;">&#x1F4D6;</span>
+      <span style="font-size:0.82rem; font-weight:600; color:var(--ink);">GenAI-101 Module</span>
+    </a>
+  </div>
+</div>
+
+<!-- ─── CONTENT ─── -->
+<div class="content">
+
+  <div class="section-label" id="student-guide">Primary resource</div>
+
+  <!-- ─── FEATURED: STUDENT GUIDE ─── -->
+  <div class="featured-resource">
+    <div class="featured-resource-header">
+      <div class="featured-icon">📄</div>
+      <div class="featured-header-text">
+        <div class="featured-badge">Student Guide — Download &amp; Adapt</div>
+        <div class="featured-title">The SAGE Student Guide</div>
+        <div class="featured-tagline">A five-step process for responsible AI use in coursework and assessment</div>
+      </div>
+    </div>
+    <div class="featured-resource-body">
+      <div>
+        <p class="featured-description">The SAGE student guide gives your students a clear, structured process for using generative AI responsibly — from constructing an informed prompt through to reflecting on what they genuinely learned. It is the student-facing equivalent of the six-step SAGE cycle, written in plain language accessible to any undergraduate or postgraduate student regardless of discipline.</p>
+        <p class="featured-description">The guide covers how to build a prompt from prior knowledge, how to evaluate AI output against authoritative anchors, how to document every decision in a structured log, how to use AI as an auditor of their own reasoning, and how to reflect in a way that builds transferable professional judgement.</p>
+        <div class="featured-meta">
+          <strong>Includes:</strong> Five-step guide &middot; Editable decision log template &middot; Attribution clause for adaptation<br>
+          <strong>Formats:</strong> Preview on this page &middot; Download as Word (editable) &middot; Download as PDF (print-ready)<br>
+          <strong>Licence:</strong> CC BY 4.0 — adapt freely with attribution: <em>Adapted from the SAGE Framework (Elkhodr &amp; Gide, 2026). sage-framework.com</em>
+        </div>
+      </div>
+      <div class="featured-actions">
+        <a href="student-guide.html" class="btn btn-primary">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          View the guide
+        </a>
+        <a href="SAGE_Student_Guide.docx" download class="btn btn-secondary">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
+          Download Word
+        </a>
+        <a href="SAGE_Student_Guide.pdf" download class="btn btn-ghost">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECONDARY RESOURCES ─── -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-label">Supporting resources</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="resource-grid">
+
+    <!-- Defend Tool -->
+    <a href="defend_tool.html" class="resource-card defend">
+      <div class="resource-icon">&#x1F6E1;</div>
+      <div class="resource-badge">Interactive Tool — For Educators</div>
+      <div class="resource-title">SAGE Assurance Guidance&nbsp;Tool</div>
+      <div class="resource-body">An interactive resource for designing the Defend checkpoint — Step 6 of the SAGE cycle. Select your cohort size, delivery mode, and assessment type to receive a recommended assurance format, suggested rubric, sample challenge prompts, and a printable implementation brief. Built on eight empirical implementations.</div>
+      <div style="font-size:0.72rem; color:var(--muted); font-style:italic; margin-bottom:0.65rem;">Opens as a standalone interactive tool with its own navigation.</div>
+      <div class="resource-meta">
+        <strong>Includes:</strong> Format Recommender &middot; Six Design Principles &middot; Assurance Typology (14 formats) &middot; Epistemic Matching Matrix<br>
+        <strong>Companion paper:</strong> <em>Assurance by Design</em>, Journal of University Teaching and Learning Practice (2026)
+      </div>
+      <div class="resource-arrow">
+        Open the tool
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+
+    <!-- GenAI-101 -->
+    <a href="genai-101.html" class="resource-card genai">
+      <div class="resource-icon">&#x1F4D6;</div>
+      <div class="resource-badge">Teaching Module — TEQSA Listed</div>
+      <div class="resource-title">GenAI-101: Generative AI Literacy&nbsp;Module</div>
+      <div class="resource-body">A ready-to-deploy 10-lesson teaching resource for introducing students to responsible generative AI use from their first week. Covers how AI models work, prompt engineering, critical evaluation of AI outputs, ethical considerations, and academic integrity — structured as a guided learning sequence building toward independent AI literacy.</div>
+      <div class="resource-meta">
+        <strong>Format:</strong> 10 structured lessons with activities and discussion prompts<br>
+        <strong>DOI:</strong> <span style="color:var(--sage);">10.5281/zenodo.18295618</span> &middot; Listed on <strong>TEQSA</strong> Generative AI Knowledge Hub
+      </div>
+      <div class="resource-arrow">
+        Open the module
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Educator note -->
+  <div class="educator-note">
+    <div class="educator-note-icon">&#x1F4AC;</div>
+    <p><strong>A note for educators:</strong> These resources are designed for you to deploy — not for students to discover independently. The student guide is the document you hand to students before a SAGE-integrated assessment. The Assurance Guidance Tool helps you design a Defend checkpoint appropriate to your discipline and cohort. The GenAI-101 module provides a structured AI literacy foundation before students encounter SAGE in assessment. All resources can be adapted to your institutional context under CC BY 4.0.</p>
+  </div>
+
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-wordmark">SAGE Framework</div>
+        <div class="footer-tagline">Structured AI-Guided Education — a validated pedagogical framework for higher education. Licensed CC BY 4.0.</div>
+      </div>
+      <div class="footer-links">
+        <a href="sage.html">The Framework</a>
+        <a href="student_resources.html">Student Resources</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="index.html#research">Publications</a>
+        <a href="index.html#community">Community of Practice</a>
+        <a href="index.html#about">About</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-citation">
+        Elkhodr, M. &amp; Gide, E. (2026). <em>The SAGE Framework: Structured AI-Guided Education</em>. Central Queensland University. DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener">10.5281/zenodo.18383951</a>
+      </div>
+      <div class="footer-licence">CC BY 4.0 &middot; sage-framework.com</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
