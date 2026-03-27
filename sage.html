@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Educator Resources — SAGE Framework Implementation Guide</title>
+  <meta name="description" content="The complete SAGE implementation guide for educators: six-step AI-integrated assessment cycle, two-stage progression, discipline-specific Defend formats, and the full evidence base. Validated with 800+ students across 8 empirical studies. By Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
+  <meta name="keywords" content="SAGE implementation guide, AI assessment design, SAGE cycle steps, Defend step higher education, AI Critic pedagogy, Bloom's taxonomy AI, TEQSA assessment reform, generative AI curriculum, supervised AI assessment, AI verification gap, cybersecurity education AI, Mahmoud Elkhodr, Ergun Gide, CQUniversity AI, academic integrity generative AI, assessment assurance framework, viva voce AI assessment, AI-integrated teaching, SAGE V2, two-stage progression, formative summative AI, GenAI pedagogy, responsible AI higher education, AI evaluation rubric, SAGE evidence base, structured AI learning" />
+  <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sage-framework.com/sage.html" />
+  <meta property="og:title" content="SAGE Framework — Educator Implementation Guide" />
+  <meta property="og:description" content="The complete six-step SAGE cycle for embedding generative AI into higher education assessment. Includes discipline-specific Defend formats and full evidence base." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sage-framework.com/sage.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SAGE Educator Resources — Implementation Guide" />
+  <meta name="twitter:description" content="Six-step AI assessment framework with supervised Defend checkpoint. 800+ students, 8 studies, TEQSA-aligned." />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0d1f16;
+      --forest:     #1b4332;
+      --sage:       #2d6a4f;
+      --sage-mid:   #40916c;
+      --sage-light: #74c69d;
+      --sage-pale:  #eef6f1;
+      --cream:      #f8f6f1;
+      --amber:      #b7410e;
+      --amber-light:#d4581e;
+      --amber-pale: #fdf0eb;
+      --slate:      #374151;
+      --muted:      #6b7a72;
+      --rule:       #dde5e0;
+      --white:      #ffffff;
+      --shadow:     0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+      --shadow-md:  0 2px 8px rgba(0,0,0,0.09), 0 8px 32px rgba(0,0,0,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--slate);
+      font-family: 'Instrument Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,246,241,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--forest);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+
+    .nav-wordmark small {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { background: var(--sage-pale); color: var(--forest); }
+    .nav-links a.active { background: var(--sage-pale); color: var(--forest); font-weight: 600; }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); padding-top:0.4rem; z-index:110; }
+    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown-panel { background:var(--white); border:1px solid var(--rule); border-radius:10px; box-shadow:var(--shadow-md); padding:0.5rem; min-width:220px; }
+    .nav-dropdown-panel a { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.75rem; border-radius:7px; font-size:0.8rem; font-weight:500; color:var(--slate); text-decoration:none; transition:background 0.12s; }
+    .nav-dropdown-panel a:hover { background:var(--sage-pale); color:var(--forest); }
+    .nav-dropdown-panel .dd-icon { font-size:0.9rem; flex-shrink:0; width:1.2rem; text-align:center; }
+    .nav-dropdown-panel .dd-label { font-weight:600; color:var(--ink); font-size:0.78rem; }
+    .nav-dropdown-panel .dd-desc { font-size:0.68rem; color:var(--muted); margin-top:0.1rem; }
+
+    .nav-links .nav-cta {
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    .nav-links .nav-cta:hover { background: var(--sage); color: var(--white); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 22px;
+      height: 2px;
+      background: var(--forest);
+      border-radius: 2px;
+    }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 200;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+      gap: 0;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--slate);
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      background: var(--forest);
+      padding: 2.5rem 2rem 2rem;
+      border-bottom: 3px solid var(--sage-mid);
+    }
+
+    .page-header-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .page-header .version-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      color: var(--sage-light);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 5px;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header .subtitle {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header .meta-line {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+    }
+
+    .page-header .meta-line strong {
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+    }
+
+    .page-header .meta-line a {
+      color: var(--sage-light);
+      text-decoration: none;
+    }
+
+    .page-header .meta-line a:hover { text-decoration: underline; }
+
+    /* ─── CONTENT CONTAINER ─── */
+    .content {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ─── SECTIONS ─── */
+    .doc-section {
+      padding: 2.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .doc-section:last-of-type { border-bottom: none; }
+
+    .doc-section h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .doc-section h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 1.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .doc-section p {
+      margin-bottom: 1rem;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+
+    .doc-section p.lead {
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    .doc-section a {
+      color: var(--sage);
+      text-decoration: underline;
+      text-decoration-color: rgba(45,106,79,0.3);
+      text-underline-offset: 2px;
+    }
+
+    .doc-section a:hover { text-decoration-color: var(--sage); }
+
+    /* ─── CYCLE VISUAL ─── */
+    .cycle-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 2rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .cycle-step {
+      flex: 1 1 calc(33.33%);
+      min-width: 240px;
+      padding: 1.4rem 1.3rem;
+      position: relative;
+    }
+
+    .cycle-step:nth-child(1) { background: var(--ink); color: white; }
+    .cycle-step:nth-child(2) { background: var(--forest); color: white; }
+    .cycle-step:nth-child(3) { background: var(--sage); color: white; }
+    .cycle-step:nth-child(4) { background: var(--sage-mid); color: white; }
+    .cycle-step:nth-child(5) { background: var(--sage-light); color: var(--ink); }
+    .cycle-step:nth-child(6) { background: var(--amber); color: white; }
+
+    .cycle-step .step-number {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+      margin-bottom: 0.3rem;
+    }
+
+    .cycle-step .step-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .cycle-step .step-desc {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      opacity: 0.85;
+    }
+
+    .cycle-step .step-arrow {
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      z-index: 2;
+      opacity: 0.5;
+    }
+
+    .cycle-step:nth-child(3) .step-arrow,
+    .cycle-step:nth-child(6) .step-arrow { display: none; }
+
+    /* ─── TWO-STAGE GRID ─── */
+    .stage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .stage-box {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .stage-box:hover { box-shadow: var(--shadow-md); }
+
+    .stage-box.stage1 { border-top: 3px solid var(--sage); }
+    .stage-box.stage2 { border-top: 3px solid var(--amber); }
+
+    .stage-box .stage-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-box.stage1 .stage-label { color: var(--sage); }
+    .stage-box.stage2 .stage-label { color: var(--amber); }
+
+    .stage-box .stage-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .stage-box p {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-box .steps-list {
+      padding-left: 0;
+      list-style: none;
+      margin-top: 0.8rem;
+      font-size: 0.84rem;
+      color: var(--slate);
+    }
+
+    .stage-box .steps-list li {
+      padding: 0.3rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .stage-box .steps-list li::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .stage-box.stage1 .steps-list li::before { color: var(--sage); }
+    .stage-box.stage2 .steps-list li::before { color: var(--amber); }
+
+    /* ─── FOUNDATION BAR ─── */
+    .foundation-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.75rem 0;
+      margin: 1.5rem 0 0.5rem;
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      flex-wrap: wrap;
+    }
+
+    .foundation-bar span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+    }
+
+    /* ─── STEP DETAIL CARDS ─── */
+    .step-detail {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 0.75rem;
+      border-left: 3px solid var(--sage-light);
+      transition: box-shadow 0.2s;
+    }
+
+    .step-detail:hover { box-shadow: var(--shadow); }
+
+    .step-detail .detail-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-detail .detail-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--sage);
+    }
+
+    .step-detail .detail-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .step-detail p {
+      font-size: 0.92rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+      color: var(--slate);
+    }
+
+    .step-detail.defend-step {
+      border-left-color: var(--amber);
+      background: var(--amber-pale);
+    }
+
+    .step-detail.defend-step .detail-num { color: var(--amber); }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .callout.evidence {
+      background: var(--sage-pale);
+      border-left: 4px solid var(--sage);
+      color: var(--forest);
+    }
+
+    .callout.principle {
+      background: var(--amber-pale);
+      border-left: 4px solid var(--amber);
+      color: var(--ink);
+    }
+
+    .callout .callout-label {
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+
+    .callout.evidence .callout-label { color: var(--sage); }
+    .callout.principle .callout-label { color: var(--amber); }
+
+    /* ─── DEFEND TABLE ─── */
+    .defend-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+      font-size: 0.86rem;
+    }
+
+    .defend-table th {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    .defend-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.55;
+      color: var(--slate);
+    }
+
+    .defend-table tr:last-child td { border-bottom: none; }
+
+    .defend-table tr:nth-child(even) td { background: var(--sage-pale); }
+
+    .defend-table .disc-name {
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* ─── REFERENCES ─── */
+    .ref-list {
+      padding-left: 1.8rem;
+      font-size: 0.86rem;
+      line-height: 1.7;
+      color: var(--slate);
+    }
+
+    .ref-list li {
+      margin-bottom: 0.7rem;
+      padding-left: 0.3rem;
+    }
+
+    .ref-list li::marker {
+      font-weight: 700;
+      color: var(--sage);
+    }
+
+    .ref-list em { color: var(--ink); }
+
+    /* ─── AUTHOR CARDS ─── */
+    .author-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+    }
+
+    .author-card:hover { box-shadow: var(--shadow-md); }
+
+    .author-photo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--rule);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .author-title-text {
+      font-size: 0.855rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0.35rem;
+    }
+
+    .author-links {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .author-links a {
+      color: var(--sage);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .author-links a:hover { text-decoration: underline; }
+
+    /* ─── ECOSYSTEM BLOCK ─── */
+    .ecosystem-item {
+      margin-bottom: 0.75rem;
+    }
+
+    .ecosystem-item strong {
+      color: var(--ink);
+    }
+
+    /* ─── INSTITUTIONAL BAR ─── */
+    .institutional-block {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .institutional-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 1rem 2rem;
+    }
+
+    .institutional-inner img { height: 44px; flex-shrink: 0; }
+
+    .institutional-text {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .institutional-text strong { color: var(--slate); }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.3rem;
+      border-radius: 8px;
+      font-size: 0.855rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Instrument Sans', sans-serif;
+    }
+
+    .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .btn-primary {
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--sage);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(27,67,50,0.22);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--forest);
+      border: 1.5px solid var(--rule);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--sage-mid);
+      background: var(--sage-pale);
+      transform: translateY(-1px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 3rem 2rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      max-width: 280px;
+      line-height: 1.55;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--sage-light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-citation {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.65;
+      max-width: 640px;
+    }
+
+    .footer-citation a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+    }
+
+    .footer-licence {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.28);
+      align-self: flex-end;
+      white-space: nowrap;
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      @page { margin: 1.6cm 1.4cm; }
+      nav, .mobile-nav, .hamburger { display: none !important; }
+      body { font-size: 10pt; }
+      .page-header { padding: 1.5rem 2rem; }
+      .page-header h1 { font-size: 1.35rem; }
+      .doc-section { padding: 1.2rem 0; }
+      .cycle-container { break-inside: avoid; }
+      .callout, .step-detail, .author-card { break-inside: avoid; }
+      h2, h3 { break-after: avoid; }
+      .defend-table thead { display: table-header-group; }
+      .defend-table tr { break-inside: avoid; }
+      .stage-grid-wrapper { break-inside: avoid; }
+      footer { break-inside: avoid; padding: 1rem 2rem; font-size: 0.78rem; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      .cycle-step { flex: 1 1 100%; }
+      .cycle-step .step-arrow { display: none; }
+      .stage-grid { grid-template-columns: 1fr; }
+      .page-header { padding: 3rem 1.25rem 2.5rem; }
+      .content { padding: 0 1.25rem; }
+      .doc-section { padding: 2rem 0; }
+      .foundation-bar { gap: 1rem; }
+      .author-card { flex-direction: column; }
+      .institutional-inner { flex-direction: column; align-items: flex-start; }
+      footer { padding: 2.5rem 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-wordmark">SAGE <small>Framework</small></a>
+    <ul class="nav-links">
+      <li><a href="sage.html" class="active">The Framework</a></li>
+      <li class="nav-dropdown">
+        <a href="student_resources.html">Student Resources</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
+          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+          <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design your assurance checkpoint</div></div></a>
+        </div></div>
+      </li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="index.html#research">Publications</a></li>
+      <li><a href="index.html#community">Community</a></li>
+      <li><a href="index.html#about" class="nav-cta">About</a></li>
+    </ul>
+    <button class="hamburger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav">
+  <button class="mobile-nav-close" onclick="document.querySelector('.mobile-nav').classList.remove('open')">&#x2715;</button>
+  <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">The Framework</a>
+  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Student Resources</a>
+  <a href="student-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student Guide</a>
+  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101 Module</a>
+  <a href="defend_tool.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Defend Tool</a>
+  <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Downloads</a>
+  <a href="index.html#research" onclick="this.closest('.mobile-nav').classList.remove('open')">Publications</a>
+  <a href="index.html#community" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
+  <a href="index.html#about" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
+</div>
+
+<!-- ─── PAGE HEADER: HERO ─── -->
+<div class="page-header">
+  <div class="page-header-inner" style="max-width:1000px;">
+
+    <!-- Hero headline -->
+    <h1 style="font-size:clamp(1.5rem,2.8vw,2rem); text-align:center; margin-bottom:0.4rem;">Your students are using AI.<br>You cannot tell who did the thinking.</h1>
+    <p class="subtitle" style="text-align:center; max-width:540px; margin:0 auto 1.25rem; font-size:0.9rem;">SAGE is a validated pedagogical framework that guides students through structured AI interaction &mdash; and verifies they own the result.</p>
+
+    <!-- TEQSA two-lane alignment -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; max-width:640px; margin:0 auto 1rem;">
+      <div style="background:rgba(116,198,157,0.1); border:1px solid rgba(116,198,157,0.2); border-radius:10px; padding:0.75rem 1rem;">
+        <div style="font-size:0.6rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--sage-light); margin-bottom:0.4rem;">TEQSA Lane 2 &mdash; Open</div>
+        <div style="font-family:'Fraunces',Georgia,serif; font-size:0.88rem; font-weight:600; color:#fff; margin-bottom:0.25rem;">Develop capability</div>
+        <div style="font-size:0.74rem; color:rgba(255,255,255,0.55); line-height:1.45;">Steps 1&ndash;5 guide students through AI-integrated tasks: generate, evaluate against standards, refine with evidence, stress-test via AI Critic, and reflect.</div>
+      </div>
+      <div style="background:rgba(183,65,14,0.1); border:1px solid rgba(183,65,14,0.2); border-radius:10px; padding:0.75rem 1rem;">
+        <div style="font-size:0.6rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#f0a08a; margin-bottom:0.4rem;">TEQSA Lane 1 &mdash; Secure</div>
+        <div style="font-family:'Fraunces',Georgia,serif; font-size:0.88rem; font-weight:600; color:#fff; margin-bottom:0.25rem;">Verify attainment</div>
+        <div style="font-size:0.74rem; color:rgba(255,255,255,0.55); line-height:1.45;">Step 6 &mdash; Defend &mdash; requires each student to demonstrate, under supervised conditions, that they own the reasoning behind their submission.</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-bottom:1rem;">
+      <span style="font-size:0.7rem; color:rgba(255,255,255,0.35); line-height:1.5;">Both lanes are integrated within a single assessment sequence &mdash; not bolted on as separate instruments.</span>
+    </div>
+
+    <!-- Compact meta row -->
+    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:0.75rem;color:rgba(255,255,255,0.45);">
+      <span><strong style="color:rgba(255,255,255,0.7);">Version 2</strong> &middot; February 2026</span>
+      <span>DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" style="color:var(--sage-light);text-decoration:none;">10.5281/zenodo.18383951</a></span>
+      <span>Elkhodr &amp; Gide &middot; Central Queensland University</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── MAIN CONTENT ─── -->
+<main class="content">
+
+<!-- §1 WHAT IS SAGE -->
+<section class="doc-section" id="what-is-sage">
+  <h2>1. What Is SAGE</h2>
+  <p class="lead">The Structured AI-Guided Education (SAGE) framework is a validated pedagogy for developing students' capacity to orchestrate generative AI outputs rather than passively accept them. It treats GenAI as an assistive tool whose outputs must be accepted, modified, or rejected with explicit, evidence-based justification &mdash; not as an authority to mimic nor as a tool to ban.</p>
+  <p>SAGE was developed through three years of sustained empirical research involving over 800 students across eight empirical studies, spanning cybersecurity management, data analytics, Professional Communication and systems analysis and design, delivered across multiple Australian campuses. The framework has been adopted or referenced by institutions including the University of Warwick and the National University of Singapore.</p>
+  <p>Version 2 of this guide introduces a sixth step &mdash; <strong>Defend</strong> &mdash; which places assurance of individual competence within the cycle itself rather than relying on an additional supervised assessment. The complete evidence base, discipline-specific examples, implementation templates, and detailed rubrics are available in <a href="https://doi.org/10.5281/zenodo.18383952">Version 1 of this guide</a>.</p>
+</section>
+
+<!-- §2 THE SAGE CYCLE -->
+<section class="doc-section" id="sage-cycle">
+  <h2>2. The SAGE Cycle</h2>
+  <p>At the core of SAGE is a six-step cycle that moves students from passive AI consumption to critical AI orchestration, culminating in supervised demonstration of the competency developed through the preceding five steps. The cycle is designed to produce graduates who can deploy generative AI as a professional tool within the constraints of their discipline. They will be taught skills to evaluate AI outputs against industry standards, regulatory requirements, and domain-specific evidence rather than accepting them uncritically. This is the competency that employers now expect. That is not the ability to prompt an AI tool, but rather the ability to judge, correct, and take professional responsibility for what AI produces.</p>
+
+  <div class="cycle-container">
+    <div class="cycle-step">
+      <div class="step-number">Step 1</div>
+      <div class="step-name">Generate</div>
+      <div class="step-desc">Use GenAI to produce an initial output using structured or autonomous prompts.</div>
+      <span class="step-arrow">&rarr;</span>
+    </div>
+    <div class="cycle-step">
+      <div class="step-number">Step 2</div>
+      <div class="step-name">Evaluate</div>
+      <div class="step-desc">Compare the output against domain standards, regulations, and authoritative sources.</div>
+      <span class="step-arrow">&rarr;</span>
+    </div>
+    <div class="cycle-step">
+      <div class="step-number">Step 3</div>
+      <div class="step-name">Refine</div>
+      <div class="step-desc">Modify the output with evidence-based reasoning. Document what was changed and why.</div>
+      <span class="step-arrow">&darr;</span>
+    </div>
+    <div class="cycle-step">
+      <div class="step-number">Step 4</div>
+      <div class="step-name">AI Critic</div>
+      <div class="step-desc">Assign AI a domain-specific persona to critically re-evaluate your refined output.</div>
+      <span class="step-arrow">&rarr;</span>
+    </div>
+    <div class="cycle-step">
+      <div class="step-number">Step 5</div>
+      <div class="step-name">Reflect</div>
+      <div class="step-desc">Conduct metacognitive analysis of the AI's strengths, limitations, and failure patterns.</div>
+      <span class="step-arrow">&rarr;</span>
+    </div>
+    <div class="cycle-step">
+      <div class="step-number">Step 6</div>
+      <div class="step-name">Defend</div>
+      <div class="step-desc">Demonstrate competency under supervised conditions. The student proves they own the reasoning, not just the document.</div>
+    </div>
+  </div>
+
+  <p>The cycle is sequenced to move students progressively through Bloom's revised taxonomy. Steps 1&ndash;3 operate at the Apply and Analyse levels: students generate output, compare it against domain standards, and modify it with evidence. Step 4 inverts the AI relationship. So, the student assigns AI a critical role and must evaluate the evaluator, operating at Bloom's Evaluate level. Step 5 requires metacognitive synthesis. This is the highest cognitive operation in the taxonomy, in which students articulate patterns of AI strength and failure across the task. Step 6 closes the cycle by requiring the student to demonstrate, under supervised conditions, that the competency developed through the preceding steps has been individually internalised rather than merely documented.</p>
+
+  <div class="callout principle">
+    <div class="callout-label">Design Principle</div>
+    Steps 1&ndash;5 develop the competency through open, AI-integrated tasks. Step 6 verifies it under supervised conditions where the process cannot be simulated. The first five steps serve both learning and formative assessment purposes. Step 6 carries the institutional assurance function.
+  </div>
+</section>
+
+<!-- §3 TWO-STAGE PROGRESSION -->
+<section class="doc-section" id="two-stage">
+  <h2>3. Two-Stage Progression</h2>
+  <p>SAGE operates through two stages that move students from guided practice to independent application with supervised assurance. This progression mirrors the cognitive trajectory defined by Bloom's revised taxonomy: Stage 1 scaffolds the lower-order operations of Apply and Analyse under instructor guidance, while Stage 2 requires students to operate independently at the Evaluate and Create levels before demonstrating competency under supervised conditions. The two-stage design also aligns with TEQSA's distinction between open tasks that develop capability and secure tasks that verify individual attainment, ensuring that both functions are addressed within a single integrated teaching sequence rather than treated as separate assessment instruments.</p>
+
+  <div class="stage-grid-wrapper">
+    <div class="stage-grid">
+      <div class="stage-box stage1">
+        <div class="stage-label">Stage 1 &mdash; Formative</div>
+        <div class="stage-title">Tutorial-Based Scaffolded Learning</div>
+        <p>Students practise the SAGE cycle under instructor guidance with structured prompts, worked examples, and immediate feedback. Scaffolding is heavy. The goal is to build the evaluation, refinement, and reflection skills that students will apply independently in Stage 2.</p>
+        <ul class="steps-list">
+          <li data-step="1. ">Generate with standardised prompts provided by instructor</li>
+          <li data-step="2. ">Evaluate against supplied checklists, standards or peer reviewed research, and readings</li>
+          <li data-step="3. ">Refine with peer review and tutor feedback</li>
+          <li data-step="4. ">AI Critic under guided conditions</li>
+          <li data-step="5. ">Reflect in short metacognitive entries (150&ndash;250 words)</li>
+        </ul>
+      </div>
+      <div class="stage-box stage2">
+        <div class="stage-label">Stage 2 &mdash; Summative</div>
+        <div class="stage-title">Assessment-Driven Independent Application</div>
+        <p>Students apply the SAGE cycle autonomously in summative tasks with reduced scaffolding. Process logging remains embedded in the open task for formative purposes. Assurance of individual attainment is placed in the Defend step under supervised conditions.</p>
+        <ul class="steps-list">
+          <li data-step="1. ">Generate with self-designed prompts; human baseline required first</li>
+          <li data-step="2. ">Evaluate against standards, stakeholder input, and research</li>
+          <li data-step="3. ">Refine with documented accept/modify/reject decisions</li>
+          <li data-step="4. ">AI Critic with domain-specific persona assignment</li>
+          <li data-step="5. ">Reflect in evidence-based justification</li>
+          <li data-step="6. ">Defend under supervised conditions (format varies by discipline)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foundation-bar">
+      <span>Constructivist Learning</span>
+      <span>Bloom's Taxonomy</span>
+      <span>Situated Learning</span>
+      <span>Zone of Proximal Development</span>
+    </div>
+  </div>
+</section>
+
+<!-- §4 WHAT STUDENTS DO -->
+<section class="doc-section" id="student-actions">
+  <h2>4. What Students Do in Each Step</h2>
+
+  <div class="step-detail">
+    <div class="detail-header">
+      <span class="detail-num">Step 1</span>
+      <span class="detail-name">Generate</span>
+    </div>
+    <p>Students use a generative AI tool to produce an initial output for the task at hand. In Stage 1, standardised prompts are provided to ensure comparable outputs across the cohort. In Stage 2, students design their own prompts but must first produce a human baseline (outline, notes, or preliminary analysis) before engaging the AI tool. This baseline demonstrates independent understanding of the problem and prevents complete delegation.</p>
+  </div>
+
+  <div class="step-detail">
+    <div class="detail-header">
+      <span class="detail-num">Step 2</span>
+      <span class="detail-name">Evaluate</span>
+    </div>
+    <p>Students compare the AI output against authoritative sources relevant to their discipline: industry standards, regulatory frameworks, peer-reviewed research, clinical guidelines, or case-study constraints. They identify what is present, what is missing, and what is incorrect. In Stage 1, instructors provide checklists and evaluation templates. In Stage 2, students identify evaluation criteria independently.</p>
+  </div>
+
+  <div class="step-detail">
+    <div class="detail-header">
+      <span class="detail-num">Step 3</span>
+      <span class="detail-name">Refine</span>
+    </div>
+    <p>Students modify the AI output on the basis of their evaluation. Each modification is documented as an accept, modify, or reject decision with a brief evidence-based justification citing specific standards, sources, or contextual constraints. The refinement produces a professional-standard artefact that the student can defend as their own intellectual product.</p>
+  </div>
+
+  <div class="step-detail">
+    <div class="detail-header">
+      <span class="detail-num">Step 4</span>
+      <span class="detail-name">AI Critic</span>
+    </div>
+    <p>Students assign the AI tool a domain-specific persona (e.g., "You are a senior cybersecurity auditor reviewing this policy for regulatory compliance") and submit their refined output for critical evaluation. They then analyse the AI's feedback, determining which critiques are valid, which reflect the AI's own limitations, and which require human judgement to resolve. This step develops metacognitive sophistication and strengthens the student's authority over the AI.</p>
+  </div>
+
+  <div class="step-detail">
+    <div class="detail-header">
+      <span class="detail-num">Step 5</span>
+      <span class="detail-name">Reflect</span>
+    </div>
+    <p>Students produce a metacognitive analysis documenting the AI's strengths and weaknesses as observed during the task, the specific domain errors identified, the corrective reasoning applied, and the broader implications for AI reliability in their discipline. Functional reflections &mdash; those that critique domain content directly &mdash; are distinguished from procedural reflections that merely describe workflow benefits.</p>
+  </div>
+
+  <div class="step-detail defend-step">
+    <div class="detail-header">
+      <span class="detail-num">Step 6</span>
+      <span class="detail-name">Defend</span>
+    </div>
+    <p>Students demonstrate, under supervised conditions, that they can reproduce or explain the reasoning documented in their open assessment without reliance on the artefacts that produced it. The format is determined by disciplinary context (see Section 5). The defining criterion is that the student shows they own the competency &mdash; they can identify risks, explain trade-offs, justify decisions, and respond to challenge questions &mdash; not merely that they submitted a document containing these elements. This step carries the institutional assurance function: it is the evidence that the intended learning outcomes have been individually achieved.</p>
+  </div>
+</section>
+
+<!-- §5 DEFEND ACROSS DISCIPLINES -->
+<section class="doc-section" id="defend-examples">
+  <h2>5. Defend &mdash; Discipline Implementation Examples</h2>
+  <p>The Defend step is format-agnostic. The principle remains constant. So, the student demonstrates competency under conditions where the process cannot be simulated. The following table illustrates how Defend may be implemented across representative disciplines.</p>
+
+  <table class="defend-table">
+    <thead>
+      <tr>
+        <th style="width:18%">Discipline</th>
+        <th style="width:30%">Defend Format</th>
+        <th style="width:52%">What the Student Demonstrates</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="disc-name">Cybersecurity</td>
+        <td>Timed risk-scoring exercise or incident response viva</td>
+        <td>Classifies and prioritises threats for an unseen scenario using the same frameworks applied in the open task. Explains why specific controls were selected over alternatives. Responds to challenge questions on regulatory alignment.</td>
+      </tr>
+      <tr>
+        <td class="disc-name">Programming</td>
+        <td>Supervised code walkthrough or live debugging session</td>
+        <td>Explains design decisions in submitted code. Debugs a seeded error in a related module under observation. Demonstrates understanding of logic, structure, and trade-offs rather than surface familiarity with the output.</td>
+      </tr>
+      <tr>
+        <td class="disc-name">Health Sciences</td>
+        <td>Structured clinical reasoning viva or case interpretation</td>
+        <td>Applies clinical decision-making to a new patient scenario. Justifies care plan modifications against clinical guidelines. Identifies where AI-generated recommendations require human override based on patient-specific factors.</td>
+      </tr>
+      <tr>
+        <td class="disc-name">Business</td>
+        <td>Oral defence of strategic recommendation with examiner challenge</td>
+        <td>Presents and defends a strategic position. Responds to examiner objections with evidence-based reasoning. Demonstrates understanding of stakeholder constraints, market assumptions, and ethical implications.</td>
+      </tr>
+      <tr>
+        <td class="disc-name">Education</td>
+        <td>Teaching demonstration with reflective justification</td>
+        <td>Delivers a short teaching segment based on a lesson plan developed with AI assistance. Explains pedagogical choices, adaptation for specific learner needs, and why certain AI-suggested approaches were modified or rejected.</td>
+      </tr>
+      <tr>
+        <td class="disc-name">Engineering</td>
+        <td>Design defence with constraint interrogation</td>
+        <td>Defends design decisions under examiner questioning. Explains trade-offs between competing requirements. Demonstrates that safety, sustainability, and regulatory considerations were understood, not merely included in the document.</td>
+      </tr>
+      <tr>
+        <td class="disc-name">Law</td>
+        <td>Moot argument or case analysis viva</td>
+        <td>Argues a legal position with reference to relevant authorities. Responds to judicial challenge on the strength of the analysis. Distinguishes AI-generated legal summaries from independently reasoned legal arguments.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout principle">
+    <div class="callout-label">Implementation Note</div>
+    The Defend step does not require a full examination. A 10&ndash;15 minute structured oral per student, a timed in-class exercise, or a supervised practical demonstration is sufficient provided the task requires the student to reproduce reasoning rather than recall content. The objective is verification of competency, not endurance testing.
+  </div>
+</section>
+
+<!-- §6 WHY DEFEND -->
+<section class="doc-section" id="why-defend">
+  <h2>6. Why Defend</h2>
+  <p>The inclusion of a supervised assurance step is not a theoretical preference. It is an empirically grounded response to a documented structural limitation of unsupervised assessment under GenAI-rich conditions.</p>
+  <p>In a structured audit of 25 group submissions across two cybersecurity management cohorts, assessments designed using the full SAGE protocol, incorporating base prompts, structured decision tables, mandatory AI interaction logs, and reflective commentary, were examined for process fidelity using a five-check protocol. Full traceability between documented AI outputs and human evaluation claims was not achieved in the majority of the students' submissions. Only 3 of 25 submissions (12%) produced evidence chains that were substantially auditable. The remaining submissions exhibited logical inconsistencies between reported AI positions and appended outputs, compliance-pattern text in evaluation cells, and structural indicators consistent with audit trail simulation (Elkhodr &amp; Gide, 2026, <em>STEM Education</em>).</p>
+  <p>These findings are consistent with sector-wide guidance. TEQSA's 2025 resource <em>Enacting Assessment Reform in a Time of Artificial Intelligence</em> identifies structural assessment redesign, not detection, as the sustainable response. The University of Sydney's two-lane model distinguishes between open tasks for learning and secure tasks for assurance. SAGE with Defend operationalises both functions within a single, integrated pedagogical cycle: Steps 1&ndash;5 constitute the open lane, and Step 6 constitutes the secure lane.</p>
+
+  <div class="callout evidence">
+    <div class="callout-label">Alignment with TEQSA Guidance</div>
+    TEQSA's three institutional pathways (programme-wide reform, unit-level assurance, and hybrid models) all require a mechanism for supervised verification of individual attainment. SAGE provides the unit-level implementation: the first five steps build the competency through open, AI-integrated tasks; the sixth step verifies it under supervised conditions. This integration ensures that assurance is not an afterthought bolted onto a separate assessment, but the natural culmination of the learning process.
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="doc-section" id="references">
+  <h2>References</h2>
+
+  <h3>Core SAGE Framework Publications</h3>
+  <ol class="ref-list">
+    <li>M. Elkhodr, E. Gide, R. Wu, and O. Darwish, "ICT students' perceptions towards ChatGPT: An experimental reflective lab analysis," <em>STEM Education</em>, vol. 3, no. 2, pp. 70&ndash;88, 2023. [Online]. Available: <a href="https://doi.org/10.3934/steme.2023006">https://doi.org/10.3934/steme.2023006</a></li>
+    <li>R. Sandu, E. Gide, and M. Elkhodr, "The role and impact of ChatGPT in educational practices: Insights from an Australian higher education case study," <em>Discover Education</em>, vol. 3, no. 1, art. 71, 2024. [Online]. Available: <a href="https://doi.org/10.1007/s44217-024-00126-6">https://doi.org/10.1007/s44217-024-00126-6</a></li>
+    <li>M. Elkhodr and E. Gide, "The SAGE framework for developing critical thinking and responsible generative AI use in cybersecurity education," <em>Discover Education</em>, vol. 4, art. 225, Nov. 2025. doi: <a href="https://doi.org/10.1007/s44217-025-00935-3">10.1007/s44217-025-00935-3</a></li>
+    <li>M. Elkhodr and E. Gide, "AI Leads, Humans Lead, or Collaborate? Empirical Findings and the SAGE Roadmap for Embedding GenAI in the Systems Analysis and Design Education," <em>STEM Education</em>, accepted Feb. 2026. Preprint: <a href="https://doi.org/10.48550/arXiv.2511.17515">arXiv:2511.17515</a></li>
+    <li>M. Elkhodr and E. Gide, "AI as Critic: Validating SAGE Pedagogy for Human Authority and Responsible GenAI Use in Systems Analysis and Design Education," <em>EdArXiv Preprints</em>, 2025. [Online]. Available: <a href="https://osf.io/preprints/edarxiv/8j3xf">https://osf.io/preprints/edarxiv/8j3xf</a></li>
+    <li>M. Elkhodr, A. Azra, and E. Gide, "How First-Year Students Actually Use ChatGPT in Permitted Assessments: Empirical Typologies, Verification Gaps, and the Policy-Practice Divide," submitted to <em>Discover Education</em>, 2026. Preprint: <a href="https://doi.org/10.21203/rs.3.rs-8628653/v1">https://doi.org/10.21203/rs.3.rs-8628653/v1</a></li>
+    <li>M. Elkhodr and E. Gide, "The Death of Take-Home Assessment in the Era of GenAI: Here Is the Evidence," submitted to <em>STEM Education</em>, 2026.</li>
+  </ol>
+
+  <h3>Extended Research Portfolio: GenAI in Education</h3>
+  <ol class="ref-list" start="8">
+    <li>M. Elkhodr and E. Gide, Eds., <em>Generative Artificial Intelligence Empowered Learning: A New Frontier in Educational Technology</em>, 1st ed. New York, NY: Taylor and Francis, 2025, 248 pp. doi: <a href="https://doi.org/10.1201/9781003422433">10.1201/9781003422433</a>. eBook ISBN: 9781003422433</li>
+    <li>R. J. Eddine, E. Gide, and A. Al-Sabbagh, "Generative AI in higher education: A cross-sector analysis of ChatGPT's impact on STEM, social sciences, and healthcare," <em>STEM Education</em>, vol. 5, no. 5, pp. 757&ndash;801, 2025. doi: <a href="https://doi.org/10.3934/steme.2025035">10.3934/steme.2025035</a></li>
+    <li>K. Wangsa, S. Karim, E. Gide, and M. Elkhodr, "A systematic review and comprehensive analysis of pioneering AI chatbot models from education to healthcare: ChatGPT, Bard, Llama, Ernie and Grok," <em>Future Internet</em>, vol. 16, no. 7, art. 219, 2024. doi: <a href="https://doi.org/10.3390/fi16070219">10.3390/fi16070219</a></li>
+    <li>K. Wangsa, R. Sandu, S. Karim, M. Elkhodr, and E. Gide, "A systematic review and analysis on the potentials and challenges of GenAI chatbots in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837608">10.1109/ITHET61869.2024.10837608</a></li>
+    <li>A. Al Tawara, J. El-Den, E. Gide, and Y. Sebastian, "A systematic review and comprehensive analysis of AI-enabled re-skilling and upskilling in education: Transformative strategies for the future," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;10. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837638">10.1109/ITHET61869.2024.10837638</a></li>
+    <li>A. Al Tawara, E. Gide, and J. El-Den, "Systematic review and comprehensive analysis of integrating human-centered AI in higher education: Enhancing teaching, learning, and ethics," in <em>Proc. 12th Int. Conf. Future Internet of Things and Cloud (FiCloud)</em>, Aug. 2025, pp. 305&ndash;312. doi: <a href="https://doi.org/10.1109/FiCloud61071.2025.00051">10.1109/FiCloud61071.2025.00051</a></li>
+    <li>H. Ranasinghe, E. Gide, and M. Elkhodr, "The significance of GenAI empowered ERP systems course teaching in quality education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837679">10.1109/ITHET61869.2024.10837679</a></li>
+    <li>G. Chaudhry, E. Gide, E. Yadegaridehkordi, and R. Tumpa, "Generative AI-powered teaching and learning in engineering and project management higher education: A systematic review," in <em>Joint International Conference on AI, Big Data and Blockchain</em>, Cham, Switzerland: Springer Nature, Aug. 2025, pp. 99&ndash;113.</li>
+    <li>E. Gusman, E. Gide, M. Elkhodr, and G. Chaudhry, "The benefits and challenges of using artificial intelligence in teaching English as a foreign language in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837597">10.1109/ITHET61869.2024.10837597</a></li>
+    <li>E. Gusman, E. Gide, G. Chaudhry, and M. Elkhodr, "A comprehensive review to identify the challenges and opportunities of using digital technology in English teaching in higher education," in <em>International Society for Technology, Education, and Science</em>, 2023.</li>
+    <li>R. Sandu, E. Gide, S. Karim, and P. Singh, "A framework for GenAI-empowered curriculum and learning resources: A case study from an Australian higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;8. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837623">10.1109/ITHET61869.2024.10837623</a></li>
+    <li>N. Sandu and E. Gide, "Adoption of AI-Chatbots to enhance student learning experience in higher education in India," in <em>Proc. 18th Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Sept. 2019, pp. 1&ndash;5. doi: <a href="https://doi.org/10.1109/ITHET46829.2019.8937382">10.1109/ITHET46829.2019.8937382</a></li>
+    <li>M. Elkhodr, K. Wangsa, E. Gide, and S. Karim, "A systematic review and multifaceted analysis of the integration of artificial intelligence and blockchain: Shaping the future of Australian higher education," <em>Future Internet</em>, vol. 16, no. 10, art. 378, 2024. doi: <a href="https://doi.org/10.3390/fi16100378">10.3390/fi16100378</a></li>
+    <li>M. Elkhodr, E. Gide, and N. Pandey, "Enhancing mental health support for international students: A digital framework for holistic well-being in higher education," <em>STEM Education</em>, vol. 4, no. 4, pp. 466&ndash;488, 2024. doi: <a href="https://doi.org/10.3934/steme.2024025">10.3934/steme.2024025</a></li>
+    <li>N. Abbasi, E. Gide, P. Kalutara, and P. Lawrence, "Barriers and opportunities in online delivery of architecture and building design studios: Australian educators' perspectives," 2024.</li>
+  </ol>
+
+  <h3>Foundational Frameworks and Standards Referenced</h3>
+  <ol class="ref-list" start="23">
+    <li>L. W. Anderson and D. R. Krathwohl, <em>A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives</em>. New York, NY: Longman, 2001.</li>
+    <li>TEQSA, "Assessment reform for the age of artificial intelligence," Discussion Paper, Tertiary Education Quality and Standards Agency, Australian Government, 2023. Available: <a href="https://www.teqsa.gov.au/guides-resources/resources/corporate-publications/assessment-reform-age-artificial-intelligence">teqsa.gov.au</a></li>
+    <li>TEQSA, "Enacting assessment reform in a time of artificial intelligence," Tertiary Education Quality and Standards Agency, Australian Government, 2025. Available: <a href="https://www.teqsa.gov.au/guides-resources/resources/corporate-publications/enacting-assessment-reform-time-artificial-intelligence">teqsa.gov.au</a></li>
+    <li>The University of Sydney, "Academic integrity," 2025. Available: <a href="https://www.sydney.edu.au/students/academic-integrity/artificial-intelligence.html">sydney.edu.au</a></li>
+    <li>International Organization for Standardization, "ISO/IEC 27001:2022 Information security management systems &mdash; Requirements," Oct. 2022. Available: <a href="https://www.iso.org/standard/27001">iso.org/standard/27001</a></li>
+  </ol>
+</section>
+
+
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-wordmark">SAGE Framework</div>
+        <div class="footer-tagline">Structured AI-Guided Education &mdash; a validated pedagogical framework for higher education. Licensed CC BY 4.0.</div>
+      </div>
+      <div class="footer-links">
+        <a href="sage.html">The Framework</a>
+        <a href="student_resources.html">Student Resources</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="index.html#research">Publications</a>
+        <a href="index.html#community">Community of Practice</a>
+        <a href="index.html#about">About</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-citation">
+        Elkhodr, M. &amp; Gide, E. (2026). <em>The SAGE Framework: Structured AI-Guided Education</em>. Central Queensland University. DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener">10.5281/zenodo.18383951</a>
+      </div>
+      <div class="footer-licence">CC BY 4.0 &middot; sage-framework.com</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
