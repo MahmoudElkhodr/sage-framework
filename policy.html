@@ -501,13 +501,13 @@ body.is-scrolled .hdr{
   position:relative;
   background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(244,247,252,.98));
   border-radius:18px;
-  padding:1.45rem 1.4rem;
+  padding:3rem 1.4rem 1.45rem;
   font-size:.94rem;
   line-height:1.82;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.65);
 }
 .dt::before{
-  content:"Declaration template";
+  content:attr(data-template);
   position:absolute;
   top:1rem;
   right:1rem;
@@ -523,6 +523,44 @@ body.is-scrolled .hdr{
   text-transform:uppercase;
 }
 .dt .fl-lbl{font-weight:700}
+.decl-card{
+  margin-bottom:.9rem;
+}
+.decl-card h3{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:.35rem;
+}
+.decl-note{
+  font-weight:400;
+  color:var(--tx2);
+  font-size:.88rem;
+}
+.decl-card.short{
+  border-color:#d5e0d6;
+  background:linear-gradient(180deg,rgba(251,250,244,.98),rgba(243,248,244,.98));
+}
+.decl-card.standard{
+  border-color:#ddd7c8;
+  background:linear-gradient(180deg,rgba(251,249,242,.98),rgba(247,244,235,.98));
+}
+.decl-card.full{
+  border-color:#cfe0d4;
+  background:linear-gradient(180deg,rgba(246,249,245,.98),rgba(236,244,238,.98));
+}
+.decl-card.short .dt::before{
+  background:#eef6f1;
+  color:var(--br);
+}
+.decl-card.standard .dt::before{
+  background:#f3efe1;
+  color:#6d5b2d;
+}
+.decl-card.full .dt::before{
+  background:#e4f0e8;
+  color:var(--ac);
+}
 .ac{padding:1.25rem}
 .nc{padding:1.55rem}
 .qb{padding:.95rem 1rem}
@@ -968,7 +1006,7 @@ body.is-scrolled .hdr{
     max-width:none;
   }
   .context-masthead{
-    scroll-margin-top:110px;
+    scroll-margin-top:148px;
   }
 }
 @media(print){
@@ -1201,7 +1239,7 @@ body.is-scrolled .hdr{
       <div class="context-shell policy">
         <span class="context-label">Student-facing policy</span>
         <h2>Formal policy text and companion resources</h2>
-        <p>The formal policy, declaration template, FAQ, and worked examples are grouped here in a more compact, print-ready view.</p>
+        <p>The formal policy, declaration templates, FAQ, and worked examples are grouped here in a more compact, print-ready view.</p>
         <div class="context-actions">
           <button class="btn btn-s" type="button" onclick="window.print()">Print policy</button>
           <a class="context-mini-link" href="#policy-declaration">Jump to declaration</a>
@@ -1427,9 +1465,10 @@ body.is-scrolled .hdr{
         </ul></div>
       </div>
 
-      <div class="g2" style="margin-top:1rem">
+      <div class="g3" style="margin-top:1rem">
         <div class="ws"><span class="wsl ok">Worked example: acceptable</span><h3>Health sciences</h3><p>A student drafts a paragraph interpreting a verified journal article, then asks AI:</p><div class="pbox">I wrote the following paragraph. Here is the article excerpt. Identify any potential misinterpretations. Do not rewrite my paragraph.</div><p><strong>Why acceptable:</strong> the student produced the paragraph, named the source, and limited AI to feedback. Intellectual labour is visible and attributable.</p></div>
         <div class="ws"><span class="wsl bad">Worked example: not acceptable</span><h3>Cybersecurity</h3><p>A student asks AI:</p><div class="pbox">Write my 1,500-word literature review on cyber risk governance with five references from 2023 onwards.</div><p><strong>Why not acceptable:</strong> the prompt delegates framing, source selection, synthesis, and writing to AI. Even if edited afterwards, the original reasoning was outsourced.</p></div>
+        <div class="ws"><span class="wsl ok">Worked example: acceptable</span><h3>Business management</h3><p>A student in a strategic management unit writes a SWOT analysis of a case company based on the supplied case study materials, then asks AI:</p><div class="pbox">Review my SWOT analysis below against the case facts provided. Identify any claims I have made that are not supported by the case data. Do not rewrite my analysis.</div><p><strong>Why acceptable:</strong> the student produced the analysis, grounded it in the case materials, and limited AI to a verification role. The strategic reasoning is the student&rsquo;s own. The AI was used to check the work against evidence, not to generate the analytical judgement.</p></div>
       </div>
 
       <div class="card cp" style="margin-top:1rem"><h3>LMS reminder (copy-paste ready)</h3><div class="lms"><strong>AI reminder.</strong> Use AI to support your thinking, not to replace it. Start with your own understanding. Check AI output against authoritative sources. Document your decisions. Reflect on what AI got wrong. Be prepared to defend your work. Check your course outline for the specific AI rules applying to this assessment.</div></div>
@@ -1439,10 +1478,51 @@ body.is-scrolled .hdr{
   <!-- ── DECLARATION ── -->
   <section class="sec sec-band" id="policy-declaration">
     <div class="c">
-      <div class="sh"><span class="ey">AI use declaration</span><h2>Structured declaration template</h2><p>This template can be included at the end of an assessment brief, on a title page, or within the LMS submission form. <strong>It can and should be adapted</strong> &mdash; simplified for low-risk or formative tasks, or expanded for research-intensive tasks. Not every assessment requires every field.</p></div>
-      <div class="card cp">
-        <div class="dt">
-<span class="fl-lbl">AI Use Declaration</span>
+      <div class="sh"><span class="ey">AI use declaration</span><h2>Declaration templates</h2><p>Three variants are provided below, scaled to the stakes and complexity of the assessment. Educators should select or adapt the version that best fits their context. Not every assessment requires the full evidence log.</p></div>
+      <div class="card cp decl-card short">
+        <h3>Short declaration <span class="decl-note">&mdash; for formative tasks, first-year work, or routine assessments</span></h3>
+        <div class="dt" data-template="Short declaration">
+<span class="fl-lbl">AI Use Declaration (Short)</span>
+
+<span class="fl-lbl">Tool(s) used:</span>
+<span class="fl-lbl">Purpose of use:</span>
+
+<span class="fl-lbl">Authorship confirmation:</span>
+I confirm that the final submitted work reflects my own reasoning and judgement. Any AI use has been disclosed above. I accept responsibility for the accuracy and integrity of all content submitted under my name.
+
+<span class="fl-lbl">Student name:</span>
+<span class="fl-lbl">Date:</span></div>
+      </div>
+
+      <div class="card cp decl-card standard">
+        <h3>Standard declaration <span class="decl-note">&mdash; for most written and practical assessments</span></h3>
+        <div class="dt" data-template="Standard declaration">
+<span class="fl-lbl">AI Use Declaration (Standard)</span>
+
+<span class="fl-lbl">Tool(s) used:</span>
+<span class="fl-lbl">Date(s) of use:</span>
+<span class="fl-lbl">Sections or task stages affected:</span>
+
+<span class="fl-lbl">Purpose of use (select all that apply):</span>
+&#9744; Clarification of instructions &#9744; Brainstorming or outline support
+&#9744; Language or grammar refinement &#9744; Source-search keyword generation
+&#9744; Checking alignment against named sources &#9744; Code generation or debugging
+&#9744; Image, diagram, or design generation &#9744; Other: _______________
+
+<span class="fl-lbl">What I verified independently and against which sources:</span>
+
+<span class="fl-lbl">Authorship confirmation:</span>
+I confirm that the final submitted work reflects my own judgement, interpretation, and reasoning. I have not submitted AI-generated content as my original work. All material AI use has been disclosed. I accept responsibility for the accuracy, integrity, and disclosure of all content submitted under my name.
+
+<span class="fl-lbl">Student name:</span>
+<span class="fl-lbl">Student number:</span>
+<span class="fl-lbl">Date:</span></div>
+      </div>
+
+      <div class="card cp decl-card full">
+        <h3>Full evidence log <span class="decl-note">&mdash; for capstone, defended, or research-intensive assessments</span></h3>
+        <div class="dt" data-template="Full evidence log">
+<span class="fl-lbl">AI Use Declaration (Full Evidence Log)</span>
 
 <span class="fl-lbl">Tool(s) used:</span>
 <span class="fl-lbl">Date(s) of use:</span>
@@ -1481,7 +1561,7 @@ I confirm that the final submitted work reflects my own judgement, interpretatio
 <span class="fl-lbl">Student name:</span>
 <span class="fl-lbl">Student number:</span>
 <span class="fl-lbl">Date:</span></div>
-        <div class="co info"><strong>Adaptation note:</strong> educators should modify this template to match the assessment type. For coding tasks, replace the Refine summary with a code change log. For formative tasks, a simplified version with purpose of use + authorship confirmation may be sufficient.</div>
+        <div class="co info"><strong>Adaptation note:</strong> educators should modify the full log to match the assessment type. For coding tasks, replace the Refine summary with a code change log. For design portfolios, include a visual decision record.</div>
       </div>
     </div>
   </section>
@@ -1590,8 +1670,8 @@ const heroTransitionDuration = 360;
 let pendingScrollTimer = null;
 const defaultTabTargets = {
   'tab-educators':'educators-background',
-  'tab-policy':'tab-policy',
-  'tab-about':'tab-about'
+  'tab-policy':'policy-overview',
+  'tab-about':'about-overview'
 };
 
 function setScrolledState(){
