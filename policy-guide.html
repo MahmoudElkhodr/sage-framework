@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SAGE Assessment Policy for AI-Integrated Assessment</title>
-<meta name="description" content="A comprehensive policy companion for SAGE-integrated assessments with guidance for educators, a student-facing policy, and resources."/>
+<title>Educator Guidance &mdash; SAGE Assessment Policy</title>
+<meta name="description" content="Educator guidance for implementing and adapting the SAGE Assessment Policy in AI-integrated assessment."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -1362,20 +1362,54 @@ tr:nth-child(even) td{background:var(--sage-pale)}
   .section-nav-wrap { position:static; top:auto; margin:0; padding:.65rem 0; }
   .policy-page .context-masthead { padding:2.75rem 0 2.5rem; background:var(--forest); border-bottom:3px solid var(--sage-mid); }
   .policy-page .context-shell.policy { padding:0; border:0; background:transparent; box-shadow:none; }
-  .policy-page .context-shell h2 { max-width:34ch; color:var(--white); font-size:clamp(1.8rem,3.5vw,2.4rem); font-weight:400; }
+  .policy-page .context-shell h2 { max-width:24ch; color:var(--white); font-size:clamp(1.8rem,3.5vw,2.4rem); font-weight:400; }
   .policy-page .context-shell p { color:rgba(255,255,255,.7); }
-  .policy-page .context-shell p a { color:var(--sage-light); text-decoration:underline; text-underline-offset:2px; }
   .policy-page .context-label { color:var(--sage-light); }
   .policy-page .context-actions .btn { background:var(--white); color:var(--forest); border-color:var(--white); }
   .policy-page .context-actions .context-mini-link { border-color:rgba(255,255,255,.28); background:transparent; color:var(--white); }
   .policy-page .context-actions .context-mini-link:hover { border-color:rgba(255,255,255,.55); background:rgba(255,255,255,.08); }
-  .policy-layout {
+  .layer-model { display:grid; gap:.55rem; margin:1.25rem 0; }
+  .layer-card {
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:1rem;
+    align-items:start;
+    padding:1rem 1.1rem;
+    border:1px solid var(--rule);
+    border-radius:12px;
+    background:var(--white);
+  }
+  .layer-card.middle { border-left:4px solid var(--sage); background:var(--sage-pale); }
+  .layer-card.assurance { border-left:4px solid var(--amber); }
+  .layer-title { color:var(--ink); font-weight:700; line-height:1.35; }
+  .layer-card p { margin:0; color:var(--muted); font-size:.92rem; }
+  .layer-arrow { color:var(--sage); font-size:1.15rem; line-height:1; text-align:center; }
+  .tier-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin-top:.8rem; }
+  .tier-card {
+    padding:1rem;
+    border:1px solid var(--rule);
+    border-top:3px solid var(--sage);
+    border-radius:12px;
+    background:var(--white);
+  }
+  .tier-card.assurance { border-top-color:var(--amber); }
+  .tier-label { color:var(--sage); font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .tier-card.assurance .tier-label { color:var(--amber); }
+  .tier-card h3 { margin:.3rem 0 .35rem; }
+  .tier-card p { margin:0; color:var(--muted); font-size:.9rem; }
+  .implementation-subhead { margin:1.5rem 0 .8rem; }
+  .implementation-subhead h3 { margin-bottom:.25rem; color:var(--ink); }
+  .implementation-subhead p { margin:0; color:var(--muted); font-size:.94rem; }
+  .guide-page .hero { padding:2rem 0 1.75rem; }
+  .guide-page .hsb { gap:.6rem; }
+  .guide-page .hsc { padding:.85rem 1rem; }
+  .guide-layout {
     display:grid;
     grid-template-columns:190px minmax(0,1fr);
     gap:2rem;
     align-items:start;
   }
-  .policy-sidebar {
+  .guide-sidebar {
     position:sticky;
     top:84px;
     align-self:start;
@@ -1384,19 +1418,19 @@ tr:nth-child(even) td{background:var(--sage-pale)}
     scrollbar-width:thin;
     padding:2rem 0;
   }
-  .sidebar-panel,
-  .mobile-toc {
+  .guide-sidebar-panel,
+  .guide-mobile-toc {
     border:1px solid var(--rule);
     border-radius:12px;
     background:var(--white);
   }
-  .sidebar-panel { padding:1rem; }
-  .sidebar-group + .sidebar-group {
+  .guide-sidebar-panel { padding:1rem; }
+  .guide-sidebar-group + .guide-sidebar-group {
     margin-top:1rem;
     padding-top:1rem;
     border-top:1px solid var(--rule);
   }
-  .sidebar-label {
+  .guide-sidebar-label {
     margin-bottom:.45rem;
     color:var(--muted);
     font-size:.68rem;
@@ -1404,97 +1438,92 @@ tr:nth-child(even) td{background:var(--sage-pale)}
     letter-spacing:.1em;
     text-transform:uppercase;
   }
-  .sidebar-links { display:grid; gap:.1rem; }
-  .sidebar-links a,
-  .sidebar-action {
+  .guide-sidebar-links { display:grid; gap:.1rem; }
+  .guide-sidebar-links a {
     display:flex;
-    width:100%;
     align-items:center;
     justify-content:space-between;
     padding:.45rem .5rem;
-    border:0;
     border-radius:6px;
-    background:transparent;
     color:var(--slate);
-    font-family:var(--fb);
     font-size:.84rem;
     font-weight:500;
     line-height:1.45;
-    text-align:left;
     text-decoration:none;
-    cursor:pointer;
   }
-  .sidebar-links a:hover,
-  .sidebar-action:hover {
+  .guide-sidebar-links a:hover {
     background:var(--sage-pale);
     color:var(--forest);
     text-decoration:none;
   }
-  .sidebar-links a.active {
+  .guide-sidebar-links a.active {
     padding-left:.65rem;
     background:var(--sage-pale);
     box-shadow:inset 3px 0 0 var(--forest);
     color:var(--forest);
     font-weight:600;
   }
-  .sidebar-related { color:var(--sage)!important; }
-  .mobile-toc { display:none; }
-  .mobile-toc summary {
+  .guide-sidebar-related { color:var(--sage)!important; }
+  .guide-mobile-toc { display:none; }
+  .guide-mobile-toc summary {
     padding:.8rem 1rem;
     color:var(--forest);
     font-weight:600;
     cursor:pointer;
   }
-  .mobile-toc .sidebar-panel {
+  .guide-mobile-toc .guide-sidebar-panel {
     border:0;
     border-top:1px solid var(--rule);
     border-radius:0;
   }
-  .policy-content { min-width:0; }
-  .policy-content .c { width:100%; margin:0; }
-  .policy-content .sec { scroll-margin-top:84px; }
-  .policy-content .pc {
+  .guide-content { min-width:0; }
+  .guide-content .c { width:100%; margin:0; }
+  .guide-content .sec { scroll-margin-top:84px; }
+  .guide-content #educators-principles .pb {
     margin:0;
-    padding:1.25rem 0;
+    padding:1.5rem 0;
     border:0;
     border-bottom:1px solid var(--rule);
     border-radius:0;
     background:transparent;
     box-shadow:none;
   }
-  .policy-content .pc::before { display:none; }
-  .policy-content .pc h3 { margin-top:0; }
-  .policy-content .pc[data-clause="12"] {
-    margin:1rem 0;
-    padding:1.1rem;
+  .guide-content #educators-principles .pb:last-child { border-bottom:0; }
+  .guide-content #educators-principles .pb:hover { box-shadow:none; }
+  .guide-content #educators-principles .pn {
     border:1px solid var(--rule);
-    border-left:4px solid var(--sage);
-    border-radius:10px;
-    background:var(--sage-pale);
+    background:var(--white)!important;
+    color:var(--sage)!important;
   }
-  .policy-content .pc[data-clause="13"],
-  .policy-content .pc[data-clause="14"] {
-    margin:1rem 0;
-    padding:1.1rem;
-    border:1px solid var(--rule);
-    border-left:4px solid var(--amber);
-    border-radius:10px;
-    background:var(--amber-pale);
+  .guide-content #educators-principles .sref {
+    display:block;
+    margin-top:.8rem;
+    padding:.65rem 0 0;
+    border-top:1px solid var(--rule);
+    border-radius:0;
+    background:transparent;
+    color:var(--muted);
+    font-size:.8rem;
+    font-weight:600;
   }
-  .policy-content .pc[data-clause="15"] { background:transparent; }
   @media(max-width:900px) {
-    .policy-layout { grid-template-columns:1fr; gap:0; }
-    .policy-sidebar { position:static; max-height:none; overflow:visible; padding:1rem 0 .25rem; }
-    .desktop-toc { display:none; }
-    .mobile-toc { display:block; }
+    .guide-layout { grid-template-columns:1fr; gap:0; }
+    .guide-sidebar { position:static; max-height:none; overflow:visible; padding:1rem 0 .25rem; }
+    .guide-desktop-toc { display:none; }
+    .guide-mobile-toc { display:block; }
+  }
+  @media(max-width:700px) {
+    .guide-page .hero { padding:1.5rem 0; }
+    .layer-card { grid-template-columns:1fr; gap:.35rem; }
+    .tier-grid { grid-template-columns:1fr; }
   }
   @media print {
-    .policy-sidebar { display:none!important; }
-    .policy-layout { display:block; width:100%; }
+    .policy-page .context-masthead { display:none!important; }
+    .guide-sidebar { display:none!important; }
+    .guide-layout { display:block; width:100%; }
   }
-  @media print { .policy-page .context-masthead { display:none!important; } }
 </style></head>
-<body class="policy-page">
+<body class="guide-page">
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <nav class="site-nav" aria-label="Primary navigation">
@@ -1513,8 +1542,8 @@ tr:nth-child(even) td{background:var(--sage-pale)}
       <li class="nav-dropdown">
         <a href="policy.html" class="active" aria-current="page">Assessment Policy</a>
         <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
-          <a href="policy.html" class="active"><div><div class="dd-label">Student-Facing Policy</div><div class="dd-desc">Policy text, declarations, examples, and FAQ</div></div></a>
-          <a href="policy-guide.html"><div><div class="dd-label">Educator Guidance</div><div class="dd-desc">Implementation principles and adaptation guidance</div></div></a>
+          <a href="policy.html"><div><div class="dd-label">Student-Facing Policy</div><div class="dd-desc">Policy text, declarations, examples, and FAQ</div></div></a>
+          <a href="policy-guide.html" class="active"><div><div class="dd-label">Educator Guidance</div><div class="dd-desc">Implementation principles and adaptation guidance</div></div></a>
         </div></div>
       </li>
       <li><a href="downloads.html">Downloads</a></li>
@@ -1546,409 +1575,252 @@ tr:nth-child(even) td{background:var(--sage-pale)}
 
 
 <main id="main-content">
-<section class="context-masthead" id="policy-overview">
-    <div class="c">
-      <div class="context-shell policy">
-        <span class="context-label">Student-facing policy</span>
-        <h2>SAGE Assessment Policy (SAGE-AP)</h2>
-        <p>This resource is based on the paper:<br/><strong>Mahmoud Elkhodr and Ergun Gide</strong>, &ldquo;From Permission to Pedagogy: The Structured AI-Guided Education Assessment Policy (SAGE-AP) for Generative AI in Higher Education,&rdquo; <em>Education Sciences</em>, accepted for publication 17 June 2026.</p>
+<section class="hero">
+  <div class="c hero-g">
+    <div class="hero-copy">
+      <span class="ey">SAGE Assessment Policy Companion</span>
+      <h1>Educator guidance for AI-integrated assessment</h1>
+      <p class="lead">Implementation guidance, responsible-use principles, and adaptation notes for educators applying the SAGE assessment policy.</p>
+    </div>
+    <aside class="hsb">
+      <div class="hsc"><h3>Process and accountability</h3><p>Institutional policy determines whether AI is allowed. SAGE structures how students use it while retaining ownership of the reasoning they must defend.</p></div>
+      <div class="hsc"><h3>Standalone guidance</h3><p>The principles can be adopted with or without the SAGE label, subject to CC BY 4.0 attribution.</p></div>
+    </aside>
+  </div>
+</section>
+<div class="guide-layout c">
+  <aside class="guide-sidebar" aria-label="Educator guidance navigation">
+    <div class="guide-sidebar-panel guide-desktop-toc">
+      <div class="guide-sidebar-group">
+        <div class="guide-sidebar-label">On this page</div>
+        <nav class="guide-sidebar-links" aria-label="Educator guidance sections">
+          <a href="#educators-background">Background</a>
+          <a href="#educators-principles">Principles</a>
+          <a href="#educators-implementation">Implementation</a>
+        </nav>
+      </div>
+      <div class="guide-sidebar-group">
+        <div class="guide-sidebar-label">Related</div>
+        <div class="guide-sidebar-links"><a class="guide-sidebar-related" href="policy.html">Student-facing policy <span aria-hidden="true">&rarr;</span></a></div>
       </div>
     </div>
-  </section>
-  <div class="policy-layout c">
-    <aside class="policy-sidebar" aria-label="Policy navigation and actions">
-      <div class="sidebar-panel desktop-toc">
-        <div class="sidebar-group">
-          <div class="sidebar-label">On this page</div>
-          <nav class="sidebar-links" aria-label="Policy sections">
-            <a href="#policy-sheet">Policy sheet</a>
-            <a href="#policy-companions">Examples</a>
-            <a href="#policy-declaration">Declaration</a>
-            <a href="#policy-faq">FAQ</a>
-            <a href="#policy-neutral">Neutral version</a>
+    <details class="guide-mobile-toc">
+      <summary>On this page</summary>
+      <div class="guide-sidebar-panel">
+        <div class="guide-sidebar-group">
+          <nav class="guide-sidebar-links" aria-label="Educator guidance sections">
+            <a href="#educators-background">Background</a>
+            <a href="#educators-principles">Principles</a>
+            <a href="#educators-implementation">Implementation</a>
           </nav>
         </div>
-        <div class="sidebar-group">
-          <div class="sidebar-label">Actions</div>
-          <button class="sidebar-action" type="button" onclick="window.print()">Print policy</button>
-        </div>
-        <div class="sidebar-group">
-          <div class="sidebar-label">Related</div>
-          <div class="sidebar-links"><a class="sidebar-related" href="policy-guide.html">Educator guidance <span aria-hidden="true">&rarr;</span></a></div>
+        <div class="guide-sidebar-group">
+          <div class="guide-sidebar-label">Related</div>
+          <div class="guide-sidebar-links"><a class="guide-sidebar-related" href="policy.html">Student-facing policy <span aria-hidden="true">&rarr;</span></a></div>
         </div>
       </div>
-      <details class="mobile-toc">
-        <summary>On this page</summary>
-        <div class="sidebar-panel">
-          <div class="sidebar-group">
-            <nav class="sidebar-links" aria-label="Policy sections">
-              <a href="#policy-sheet">Policy sheet</a>
-              <a href="#policy-companions">Examples</a>
-              <a href="#policy-declaration">Declaration</a>
-              <a href="#policy-faq">FAQ</a>
-              <a href="#policy-neutral">Neutral version</a>
-            </nav>
-          </div>
-          <div class="sidebar-group">
-            <div class="sidebar-label">Actions</div>
-            <button class="sidebar-action" type="button" onclick="window.print()">Print policy</button>
-          </div>
-          <div class="sidebar-group">
-            <div class="sidebar-label">Related</div>
-            <div class="sidebar-links"><a class="sidebar-related" href="policy-guide.html">Educator guidance <span aria-hidden="true">&rarr;</span></a></div>
-          </div>
-        </div>
-      </details>
-    </aside>
-    <div class="policy-content">
+    </details>
+  </aside>
+  <div class="guide-content">
 
-  <!-- ── FORMAL POLICY SHEET ── -->
-  <section class="sec sec-band" id="policy-sheet">
+  <!-- ── BACKGROUND ── -->
+  <section class="sec sec-band" id="educators-background">
     <div class="c">
-      <article class="ps">
-        <div class="ph">
-          <h3 class="tt">Policy for student use of generative AI in assessment</h3>
-          <p style="color:var(--tx2)">Where generative AI is permitted, students must use it in a way that supports learning, disciplinary judgement, and transparent authorship. AI may assist the work, but it must not replace your own analysis, interpretation, verification, or accountability.</p>
-          <div class="pm">
-            <span class="pill">Version 3.1</span>
-            <span class="pill">Effective date: 18 June 2026</span>
-            <span class="pill">Elkhodr &amp; Gide, 2026</span>
-            <span class="pill">CC BY 4.0</span>
+      <div class="sh"><span class="ey">Background</span><h2>Why a structured process matters</h2></div>
+      <div class="card cpl">
+        <p>University policy on generative AI has progressed beyond blanket prohibition. Conditional permission, disclosure requirements, and integrity safeguards are now common. Cross-national research examining hundreds of institutions has shown that policy development remains highly decentralised, with most universities leaving AI decisions to individual instructors rather than embedding a coherent pedagogical model.</p>
+        <p>Critical reviews have further shown that institutional discourse is dominated by concern over originality. The policy problem is framed as how to protect authentic authorship, rather than how to cultivate disciplined forms of human&ndash;AI collaboration. Most universities now specify <em>whether</em> AI may be used and require <em>acknowledgement</em> when it is. Fewer provide a structured pedagogical process showing students <em>how</em> to work with AI responsibly. It is this underdeveloped pedagogical layer that SAGE addresses.</p>
+
+        <div class="layer-model" role="group" aria-label="The three policy layers">
+          <div class="layer-card">
+            <div class="layer-title">Governance and permission</div>
+            <p>Determines whether AI may be used in an assessment and under what conditions.</p>
+          </div>
+          <div class="layer-arrow" aria-hidden="true">&#8595;</div>
+          <div class="layer-card middle">
+            <div class="layer-title">Pedagogical middle layer: SAGE-AP</div>
+            <p>Guides how students work with AI during task completion through a human starting point, verification, visible refinement, reflection, and defensible authorship.</p>
+          </div>
+          <div class="layer-arrow" aria-hidden="true">&#8595;</div>
+          <div class="layer-card assurance">
+            <div class="layer-title">Integrity and assurance</div>
+            <p>Verifies disclosure, authorship, and defended understanding, and applies institutional integrity procedures where required.</p>
           </div>
         </div>
 
+        <div class="g2" style="margin-top:1rem">
+          <div class="ib"><h3>SAGE and SAGE-AP</h3><p>SAGE is the broader six-stage pedagogical framework. SAGE-AP is the student-facing policy instrument derived from it, translating that process into fifteen clauses and practical companion resources.</p></div>
+          <div class="ib"><h3>Permission remains separate</h3><p>SAGE-AP does not determine whether AI is permitted. Institutional policy or a framework such as the AI Assessment Scale (AIAS) sets the boundary; SAGE-AP explains how students work responsibly within it.</p></div>
+        </div>
 
-        <!-- ═══ CLAUSE 1: SCOPE ═══ -->
-        <div class="pc" data-clause="1"><h3>1. Scope and unit-level precedence</h3>
-          <p>This policy applies to assessments in which students are required, encouraged, or permitted to use AI in their studies. It may be adopted with or without the SAGE label. When used independently, its full substantive expectations remain unchanged: student authorship, verification, disclosure, responsible refinement, reflection, and defensible work. This policy should be read together with the relevant institutional academic integrity policy, privacy requirements, and any assessment-specific instructions issued by the teaching team.</p>
-          <p><strong>Always refer to your course outline or unit profile for the specific rules governing AI use in each assessment.</strong> Each course and each assessment task may have different guidelines regarding AI tools. It is your responsibility to check whether AI use is permitted and to what extent before beginning any task. The rules for one assessment do not automatically apply to another, even within the same unit.</p></div>
+        <h3 style="margin-top:1.3rem">How the fifteen clauses are organised</h3>
+        <div class="tier-grid">
+          <div class="tier-card"><div class="tier-label">Clauses 1&ndash;2</div><h3>Foundational</h3><p>Scope, local precedence, student authorship, explainability, and accountability.</p></div>
+          <div class="tier-card"><div class="tier-label">Clauses 3&ndash;4</div><h3>Operational boundaries</h3><p>Permitted uses, prohibited uses, task-level conditions, and practical limits.</p></div>
+          <div class="tier-card"><div class="tier-label">Clauses 5&ndash;11</div><h3>Substantive principles</h3><p>Verification, bias, disclosure, privacy, intellectual property, and the scope of AI-supported work.</p></div>
+          <div class="tier-card assurance"><div class="tier-label">Clauses 12&ndash;15</div><h3>Integration and assurance</h3><p>The SAGE workflow, Defend, integrity thresholds, good-faith competence gaps, and final responsibility.</p></div>
+        </div>
 
-        <!-- ═══ CLAUSE 2: AUTHORSHIP ═══ -->
-        <div class="pc" data-clause="2"><h3>2. You are the author of your work</h3>
-          <p>The purpose of assessment is to demonstrate what <em>you</em> know, what <em>you</em> can do, and how <em>you</em> reason within your discipline. AI is permitted as a support tool, but the final submission must reflect your own understanding, your own analysis, and your own judgement.</p>
-          <p><strong>Why this matters:</strong> your degree certifies that you have developed specific capabilities. If AI performs the intellectual work and you simply present the result, the assessment cannot verify your learning.</p>
-          <p><strong>What this means in practice:</strong></p>
-          <ul>
-            <li>In <strong>essays, reports, and written assessments</strong>, your own argument, synthesis, and critical evaluation must be visible.</li>
-            <li>In <strong>coding and technical tasks</strong>, you must understand, explain, and be able to modify the code you submit.</li>
-            <li>In <strong>presentations</strong>, the substantive argument and spoken explanation must be your own.</li>
-            <li>In <strong>lab reports and practical work</strong>, your own interpretation of data and clinical or design reasoning must drive the submission.</li>
-            <li>In <strong>research tasks</strong>, the identification, reading, evaluation, and synthesis of sources must be performed by you.</li>
-            <li>In <strong>group assessments</strong>, your individual intellectual contribution must remain distinguishable.</li>
-            <li>In <strong>reflective tasks</strong>, the reflective content must be genuinely yours. AI cannot reflect for you.</li>
-            <li>In <strong>creative and design work</strong>, AI-generated outputs must be disclosed and must not be presented as your original creative output unless the assessment explicitly permits this.</li>
-          </ul>
-          <p><strong>The test:</strong> if you cannot explain why a particular point is in your submission, what source supports it, or how you arrived at a conclusion, the work does not satisfy the authorship requirement &mdash; regardless of how much you edited the AI output.</p></div>
+        <div class="g3" style="margin-top:.8rem">
+          <div class="ib"><h3>Evidence base</h3><p>Published SAGE studies and sector recognition include implementation with 800+ students across five Australian campuses, seven peer-reviewed studies, three TEQSA Knowledge Hub listings, and reference to SAGE by institutions including the University of Warwick.</p></div>
+          <div class="ib"><h3>Why Defend exists</h3><p>In one structured audit reported in the SAGE evidence base, only 12% of unsupervised submissions produced a genuinely traceable evidence trail. The Defend step addresses this gap through supervised verification of reasoning ownership.</p></div>
+          <div class="ib"><h3>Learning outcomes</h3><p>SAGE makes specific competencies assessable: disciplinary judgement, evidence-based reasoning, critical evaluation of AI, reflective practice, and the ability to defend intellectual work.</p></div>
+        </div>
 
-        <!-- ═══ CLAUSE 3: PERMITTED USES ═══ -->
-        <div class="pc" data-clause="3"><h3>3. What you may use AI for</h3>
-          <p>Subject to the specific conditions in your assessment instructions, the following uses of AI are generally permitted. In each case, the intellectual responsibility remains with you.</p>
-          <ul>
-            <li><strong>Starting and structuring:</strong> using AI to generate an initial draft, outline, list, or structural suggestion <em>after</em> you have first established your own understanding of the task (for example, by writing notes, an outline, or a preliminary attempt). In the SAGE framework, this corresponds to the Generate step.</li>
-            <li><strong>Checking and verifying:</strong> using AI to test a response against task requirements, case context, or disciplinary standards, provided you then independently verify the result against authoritative sources. In SAGE, this corresponds to the Evaluate step.</li>
-            <li><strong>Receiving and judging critique:</strong> asking AI to act as a reviewer or critic of your reasoning, then independently deciding which feedback to accept and which to reject. In SAGE, this corresponds to the Audit step.</li>
-            <li><strong>Refining expression:</strong> using AI to check clarity, grammar, structure, or expression <em>after</em> the substantive content has been completed by you. An acknowledgement statement is still required.</li>
-            <li><strong>Search and discovery:</strong> using AI to generate search keywords, suggest structural options, or produce plain-language summaries of sources you have already verified, provided that all sources are independently found, read, and confirmed by you through library databases or other authoritative channels.</li>
-            <li><strong>Reflection support:</strong> using AI to check whether a reflective piece addresses all required dimensions, without using AI to generate the reflective content itself.</li>
-            <li><strong>Code assistance:</strong> using AI to explain error messages, suggest debugging approaches, or generate small code snippets that you then understand, modify, test, and can explain in full.</li>
-            <li><strong>Visual and design support:</strong> using AI to generate initial concept sketches, diagram layouts, or design variations that you then substantially develop, refine, and justify using discipline-specific principles, with the AI starting point disclosed.</li>
-          </ul>
-          <p><strong>The key condition:</strong> in every case, the student must remain the decision-maker. AI produces raw material; you produce the judgement, the verification, and the final reasoning.</p></div>
+        <div class="sr">
+          <div class="stc"><span class="stn">1</span><h4>Generate</h4><p>AI produces initial output after a human baseline.</p></div>
+          <div class="stc"><span class="stn">2</span><h4>Evaluate</h4><p>Output checked against authoritative disciplinary anchors.</p></div>
+          <div class="stc"><span class="stn">3</span><h4>Refine</h4><p>Accept, modify, reject decisions with evidence.</p></div>
+          <div class="stc"><span class="stn">4</span><h4>Audit</h4><p>AI critiques the work; student judges the critique.</p></div>
+          <div class="stc"><span class="stn">5</span><h4>Reflect</h4><p>Student identifies AI strengths, failures, and limits.</p></div>
+          <div class="stc"><span class="stn">6</span><h4>Defend</h4><p>Supervised checkpoint verifying reasoning ownership.</p></div>
+        </div>
 
-        <!-- ═══ CLAUSE 4: NON-PERMITTED USES ═══ -->
-        <div class="pc" data-clause="4"><h3>4. What you must not use AI for</h3>
-          <p>The following uses of AI are not permitted because they transfer the intellectual work from the student to the tool, making it impossible for the assessment to verify your learning.</p>
-          <ul>
-            <li><strong>Submitting AI-generated work as your own:</strong> submitting AI-generated text, analysis, interpretation, code, designs, or conclusions as if they were your own original work. This applies even if you edited the output afterwards, and even if AI use is correctly attributed, where the assessment required your own intellectual work.</li>
-            <li><strong>Delegating core assessment tasks:</strong> asking AI to write the final answer, essay, discussion, literature review, reflection, care plan, policy analysis, code explanation, lab interpretation, design rationale, or any other component that the assessment was designed for you to produce.</li>
-            <li><strong>Using unverified AI-generated references:</strong> citing references, quotations, statistics, case law, clinical guidelines, technical standards, or factual claims suggested by AI without independently locating and verifying the original source. AI frequently fabricates plausible-sounding references that do not exist.</li>
-            <li><strong>Outsourcing evaluative judgement:</strong> allowing AI to make the analytical, interpretive, or evaluative decisions that the assessment requires you to make, without applying your own independent reasoning and verification.</li>
-            <li><strong>Fabricating process evidence:</strong> creating, back-filling, or simulating process logs, prompt trails, decision records, or evidence of engagement that do not reflect the work actually undertaken.</li>
-            <li><strong>Generating false reflection:</strong> using AI to produce reflective content that purports to describe your own learning experience, self-awareness, or professional development. Reflection must be genuinely personal.</li>
-            <li><strong>Concealing AI use in group work:</strong> using AI to produce your contribution to a group assessment without disclosing this to the group or in the process log, effectively outsourcing your individual role.</li>
-            <li><strong>Entering restricted information:</strong> entering personal, confidential, proprietary, patient, client, or commercially sensitive information into public AI tools in connection with the assessment (see Clause 8 for detail).</li>
-            <li><strong>Copyright infringement:</strong> entering copyrighted material into AI tools without authorisation, or submitting AI-generated content that reproduces a substantial part of an existing copyrighted work (see Clause 9 for detail).</li>
-            <li><strong>Producing work you cannot defend:</strong> submitting work produced with AI assistance that you are unable to explain, justify, or reproduce under supervised conditions. If you cannot defend it, you do not own it.</li>
+        <div class="co info" style="margin-top:1rem"><strong>Unit-level precedence.</strong> The course outline or unit profile is always the authoritative source on whether and to what extent AI may be used. Each assessment task may have different AI rules, even within the same unit.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESPONSIBLE AI USE: 8 PRINCIPLES (educator-facing, visual) ── -->
+  <section class="sec sec-quiet" id="educators-principles">
+    <div class="c">
+      <div class="sh"><span class="ey">Principles-based guidance</span><h2>Responsible AI use in assessment</h2><p>These eight principles are written to stand independently of SAGE. Educators may extract, adapt, and redistribute this section under appropriate attribution. Each principle includes a side-by-side comparison of responsible versus irresponsible practice.</p></div>
+
+      <!-- P1: Authorship -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--brl);color:var(--br)">1</span> Authorship and intellectual ownership</h3>
+        <p>The student remains the author. AI may assist, but the final submission must reflect the student&rsquo;s own understanding, analysis, and judgement. Rewriting AI output does not restore authorship if the original reasoning was outsourced.</p>
+        <div class="vs">
+          <div class="vs-col safe"><div class="vs-hd">&#10003; Responsible practice</div><ul>
+            <li>Student writes an outline first, then uses AI for feedback on gaps</li>
+            <li>Student generates code with AI, then explains and modifies every function</li>
+            <li>Student uses AI to suggest slide structure, writes all analysis independently</li>
+            <li>Reflective content is genuinely personal; AI only checks coverage</li>
           </ul></div>
-
-        <!-- ═══ CLAUSE 5: VERIFICATION ═══ -->
-        <div class="pc" data-clause="5"><h3>5. Verify everything AI tells you</h3>
-          <p>AI generates plausible-sounding text by predicting what words are likely to follow other words. This means it can produce content that is factually wrong, fabricated, outdated, or misleading. You must independently verify every important claim before relying on it.</p>
-          <p><strong>Why this matters:</strong></p>
-          <ul>
-            <li><strong>Hallucination:</strong> AI may cite sources that do not exist, fabricate quotations, or invent statistics.</li>
-            <li><strong>Training cutoffs:</strong> AI may not reflect recent developments, legislative changes, or updated guidelines.</li>
-            <li><strong>Low-quality sources:</strong> AI does not distinguish between blog posts and peer-reviewed literature.</li>
-          </ul>
-          <p><strong>What to do:</strong> do not cite any AI-suggested reference unless you have personally found, read, and verified it. Check claims against the authoritative sources specified for your assessment. Consult your teaching team or library if unsure.</p></div>
-
-        <!-- ═══ CLAUSE 6: BIAS ═══ -->
-        <div class="pc" data-clause="6"><h3>6. Be aware that AI output may be biased</h3>
-          <p>AI tools are not neutral. They can produce outputs reflecting systematic biases:</p>
-          <ul>
-            <li><strong>Cultural bias:</strong> training data is predominantly Western and English-language. Outputs may not apply to Australian, Asia-Pacific, Indigenous, or other contexts.</li>
-            <li><strong>Confirmation bias:</strong> AI tends to reinforce mainstream views and underrepresent minority or contested perspectives.</li>
-            <li><strong>Authority bias:</strong> AI may overweight frequently cited sources regardless of quality or currency.</li>
-          </ul>
-          <p>You are responsible for assessing whether AI output is appropriate for the disciplinary, cultural, and contextual requirements of your task.</p></div>
-
-        <!-- ═══ CLAUSE 7: ATTRIBUTION ═══ -->
-        <div class="pc" data-clause="7"><h3>7. Disclose and attribute AI use correctly</h3>
-          <p>All AI use must be disclosed as specified in the assessment instructions:</p>
-          <ul>
-            <li><strong>Quoting or paraphrasing AI content:</strong> in-text citation or footnote (APA, IEEE, Harvard, etc.).</li>
-            <li><strong>AI used for editing or translation:</strong> acknowledgement statement at the end of the document.</li>
-            <li><strong>Detailed process evidence required:</strong> complete the structured declaration as specified.</li>
-          </ul>
-          <p><strong>Important:</strong> correct attribution does not automatically resolve an integrity issue. A predominantly AI-generated submission remains problematic even if properly acknowledged, because the intellectual work has been outsourced.</p></div>
-
-        <!-- ═══ CLAUSE 8: PRIVACY ═══ -->
-        <div class="pc" data-clause="8"><h3>8. Protect personal information and confidential data</h3>
-          <p>Do not enter personal, confidential, or restricted information into public AI tools. This includes:</p>
-          <ul>
-            <li>names, addresses, emails, phone numbers, student IDs (yours or others&rsquo;);</li>
-            <li>thesis work, unpublished research, proprietary code, institutional documents;</li>
-            <li>patient, client, or case data; commercial-in-confidence material.</li>
-          </ul>
-          <p><strong>What to do instead:</strong> use institutionally approved AI platforms where available &mdash; these typically do not retain your data or use it for training. Check with your institution which tools are approved. Do not use AI tools to detect AI-generated content in your own or others&rsquo; work.</p></div>
-
-        <!-- ═══ CLAUSE 9: COPYRIGHT ═══ -->
-        <div class="pc" data-clause="9"><h3>9. Respect copyright and intellectual property</h3>
-          <p><strong>What you enter:</strong> pasting copyrighted material (textbook passages, articles, theses, code) into AI may constitute infringement without the copyright holder&rsquo;s permission.</p>
-          <p><strong>What AI produces:</strong> outputs may reproduce existing copyrighted works. You are responsible for ensuring that nothing in your submission infringes copyright on either side.</p></div>
-
-        <!-- ═══ CLAUSE 10: EMBEDDED AI ═══ -->
-        <div class="pc" data-clause="10"><h3>10. Understand what counts as AI use</h3>
-          <p>This policy applies to <strong>deliberate, task-directed use</strong> of generative AI. Standard spell-checking, predictive text, and basic autocomplete do not count unless the assessment says otherwise. However, tools like Microsoft Copilot in Word, AI paraphrasing tools, or AI code generation assistants <em>do</em> fall within scope. If unsure, ask the teaching team before proceeding.</p></div>
-
-        <!-- ═══ CLAUSE 11: MULTIMODAL ═══ -->
-        <div class="pc" data-clause="11"><h3>11. These rules apply to all forms of AI output</h3>
-          <p>This policy covers text, code, images, diagrams, audio, video, data analysis, and design prototypes. If AI produced or substantially shaped any artefact in your submission, the same obligations apply.</p></div>
-
-        <!-- ═══ CLAUSE 12: SAGE STEPS ═══ -->
-        <div class="pc" data-clause="12"><h3>12. How the SAGE steps work</h3>
-          <ol>
-            <li><strong>Generate:</strong> use AI to produce an initial output after establishing your own understanding. <em>Why: starting from your own thinking ensures AI supports learning rather than bypassing it.</em></li>
-            <li><strong>Evaluate:</strong> compare AI output against authoritative sources. Assess for accuracy, source quality, and bias. <em>Why: AI generates plausible content, not necessarily correct content.</em></li>
-            <li><strong>Refine:</strong> decide what to accept, modify, or reject, with reasons. <em>Why: your decisions are the core evidence of learning.</em></li>
-            <li><strong>Audit:</strong> ask AI to critique your work, then judge the critique independently. <em>Why: the AI does not get the final word; you do.</em></li>
-            <li><strong>Reflect:</strong> identify where AI helped, where it failed, and what this reveals about AI in your discipline. <em>Why: this builds the critical AI literacy that will serve your career.</em></li>
-            <li><strong>Defend:</strong> demonstrate under supervision that you understand and can justify your reasoning. <em>Why: a polished submission alone cannot prove learning occurred.</em></li>
-          </ol></div>
-
-        <!-- ═══ CLAUSE 13: INTEGRITY ═══ -->
-        <div class="pc" data-clause="13"><h3>13. Academic integrity</h3>
-          <p>The following are serious integrity matters:</p>
-          <ul>
-            <li>submitting predominantly AI-generated work, even if attributed, where the assessment required your own intellectual work;</li>
-            <li>fabricating or back-filling process logs after the fact;</li>
-            <li>using AI secretly in a group task contrary to the group agreement;</li>
-            <li>being unable to explain or defend work submitted under your name.</li>
-          </ul>
-          <p>This policy links to the institution&rsquo;s broader academic integrity procedures.</p></div>
-
-        <!-- ═══ CLAUSE 14: DEFEND OUTCOMES ═══ -->
-        <div class="pc" data-clause="14"><h3>14. What happens if you cannot fully defend your work</h3>
-          <p><strong>Competence matter:</strong> if you engaged in good faith but demonstrate gaps in understanding during Defend, this may result in feedback, resubmission, or grade adjustment &mdash; not necessarily a misconduct finding.</p>
-          <p><strong>Misconduct matter:</strong> fabrication, concealment, or deliberate substitution is handled through the institution&rsquo;s integrity procedures.</p></div>
-
-        <!-- ═══ CLAUSE 15: RESPONSIBILITY ═══ -->
-        <div class="pc" data-clause="15"><h3>15. Student responsibility statement</h3>
-          <p>By submitting work under this assessment, you confirm:</p>
-          <ul>
-            <li>the final submission reflects your own understanding, analysis, and reasoning;</li>
-            <li>any AI use complied with the stated conditions of this assessment and your course outline;</li>
-            <li>all factual claims and sources were independently verified by you;</li>
-            <li>all material AI use has been disclosed as required;</li>
-            <li>you have not entered personal or restricted information into public AI tools;</li>
-            <li>you are able to explain and defend the reasoning in the work.</li>
+          <div class="vs-col risk"><div class="vs-hd">&#10007; Irresponsible practice</div><ul>
+            <li>Student submits AI-written essay with only cosmetic edits</li>
+            <li>Student generates entire codebase and cannot walk through it</li>
+            <li>Student uses AI to write the spoken argument and memorises it</li>
+            <li>Student asks AI to write a reflection on experiences they did not describe</li>
           </ul></div>
-
-
-        <div class="phl">
-          <strong>Recommended short declaration for assessment briefs.</strong>
-          <p style="margin:.4rem 0 0;color:var(--tx)">This assessment permits generative AI use only within the SAGE process. AI may assist the work, but it must not replace your own reasoning, source verification, or authorship. You must follow the six SAGE steps (Generate, Evaluate, Refine, Audit, Reflect, Defend), retain any required records of AI use, disclose AI involvement as specified, and be prepared to defend your work under supervised conditions. Always check your course outline for the specific AI conditions applying to this task.</p>
         </div>
-      </article>
+        <span class="sref">SAGE: underpins the entire cycle; assessed in Defend (Step 6)</span>
+      </div>
+
+      <!-- P2: Verification -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--acl);color:var(--ac)">2</span> Verification, accuracy, and source quality</h3>
+        <p>AI output must never be accepted at face value. Students must independently verify every important claim, reference, statistic, or technical assertion. AI tools hallucinate, have training cutoffs, and draw on low-quality sources without distinction.</p>
+        <div class="vs">
+          <div class="vs-col safe"><div class="vs-hd">&#10003; Responsible practice</div><ul>
+            <li>AI suggests a journal reference; student locates it via the library database and confirms it exists and says what AI claims</li>
+            <li>Student checks AI-generated statistics against the original dataset</li>
+            <li>Student consults teaching team when unsure about AI reliability</li>
+          </ul></div>
+          <div class="vs-col risk"><div class="vs-hd">&#10007; Irresponsible practice</div><ul>
+            <li>Student cites AI-suggested references without checking they exist</li>
+            <li>Student accepts AI-generated case law or clinical guidelines at face value</li>
+            <li>Student treats AI output as current without checking training cutoff dates</li>
+          </ul></div>
+        </div>
+        <span class="sref">SAGE: corresponds to Evaluate (Step 2) &mdash; comparison against authoritative anchors</span>
+      </div>
+
+      <!-- P3: Bias -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--wnl);color:var(--wn)">3</span> Bias awareness and critical assessment</h3>
+        <p>AI tools are not neutral. They exhibit cultural bias (Western-centric training data), confirmation bias (reinforcing dominant views), and authority bias (weighting frequently cited sources regardless of quality). Gender and racial biases are also documented.</p>
+        <div class="vs">
+          <div class="vs-col safe"><div class="vs-hd">&#10003; Responsible practice</div><ul>
+            <li>Student evaluates whether AI output applies to an Australian legal context, not just a US one</li>
+            <li>Student identifies that AI summary under-represents Indigenous or minority perspectives</li>
+          </ul></div>
+          <div class="vs-col risk"><div class="vs-hd">&#10007; Irresponsible practice</div><ul>
+            <li>Student treats AI summary as a balanced account of a contested field</li>
+            <li>Student applies US-centric AI guidance to an Australian regulatory task without checking</li>
+          </ul></div>
+        </div>
+        <span class="sref">SAGE: addressed in Evaluate (Step 2) and Reflect (Step 5)</span>
+      </div>
+
+      <!-- P4: Attribution -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--brl);color:var(--br)">4</span> Attribution, disclosure, and the limits of acknowledgement</h3>
+        <p>Three levels of attribution apply: in-text citation for quoted/paraphrased AI content; acknowledgement statement for editing or translation; and full structured declaration where detailed process evidence is required.</p>
+        <div class="co warn" style="margin-top:.5rem"><strong>Critical limitation:</strong> correct attribution does not automatically resolve an integrity issue. A predominantly AI-generated submission remains problematic even if properly acknowledged. Attribution is necessary but not sufficient.</div>
+        <span class="sref">SAGE: process logging across Steps 1&ndash;5 and the structured declaration template</span>
+      </div>
+
+      <!-- P5: Privacy -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--dnl);color:var(--dn)">5</span> Privacy, data protection, and confidentiality</h3>
+        <p>Students must not enter personal, confidential, or restricted information into public AI tools. This includes names, addresses, student IDs, thesis work, patient data, and commercial-in-confidence material. Institutionally approved platforms with data protection should be used where available. Students should also avoid using AI as a content detection tool.</p>
+        <span class="sref">SAGE: standing obligation across all steps; reinforced in formal policy Clause 8</span>
+      </div>
+
+      <!-- P6: Copyright -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--wnl);color:var(--wn)">6</span> Copyright and intellectual property</h3>
+        <p><strong>Input risk:</strong> entering copyrighted material into AI may constitute infringement. <strong>Output risk:</strong> AI-generated content may reproduce copyrighted works. Students bear responsibility on both sides.</p>
+        <span class="sref">SAGE: addressed during Evaluate and Refine (Steps 2&ndash;3)</span>
+      </div>
+
+      <!-- P7: Embedded AI -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--sf2);color:var(--tx)">7</span> Embedded AI and the boundary of deliberate use</h3>
+        <p>The policy applies to deliberate, task-directed use of generative AI, not to incidental autocomplete or spell-checking. However, features like Microsoft Copilot in Word or AI code generation assistants that produce substantial content <em>do</em> fall within scope.</p>
+      </div>
+
+      <!-- P8: Multimodal -->
+      <div class="pb">
+        <h3><span class="pn" style="background:var(--acl);color:var(--ac)">8</span> Multimodal AI outputs</h3>
+        <p>All principles apply regardless of output modality: text, code, images, diagrams, audio, video, data analysis, and design prototypes. If AI produced or substantially shaped any artefact in the submission, the same obligations apply.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ── EXAMPLES ── -->
-  <section class="sec sec-quiet" id="policy-companions">
+  <!-- ── ADAPTATION GUIDANCE ── -->
+  <section class="sec sec-band" id="educators-implementation">
     <div class="c">
-      <div class="sh"><span class="ey">Examples</span><h2>What responsible and irresponsible AI use looks like</h2></div>
-      <div class="g2">
-        <div class="ec ok"><span class="et">Acceptable use</span><h3>Examples that support learning</h3><ul>
-          <li><strong>Essay:</strong> write an outline first, then ask AI for feedback on gaps without asking it to rewrite.</li>
-          <li><strong>Coding:</strong> write a function, use AI to explain an error message, then fix the code yourself.</li>
-          <li><strong>Presentation:</strong> use AI to suggest slide sequence; write all analysis and speaker notes independently.</li>
-          <li><strong>Lab report:</strong> complete the experiment, record data, ask AI to explain a statistical concept. Interpretation remains yours.</li>
-          <li><strong>Research:</strong> use AI to generate search keywords, then independently locate, read, and synthesise sources.</li>
-          <li><strong>Group project:</strong> team uses AI to brainstorm structure; each member writes their own section and documents AI use.</li>
-          <li><strong>Reflective journal:</strong> write your own reflection, then use AI to check coverage of required dimensions.</li>
-          <li><strong>Design portfolio:</strong> use AI for initial concept sketches, then substantially redesign and disclose the AI starting point.</li>
-        </ul></div>
-        <div class="ec bad"><span class="et">Not acceptable use</span><h3>Examples that undermine integrity</h3><ul>
-          <li><strong>Essay:</strong> ask AI to write the full report and submit with cosmetic changes, even if acknowledged.</li>
-          <li><strong>Coding:</strong> generate an entire codebase and cannot explain how it works.</li>
-          <li><strong>Presentation:</strong> AI generates the spoken argument; student memorises and presents it as their own.</li>
-          <li><strong>Lab report:</strong> enter raw data into AI and submit the AI interpretation as your own analysis.</li>
-          <li><strong>Research:</strong> copy AI-generated references without independently verifying the sources exist.</li>
-          <li><strong>Group project:</strong> use AI to generate your section without telling the group.</li>
-          <li><strong>Reflective journal:</strong> ask AI to write a reflection on experiences you did not describe.</li>
-          <li><strong>Design portfolio:</strong> submit AI-generated design assets as your original work without disclosure.</li>
-          <li><strong>Any assessment:</strong> fabricate a process log after the fact to appear compliant.</li>
-        </ul></div>
+      <div class="sh"><span class="ey">Implementation</span><h2>Adapting the policy for your unit</h2><p>The policy works best when customised for the discipline, the unit&rsquo;s AI permission settings, and the format of the Defend checkpoint.</p></div>
+
+      <div class="card cpl">
+        <h3 style="font-size:1.1rem;margin-bottom:.7rem">Six steps for adapting the policy to a specific assessment</h3>
+        <div class="g2">
+          <div class="ac"><h3>1. Set the permission boundary</h3><p>State whether the assessment is fully SAGE-integrated, partially integrated, or SAGE-supported with restrictions. If the institution uses an AI permission framework (e.g. AIAS), state the relevant level and note that this policy explains <em>how</em> to work within it.</p></div>
+          <div class="ac"><h3>2. Specify required anchors</h3><p>Name the authoritative sources students must use in Evaluate: prescribed readings, ISO standards, legislation, clinical guidelines, case constraints. This prevents vague fact-checking.</p></div>
+          <div class="ac"><h3>3. Customise the evidence log</h3><p>Provide a template: AI output excerpt, decision category (accept/modify/reject), justification, source used. Modify for quantitative, design, or programming tasks.</p></div>
+          <div class="ac"><h3>4. Define the Defend checkpoint</h3><p>Specify format (viva, timed task, code walkthrough, design interrogation), duration, weighting, and whether it is individual or group-based. Challenge prompts need not be disclosed in advance.</p></div>
+          <div class="ac"><h3>5. Replace generic examples</h3><p>Students understand boundaries best when they see them applied to a lab report, design brief, clinical case, or lesson plan from their own field.</p></div>
+          <div class="ac"><h3>6. Align the rubric with the process</h3><p>Reward evaluation quality, refinement reasoning, audit adjudication, reflective insight, and Defend performance &mdash; not merely surface fluency.</p></div>
+        </div>
       </div>
 
-      <div class="g3" style="margin-top:1rem">
-        <div class="ws"><span class="wsl ok">Worked example: acceptable</span><h3>Health sciences</h3><p>A student drafts a paragraph interpreting a verified journal article, then asks AI:</p><div class="pbox">I wrote the following paragraph. Here is the article excerpt. Identify any potential misinterpretations. Do not rewrite my paragraph.</div><p><strong>Why acceptable:</strong> the student produced the paragraph, named the source, and limited AI to feedback. Intellectual labour is visible and attributable.</p></div>
-        <div class="ws"><span class="wsl bad">Worked example: not acceptable</span><h3>Cybersecurity</h3><p>A student asks AI:</p><div class="pbox">Write my 1,500-word literature review on cyber risk governance with five references from 2023 onwards.</div><p><strong>Why not acceptable:</strong> the prompt delegates framing, source selection, synthesis, and writing to AI. Even if edited afterwards, the original reasoning was outsourced.</p></div>
-        <div class="ws"><span class="wsl ok">Worked example: acceptable</span><h3>Business management</h3><p>A student in a strategic management unit writes a SWOT analysis of a case company based on the supplied case study materials, then asks AI:</p><div class="pbox">Review my SWOT analysis below against the case facts provided. Identify any claims I have made that are not supported by the case data. Do not rewrite my analysis.</div><p><strong>Why acceptable:</strong> the student produced the analysis, grounded it in the case materials, and limited AI to a verification role. The strategic reasoning is the student&rsquo;s own. The AI was used to check the work against evidence, not to generate the analytical judgement.</p></div>
+      <div class="g2" style="margin-top:1rem">
+        <div class="ac"><h3>Calibrating implementation depth</h3><p>All six steps remain present in principle. What varies is the depth of evidence and formality of Defend. A formative tutorial may need only verbal discussion. A summative capstone requires the full evidence trail. Scale documentation to the stakes to prevent performative busywork.</p></div>
+        <div class="ac"><h3>Progressive expectations</h3><p>First-year students may need scaffolded prompts and simplified logs. Capstone students should design their own prompts, select anchors, and undertake rigorous defence. Calibrate expectations to the level and stage of the learner.</p></div>
       </div>
 
-      <div class="card cp" style="margin-top:1rem"><h3>LMS reminder (copy-paste ready)</h3><div class="lms"><strong>AI reminder.</strong> Use AI to support your thinking, not to replace it. Start with your own understanding. Check AI output against authoritative sources. Document your decisions. Reflect on what AI got wrong. Be prepared to defend your work. Check your course outline for the specific AI rules applying to this assessment.</div></div>
-    </div>
-  </section>
-
-  <!-- ── DECLARATION ── -->
-  <section class="sec sec-band" id="policy-declaration">
-    <div class="c">
-      <div class="sh"><span class="ey">AI use declaration</span><h2>Declaration templates</h2><p>Three variants are provided below, scaled to the stakes and complexity of the assessment. Educators should select or adapt the version that best fits their context. Not every assessment requires the full evidence log.</p></div>
-      <div class="card cp decl-card short">
-        <h3>Short declaration <span class="decl-note">&mdash; for formative tasks, first-year work, or routine assessments</span></h3>
-        <div class="dt" data-template="Short declaration">
-<span class="fl-lbl">AI Use Declaration (Short)</span>
-
-<span class="fl-lbl">Tool(s) used:</span>
-<span class="fl-lbl">Purpose of use:</span>
-
-<span class="fl-lbl">Authorship confirmation:</span>
-I confirm that the final submitted work reflects my own reasoning and judgement. Any AI use has been disclosed above. I accept responsibility for the accuracy and integrity of all content submitted under my name.
-
-<span class="fl-lbl">Student name:</span>
-<span class="fl-lbl">Date:</span></div>
+      <div class="implementation-subhead"><h3>Equity, accessibility, and workload</h3><p>Adoption is a learning-design exercise. Evidence and assurance requirements should be proportionate, accessible, and realistic for students and teaching teams.</p></div>
+      <div class="g3">
+        <div class="ac"><h3>Manage staff workload</h3><p>Prior SAGE research found that auditing AI-supported process evidence approximately doubled marking time. Use proportionate documentation and sampled, triggered, staged, or assessment-embedded assurance rather than requiring intensive review for every task.</p></div>
+        <div class="ac"><h3>Design for accessible participation</h3><p>Even light documentation can affect students unevenly, including students using English as an additional language, students with cognitive or learning-related disabilities, and students managing significant external commitments. Provide accessible templates, clear exemplars, and tutorial support.</p></div>
+        <div class="ac"><h3>Avoid paid-tool advantage</h3><p>Premium AI tools may provide stronger capabilities than free services. Use institutionally approved platforms where possible, and avoid assessment designs that privilege students who can afford paid tools.</p></div>
       </div>
 
-      <div class="card cp decl-card standard">
-        <h3>Standard declaration <span class="decl-note">&mdash; for most written and practical assessments</span></h3>
-        <div class="dt" data-template="Standard declaration">
-<span class="fl-lbl">AI Use Declaration (Standard)</span>
-
-<span class="fl-lbl">Tool(s) used:</span>
-<span class="fl-lbl">Date(s) of use:</span>
-<span class="fl-lbl">Sections or task stages affected:</span>
-
-<span class="fl-lbl">Purpose of use (select all that apply):</span>
-&#9744; Clarification of instructions &#9744; Brainstorming or outline support
-&#9744; Language or grammar refinement &#9744; Source-search keyword generation
-&#9744; Checking alignment against named sources &#9744; Code generation or debugging
-&#9744; Image, diagram, or design generation &#9744; Other: _______________
-
-<span class="fl-lbl">What I verified independently and against which sources:</span>
-
-<span class="fl-lbl">Authorship confirmation:</span>
-I confirm that the final submitted work reflects my own judgement, interpretation, and reasoning. I have not submitted AI-generated content as my original work. All material AI use has been disclosed. I accept responsibility for the accuracy, integrity, and disclosure of all content submitted under my name.
-
-<span class="fl-lbl">Student name:</span>
-<span class="fl-lbl">Student number:</span>
-<span class="fl-lbl">Date:</span></div>
+      <div class="g2" style="margin-top:1rem">
+        <div class="ac"><h3>Group assessment considerations</h3><p>Specify: whose baseline counts; how individual contributions are distinguished; whether the log attributes AI use to specific members; and whether Defend is individual or group-based.</p></div>
+        <div class="ac"><h3>Defend outcome distinction</h3><p>Inadequate defence in good faith is a <em>competence</em> matter (feedback, resubmission). Wilful misconduct (fabrication, concealment) is handled through integrity procedures. The policy should make this distinction explicit to students.</p></div>
       </div>
 
-      <div class="card cp decl-card full">
-        <h3>Full evidence log <span class="decl-note">&mdash; for capstone, defended, or research-intensive assessments</span></h3>
-        <div class="dt" data-template="Full evidence log">
-<span class="fl-lbl">AI Use Declaration (Full Evidence Log)</span>
-
-<span class="fl-lbl">Tool(s) used:</span>
-<span class="fl-lbl">Date(s) of use:</span>
-<span class="fl-lbl">Sections or task stages affected:</span>
-
-<span class="fl-lbl">Purpose of use (select all that apply):</span>
-&#9744; Clarification of task instructions
-&#9744; Brainstorming or outline support
-&#9744; Language, grammar, or expression refinement
-&#9744; Source-search keyword generation
-&#9744; Checking alignment of my writing against named sources
-&#9744; Generating an initial draft after producing a human baseline
-&#9744; Audit step: AI assigned as reviewer or critic
-&#9744; Code generation, debugging, or explanation
-&#9744; Image, diagram, or design generation
-&#9744; Data analysis support
-&#9744; Translation or multilingual support
-&#9744; Other (specify): _______________
-
-<span class="fl-lbl">What I provided before using AI (human baseline):</span>
-
-<span class="fl-lbl">What I verified independently and against which sources:</span>
-
-<span class="fl-lbl">Summary of Refine decisions:</span>
-&#9744; Accepted (with justification)
-&#9744; Modified (with justification)
-&#9744; Rejected (with justification)
-
-<span class="fl-lbl">How I handled the Audit step:</span>
-
-<span class="fl-lbl">Reflection on limitations, biases, or errors identified:</span>
-
-<span class="fl-lbl">Authorship confirmation:</span>
-I confirm that the final submitted work reflects my own judgement, interpretation, and reasoning. I have not submitted AI-generated text, analysis, code, images, or conclusions as my original work. I have disclosed all material AI use as required. I accept responsibility for the accuracy, integrity, and disclosure of all content submitted under my name.
-
-<span class="fl-lbl">Student name:</span>
-<span class="fl-lbl">Student number:</span>
-<span class="fl-lbl">Date:</span></div>
-        <div class="co info"><strong>Adaptation note:</strong> educators should modify the full log to match the assessment type. For coding tasks, replace the Refine summary with a code change log. For design portfolios, include a visual decision record.</div>
+      <div class="g2" style="margin-top:1rem">
+        <div class="ac"><h3>Suggested attribution</h3><div class="qb">Adapted from the SAGE Framework (Elkhodr &amp; Gide, 2026). Available at sage-framework.com. Used under CC BY 4.0 and modified for local assessment context.</div></div>
+        <div class="ac"><h3>Review and currency</h3><p>This policy should be reviewed at least annually or at the start of each teaching period to ensure alignment with current institutional rules, tool capabilities, and disciplinary expectations. Update the version number and effective date with each revision.</p></div>
       </div>
     </div>
   </section>
-
-  <!-- ── FAQ ── -->
-  <section class="sec sec-quiet" id="policy-faq">
-    <div class="c">
-      <div class="sh"><span class="ey">FAQ</span><h2>Common questions about AI use in assessment</h2></div>
-      <div class="fl">
-        <details><summary>Can AI write part of the assignment if I edit it heavily afterwards?</summary><div class="ans">Editing AI-written text does not automatically restore authorship if the original reasoning was outsourced. The question is whether the intellectual labour behind the submission is genuinely yours, not whether the final text was typed by you.</div></details>
-        <details><summary>What if AI gives a very good answer immediately?</summary><div class="ans">A convincing answer does not remove the requirement to verify claims, identify potential errors, and be able to defend the reasoning. A fluent AI output is a starting point, not a finished product.</div></details>
-        <details><summary>Can I use AI just for grammar and expression?</summary><div class="ans">Usually yes, where permitted. However, grammar support must not drift into content generation or rewriting that conceals the source of reasoning. An acknowledgement statement is typically required even for editing use.</div></details>
-        <details><summary>Do I need to save my prompts and outputs?</summary><div class="ans">Yes, unless your lecturer explicitly states otherwise. These records are part of the evidence of engagement and authorship. Even when not submitted, they may be requested.</div></details>
-        <details><summary>What happens in the Defend step?</summary><div class="ans">You may be asked to explain reasoning, justify choices, respond to challenge questions, walk through code, or reproduce thinking under supervised conditions. The format and duration will be specified in the assessment instructions.</div></details>
-        <details><summary>What if I try my best but cannot fully defend the work?</summary><div class="ans">An inadequate defence does not automatically mean misconduct. If you engaged in good faith, this is treated as a learning matter. Wilful misconduct (fabrication, concealment) is a separate and more serious matter.</div></details>
-        <details><summary>Does AI have biases I should know about?</summary><div class="ans">Yes. AI reflects cultural biases (Western-centric), confirmation bias (reinforcing dominant views), and authority bias (overweighting popular sources). You are responsible for assessing whether output is appropriate for your specific task and context.</div></details>
-        <details><summary>Can I paste copyrighted material into AI?</summary><div class="ans">Not without the copyright holder&rsquo;s permission. Also be aware that AI outputs may reproduce copyrighted material. You are responsible for both sides.</div></details>
-        <details><summary>Does predictive text or autocomplete count as AI use?</summary><div class="ans">The policy applies to deliberate, task-directed use of generative AI tools, not to incidental spell-checking or predictive text. However, tools like Microsoft Copilot in Word or AI code assistants that produce substantial content do count. If unsure, ask before proceeding.</div></details>
-        <details><summary>How does this work in a group assessment?</summary><div class="ans">Each member&rsquo;s individual contribution should remain distinguishable. The group should agree how AI will be used, document this, and attribute AI-assisted elements to specific members.</div></details>
-        <details><summary>I cited AI correctly. Is that enough?</summary><div class="ans">Not necessarily. Correct attribution is necessary but not sufficient. A predominantly AI-generated submission is problematic even if acknowledged, because the intellectual work was outsourced.</div></details>
-      </div>
-    </div>
-  </section>
-
-<!-- ── FRAMEWORK-NEUTRAL ── -->
-  <section class="sec sec-band" id="policy-neutral">
-    <div class="c">
-      <div class="sh"><span class="ey">Framework-neutral alternative</span><h2>Principles-based policy for responsible AI use</h2><p>This is the framework-neutral variant of the policy, stated as fourteen principles in plain language for educators who wish to adopt it without naming SAGE. It carries the same expectations as the full policy and may be adapted under CC BY 4.0 with attribution.</p></div>
-      <article class="nc">
-        <h3>Policy for responsible use of generative AI in assessment</h3>
-        <p>Generative AI may be used in this assessment only as a support for learning and drafting. It must not replace your own reasoning, analysis, interpretation, or responsibility for the final submission.</p>
-        <p><strong>Principle 1: Check what is permitted.</strong> Confirm whether and how much AI use is allowed for this specific task before you begin. Rules for one assessment do not carry over to another.</p>
-        <p><strong>Principle 2: You are the author.</strong> The final submission must reflect your own understanding, analysis, and judgement. If you cannot explain why a point is included, what supports it, and how you reached it, the work does not meet this requirement.</p>
-        <p><strong>Principle 3: Permitted uses.</strong> Where permitted, you may use AI to start, structure, check, critique, and refine, provided verification and final judgement remain with you.</p>
-        <p><strong>Principle 4: Prohibited uses.</strong> Do not submit AI-generated work as your own, delegate the core task, cite unverified AI references, outsource judgement, fabricate process evidence, or conceal AI use.</p>
-        <p><strong>Principle 5: Verify everything.</strong> Check every important AI-generated claim, reference, or statistic against authoritative sources. Do not cite anything you have not personally checked.</p>
-        <p><strong>Principle 6: Watch for bias.</strong> Assess AI output for cultural, confirmation, and authority bias. Do not assume it is neutral, current, balanced, or appropriate to your context.</p>
-        <p><strong>Principle 7: Disclose and attribute.</strong> Disclose AI use in the required form. Disclosure alone does not make a predominantly AI-generated submission acceptable.</p>
-        <p><strong>Principle 8: Protect data.</strong> Do not enter personal, confidential, or restricted information into public AI tools. Use approved platforms where available.</p>
-        <p><strong>Principle 9: Respect copyright.</strong> Do not enter copyrighted material into AI tools without permission, and do not submit output that reproduces protected work.</p>
-        <p><strong>Principle 10: Know what counts.</strong> Deliberate, task-directed AI use is in scope, including AI paraphrasing and code generation. Incidental spell-checking and autocomplete are not, unless the assessment says otherwise.</p>
-        <p><strong>Principle 11: All output types.</strong> These rules apply equally to AI-generated or AI-shaped text, code, images, audio, data analysis, and design.</p>
-        <p><strong>Principle 12: Work and document.</strong> Work from your own understanding, then check AI output, record what you accepted, modified, or rejected and why, and note where AI helped and where it failed.</p>
-        <p><strong>Principle 13: Defensible authorship.</strong> Be ready to explain, justify, or demonstrate the reasoning in your submission under supervised conditions at any time. If you cannot defend it, you do not own it.</p>
-        <p><strong>Principle 14: Integrity and good-faith gaps.</strong> Predominantly AI-generated work, fabricated evidence, concealed AI use, and inability to explain your work are integrity matters. A good-faith gap in understanding is treated as a competence matter, handled differently from misconduct.</p>
-        <p><strong>Student declaration.</strong> By submitting this work, I confirm that it reflects my own reasoning, complies with the stated AI conditions, has been independently verified, discloses any material AI use, contains no restricted information entered into public AI tools, and can be explained and defended by me.</p>
-      </article>
-    </div>
-  </section>
-    </div>
   </div>
+</div>
 </main>
 <footer class="ftr">
   <div class="footer-inner">
@@ -1968,20 +1840,20 @@ I confirm that the final submitted work reflects my own judgement, interpretatio
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-citation">Elkhodr, M. &amp; Gide, E. (2026). <em>SAGE Assessment Policy for AI-Integrated Assessment.</em> Available at <a href="https://sage-framework.com">sage-framework.com</a>.</div>
+      <div class="footer-citation">Elkhodr, M. &amp; Gide, E. (2026). <em>SAGE Assessment Policy: Educator Guidance.</em> Available at <a href="https://sage-framework.com">sage-framework.com</a>.</div>
       <div class="footer-licence">CC BY 4.0 &middot; sage-framework.com</div>
     </div>
   </div>
 </footer>
 <script>
-const policyNavLinks = Array.from(document.querySelectorAll('.policy-sidebar a[href^="#"]'));
-const policySections = policyNavLinks
+const guideNavLinks = Array.from(document.querySelectorAll('.guide-sidebar a[href^="#"]'));
+const guideSections = guideNavLinks
   .map(link => document.getElementById(link.hash.slice(1)))
   .filter((section, index, sections) => section && sections.indexOf(section) === index);
-let policyScrollFrame = null;
+let guideScrollFrame = null;
 
-function setActivePolicySection(id) {
-  policyNavLinks.forEach(link => {
+function setActiveGuideSection(id) {
+  guideNavLinks.forEach(link => {
     const active = link.hash === '#' + id;
     link.classList.toggle('active', active);
     if (active) {
@@ -1992,36 +1864,36 @@ function setActivePolicySection(id) {
   });
 }
 
-function updateActivePolicySection() {
-  policyScrollFrame = null;
-  if (!policySections.length) return;
+function updateActiveGuideSection() {
+  guideScrollFrame = null;
+  if (!guideSections.length) return;
 
   const activationLine = 110;
-  let activeSection = policySections[0];
-  policySections.forEach(section => {
+  let activeSection = guideSections[0];
+  guideSections.forEach(section => {
     if (section.getBoundingClientRect().top <= activationLine) activeSection = section;
   });
 
   const atPageEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-  if (atPageEnd) activeSection = policySections[policySections.length - 1];
-  setActivePolicySection(activeSection.id);
+  if (atPageEnd) activeSection = guideSections[guideSections.length - 1];
+  setActiveGuideSection(activeSection.id);
 }
 
-policyNavLinks.forEach(link => {
+guideNavLinks.forEach(link => {
   link.addEventListener('click', () => {
-    setActivePolicySection(link.hash.slice(1));
-    const mobileContents = link.closest('.mobile-toc');
+    setActiveGuideSection(link.hash.slice(1));
+    const mobileContents = link.closest('.guide-mobile-toc');
     if (mobileContents) mobileContents.removeAttribute('open');
   });
 });
 
 window.addEventListener('scroll', () => {
-  if (policyScrollFrame === null) {
-    policyScrollFrame = window.requestAnimationFrame(updateActivePolicySection);
+  if (guideScrollFrame === null) {
+    guideScrollFrame = window.requestAnimationFrame(updateActiveGuideSection);
   }
 }, { passive:true });
 
-window.addEventListener('hashchange', updateActivePolicySection);
-updateActivePolicySection();
+window.addEventListener('hashchange', updateActiveGuideSection);
+updateActiveGuideSection();
 </script>
 </body></html>
