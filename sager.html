@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAGE-R — Complete Framework Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --navy:       #0f2241;
+      --navy-mid:   #1a3560;
+      --navy-light: #2a4a7f;
+      --gold:       #b8963e;
+      --gold-light: #d4af6a;
+      --gold-pale:  #f5edda;
+      --cream:      #faf8f4;
+      --warm-white: #ffffff;
+      --ink:        #1c2b3a;
+      --muted:      #5a6a7a;
+      --rule:       #ddd8ce;
+      --highlight:  #f0ebe0;
+      --green-soft: #edf5ee;
+      --amber-soft: #fdf6ea;
+      --blue-soft:  #eef3fb;
+      --red-soft:   #fdf0ef;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.78;
+    }
+
+    /* ── STICKY NAV ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 36px;
+      box-shadow: 0 2px 12px rgba(15,34,65,0.25);
+    }
+    .top-nav .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      padding: 14px 0;
+      margin-right: 32px;
+      white-space: nowrap;
+    }
+    .top-nav a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      padding: 18px 16px;
+      transition: color 0.2s, border-bottom 0.2s;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .top-nav a:hover { color: white; border-bottom-color: var(--gold); }
+
+    /* ── SHARED COVER ── */
+    .cover {
+      padding: 72px 52px 60px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+    .cover-fw  { background: var(--navy); }
+    .cover-edu { background: #1a3a2a; }
+    .cover-stu { background: #1a3560; }
+    .cover::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 400px; height: 100%;
+      background: linear-gradient(135deg, transparent 35%, rgba(184,150,62,0.09) 100%);
+      pointer-events: none;
+    }
+    .cover-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+    }
+    .gold-rule { width: 56px; height: 3px; background: var(--gold); margin-bottom: 28px; }
+    .cover h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.9rem;
+      font-weight: 700;
+      line-height: 1.14;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+    .cover h1 span { color: var(--gold-light); }
+    .cover-sub {
+      font-size: 1.08rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+      max-width: 640px;
+      margin-bottom: 38px;
+    }
+    .cover-meta { display: flex; gap: 44px; flex-wrap: wrap; }
+    .cover-meta-item label {
+      display: block;
+      font-size: 9.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 3px;
+    }
+    .cover-meta-item span { font-size: 0.9rem; color: rgba(255,255,255,0.82); }
+
+    /* ── PAGE WRAPPER ── */
+    .page { max-width: 980px; margin: 0 auto; padding: 52px 36px 80px; }
+    .block { margin-bottom: 52px; }
+
+    /* ── TYPOGRAPHY ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.22;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+      margin-top: 32px;
+    }
+    p { font-size: 1rem; margin-bottom: 14px; color: var(--ink); }
+    .lead {
+      font-size: 1.07rem;
+      color: var(--muted);
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 18px;
+      margin-bottom: 22px;
+    }
+    hr.thin { border: none; border-top: 1px solid var(--rule); margin: 40px 0; }
+
+    /* ── PRINCIPLE BOX ── */
+    .principle {
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      padding: 26px 30px;
+      margin: 26px 0;
+    }
+    .principle .p-label {
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 9px;
+    }
+    .principle p { color: rgba(255,255,255,0.88); font-size: 1.03rem; margin: 0; }
+    .principle strong { color: var(--gold-light); }
+
+    /* ── INFO CARDS ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    .three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 20px 0; }
+    .info-card {
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 18px 20px;
+      background: white;
+    }
+    .info-card .c-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--navy-mid);
+      margin-bottom: 8px;
+    }
+    .info-card p { font-size: 0.93rem; margin: 0; }
+    .info-card.green { background: var(--green-soft); border-color: #c3dfc6; }
+    .info-card.amber { background: var(--amber-soft); border-color: #e8d5a3; }
+    .info-card.blue  { background: var(--blue-soft);  border-color: #c5d8f0; }
+    .info-card.pale  { background: var(--gold-pale);  border-color: #e0cc9a; }
+
+    /* ── STAGES GRID ── */
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 13px;
+      margin: 22px 0;
+    }
+    .stage-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 16px 15px 18px;
+    }
+    .stage-card.pre { opacity: 0.75; }
+    .s-num {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 9px;
+    }
+    .stage-card.pre .s-num { background: #7a8a9a; }
+    .s-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+    .s-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.5; margin-bottom: 9px; }
+    .s-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #e4eaf5;
+      color: var(--navy-mid);
+    }
+    .stage-card.pre .s-tag { background: #e8e8e8; color: #7a8a9a; }
+
+    /* ── CHECKPOINT TABLE ── */
+    .chk-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.91rem;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .chk-table thead tr { background: var(--navy); color: white; }
+    .chk-table thead th {
+      padding: 12px 15px;
+      text-align: left;
+      font-size: 0.79rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .chk-table thead th:first-child { border-radius: 10px 0 0 0; }
+    .chk-table thead th:last-child  { border-radius: 0 10px 0 0; }
+    .chk-table tbody tr { border-bottom: 1px solid var(--rule); }
+    .chk-table tbody tr:last-child { border-bottom: none; }
+    .chk-table tbody tr:nth-child(even) { background: #faf9f6; }
+    .chk-table td { padding: 13px 15px; vertical-align: top; line-height: 1.55; }
+    .chk-table td:first-child { font-weight: 600; color: var(--navy); font-size: 0.87rem; }
+    .d-tag {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    /* ── WORKED EXAMPLE CARD ── */
+    .example {
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 24px 0;
+      background: white;
+    }
+    .example-head {
+      background: var(--navy);
+      color: white;
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+    .ex-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ex-head-text .e-tag {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 2px;
+    }
+    .ex-head-text strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: white;
+    }
+    .example-body { padding: 20px 22px; }
+    .example-body p { font-size: 0.94rem; }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 13px;
+      margin-bottom: 13px;
+      align-items: start;
+    }
+    .step-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--highlight);
+      border: 2px solid var(--gold);
+      color: var(--navy);
+      font-size: 0.77rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-row p { margin: 0; font-size: 0.92rem; }
+    .step-row strong { color: var(--navy); }
+
+    /* ── BOUNDARY PROMPT ── */
+    .boundary-box {
+      background: #f3f6fb;
+      border: 2px solid var(--navy-mid);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 14px 0;
+    }
+    .boundary-box .bp-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--navy-mid);
+      margin-bottom: 9px;
+    }
+    .bp-template {
+      background: white;
+      border-left: 4px solid var(--gold);
+      padding: 11px 15px;
+      margin: 9px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-size: 0.89rem;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ── DEFEND CHECK ── */
+    .defend-check {
+      background: var(--highlight);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 13px 17px;
+      margin: 15px 0;
+    }
+    .defend-check .dc-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+    .defend-check p { font-size: 0.91rem; margin: 0; font-style: italic; color: var(--navy); }
+
+    /* ── WARNING BAND ── */
+    .warning-band {
+      background: var(--red-soft);
+      border: 1px solid #f5c0bb;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.91rem;
+    }
+    .warning-band .w-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b94a3f;
+      margin-bottom: 5px;
+    }
+    .warning-band p { margin: 0; }
+
+    /* ── ANALOGY SPLIT ── */
+    .analogy-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; }
+    .analogy-card {
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 17px 19px;
+      background: white;
+    }
+    .analogy-card .a-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .analogy-card p { font-size: 0.91rem; margin: 0; }
+    .analogy-card.green { background: var(--green-soft); border-color: #c3dfc6; }
+    .analogy-card.green .a-label { color: #2d6a35; }
+    .analogy-card.amber { background: var(--amber-soft); border-color: #e8d5a3; }
+    .analogy-card.amber .a-label { color: #8a5a10; }
+
+    /* ── SUMMARY TABLE ── */
+    .sum-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.91rem;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .sum-table thead tr { background: var(--navy); color: white; }
+    .sum-table thead th {
+      padding: 12px 15px;
+      text-align: left;
+      font-size: 0.79rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .sum-table thead th:first-child { border-radius: 10px 0 0 0; }
+    .sum-table thead th:last-child  { border-radius: 0 10px 0 0; }
+    .sum-table tbody tr { border-bottom: 1px solid var(--rule); }
+    .sum-table tbody tr:last-child { border-bottom: none; }
+    .sum-table tbody tr:nth-child(even) { background: #faf9f6; }
+    .sum-table td { padding: 12px 15px; vertical-align: top; line-height: 1.55; }
+    .sum-table td:first-child { font-weight: 600; color: var(--navy); font-size: 0.87rem; }
+    .allowed { color: #2d6a35; font-weight: 600; }
+    .caution { color: #8a5a10; font-weight: 600; }
+
+    /* ── PULLQUOTE ── */
+    .pullquote {
+      border-left: 4px solid var(--gold);
+      padding: 13px 20px;
+      background: var(--highlight);
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--navy);
+    }
+    .pullquote strong { font-style: normal; }
+
+    /* ── PENDULUM CHART ── */
+    .pendulum-wrap {
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 0;
+      background: white;
+    }
+    .pendulum-head {
+      background: var(--navy);
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pendulum-head-left .ph-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 3px;
+    }
+    .pendulum-head-left .ph-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+    }
+    .pendulum-legend {
+      display: flex;
+      gap: 16px;
+    }
+    .pendulum-legend .leg-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .leg-dot.high { background: #ef4444; }
+    .leg-dot.low  { background: var(--gold); }
+    .pendulum-chart-area {
+      padding: 20px 24px 12px;
+      background: white;
+      position: relative;
+      height: 210px;
+    }
+    .pendulum-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--rule);
+    }
+    .pendulum-grid-item {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    .pendulum-grid-item:nth-child(even) { border-right: none; }
+    .pendulum-grid-item:nth-last-child(-n+2) { border-bottom: none; }
+    .pendulum-grid-item strong { color: var(--navy); font-weight: 600; }
+    .pendulum-grid-item.current strong { color: #b94a3f; }
+    .pendulum-foot {
+      background: var(--gold-pale);
+      border-top: 1px solid var(--rule);
+      padding: 9px 22px;
+      text-align: center;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-break {
+      background: var(--navy);
+      height: 6px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 26px 24px;
+      font-size: 0.81rem;
+      letter-spacing: 0.03em;
+    }
+    .footer strong { color: var(--gold-light); }
+
+    @media (max-width: 760px) {
+      .cover { padding: 40px 24px; }
+      .cover h1 { font-size: 2rem; }
+      .page { padding: 36px 20px 60px; }
+      .two-col, .three-col, .stages-grid,
+      .analogy-split { grid-template-columns: 1fr; }
+      .top-nav { padding: 0 16px; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="top-nav">
+  <div class="nav-brand">SAGE-R</div>
+  <a href="#framework">Framework Overview</a>
+  <a href="#educator">Educator Module</a>
+  <a href="#student">Student Module</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 1 — FRAMEWORK OVERVIEW
+════════════════════════════════════════════════════ -->
+<div id="framework">
+  <div class="cover cover-fw">
+    <div class="cover-tag">SAGE-R Framework · Overview</div>
+    <div class="gold-rule"></div>
+    <h1>SAGE-R: Structured Assurance<br>for Generative AI in <span>Research</span></h1>
+    <p class="cover-sub">A framework for evidencing human epistemic responsibility across the research higher degree candidature in an AI-mediated research environment.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <label>Developed by</label>
+        <span>Dr Mahmoud Elkhodr &amp; Professor Ergun Gide</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Institution</label>
+        <span>CQUniversity Australia</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Built on</label>
+        <span>The SAGE Framework (2022–2026)</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Version</label>
+        <span>Working Draft · April 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <div class="block">
+      <div class="section-label">The problem</div>
+      <h2>A gap the sector has not yet filled</h2>
+      <p class="lead">Universities globally have produced substantial guidance on generative AI in research. Most of it governs what AI may not do. Very little of it addresses how human epistemic responsibility is evidenced when AI is part of the process.</p>
+
+      <p>A review of institutional policy across Australian, UK, US, and Canadian universities, conducted in April 2026, confirms that the sector has reached a partial settlement. Generative AI is increasingly accepted for assistive functions — literature discovery, code support, language refinement, administrative tasks — while AI-generated scholarly text remains heavily policed or effectively discouraged. The dominant policy logic is risk containment: disclosure requirements, restriction of substantive use, and repeated assertion that the human researcher remains responsible.</p>
+
+      <p>What that approach does not provide is a mechanism for demonstrating that human responsibility has actually been exercised. Declaring AI use in a thesis preface does not show that the researcher understood the literature, owned the methodology, or can defend the conclusions. As generative AI becomes more deeply embedded in ordinary research workflows, the question of whether AI was used becomes less meaningful than the question of whether the researcher can account for the intellectual decisions the research required. Current institutional guidance has not answered that question.</p>
+
+      <p>SAGE-R addresses it directly.</p>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">A familiar pattern</div>
+      <h2>Every significant technology in education met the same response</h2>
+      <p>The resistance to generative AI in research is not unprecedented. The same pattern has repeated with every tool that reshaped how knowledge is produced or communicated. Each time, initial resistance eventually gave way to structured integration once the field identified what the tool could and could not do, and what responsibilities remained with the human practitioner. SAGE-R is designed for that integration phase.</p>
+
+      <div class="pendulum-wrap">
+        <div class="pendulum-head">
+          <div class="pendulum-head-left">
+            <div class="ph-label">The Innovation Pendulum</div>
+            <div class="ph-title">Historical resistance to technology in education and research</div>
+          </div>
+          <div class="pendulum-legend">
+            <div class="leg-item"><span class="leg-dot high"></span>High resistance</div>
+            <div class="leg-item"><span class="leg-dot low"></span>Lower resistance</div>
+          </div>
+        </div>
+        <div class="pendulum-chart-area">
+          <canvas id="pendulumChart"></canvas>
+        </div>
+        <div class="pendulum-grid">
+          <div class="pendulum-grid-item"><strong>1450 — Printing Press:</strong> Scholars feared mass-produced books would destroy memory and undermine spiritual discipline in learning.</div>
+          <div class="pendulum-grid-item"><strong>1940 — Ballpoint Pen:</strong> Educators feared the end of penmanship would erode the cognitive discipline associated with careful handwriting.</div>
+          <div class="pendulum-grid-item"><strong>1975 — Calculator:</strong> Mathematicians warned that students would lose all capacity for fundamental arithmetic reasoning.</div>
+          <div class="pendulum-grid-item"><strong>1985 — Personal Computer:</strong> Researchers feared word processors would produce shallow, structureless, unpolished academic writing.</div>
+          <div class="pendulum-grid-item"><strong>1998 — Search Engines:</strong> Academics argued that instant retrieval would destroy deep information literacy and the discipline of library research.</div>
+          <div class="pendulum-grid-item"><strong>2005 — Wikipedia:</strong> The academy feared the permanent end of authoritative, peer-reviewed scholarship as the standard for knowledge.</div>
+          <div class="pendulum-grid-item"><strong>2015 — Smartphones:</strong> Educators warned of mass distraction, collapsed attention spans, and the death of sustained academic reading.</div>
+          <div class="pendulum-grid-item current"><strong>2024 — Generative AI:</strong> Researchers and institutions fear the end of original thought, epistemic ownership, and academic integrity. SAGE-R is the structured response.</div>
+        </div>
+        <div class="pendulum-foot">SAGE-R · Guiding research through the current technological transition</div>
+      </div>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">The framework</div>
+      <h2>What SAGE-R is</h2>
+
+      <p>SAGE-R is a structured assurance framework for research higher degree candidates and their supervisors. It is built on one governing distinction: AI assistance with research labour is encouraged; AI substitution for scholarly judgement is not. The researcher's role throughout is informed approval — reviewing, verifying, and owning whatever AI produces — rather than passive acceptance.</p>
+
+      <p>The mechanism through which this is made visible is called <strong>Defend</strong> — the structured expectation that a researcher can explain, justify, and stand behind their work at a given point in the candidature. Defend is not an additional examination or a compliance task. It is the ongoing demonstration that research understanding and epistemic ownership have remained with the researcher throughout a process in which AI may have provided substantial assistance. In a thesis examination, this is already expected. SAGE-R distributes it across the entire candidature rather than concentrating it at the end.</p>
+
+      <div class="principle">
+        <div class="p-label">Governing principle</div>
+        <p>SAGE-R shifts the research integrity question from <strong>whether AI was used</strong> to <strong>whether the researcher can demonstrate that scholarly judgement, epistemic ownership, and the capacity to defend the work remained their own throughout</strong>. These are the same questions a rigorous supervisory relationship has always asked. SAGE-R makes them explicit and maps them to milestones that already exist.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="info-card green">
+          <div class="c-label">What SAGE-R encourages</div>
+          <p>AI assistance with any task that does not require original scholarly judgement — Gantt charts, slide preparation, form completion, literature summarisation, survey drafting, flowchart generation, code support, data visualisation, and language refinement. The researcher reviews and approves; the tool executes.</p>
+        </div>
+        <div class="info-card amber">
+          <div class="c-label">What SAGE-R governs</div>
+          <p>AI involvement in tasks that carry epistemic weight — problem framing, research question formulation, methodological reasoning, interpretive claims, analysis, and any text that enters the scholarly record. These require the researcher to understand, verify, and be able to Defend what has been produced.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">The architecture</div>
+      <h2>Defend across the eight stages of the RHD candidature</h2>
+      <p>SAGE-R maps a Defend function to each existing milestone of the research higher degree process at CQU. No new institutional processes are required. The framework clarifies the epistemic dimension of milestones that already carry supervisory and examination functions.</p>
+
+      <div class="stages-grid">
+        <div class="stage-card pre">
+          <div class="s-num">1</div>
+          <div class="s-title">Research Proposal</div>
+          <div class="s-desc">Pre-enrolment. Applicant completes institutional form. Assessed for an offer into the degree.</div>
+          <span class="s-tag">Educational · Prospective</span>
+        </div>
+        <div class="stage-card">
+          <div class="s-num">2</div>
+          <div class="s-title">Foundation Work</div>
+          <div class="s-desc">Post-enrolment. Problem statement, research questions, methodology orientation, ethics preparation.</div>
+          <span class="s-tag">Epistemic Ownership</span>
+        </div>
+        <div class="stage-card">
+          <div class="s-num">3</div>
+          <div class="s-title">COC Development</div>
+          <div class="s-desc">Parts A and B developed with supervisor. Submitted to supervisory panel for revision.</div>
+          <span class="s-tag">Substantive Assurance</span>
+        </div>
+        <div class="stage-card">
+          <div class="s-num">4</div>
+          <div class="s-title">COC Examination</div>
+          <div class="s-desc">COC sent to two independent examiners. First formal external Defend checkpoint.</div>
+          <span class="s-tag">Independent External</span>
+        </div>
+        <div class="stage-card">
+          <div class="s-num">5</div>
+          <div class="s-title">Ethics Application</div>
+          <div class="s-desc">Pursued where required. AI assists with procedural elements; ethical reasoning remains the researcher's own.</div>
+          <span class="s-tag">Integrity Assurance</span>
+        </div>
+        <div class="stage-card">
+          <div class="s-num">6</div>
+          <div class="s-title">Annual Progress Reports</div>
+          <div class="s-desc">Completed annually by the student with supervisor commentary. Longitudinal capability check.</div>
+          <span class="s-tag">Longitudinal Capability</span>
+        </div>
+        <div class="stage-card">
+          <div class="s-num">7</div>
+          <div class="s-title">Pre-Thesis Submission</div>
+          <div class="s-desc">Working period with supervisor prior to external examination. Structured spot-check.</div>
+          <span class="s-tag">Verification Assurance</span>
+        </div>
+        <div class="stage-card">
+          <div class="s-num">8</div>
+          <div class="s-title">Informal Oral Defend</div>
+          <div class="s-desc">Structured pre-submission conversation with supervisory panel. Final epistemic ownership check before external examination.</div>
+          <span class="s-tag">Final Assurance</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">Context</div>
+      <h2>SAGE-R and the SAGE framework</h2>
+
+      <p>SAGE-R extends the logic of the SAGE framework — Structured AI-Guided Education — which was developed at CQUniversity and has been applied across more than 800 students on five Australian campuses, validated through seven peer-reviewed studies, and listed three times in TEQSA's national Generative AI Knowledge Hub. SAGE addressed the question of AI governance in learning and assessment by shifting attention from detection of AI use to structured assurance of learning. SAGE-R applies the same logic to research: shifting attention from prohibition of AI use to structured assurance of epistemic responsibility.</p>
+
+      <p>The extension is not mechanical. Research higher degree candidates face a qualitatively different set of AI governance questions than coursework students. The endpoint of a research candidature is not a demonstration of learning — it is an original knowledge contribution that must be defensible before the scholarly community. SAGE-R is designed specifically for that context, drawing on the SAGE Defend mechanism and adapting it to the milestones, examination structures, and capability formation expectations of doctoral and master's research at an Australian university.</p>
+
+      <div class="three-col">
+        <div class="info-card pale">
+          <div class="c-label">The sector gap</div>
+          <p>No institution reviewed in April 2026 had produced a framework that distributes assurance of human epistemic responsibility across the research candidature lifecycle. SAGE-R fills that gap.</p>
+        </div>
+        <div class="info-card blue">
+          <div class="c-label">The CQU contribution</div>
+          <p>SAGE-R draws on CQU's existing SAGE infrastructure — recognised nationally by TEQSA — and extends it into a domain the sector has identified as urgent but not yet resolved.</p>
+        </div>
+        <div class="info-card green">
+          <div class="c-label">The practical outcome</div>
+          <p>Supervisors gain a consistent framework for the conversations they already have. Students gain clear guidance on what AI may assist with and what remains their own responsibility throughout the candidature.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 2 — EDUCATOR MODULE
+════════════════════════════════════════════════════ -->
+<div id="educator">
+  <div class="cover cover-edu">
+    <div class="cover-tag">SAGE-R Framework · Educator Module</div>
+    <div class="gold-rule"></div>
+    <h1>Supervising Research<br>in the Age of <span>Generative AI</span></h1>
+    <p class="cover-sub">A practical guide to Defend — the structured assurance function — distributed across the eight stages of the research higher degree candidature at CQU.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><label>Audience</label><span>RHD Supervisors and Graduate Research Coordinators</span></div>
+      <div class="cover-meta-item"><label>Institution</label><span>CQUniversity Australia</span></div>
+      <div class="cover-meta-item"><label>Version</label><span>Working Draft · April 2026</span></div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <div class="block">
+      <div class="section-label">The supervisor's role under SAGE-R</div>
+      <h2>Defend is already part of supervision</h2>
+
+      <p class="lead">At each stage of the RHD candidature, the supervisor's task is to determine whether the student understands and owns the work. SAGE-R names this function Defend — the structured expectation that a researcher can explain, justify, and stand behind their work at a given point — and maps it to milestones that already exist in the research process.</p>
+
+      <p>Asking a student to explain their research questions in a meeting is Defend. Querying a reference in a draft chapter is Defend. Asking how an analysis decision was made is Defend. These are ordinary acts of supervision. SAGE-R gives them a consistent purpose in an environment where AI may have contributed to the work being discussed: the question is not what tool the student used but whether they understand the result and can account for it.</p>
+
+      <p>The vocabulary throughout this module reflects that. Defend is a conversation about understanding — not an inspection of AI logs, a compliance audit, or a new administrative obligation. The supervisor does not need to know how a student interacted with any tool. The supervisor needs to know whether the student can explain and justify the work.</p>
+
+      <div class="pullquote">
+        <strong>The supervisor's question is always the same:</strong> Does the student understand this work well enough to explain it, justify it, and stand behind it? That question predates AI and will outlast it. SAGE-R ensures it is asked intentionally at each stage of the candidature.
+      </div>
+
+      <div class="two-col">
+        <div class="info-card green">
+          <div class="c-label">What SAGE-R adds</div>
+          <p>Explicit awareness that AI may have contributed to what the student is presenting — and that the Defend conversation is the mechanism for confirming that scholarly reasoning and epistemic ownership have remained with the student regardless of what tools assisted.</p>
+        </div>
+        <div class="info-card amber">
+          <div class="c-label">What SAGE-R does not add</div>
+          <p>New administrative tasks, AI usage logs, declaration forms, or supervisory obligations beyond the milestones that already structure the candidature. The additional burden on supervisors is minimal. The change is one of intentionality, not workload.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">Stage guidance</div>
+      <h2>What Defend means at each stage</h2>
+
+      <h3>Stage 1 — Research Proposal (Pre-Enrolment)</h3>
+      <p>The applicant has not yet entered a formal supervisory relationship, and SAGE-R governance does not apply in the same way it governs enrolled candidates. The Defend function here is prospective. Publicly available SAGE-R guidance informs applicants that a research proposal must reflect their own research thinking — AI may assist with understanding how proposals are structured or what a research gap looks like, but the problem identified and the motivation expressed must be genuinely their own. A proposal substantially assembled by AI may result in a student enrolled into a project they do not intellectually own, which creates a capability formation problem from the first day of candidature.</p>
+      <p>The Defend moment is the supervisor's first substantive meeting post-enrolment: the student should be able to articulate the research problem in their own words and explain why they chose it.</p>
+
+      <h3>Stage 2 — Foundation Work (Post-Enrolment)</h3>
+      <p>The intellectual work of this stage — narrowing the problem, formulating research questions, selecting a methodological approach, and understanding ethical obligations — is the most foundational capability formation of the entire candidature. The Defend function is embedded in supervisory meetings. The student should articulate research questions without reading from AI-produced text, justify methodological choices by reference to literature they have read directly, and explain the ethical considerations relevant to their specific study design. The supervisor's notes from this conversation serve as the first provenance record under SAGE-R.</p>
+
+      <h3>Stage 3 — Confirmation of Candidature Document</h3>
+      <p>The COC carries two distinct dimensions under SAGE-R. Part A — research questions, methodology, conceptual framework, and expected outcomes — is where epistemic ownership must be most clearly demonstrated, and every substantive claim must be defensible by the student without AI mediation. Part B — budget, Gantt chart, risk register, occupational safety, and procedural ethics elements — is more administrative. AI assistance with Part B is consistent with SAGE-R's encouragement of AI for labour-intensive tasks, provided the student understands and approves every element.</p>
+      <p>Before submission, the supervisor conducts a targeted Defend conversation covering at minimum: why these research questions, why this methodology, what the conceptual framework means, and what the expected original contribution is. This replaces neither supervisory feedback nor editorial review — it accompanies them.</p>
+
+      <h3>Stage 4 — COC Examination</h3>
+      <p>CQU sends the COC to two independent examiners — a structural feature that most other institutions do not have. This is already a formal external Defend moment. The supervisor's role before submission is to confirm that the student can respond to examiner-level questions about every substantive element of the document. If AI-assisted drafting has introduced claims or positions the student cannot explain, the examination will surface this.</p>
+
+      <h3>Stage 5 — Ethics Application</h3>
+      <p>Ethics applications are procedurally dense and often poorly understood by students at the outset. AI assistance in navigating what a section is asking, organising a response, or converting the student's reasoning into institutional form is appropriate under SAGE-R. The ethical reasoning itself — what risks exist, how they are mitigated, what participants will experience, and why the study design is ethically defensible — must be the student's own. The Defend check before submission is a brief targeted conversation: the student justifies every substantive ethical position in the application in their own words.</p>
+
+      <h3>Stage 6 — Annual Progress Reports</h3>
+      <p>Progress reports are the primary longitudinal Defend mechanism. The supervisor's oral review accompanying the written report should include a small number of targeted questions about the work produced in the preceding year: why a particular analytical decision was made, what a specific finding actually means, how an AI-assisted section was verified. These questions do not require additional meeting time. They are the kind of questions a supervisory conversation already generates — directed, under SAGE-R, with consistent intentionality about epistemic ownership.</p>
+
+      <h3>Stage 7 — Working Toward Thesis Submission</h3>
+      <p>Before submission, the supervisor conducts a structured spot-check: randomly selecting references, claims, and analytical interpretations from the thesis and asking the student to verify and justify them against the source material or dataset. The purpose is to confirm that the thesis is genuinely owned and understood by the student before it enters external examination, where no supervisory knowledge of the student's capabilities is available to contextualise the work.</p>
+
+      <h3>Stage 8 — Informal Oral Defend with Supervisory Panel</h3>
+      <p>Australia has no formal thesis oral examination. SAGE-R addresses this structural gap by recommending a brief structured conversation with the supervisory panel before submission — not a replacement for the examination process but a final assurance checkpoint. Three questions anchor it: how AI contributed to the candidature and what was verified; which intellectual decisions were entirely the student's own; and how the student would respond to a specific examiner challenge on a claim or methodological choice. The supervisor's notes from this session form the final provenance record under SAGE-R.</p>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">Quick reference</div>
+      <h2>Supervisor checkpoint summary</h2>
+
+      <table class="chk-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>The Defend question</th>
+            <th>What it looks like in practice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. Research Proposal<br><span class="d-tag">Educational</span></td>
+            <td>Did the student arrive with a research problem they genuinely own?</td>
+            <td>First supervisory meeting: student explains the research problem in their own words and why they proposed it.</td>
+          </tr>
+          <tr>
+            <td>2. Foundation Work<br><span class="d-tag">Epistemic Ownership</span></td>
+            <td>Can the student articulate research questions, methodology, and ethical considerations without AI mediation?</td>
+            <td>Supervisory conversation: student explains each element without reference to AI-produced prose.</td>
+          </tr>
+          <tr>
+            <td>3. COC Development<br><span class="d-tag">Substantive Assurance</span></td>
+            <td>Does the student own every substantive claim in Part A?</td>
+            <td>Pre-submission conversation: why these questions, why this methodology, what the framework means, what the contribution is.</td>
+          </tr>
+          <tr>
+            <td>4. COC Examination<br><span class="d-tag">Independent External</span></td>
+            <td>Can epistemic ownership withstand scrutiny from examiners with no supervisory knowledge of the student?</td>
+            <td>Supervisor confirms readiness before submission by verifying the student can address substantive examiner questions.</td>
+          </tr>
+          <tr>
+            <td>5. Ethics Application<br><span class="d-tag">Integrity Assurance</span></td>
+            <td>Can the student justify every substantive ethical position in the application?</td>
+            <td>Pre-submission check: student explains risk identification, mitigation, and consent design in their own words.</td>
+          </tr>
+          <tr>
+            <td>6. Annual Progress Reports<br><span class="d-tag">Longitudinal Capability</span></td>
+            <td>Has scholarly understanding grown across the year? Has AI-assisted work been verified?</td>
+            <td>Targeted questions during the report review meeting: analytical decisions, specific findings, verification of AI-assisted sections.</td>
+          </tr>
+          <tr>
+            <td>7. Pre-Thesis Submission<br><span class="d-tag">Verification Assurance</span></td>
+            <td>Can the thesis survive random spot-checking of references, claims, and analysis?</td>
+            <td>Supervisor randomly selects references and claims and asks the student to verify against source material or dataset.</td>
+          </tr>
+          <tr>
+            <td>8. Informal Oral Defend<br><span class="d-tag">Final Assurance</span></td>
+            <td>Can the student account for the entire research process — AI contributions, verification decisions, and intellectual ownership?</td>
+            <td>Brief structured panel conversation: AI use across candidature, decisions that were entirely the student's own, response to examiner-style challenge.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 3 — STUDENT MODULE
+════════════════════════════════════════════════════ -->
+<div id="student">
+  <div class="cover cover-stu">
+    <div class="cover-tag">SAGE-R Framework · Student Module</div>
+    <div class="gold-rule"></div>
+    <h1>Using AI in Your Research<br><span>Without Losing Ownership</span></h1>
+    <p class="cover-sub">A practical guide for research higher degree candidates — what AI may assist with, what remains your responsibility, and how to Defend your work throughout the candidature.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><label>Audience</label><span>RHD Candidates — Doctoral and Masters by Research</span></div>
+      <div class="cover-meta-item"><label>Institution</label><span>CQUniversity Australia</span></div>
+      <div class="cover-meta-item"><label>Version</label><span>Working Draft · April 2026</span></div>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <div class="block">
+      <div class="section-label">The guiding idea</div>
+      <h2>One principle runs through everything</h2>
+
+      <p class="lead">AI assistance with labour is encouraged. AI substitution for scholarly judgement is not. Your role throughout is informed approval — reviewing, verifying, and owning what AI produces — not passive acceptance of its output.</p>
+
+      <p>A research higher degree requires you to identify a problem worth investigating, design a rigorous approach, gather and analyse evidence, and defend original conclusions. Generative AI can assist with many tasks involved in that process. What it cannot do is exercise the scholarly judgement that makes the process research. That remains your responsibility at every stage.</p>
+
+      <p>Defend — the expectation that you can explain, justify, and stand behind your work at any point in the candidature — is the mechanism through which that responsibility is made visible. Your supervisor will not ask which tool you used. They will ask whether you understand the work and can account for it.</p>
+
+      <div class="principle">
+        <div class="p-label">The student rule</div>
+        <p>If you cannot verify it, explain it, and Defend it — it is not ready to enter your research. <strong>Use AI for the labour. Own the reasoning. Review and approve, not accept and submit.</strong></p>
+      </div>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">Worked examples</div>
+      <h2>How SAGE-R applies to specific tasks</h2>
+
+      <!-- EXAMPLE 1 -->
+      <div class="example">
+        <div class="example-head">
+          <div class="ex-num">1</div>
+          <div class="ex-head-text">
+            <div class="e-tag">Finding and understanding literature</div>
+            <strong>Using AI to find and summarise a research paper</strong>
+          </div>
+        </div>
+        <div class="example-body">
+          <p>AI tools can help identify relevant papers and produce initial summaries of their content, saving considerable time in the early stages of a review. However, AI-generated summaries frequently contain errors — incorrect sample sizes, misattributed findings, fabricated statistics, and oversimplified interpretations are common. A summary you cannot verify is a liability, not an asset.</p>
+          <div class="step-row"><div class="step-dot">1</div><p><strong>Use AI to produce an initial summary</strong> covering the research question, methodology, sample size, main findings, and stated limitations.</p></div>
+          <div class="step-row"><div class="step-dot">2</div><p><strong>Randomly select at least three specific facts</strong> — sample size, the statistical test used, a key finding, a stated limitation — and verify each one in the actual paper before using the summary.</p></div>
+          <div class="step-row"><div class="step-dot">3</div><p><strong>If any detail is wrong, do not use the summary.</strong> Identify precisely what the AI misrepresented. Either read the relevant section and write your own notes, or paste the exact text from the paper into the tool and ask it to correct the summary based only on that passage. Repeat the verification step.</p></div>
+          <div class="step-row"><div class="step-dot">4</div><p><strong>The verified summary informs your own writing.</strong> It does not enter your thesis directly.</p></div>
+          <div class="defend-check">
+            <div class="dc-label">Defend check</div>
+            <p>Your supervisor may select any paper from your literature and ask you to describe its methodology and findings. If you can do this — including what the AI got wrong and how you corrected it — the process has worked as intended.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 2 -->
+      <div class="example">
+        <div class="example-head">
+          <div class="ex-num">2</div>
+          <div class="ex-head-text">
+            <div class="e-tag">Writing from the literature</div>
+            <strong>Using AI to help write the literature review</strong>
+          </div>
+        </div>
+        <div class="example-body">
+          <p>AI may assist with the prose of a literature review, but only for sources you have already screened, read, and understood. The literature review must reflect your scholarly judgement about what is relevant, how sources relate to one another, and what the field has and has not established. That judgement is the intellectual contribution the section is required to demonstrate.</p>
+          <div class="step-row"><div class="step-dot">1</div><p><strong>Screen and select your sources yourself.</strong> You decide what is included and why. AI may assist with database searches and initial filtering, but inclusion decisions are yours.</p></div>
+          <div class="step-row"><div class="step-dot">2</div><p><strong>Read the papers you intend to include.</strong> Apply the source summarisation process above. You must be able to explain what each source contributes and why it belongs.</p></div>
+          <div class="step-row"><div class="step-dot">3</div><p><strong>Prepare your own analytical notes</strong> identifying the themes, debates, gaps, and connections you intend to discuss. These are yours.</p></div>
+          <div class="step-row"><div class="step-dot">4</div><p><strong>AI may help convert your notes into prose</strong> using the Boundary Prompt Mechanism in Example 3. The output must not introduce claims or connections beyond what your notes established.</p></div>
+          <div class="warning-band">
+            <div class="w-label">Important</div>
+            <p>Your supervisor may randomly select five references from your literature review and ask you to justify why each is included and what specific point it supports. If any reference was inserted by AI without your verification, this will be evident.</p>
+          </div>
+          <div class="defend-check">
+            <div class="dc-label">Defend check</div>
+            <p>Can you explain the thematic structure of your review, identify the key debates in the field, and justify the inclusion of any specific source without reading from AI-produced prose?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 3: BOUNDARY PROMPT -->
+      <div class="example">
+        <div class="example-head">
+          <div class="ex-num">3</div>
+          <div class="ex-head-text">
+            <div class="e-tag">The Boundary Prompt Mechanism</div>
+            <strong>Using AI to convert your dot points into research prose</strong>
+          </div>
+        </div>
+        <div class="example-body">
+          <p>The Boundary Prompt Mechanism is the recommended approach whenever AI assists with writing any section of your thesis. Your reasoning, evidence, and conclusions are established first — in your own notes — and AI is constrained to prose conversion only. The tool expresses your thinking; it does not generate new thinking.</p>
+          <div class="step-row"><div class="step-dot">1</div><p><strong>Write your own dot points first.</strong> Include every claim you intend to make, the evidence that supports each one, the logical connections, and any qualifications. The depth of these notes determines the quality and accuracy of the output.</p></div>
+          <div class="step-row"><div class="step-dot">2</div><p><strong>Construct a boundary prompt</strong> that explicitly instructs the tool not to add new claims, references, findings, or inferential steps beyond what you have provided.</p></div>
+          <div class="step-row"><div class="step-dot">3</div><p><strong>Read the output closely.</strong> Check whether the AI has introduced additional claims, strengthened your qualifications, inserted new references, or drawn inferences you did not intend. These are common and must be removed.</p></div>
+          <div class="step-row"><div class="step-dot">4</div><p><strong>Revise and own the final version.</strong> The text that enters your thesis must be one you fully endorse and can Defend.</p></div>
+          <div class="boundary-box">
+            <div class="bp-label">Boundary Prompt Template</div>
+            <div class="bp-template">"Write the following section using only the points and evidence listed below. Do not add new claims, introduce additional references, draw conclusions beyond what the points establish, or strengthen any qualification I have expressed. Maintain the logical sequence as given. Use formal academic prose appropriate to a doctoral thesis."<br><br>[Your dot points here]</div>
+            <p style="font-size:0.87rem; color:var(--muted); margin-top:9px; margin-bottom:0;">After receiving the output: highlight any sentence that introduces something not present in your dot points and remove or rewrite it.</p>
+          </div>
+          <div class="defend-check">
+            <div class="dc-label">Defend check</div>
+            <p>Can you show your original dot points and demonstrate that the final prose did not extend beyond them? Can you explain every claim in the section and identify the evidence that supports it?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 4 -->
+      <div class="example">
+        <div class="example-head">
+          <div class="ex-num">4</div>
+          <div class="ex-head-text">
+            <div class="e-tag">Discipline methods support</div>
+            <strong>Using AI for coding, experiments, and discipline-specific methods</strong>
+          </div>
+        </div>
+        <div class="example-body">
+          <p>Research involves substantial technical execution tasks that are not in themselves knowledge contributions. Writing and debugging code, constructing simulation models, designing laboratory protocols, producing circuit diagrams, building survey instruments, generating patient assessment frameworks, and constructing financial models all involve labour that AI can assist with effectively. SAGE-R encourages this assistance across all disciplines. The requirement is that you understand what the tool has produced and can explain and justify every methodological decision it embodies.</p>
+          <div class="analogy-split">
+            <div class="analogy-card green">
+              <div class="a-label">What AI assistance with methods looks like</div>
+              <p>A social science student uses AI to generate an interview guide from their research questions. An engineering student uses AI to debug a simulation script. A nursing student uses AI to structure a systematic review protocol. A business student uses AI to generate initial survey items from their theoretical framework.</p>
+            </div>
+            <div class="analogy-card amber">
+              <div class="a-label">What you must own</div>
+              <p>The methodological rationale — why this approach, why these questions, why this design. AI can produce an interview guide; it cannot decide whether semi-structured interviews are the appropriate method for your research question. That decision is entirely yours.</p>
+            </div>
+          </div>
+          <div class="defend-check">
+            <div class="dc-label">Defend check</div>
+            <p>Your supervisor will not ask which tool you used. They will ask you to explain what the code or protocol does, why it is designed that way, and what would change if a specific design decision were altered.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 5 -->
+      <div class="example">
+        <div class="example-head">
+          <div class="ex-num">5</div>
+          <div class="ex-head-text">
+            <div class="e-tag">Analysis and findings</div>
+            <strong>Using AI to assist with data analysis and results interpretation</strong>
+          </div>
+        </div>
+        <div class="example-body">
+          <p>Statistical and analytical software has been central to research for decades. Running a t-test, ANOVA, regression, or thematic coding procedure in SPSS, R, NVivo, or Python does not make analysis less rigorous — the tool applies established procedures to your data and you interpret the result. Using AI to assist with analysis occupies essentially the same position, with one important difference that defines your obligation under SAGE-R.</p>
+          <div class="analogy-split">
+            <div class="analogy-card green">
+              <div class="a-label">The similarity to SPSS</div>
+              <p>Statistical software applies a mathematical formula without error. You are responsible for choosing the right test, checking assumptions, and interpreting the result — the tool handles the calculation. AI can similarly execute analytical procedures on a dataset and produce output you then interpret.</p>
+            </div>
+            <div class="analogy-card amber">
+              <div class="a-label">The critical difference</div>
+              <p>Unlike a formula, AI may introduce errors, omit relevant patterns, apply silent assumptions, or produce plausible-sounding interpretations that are statistically or contextually wrong. You cannot trust a result because it looks reasonable. You must verify that it is correct.</p>
+            </div>
+          </div>
+          <div class="step-row" style="margin-top:16px;"><div class="step-dot">1</div><p><strong>You decide the analytical approach.</strong> The choice of test, coding strategy, or analytical framework is a methodological decision that must precede and remain independent of AI assistance.</p></div>
+          <div class="step-row"><div class="step-dot">2</div><p><strong>Use AI to assist with execution</strong> — running the analysis, producing visualisations, organising output, and generating a first-pass interpretation.</p></div>
+          <div class="step-row"><div class="step-dot">3</div><p><strong>Scrutinise the output for four specific risks:</strong> factual errors in the numbers; patterns that have been overlooked; assumptions about your data the tool applied without stating; and interpretations that reflect training data rather than your specific research context.</p></div>
+          <div class="step-row"><div class="step-dot">4</div><p><strong>The interpretation and its justification are yours.</strong> AI may produce a plausible narrative of your results. You must determine whether that narrative is accurate and appropriate to your context before it enters your thesis.</p></div>
+          <div class="defend-check">
+            <div class="dc-label">Defend check</div>
+            <p>In your progress meeting, your supervisor may ask you to walk through a specific finding: why you chose the analytical method, what the result shows, what alternative explanations exist, and what the result does not show.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 6 -->
+      <div class="example">
+        <div class="example-head">
+          <div class="ex-num">6</div>
+          <div class="ex-head-text">
+            <div class="e-tag">Discussion, implications, and recommendations</div>
+            <strong>Using AI in the interpretive and contribution sections</strong>
+          </div>
+        </div>
+        <div class="example-body">
+          <p>These sections are where your original contribution is most visible. They require you to synthesise your findings with the existing literature, identify what your study adds to or challenges in the field, acknowledge limitations honestly, and draw conclusions proportionate to your evidence. AI may assist with drafting using the Boundary Prompt Mechanism, but four verification responsibilities apply here that do not apply to more procedural sections.</p>
+          <div class="step-row"><div class="step-dot">1</div><p><strong>Verify against overgeneralisation.</strong> AI-generated discussion prose frequently overstates significance or suppresses qualifications. Check every claim against your actual results and ask whether the strength of the language is justified.</p></div>
+          <div class="step-row"><div class="step-dot">2</div><p><strong>Check for cultural and contextual assumptions.</strong> AI tools may embed assumptions drawn from international contexts that do not reflect your study's setting — a healthcare recommendation grounded in US or European practice may not apply to the Australian or regional context your research addresses. Identify and correct these mismatches.</p></div>
+          <div class="step-row"><div class="step-dot">3</div><p><strong>Confirm every implication is grounded in your study.</strong> AI may generate plausible implications relevant to your topic but not supported by your specific findings. Every recommendation must be traceable to a result or pattern in your data.</p></div>
+          <div class="step-row"><div class="step-dot">4</div><p><strong>Apply your domain knowledge.</strong> Your understanding of the context in which the study was conducted, and your familiarity with the practical environment your recommendations address, are not things AI possesses. They are what make the discussion an original scholarly contribution.</p></div>
+          <div class="defend-check">
+            <div class="dc-label">Defend check</div>
+            <p>An examiner may challenge any recommendation by asking: what specific finding supports this, how does it fit the existing literature, and what are its limitations in your specific context?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 7 -->
+      <div class="example">
+        <div class="example-head">
+          <div class="ex-num">7</div>
+          <div class="ex-head-text">
+            <div class="e-tag">Reference management</div>
+            <strong>Using AI to manage and generate references</strong>
+          </div>
+        </div>
+        <div class="example-body">
+          <p>Reference management software such as Endnote, Zotero, and Mendeley has automated reference formatting and insertion for many years. AI assistance with reference management occupies the same functional category — it is a productivity tool that handles a mechanical task, and SAGE-R encourages its use for the same reason it encourages Endnote. Formatting references manually is not a research skill. Verifying that references are accurate is.</p>
+          <p>AI carries one additional and significant risk that reference management software does not: it will generate plausible-looking but entirely fabricated references. A paper with a convincing title, plausible authors, and a real journal name may simply not exist. Verification in this area is absolute.</p>
+          <div class="step-row"><div class="step-dot">1</div><p><strong>Use AI or reference software freely for formatting, organising, and inserting references.</strong> This is administrative labour and an appropriate use of any available tool.</p></div>
+          <div class="step-row"><div class="step-dot">2</div><p><strong>Verify every AI-generated reference against a primary source.</strong> Search for the paper in Google Scholar, Scopus, Web of Science, or the publisher's site. Confirm it exists and that the details are correct. This is not optional.</p></div>
+          <div class="step-row"><div class="step-dot">3</div><p><strong>Never cite a source you cannot locate.</strong> If the paper does not appear in a reputable database, the reference must be removed regardless of how plausible it appears.</p></div>
+          <div class="warning-band">
+            <div class="w-label">Note for supervisors</div>
+            <p>AI tools can be used to check for hallucinated references in student submissions by searching cited papers systematically across academic databases. This is a legitimate and efficient use of AI in the supervisory process and is consistent with SAGE-R's approach to verification.</p>
+          </div>
+          <div class="defend-check">
+            <div class="dc-label">Defend check</div>
+            <p>Your supervisor or examiner may select any reference and ask you to locate the source and confirm the accuracy of your citation. If every reference has been verified, this presents no difficulty.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">Quick reference</div>
+      <h2>What AI may help with — and what remains yours</h2>
+
+      <table class="sum-table">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>AI assistance</th>
+            <th>Your responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Administrative tasks<br>(Gantt charts, slides, forms)</td>
+            <td class="allowed">Encouraged</td>
+            <td>Review and approve every element. Confirm dates, tasks, and details are accurate.</td>
+          </tr>
+          <tr>
+            <td>Source identification and summarisation</td>
+            <td class="allowed">Encouraged with verification</td>
+            <td>Verify specific facts from every AI-generated summary against the actual paper before use.</td>
+          </tr>
+          <tr>
+            <td>Literature review writing</td>
+            <td class="caution">Permitted via Boundary Prompt</td>
+            <td>All sources selected and read by you. Analytical structure is yours. Verify no new claims were introduced.</td>
+          </tr>
+          <tr>
+            <td>Research writing (any section)</td>
+            <td class="caution">Permitted via Boundary Prompt</td>
+            <td>Your dot points establish reasoning and evidence. AI converts to prose only. Every claim must trace to your notes.</td>
+          </tr>
+          <tr>
+            <td>Coding, protocols, instruments, models</td>
+            <td class="allowed">Encouraged with review</td>
+            <td>You decide the methodological approach. Review all outputs for errors and unintended assumptions.</td>
+          </tr>
+          <tr>
+            <td>Data analysis and results</td>
+            <td class="caution">Permitted with scrutiny</td>
+            <td>You choose the analytical method. Scrutinise output for errors, omissions, contextual assumptions, and overstatements.</td>
+          </tr>
+          <tr>
+            <td>Discussion, implications, recommendations</td>
+            <td class="caution">Permitted with four-point verification</td>
+            <td>Check for overgeneralisation, cultural assumptions, unsupported claims, and loss of domain-specific nuance.</td>
+          </tr>
+          <tr>
+            <td>Ethics application</td>
+            <td class="caution">Permitted for procedural elements</td>
+            <td>Every ethical judgment must be yours. AI may assist with form structure and language only.</td>
+          </tr>
+          <tr>
+            <td>References and citations</td>
+            <td class="allowed">Encouraged for formatting</td>
+            <td>Every AI-generated reference must be verified against a primary source. Never cite a paper you cannot locate.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="thin" />
+
+    <div class="block">
+      <div class="section-label">Closing</div>
+      <h2>What your supervisor and examiners will ask</h2>
+
+      <p>No supervisor or examiner under SAGE-R will ask which AI tool you used or whether you used one. They will ask questions that have always been the measure of a research higher degree candidate: do you understand your field, do you own your methodology, can you explain and Defend your findings, and do your conclusions follow from your evidence?</p>
+
+      <p>AI has changed how research work is done — just as statistical software, reference management tools, and electronic databases changed how research work was done before it. What AI has not changed is what research requires of the researcher. SAGE-R helps you meet that requirement with confidence.</p>
+
+      <div class="principle">
+        <div class="p-label">What SAGE-R asks of you</div>
+        <p>Use AI for the labour. <strong>Own the reasoning.</strong> Review and approve rather than accept and submit. Be ready, at every stage of your candidature, to explain what you did, what you checked, what the tool got wrong, and why the work you are presenting is genuinely yours.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <strong>SAGE-R Framework</strong> · CQUniversity Australia · Working Draft April 2026<br>
+  Dr Mahmoud Elkhodr &amp; Professor Ergun Gide · Built on the SAGE Framework · sage-framework.com
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('pendulumChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const techData = [
+    { year: '1450', label: 'Press',   resistance: 85 },
+    { year: '1940', label: 'Pen',     resistance: 45 },
+    { year: '1975', label: 'Calc',    resistance: 95 },
+    { year: '1985', label: 'PC',      resistance: 65 },
+    { year: '1998', label: 'Google',  resistance: 80 },
+    { year: '2005', label: 'Wiki',    resistance: 90 },
+    { year: '2015', label: 'Phone',   resistance: 85 },
+    { year: '2024', label: 'Gen AI',  resistance: 100 }
+  ];
+
+  const grad = ctx.createLinearGradient(0, 0, 0, 190);
+  grad.addColorStop(0,   'rgba(15, 34, 65, 0.10)');
+  grad.addColorStop(0.6, 'rgba(184,150,62, 0.04)');
+  grad.addColorStop(1,   'rgba(255,255,255,0)');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: techData.map(d => d.year),
+      datasets: [{
+        data: techData.map(d => d.resistance),
+        borderColor: '#0f2241',
+        borderWidth: 2,
+        fill: true,
+        backgroundColor: grad,
+        tension: 0.4,
+        pointRadius: 5,
+        pointBackgroundColor: techData.map(d => d.resistance >= 90 ? '#ef4444' : '#b8963e'),
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      events: [],
+      plugins: {
+        legend:  { display: false },
+        tooltip: { enabled: false }
+      },
+      scales: {
+        y: {
+          min: 0, max: 110,
+          title: {
+            display: true,
+            text: 'Resistance Level (%)',
+            font: { size: 8, weight: '700', family: 'Source Serif 4, Georgia, serif' },
+            color: '#5a6a7a'
+          },
+          ticks: {
+            callback: v => v + '%',
+            font: { size: 9 },
+            color: '#9aabb8',
+            stepSize: 25
+          },
+          grid: { color: '#f3f0ea' }
+        },
+        x: {
+          grid: { display: false },
+          ticks: {
+            font: { size: 9, weight: '700', family: 'Source Serif 4, Georgia, serif' },
+            color: '#5a6a7a'
+          }
+        }
+      }
+    },
+    plugins: [{
+      afterDraw: chart => {
+        const { ctx: c, scales: { x, y } } = chart;
+        c.save();
+        c.textAlign = 'center';
+        c.font = 'bold 8.5px "Source Serif 4", Georgia, serif';
+        techData.forEach((d, i) => {
+          c.fillStyle = d.resistance >= 90 ? '#ef4444' : '#0f2241';
+          const px = x.getPixelForValue(chart.data.labels[i]);
+          const py = y.getPixelForValue(d.resistance) - 13;
+          c.fillText(d.label, px, py);
+        });
+        c.restore();
+      }
+    }]
+  });
+})();
+</script>
+</body>
+</html>

@@ -629,7 +629,7 @@ function SAGEDefendDashboard() {
 
     if (pv.notes) w.document.write(`<div class="step"><div class="step-title">Additional Notes</div><div class="step-body">${pv.notes}</div></div>`);
 
-    w.document.write(`<div class="footer">SAGE Assurance Guidance Tool · Elkhodr & Gide (2026) · Central Queensland University<br/>Companion resource: <em>Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment</em>, Journal of University Teaching and Learning Practice.<br/>Implementation guide: Elkhodr, M. & Gide, E. (2026). <em>Embedding Generative AI in Curriculum: The SAGE Framework and Evidence-Based Implementation Guide</em>. Zenodo. DOI: 10.5281/zenodo.18295619</div>`);
+    w.document.write(`<div class="footer">SAGE Assurance Guidance Tool · Elkhodr & Gide (2026) · Central Queensland University<br/>Companion resource: <em>Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment</em>.<br/>Implementation guide: Elkhodr, M. & Gide, E. (2026). <em>Embedding Generative AI in Curriculum: The SAGE Framework and Evidence-Based Implementation Guide</em>. Zenodo. DOI: 10.5281/zenodo.18295619</div>`);
     w.document.write(`</body></html>`);
     w.document.close();
     w.print();
@@ -659,7 +659,7 @@ function SAGEDefendDashboard() {
                 <p style={{ color: "#a7c4b5", fontSize: "13px", margin: "1px 0 0 0", fontWeight: 600 }}>SAGE Assurance Guidance Tool</p>
               </div>
             </div>
-            <img src="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-australia-logo.svg" alt="CQUniversity Australia" style={{ height: "30px", filter: "brightness(0) invert(1)", opacity: 0.85 }} onError={(e) => { e.target.style.display = "none"; }} />
+         
           </div>
         </div>
       </div>
@@ -696,16 +696,11 @@ function SAGEDefendDashboard() {
                 <p style={{ fontSize: "9px", color: "#6ee7b7", margin: 0, textAlign: "center", fontWeight: 600 }}>Steps 1–5: Structured AI-Guided Learning</p>
               </div>
               <div style={{ flex: 1, background: "rgba(196,77,63,0.2)", borderRadius: "4px", padding: "4px 8px" }}>
-                <p style={{ fontSize: "9px", color: "#f8a49c", margin: 0, textAlign: "center", fontWeight: 600 }}>Assurance</p>
+                <p style={{ fontSize: "9px", color: "#f8a49c", margin: 0, textAlign: "center", fontWeight: 600 }}>Step 6: Assurance</p>
               </div>
             </div>
             <div style={{ display: "flex", maxWidth: "680px", margin: "4px auto 0", gap: "4px" }}>
-              <div style={{ flex: 5 }}>
-                <p style={{ fontSize: "8px", color: "#6a8a7a", margin: 0, textAlign: "center", fontWeight: 600, letterSpacing: "0.05em" }}>TEQSA Lane 2 — Open, AI-integrated</p>
-              </div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: "8px", color: "#c44d3f", margin: 0, textAlign: "center", fontWeight: 600, letterSpacing: "0.05em" }}>Lane 1</p>
-              </div>
+             
             </div>
           </div>
 
@@ -737,12 +732,12 @@ function SAGEDefendDashboard() {
               </div>
             </div>
 
-            {/* RIGHT: TEQSA + tool purpose with CTA */}
+           {/* RIGHT: Hybrid assurance + tool purpose with CTA */}
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div style={{ background: "#e8f5ee", border: "1px solid #b7d9c4", borderRadius: "14px", padding: "20px" }}>
-                <h3 style={{ fontSize: "12px", fontWeight: 700, color: "#1a3a2a", margin: "0 0 8px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>Alignment with TEQSA Guidance</h3>
+                <h3 style={{ fontSize: "12px", fontWeight: 700, color: "#1a3a2a", margin: "0 0 8px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>AI-Integrated Assessment with Built-In Assurance</h3>
                 <p style={{ fontSize: "12px", color: "#2d6a4f", lineHeight: 1.55, margin: 0 }}>
-                  TEQSA's <em>Enacting Assessment Reform in a Time of Artificial Intelligence</em> (2025) identifies two assessment lanes: <strong>Lane 1</strong> (supervised, AI-restricted, verifying attainment) and <strong>Lane 2</strong> (open, AI-integrated, developing capability). SAGE integrates both lanes within a single pedagogical sequence — Steps 1–5 constitute the open lane where students develop capability through guided AI interaction, and Step 6 constitutes the secure lane where individual attainment is verified under supervised conditions. This eliminates the need for separate assessment instruments for each lane.
+                  Hybrid assessment models combine open, AI-integrated tasks for capability development with supervised checkpoints for individual verification. SAGE is structured to operationalise both functions within a single pedagogical sequence — Steps 1–5 constitute the open capability-development phase where students engage with AI in a structured and accountable way, and Step 6 constitutes the supervised assurance phase where each student demonstrates individual understanding under controlled conditions. This eliminates the need for separate assessment instruments to serve each function.
                 </p>
               </div>
 
@@ -765,13 +760,15 @@ function SAGEDefendDashboard() {
               </div>
             </div>
           </div>
-
-          {/* Understated provenance line */}
+     
+        {/* Understated provenance line */}
           <p style={{ fontSize: "11px", color: "#6a6a6a", textAlign: "center", margin: 0, lineHeight: 1.5 }}>
-            Developed at Central Queensland University. Based on eight empirical studies involving over 800 students across multiple Australian campuses.
+            Developed at Central Queensland University (17 March 2026). Based on eight empirical studies involving over 800 students across multiple Australian campuses.
+         Disclaimer: This website presents independent scholarly resources developed by the authors. It is not an official CQUniversity or TEQSA publication.
           </p>
         </div>
       )}
+          
 
       {/* TABS + CONTENT — only shown after welcome dismissed */}
       {!showWelcome && (<>
@@ -1396,7 +1393,7 @@ function SAGEDefendDashboard() {
               </a>
               <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px", textDecoration: "none", display: "block" }}>
                 <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>Implementation Guide (Version 2)</p>
-                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>Concise practitioner reference introducing the Defend step and TEQSA alignment.</p>
+                <p style={{ fontSize: "11px", color: "#64748b", margin: 0 }}>Concise practitioner reference introducing the Defend step</p>
               </a>
               <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "10px", padding: "14px 16px" }}>
                 <p style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", margin: "0 0 4px 0" }}>SAGE 2026 International Symposium</p>
@@ -1416,10 +1413,9 @@ function SAGEDefendDashboard() {
             <div style={{ background: "#1b4332", borderRadius: "14px", padding: "24px", marginBottom: "16px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "20px" }}>
                 <div>
-                  <img src="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-australia-logo.svg" alt="CQUniversity Australia" style={{ height: "36px", marginBottom: "10px", filter: "brightness(0) invert(1)" }} onError={(e) => { e.target.style.display = "none"; }} />
-                  <p style={{ fontSize: "11px", color: "#94a3b8", margin: "0 0 4px 0" }}>Central Queensland University (trading as CQUniversity Australia)</p>
-                  <p style={{ fontSize: "10px", color: "#64748b", margin: 0 }}>Sydney Campus · 400 Kent Street, Sydney NSW 2000</p>
-                  <p style={{ fontSize: "10px", color: "#64748b", margin: "2px 0 0 0" }}>ABN: 39 181 103 288 · CRICOS: 00219C · TEQSA: PRV12073</p>
+                  <p style={{ fontSize: "11px", color: "#94a3b8", margin: "0 0 4px 0" }}> Dr Mahmoud Elkhodr and Prof Ergun Gide</p>
+                  <p style={{ fontSize: "10px", color: "#64748b", margin: 0 }}>Central Queensland University (trading as CQUniversity Australia)</p>
+                  <p style={{ fontSize: "10px", color: "#64748b", margin: "2px 0 0 0" }}>Sydney Australia</p>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <p style={{ fontSize: "10px", color: "#64748b", margin: 0 }}>© 2026 Central Queensland University. All rights reserved.</p>
@@ -1434,7 +1430,7 @@ function SAGEDefendDashboard() {
                 <strong>Suggested Citation:</strong> Elkhodr, M. & Gide, E. (2026). <em>SAGE Assurance Guidance Tool</em>. Central Queensland University.
               </p>
               <p style={{ fontSize: "10px", color: "#cbd5e1", margin: "0 0 4px 0" }}>
-                Companion resource for: Elkhodr, M. & Gide, E. (2026). Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment. <em>Journal of University Teaching and Learning Practice</em>.
+                Companion resource for: Elkhodr, M. & Gide, E. (2026). Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment.
               </p>
               <p style={{ fontSize: "10px", color: "#cbd5e1", margin: 0 }}>
                 SAGE Framework DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" style={{ color: "#94a3b8" }}>10.5281/zenodo.18383951</a>
