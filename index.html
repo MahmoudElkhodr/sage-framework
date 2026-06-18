@@ -816,6 +816,39 @@
       margin-bottom: 1.75rem;
     }
 
+    .publication-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .publication-item {
+      display: grid;
+      grid-template-columns: 1.5rem minmax(0, 1fr);
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    .publication-number {
+      color: var(--sage-light);
+      font-weight: 700;
+    }
+
+    .publication-citation {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .publication-citation a {
+      color: var(--sage-light);
+      white-space: nowrap;
+    }
+
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1415,15 +1448,15 @@
     <!-- Publication list -->
     <div style="grid-column: 1 / -1; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
       <h3 style="font-family:'Fraunces',Georgia,serif; font-size:1.15rem; font-weight:400; color:var(--white); margin-bottom:1.25rem;">Core publications</h3>
-      <ol style="list-style:none; counter-reset:pub; display:flex; flex-direction:column; gap:0.7rem; padding:0; margin:0;">
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">1.</span>M. Elkhodr, E. Gide, R. Wu, and O. Darwish, “ICT students’ perceptions towards ChatGPT: An experimental reflective lab analysis,” <em>STEM Education</em>, vol. 3, no. 2, pp. 70–88, 2023. <a href="https://doi.org/10.3934/steme.2023006" target="_blank" rel="noopener" style="color:var(--sage-light);">DOI</a></li>
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">2.</span>R. Sandu, E. Gide, and M. Elkhodr, “The role and impact of ChatGPT in educational practices: Insights from an Australian higher education case study,” <em>Discover Education</em>, vol. 3, no. 1, art. 71, 2024. <a href="https://doi.org/10.1007/s44217-024-00126-6" target="_blank" rel="noopener" style="color:var(--sage-light);">DOI</a></li>
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">3.</span>M. Elkhodr and E. Gide, “The SAGE framework for developing critical thinking and responsible generative AI use in cybersecurity education,” <em>Discover Education</em>, vol. 4, art. 225, Nov. 2025. <a href="https://doi.org/10.1007/s44217-025-00935-3" target="_blank" rel="noopener" style="color:var(--sage-light);">DOI</a></li>
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">4.</span>M. Elkhodr and E. Gide, “AI Leads, Humans Lead, or Collaborate? Empirical Findings and the SAGE Roadmap for Embedding GenAI in the Systems Analysis and Design Education,” <em>STEM Education</em>, accepted Feb. 2026. <a href="https://doi.org/10.3934/steme.2026009" target="_blank" rel="noopener" style="color:var(--sage-light);">DOI</a></li>
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">5.</span>M. Elkhodr and E. Gide, “AI as Critic: Validating SAGE Pedagogy for Human Authority and Responsible GenAI Use in Systems Analysis and Design Education,” <em>EdArXiv Preprints</em>, 2025. <a href="https://osf.io/preprints/edarxiv/8j3xf" target="_blank" rel="noopener" style="color:var(--sage-light);">Preprint</a></li>
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">6.</span>M. Elkhodr, A. Azra, and E. Gide, “How First-Year Students Actually Use ChatGPT in Permitted Assessments: Empirical Typologies, Verification Gaps, and the Policy-Practice Divide,” submitted to <em>Discover Education</em>, 2026. <a href="https://doi.org/10.21203/rs.3.rs-8628653/v1" target="_blank" rel="noopener" style="color:var(--sage-light);">Preprint</a></li>
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">7.</span>M. Elkhodr and E. Gide, “The Death of Take-Home Assessment in the Era of GenAI: Here Is the Evidence,” submitted to <em>STEM Education</em>, 2026.</li>
-        <li style="counter-increment:pub; display:flex; gap:0.75rem; font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6;"><span style="color:var(--sage-light); font-weight:700; flex-shrink:0;">8.</span>M. Elkhodr and E. Gide, “Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment,” <em>Journal of University Teaching and Learning Practice</em>, 2026.</li>
+      <ol class="publication-list">
+        <li class="publication-item"><span class="publication-number">1.</span><span class="publication-citation">M. Elkhodr, E. Gide, R. Wu, and O. Darwish, “ICT students’ perceptions towards ChatGPT: An experimental reflective lab analysis,” <em>STEM Education</em>, vol. 3, no. 2, pp. 70–88, 2023. <a href="https://doi.org/10.3934/steme.2023006" target="_blank" rel="noopener">DOI</a></span></li>
+        <li class="publication-item"><span class="publication-number">2.</span><span class="publication-citation">R. Sandu, E. Gide, and M. Elkhodr, “The role and impact of ChatGPT in educational practices: Insights from an Australian higher education case study,” <em>Discover Education</em>, vol. 3, no. 1, art. 71, 2024. <a href="https://doi.org/10.1007/s44217-024-00126-6" target="_blank" rel="noopener">DOI</a></span></li>
+        <li class="publication-item"><span class="publication-number">3.</span><span class="publication-citation">M. Elkhodr and E. Gide, “The SAGE framework for developing critical thinking and responsible generative AI use in cybersecurity education,” <em>Discover Education</em>, vol. 4, art. 225, Nov. 2025. <a href="https://doi.org/10.1007/s44217-025-00935-3" target="_blank" rel="noopener">DOI</a></span></li>
+        <li class="publication-item"><span class="publication-number">4.</span><span class="publication-citation">M. Elkhodr and E. Gide, “AI leads, humans lead, or collaborate? Empirical findings and the SAGE roadmap for embedding GenAI in systems analysis and design education,” <em>STEM Education</em>, vol. 6, no. 2, pp. 194–229, 2026. <a href="https://doi.org/10.3934/steme.2026009" target="_blank" rel="noopener">DOI</a></span></li>
+        <li class="publication-item"><span class="publication-number">5.</span><span class="publication-citation">M. Elkhodr and E. Gide, “From Permission to Pedagogy: The Structured AI-Guided Education Assessment Policy (SAGE-AP) for Generative AI in Higher Education,” <em>Education Sciences</em>, accepted for publication 17 June 2026.</span></li>
+        <li class="publication-item"><span class="publication-number">6.</span><span class="publication-citation">M. Elkhodr and E. Gide, “Embedding assurance within learning: Empirical evidence from the SAGE framework for repositioning take-home assessment in AI-integrated higher education,” <em>STEM Education</em>, vol. 6, no. 4, pp. 584–605, 2026.</span></li>
+        <li class="publication-item"><span class="publication-number">7.</span><span class="publication-citation">M. Elkhodr and E. Gide, “AI as Critic: Validating SAGE Pedagogy for Human Authority and Responsible GenAI Use in Systems Analysis and Design Education,” <em>EdArXiv Preprints</em>, 2025. <a href="https://osf.io/preprints/edarxiv/8j3xf" target="_blank" rel="noopener">Preprint</a></span></li>
+        <li class="publication-item"><span class="publication-number">8.</span><span class="publication-citation">M. Elkhodr, A. Azra, and E. Gide, “How First-Year Students Actually Use ChatGPT in Permitted Assessments: Empirical Typologies, Verification Gaps, and the Policy-Practice Divide,” submitted to <em>Discover Education</em>, 2026. <a href="https://doi.org/10.21203/rs.3.rs-8628653/v1" target="_blank" rel="noopener">Preprint</a></span></li>
       </ol>
     </div>
 
