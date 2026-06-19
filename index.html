@@ -176,15 +176,14 @@
     .hero {
       max-width: 1160px;
       margin: 0 auto;
-      padding: 5.5rem 2rem 5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-      min-height: 80vh;
+      padding: 3.75rem 2rem 2.75rem;
     }
 
-    .hero-left {}
+    .hero-left {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -228,21 +227,22 @@
     .hero-subtitle {
       font-size: 1rem;
       color: var(--muted);
-      max-width: 420px;
+      max-width: 680px;
       line-height: 1.75;
-      margin-bottom: 1rem;
+      margin: 0 auto 1rem;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.3s;
     }
 
     .hero-scope {
-      max-width: 420px;
-      margin-bottom: 2.5rem;
+      max-width: 720px;
+      margin: 0 auto 2rem;
       padding-left: 1rem;
       border-left: 2px solid var(--sage-light);
       color: var(--slate);
       font-size: 0.82rem;
       line-height: 1.65;
+      text-align: left;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.35s;
     }
@@ -250,23 +250,23 @@
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 0.75rem;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.4s;
     }
 
-    /* ─── HERO RIGHT: CYCLE ─── */
-    .hero-right {
-      opacity: 0;
-      animation: fadeUp 0.8s ease forwards 0.35s;
-    }
-
+    /* ─── CYCLE CARD ─── */
     .cycle-card {
       background: var(--white);
       border: 1px solid var(--rule);
       border-radius: 20px;
       padding: 2rem;
       box-shadow: var(--shadow-md);
+    }
+
+    .cycle-card-lead {
+      margin-bottom: 2rem;
     }
 
     .cycle-card-label {
@@ -415,27 +415,25 @@
       line-height: 1.4;
     }
 
-    .teqsa-inline-text strong {
-      color: var(--forest);
-      font-weight: 600;
-    }
-
     /* ─── SAGE ECOSYSTEM ─── */
     .ecosystem-section {
-      padding: 4.5rem 2rem;
+      padding: 3rem 2rem 4rem;
       background: var(--white);
       border-top: 1px solid var(--rule);
       border-bottom: 1px solid var(--rule);
     }
 
     .ecosystem-inner {
-      max-width: 1160px;
+      max-width: 1040px;
       margin: 0 auto;
     }
 
     .ecosystem-heading {
       margin-bottom: 2.5rem;
+      text-align: center;
     }
+
+    .ecosystem-heading .section-label { justify-content: center; }
 
     .ecosystem-diagram {
       display: block;
@@ -779,6 +777,12 @@
       gap: 1.1rem;
     }
 
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+    }
+
     .card {
       background: var(--white);
       border: 1px solid var(--rule);
@@ -820,38 +824,6 @@
       color: var(--muted);
       line-height: 1.7;
     }
-
-    .teqsa-card {
-      grid-column: 1 / -1;
-      background: var(--sage-pale);
-      border-color: #c2ddd0;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 1.25rem 1.75rem;
-      border-radius: 12px;
-    }
-
-    .teqsa-badge {
-      flex-shrink: 0;
-      background: var(--forest);
-      color: var(--white);
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.75rem;
-      border-radius: 5px;
-      white-space: nowrap;
-    }
-
-    .teqsa-text {
-      font-size: 0.9rem;
-      color: var(--forest);
-      line-height: 1.55;
-    }
-
-    .teqsa-text strong { font-weight: 600; }
 
     /* ─── PATHWAYS ─── */
     .pathways {
@@ -1350,16 +1322,13 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
       .hero {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        min-height: unset;
-        padding: 3.5rem 1.5rem 3rem;
+        padding: 3rem 1.5rem 2.25rem;
       }
       .hero-subtitle { max-width: 100%; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cards-grid { grid-template-columns: 1fr; }
-      .teqsa-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
       .pathways-grid { grid-template-columns: 1fr; }
       .positioning-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .research-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -1375,7 +1344,10 @@
 
     @media (max-width: 600px) {
       .section { padding: 3.5rem 1.25rem; }
-      .ecosystem-section { padding: 3.5rem 1.25rem; }
+      .hero { padding: 2.75rem 1.25rem 2rem; }
+      .ecosystem-section { padding: 2.5rem 1.25rem 3.25rem; }
+      .cycle-card { padding: 1.25rem; }
+      .steps-grid { grid-template-columns: 1fr; }
       .pathways { padding: 3.5rem 1.25rem; }
       .research-section { padding: 3.5rem 1.25rem; }
       .community-band { padding: 3rem 1.25rem; }
@@ -1458,72 +1430,6 @@
         Resources for Your Students
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
-    </div>
-  </div>
-
-  <!-- Right: cycle card -->
-  <div class="hero-right">
-    <div class="cycle-card">
-      <div class="cycle-card-label">The SAGE Cycle</div>
-
-      <!-- Lane 1: Open learning -->
-      <div class="lane">
-        <div class="lane-header">
-          <div class="lane-badge open"></div>
-          <div class="lane-desc">AI-integrated tasks</div>
-        </div>
-        <div class="lane-steps">
-          <div class="step-pill">
-            <div class="pill-num">1</div>
-            <div class="pill-name">Generate</div>
-          </div>
-          <div class="pill-arrow">→</div>
-          <div class="step-pill">
-            <div class="pill-num">2</div>
-            <div class="pill-name">Evaluate</div>
-          </div>
-          <div class="pill-arrow">→</div>
-          <div class="step-pill">
-            <div class="pill-num">3</div>
-            <div class="pill-name">Refine</div>
-          </div>
-          <div class="pill-arrow">→</div>
-          <div class="step-pill">
-            <div class="pill-num">4</div>
-            <div class="pill-name">AI Critic</div>
-          </div>
-          <div class="pill-arrow">→</div>
-          <div class="step-pill">
-            <div class="pill-num">5</div>
-            <div class="pill-name">Reflect</div>
-          </div>
-        </div>
-      </div>
-
-      <hr class="lane-divider" />
-
-      <!-- Lane 2: Assurance -->
-      <div class="lane">
-        <div class="lane-header">
-          <div class="lane-badge assurance"></div>
-          <div class="lane-desc">Supervised verification</div>
-        </div>
-        <div class="lane-steps">
-          <div class="step-pill defend-pill">
-            <div class="pill-num">6</div>
-            <div class="pill-name">Defend</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TEQSA inline -->
-      <div class="teqsa-inline">
-        <div class="teqsa-dot"></div>
-        <div class="teqsa-inline-text">
-          <strong></strong> Steps 1–5 build capability through structured AI-supported learning. Step 6 assures individual attainment through supervised verification.
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1675,7 +1581,64 @@
   <div class="section-label">How it works</div>
   <h2 class="section-title">Six steps, one assessment</h2>
   <p class="section-body">SAGE is not an add-on to your assessment. It <em>is</em> the assessment. Students work through six structured steps — five using AI openly, and one final checkpoint under supervision.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem;">
+  <div class="cycle-card cycle-card-lead">
+    <div class="cycle-card-label">The SAGE Cycle</div>
+
+    <div class="lane">
+      <div class="lane-header">
+        <div class="lane-badge open">Open</div>
+        <div class="lane-desc">AI-integrated tasks</div>
+      </div>
+      <div class="lane-steps">
+        <div class="step-pill">
+          <div class="pill-num">1</div>
+          <div class="pill-name">Generate</div>
+        </div>
+        <div class="pill-arrow">→</div>
+        <div class="step-pill">
+          <div class="pill-num">2</div>
+          <div class="pill-name">Evaluate</div>
+        </div>
+        <div class="pill-arrow">→</div>
+        <div class="step-pill">
+          <div class="pill-num">3</div>
+          <div class="pill-name">Refine</div>
+        </div>
+        <div class="pill-arrow">→</div>
+        <div class="step-pill">
+          <div class="pill-num">4</div>
+          <div class="pill-name">AI Critic</div>
+        </div>
+        <div class="pill-arrow">→</div>
+        <div class="step-pill">
+          <div class="pill-num">5</div>
+          <div class="pill-name">Reflect</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lane-divider" />
+
+    <div class="lane">
+      <div class="lane-header">
+        <div class="lane-badge assurance">Assurance</div>
+        <div class="lane-desc">Supervised verification</div>
+      </div>
+      <div class="lane-steps">
+        <div class="step-pill defend-pill">
+          <div class="pill-num">6</div>
+          <div class="pill-name">Defend</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="teqsa-inline">
+      <div class="teqsa-dot"></div>
+      <div class="teqsa-inline-text">Steps 1–5 build capability through structured AI-supported learning. Step 6 assures individual attainment through supervised verification.</div>
+    </div>
+  </div>
+
+  <div class="steps-grid">
     <div class="card" style="border-top:3px solid var(--sage);">
       <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:0.5rem;">Step 1</div>
       <div class="card-title">Generate</div>
