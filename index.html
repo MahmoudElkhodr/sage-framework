@@ -420,6 +420,272 @@
       font-weight: 600;
     }
 
+    /* ─── SAGE ECOSYSTEM ─── */
+    .ecosystem-section {
+      padding: 4.5rem 2rem;
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .ecosystem-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .ecosystem-heading {
+      margin-bottom: 2.5rem;
+    }
+
+    .ecosystem-diagram {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .ecosystem-diagram text {
+      font-family: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    .ecosystem-diagram .eco-connector {
+      fill: none;
+      stroke: var(--sage-light);
+      stroke-width: 2;
+    }
+
+    .ecosystem-diagram .eco-connector-forthcoming {
+      fill: none;
+      stroke: var(--muted);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 7;
+      opacity: 0.7;
+    }
+
+    .ecosystem-diagram .eco-umbrella {
+      fill: var(--forest);
+      stroke: var(--forest);
+      stroke-width: 2;
+    }
+
+    .ecosystem-diagram .eco-pedagogy {
+      fill: var(--sage-pale);
+      stroke: var(--sage);
+      stroke-width: 3;
+    }
+
+    .ecosystem-diagram .eco-policy,
+    .ecosystem-diagram .eco-resource {
+      fill: var(--white);
+      stroke: var(--rule);
+      stroke-width: 2;
+    }
+
+    .ecosystem-diagram .eco-forthcoming-box {
+      fill: var(--cream);
+      stroke: var(--muted);
+      stroke-width: 1.5;
+      stroke-dasharray: 7 6;
+      opacity: 0.72;
+    }
+
+    .ecosystem-diagram .eco-umbrella-title {
+      fill: var(--white);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 34px;
+      font-weight: 600;
+    }
+
+    .ecosystem-diagram .eco-umbrella-subtitle {
+      fill: var(--sage-pale);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .ecosystem-diagram .eco-node-title {
+      fill: var(--forest);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    .ecosystem-diagram .eco-node-subtitle {
+      fill: var(--slate);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .ecosystem-diagram .eco-resource-title {
+      fill: var(--forest);
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .ecosystem-diagram .eco-resource-subtitle,
+    .ecosystem-diagram .eco-edge-label {
+      fill: var(--slate);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .ecosystem-diagram .eco-layer-label {
+      fill: var(--sage);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .ecosystem-mobile {
+      display: none;
+    }
+
+    .ecosystem-mobile-node {
+      position: relative;
+      padding: 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .ecosystem-mobile-node + .ecosystem-mobile-node {
+      margin-top: 2.75rem;
+    }
+
+    .ecosystem-mobile-node + .ecosystem-mobile-node::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 100%;
+      width: 1px;
+      height: 2.75rem;
+      background: var(--sage-light);
+    }
+
+    .ecosystem-mobile-node.umbrella {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: var(--white);
+    }
+
+    .ecosystem-mobile-node.pedagogy {
+      background: var(--sage-pale);
+      border: 2px solid var(--sage);
+    }
+
+    .ecosystem-mobile-node.forthcoming {
+      margin: 1rem auto 2.75rem;
+      max-width: 260px;
+      border: 1px dashed var(--muted);
+      background: var(--cream);
+      color: var(--slate);
+    }
+
+    .ecosystem-mobile-node.forthcoming::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 100%;
+      width: 1px;
+      height: 1rem;
+      border-left: 1px dashed var(--muted);
+    }
+
+    .ecosystem-mobile-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--forest);
+    }
+
+    .ecosystem-mobile-node.umbrella .ecosystem-mobile-title {
+      color: var(--white);
+      font-size: 1.6rem;
+    }
+
+    .ecosystem-mobile-subtitle {
+      margin-top: 0.3rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .ecosystem-mobile-node.umbrella .ecosystem-mobile-subtitle {
+      color: var(--sage-pale);
+    }
+
+    .ecosystem-mobile-edge {
+      position: relative;
+      height: 3.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--slate);
+      font-size: 0.74rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .ecosystem-mobile-edge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: var(--sage-light);
+    }
+
+    .ecosystem-mobile-edge span {
+      position: relative;
+      z-index: 1;
+      padding: 0.2rem 0.65rem;
+      background: var(--white);
+    }
+
+    .ecosystem-mobile-resources {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .ecosystem-mobile-resources-label {
+      margin-bottom: 0.75rem;
+      color: var(--sage);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .ecosystem-mobile-resource {
+      padding: 1rem;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .ecosystem-mobile-resource + .ecosystem-mobile-resource {
+      margin-top: 0.65rem;
+    }
+
+    .ecosystem-mobile-resource strong {
+      display: block;
+      color: var(--forest);
+      font-size: 0.9rem;
+    }
+
+    .ecosystem-mobile-resource span {
+      display: block;
+      margin-top: 0.15rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
     /* ─── BUTTONS ─── */
     .btn {
       display: inline-flex;
@@ -1099,10 +1365,17 @@
       .research-grid { grid-template-columns: 1fr; gap: 3rem; }
       .community-inner { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; }
+      .ecosystem-diagram { display: none; }
+      .ecosystem-mobile {
+        display: block;
+        max-width: 520px;
+        margin: 0 auto;
+      }
     }
 
     @media (max-width: 600px) {
       .section { padding: 3.5rem 1.25rem; }
+      .ecosystem-section { padding: 3.5rem 1.25rem; }
       .pathways { padding: 3.5rem 1.25rem; }
       .research-section { padding: 3.5rem 1.25rem; }
       .community-band { padding: 3rem 1.25rem; }
@@ -1254,6 +1527,114 @@
     </div>
   </div>
 
+</section>
+
+<!-- ─── SAGE ECOSYSTEM ─── -->
+<section class="ecosystem-section" aria-labelledby="ecosystem-heading">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-heading">
+      <div class="section-label">The programme</div>
+      <h2 class="section-title" id="ecosystem-heading">The SAGE ecosystem</h2>
+    </div>
+
+    <svg class="ecosystem-diagram" viewBox="0 0 1200 610" role="img" aria-labelledby="ecosystem-svg-title ecosystem-svg-desc">
+      <title id="ecosystem-svg-title">The SAGE programme ecosystem</title>
+      <desc id="ecosystem-svg-desc">SAGE, Structured AI-Guided Education, brings together the six-step SAGE Pedagogy and SAGE-AP, which aligns permission to practice. GenAI-101, the Defend Tool, and the Student Guide support the pedagogy. SAGE-R is a forthcoming research integrity extension.</desc>
+
+      <path class="eco-connector" d="M500 140 V170 H970 M385 170 V200 M970 170 V200" />
+      <path class="eco-connector-forthcoming" d="M920 90 H960" />
+      <path class="eco-connector" d="M690 265 H820" />
+      <path class="eco-connector" d="M385 330 V405 M175 405 H595 M175 405 V440 M385 405 V440 M595 405 V440" />
+
+      <rect class="eco-umbrella" x="80" y="40" width="840" height="100" rx="16" />
+      <text class="eco-umbrella-title" x="500" y="84" text-anchor="middle">SAGE</text>
+      <text class="eco-umbrella-subtitle" x="500" y="111" text-anchor="middle">Structured AI-Guided Education</text>
+
+      <rect class="eco-forthcoming-box" x="960" y="40" width="200" height="100" rx="14" />
+      <text class="eco-resource-title" x="1060" y="78" text-anchor="middle">SAGE-R</text>
+      <text class="eco-resource-subtitle" x="1060" y="103" text-anchor="middle">
+        <tspan x="1060">Research integrity</tspan>
+        <tspan x="1060" dy="19">(forthcoming)</tspan>
+      </text>
+
+      <rect class="eco-pedagogy" x="80" y="200" width="610" height="130" rx="16" />
+      <text class="eco-node-title" x="385" y="250" text-anchor="middle">SAGE Pedagogy</text>
+      <text class="eco-node-subtitle" x="385" y="282" text-anchor="middle">The six-step framework: Generate to Defend</text>
+
+      <rect class="eco-policy" x="820" y="200" width="300" height="130" rx="16" />
+      <text class="eco-node-title" x="970" y="250" text-anchor="middle">SAGE-AP</text>
+      <text class="eco-node-subtitle" x="970" y="280" text-anchor="middle">
+        <tspan x="970">Permission-to-pedagogy</tspan>
+        <tspan x="970" dy="21">alignment</tspan>
+      </text>
+
+      <rect x="696" y="232" width="118" height="66" rx="8" fill="var(--white)" />
+      <text class="eco-edge-label" x="755" y="254" text-anchor="middle">
+        <tspan x="755">aligns permission</tspan>
+        <tspan x="755" dy="20">to practice</tspan>
+      </text>
+
+      <text class="eco-layer-label" x="80" y="397">Resources</text>
+
+      <rect class="eco-resource" x="80" y="440" width="190" height="120" rx="14" />
+      <text class="eco-resource-title" x="175" y="481" text-anchor="middle">GenAI-101</text>
+      <text class="eco-resource-subtitle" x="175" y="509" text-anchor="middle">
+        <tspan x="175">AI literacy module</tspan>
+        <tspan x="175" dy="19">(10 lessons)</tspan>
+      </text>
+
+      <rect class="eco-resource" x="290" y="440" width="190" height="120" rx="14" />
+      <text class="eco-resource-title" x="385" y="481" text-anchor="middle">Defend Tool</text>
+      <text class="eco-resource-subtitle" x="385" y="509" text-anchor="middle">
+        <tspan x="385">Assurance checkpoint</tspan>
+        <tspan x="385" dy="19">designer</tspan>
+      </text>
+
+      <rect class="eco-resource" x="500" y="440" width="190" height="120" rx="14" />
+      <text class="eco-resource-title" x="595" y="481" text-anchor="middle">Student Guide</text>
+      <text class="eco-resource-subtitle" x="595" y="509" text-anchor="middle">
+        <tspan x="595">Five-step student</tspan>
+        <tspan x="595" dy="19">process</tspan>
+      </text>
+    </svg>
+
+    <div class="ecosystem-mobile" role="img" aria-label="The SAGE programme ecosystem. SAGE brings together SAGE Pedagogy and SAGE-AP, supported by GenAI-101, the Defend Tool, and the Student Guide. SAGE-R is forthcoming.">
+      <div class="ecosystem-mobile-node umbrella">
+        <div class="ecosystem-mobile-title">SAGE</div>
+        <div class="ecosystem-mobile-subtitle">Structured AI-Guided Education</div>
+      </div>
+      <div class="ecosystem-mobile-node forthcoming">
+        <div class="ecosystem-mobile-title">SAGE-R</div>
+        <div class="ecosystem-mobile-subtitle">Research integrity (forthcoming)</div>
+      </div>
+      <div class="ecosystem-mobile-core">
+        <div class="ecosystem-mobile-node pedagogy">
+          <div class="ecosystem-mobile-title">SAGE Pedagogy</div>
+          <div class="ecosystem-mobile-subtitle">The six-step framework: Generate to Defend</div>
+        </div>
+        <div class="ecosystem-mobile-edge"><span>aligns permission to practice</span></div>
+        <div class="ecosystem-mobile-node">
+          <div class="ecosystem-mobile-title">SAGE-AP</div>
+          <div class="ecosystem-mobile-subtitle">Permission-to-pedagogy alignment</div>
+        </div>
+        <div class="ecosystem-mobile-resources">
+          <div class="ecosystem-mobile-resources-label">Resources</div>
+          <div class="ecosystem-mobile-resource">
+            <strong>GenAI-101</strong>
+            <span>AI literacy module (10 lessons)</span>
+          </div>
+          <div class="ecosystem-mobile-resource">
+            <strong>Defend Tool</strong>
+            <span>Assurance checkpoint designer</span>
+          </div>
+          <div class="ecosystem-mobile-resource">
+            <strong>Student Guide</strong>
+            <span>Five-step student process</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ─── WHY SAGE ─── -->
