@@ -447,8 +447,11 @@
 
     .ecosystem-diagram .eco-connector {
       fill: none;
-      stroke: var(--sage-light);
-      stroke-width: 2;
+      stroke: var(--sage-mid);
+      stroke-width: 2.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.68;
     }
 
     .ecosystem-diagram .eco-connector-forthcoming {
@@ -456,7 +459,14 @@
       stroke: var(--muted);
       stroke-width: 1.5;
       stroke-dasharray: 7 7;
+      stroke-linecap: round;
       opacity: 0.7;
+    }
+
+    .ecosystem-diagram .eco-junction {
+      fill: var(--sage-mid);
+      stroke: var(--white);
+      stroke-width: 2;
     }
 
     .ecosystem-diagram .eco-umbrella {
@@ -1447,10 +1457,12 @@
       <title id="ecosystem-svg-title">The SAGE programme ecosystem</title>
       <desc id="ecosystem-svg-desc">SAGE, Structured AI-Guided Education, brings together the six-step SAGE Pedagogy and SAGE-AP, which aligns permission to practice. GenAI-101, the Defend Tool, and the Student Guide support the pedagogy. SAGE-R is a forthcoming research integrity extension.</desc>
 
-      <path class="eco-connector" d="M500 140 V170 H970 M385 170 V200 M970 170 V200" />
+      <path class="eco-connector" d="M500 140 V170 H395 Q385 170 385 180 V200 M500 170 H960 Q970 170 970 180 V200" />
       <path class="eco-connector-forthcoming" d="M920 90 H960" />
-      <path class="eco-connector" d="M690 265 H820" />
-      <path class="eco-connector" d="M385 330 V405 M175 405 H595 M175 405 V440 M385 405 V440 M595 405 V440" />
+      <path class="eco-connector" d="M690 300 H820" />
+      <path class="eco-connector" d="M385 330 V405 H190 Q175 405 175 420 V440 M385 405 H580 Q595 405 595 420 V440 M385 405 V440" />
+      <circle class="eco-junction" cx="500" cy="170" r="4" />
+      <circle class="eco-junction" cx="385" cy="405" r="4" />
 
       <rect class="eco-umbrella" x="80" y="40" width="840" height="100" rx="16" />
       <text class="eco-umbrella-title" x="500" y="84" text-anchor="middle">SAGE</text>
@@ -1474,8 +1486,7 @@
         <tspan x="970" dy="21">alignment</tspan>
       </text>
 
-      <rect x="696" y="232" width="118" height="66" rx="8" fill="var(--white)" />
-      <text class="eco-edge-label" x="755" y="254" text-anchor="middle">
+      <text class="eco-edge-label" x="755" y="258" text-anchor="middle">
         <tspan x="755">aligns permission</tspan>
         <tspan x="755" dy="20">to practice</tspan>
       </text>
