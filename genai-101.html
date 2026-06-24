@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GenAI-101: Generative AI Literacy &amp; Numeracy Module — SAGE Framework</title>
-  <meta name="description" content="A 10-lesson interactive module introducing higher education students to responsible generative AI use. Covers how LLMs work, prompt engineering, critical evaluation, academic integrity, and group project AI use. Part of the SAGE framework by Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity. Listed on TEQSA Generative AI Knowledge Hub." />
-  <meta name="keywords" content="GenAI-101, generative AI literacy, AI numeracy module, ChatGPT tutorial students, prompt engineering education, responsible AI use students, AI academic integrity, LLM education, AI critical thinking, large language models explained, generative AI student guide, Mahmoud Elkhodr, Ergun Gide, CQUniversity AI, TEQSA GenAI, AI first year students, ChatGPT higher education, AI ethics students, SAGE GenAI module, AI feedback loop, finding academic sources AI, group projects AI, Copilot education, Gemini education, AI hallucination, AI bias education" />
+  <title>GenAI-101 v3: Generative AI Literacy &amp; Numeracy Module — SAGE Framework</title>
+  <meta name="description" content="An eleven-lesson interactive module introducing higher education students to responsible generative AI use. Version 3 integrates adapted ALC lessons and SAGE guidance on the Critical Coach model, specialised AI tools such as NotebookLM, Codex, Claude Code, and AI inside apps such as PowerPoint. Part of the SAGE framework by Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
+  <meta name="keywords" content="GenAI-101 v3, generative AI literacy, AI numeracy module, cognitive learning strategies, GenAI mirroring, Critical Coach, Anchor Check Defend, NotebookLM, Codex, Claude Code, AI inside PowerPoint, ChatGPT tutorial students, prompt engineering education, responsible AI use students, AI academic integrity, LLM education, AI critical thinking, large language models explained, generative AI student guide, Mahmoud Elkhodr, Ergun Gide, CQUniversity AI, TEQSA GenAI, AI first year students, ChatGPT higher education, AI ethics students, SAGE GenAI module" />
   <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://sage-framework.com/genai-101.html" />
-  <meta property="og:title" content="GenAI-101: Generative AI Literacy Module — SAGE Framework" />
-  <meta property="og:description" content="10-lesson interactive module for responsible AI use in higher education. Covers LLMs, prompt engineering, critical evaluation, and academic integrity." />
+  <meta property="og:title" content="GenAI-101 v3: Generative AI Literacy Module — SAGE Framework" />
+  <meta property="og:description" content="Eleven-lesson module for responsible AI use in higher education, including Cognitive Learning Strategies, GenAI Mirroring, the SAGE Critical Coach model, specialised AI tools, and AI inside apps." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://sage-framework.com/genai-101.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="GenAI-101 — AI Literacy Module for Students" />
-  <meta name="twitter:description" content="10-lesson guide to responsible generative AI use. Part of the SAGE framework." />
+  <meta name="twitter:title" content="GenAI-101 v3 — AI Literacy Module for Students" />
+  <meta name="twitter:description" content="Eleven-lesson guide to responsible generative AI use, including the SAGE Critical Coach model, specialised AI tools, AI inside apps, Cognitive Learning Strategies, and GenAI Mirroring." />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* ===== CSS VARIABLES - SAGE FRAMEWORK PALETTE ===== */
@@ -267,6 +267,19 @@ details.accordion > summary::-webkit-details-marker { display: none; }
 .capabilities-table th, .capabilities-table td { padding: 1rem; vertical-align: top; border-bottom: 1px solid #eef5e2; }
 .capabilities-table thead th { background: #eef7e3; color: var(--cqu-deep-green); text-align: left; }
 
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 /* Short answers */
 .short-answer { background: var(--cqu-white); border: 1px solid #e9f3de; border-radius: 12px; padding: 1rem; margin: 1rem 0; box-shadow: 0 2px 10px var(--cqu-shadow); }
 .short-answer textarea { width: 100%; min-height: 140px; border-radius: 10px; border: 1px solid #dfead1; padding: .8rem; resize: vertical; font-family: inherit; }
@@ -291,6 +304,259 @@ details.accordion > summary::-webkit-details-marker { display: none; }
 
     
     
+
+/* ===== LESSON 7: CRITICAL COACH VISUAL MODEL ===== */
+.coach-hero {
+  background: linear-gradient(135deg, #eef6f1 0%, #f8fbf4 55%, #e8f5d8 100%);
+  border: 1px solid #d7ead8;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.25rem 0 1.75rem;
+  box-shadow: 0 6px 24px var(--cqu-shadow);
+}
+.coach-hero-text h3 { margin: .25rem 0 .5rem; color: var(--cqu-dark-green); font-family: 'Fraunces', Georgia, serif; font-size: 1.45rem; }
+.coach-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: var(--cqu-dark-green);
+  color: var(--cqu-white);
+  border-radius: 999px;
+  padding: .28rem .7rem;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.coach-model {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: stretch;
+  gap: .75rem;
+  margin-top: 1.25rem;
+}
+.coach-node {
+  background: var(--cqu-white);
+  border: 1px solid #dcebd8;
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 3px 14px var(--cqu-shadow);
+}
+.coach-node-icon { display: block; font-size: 1.85rem; margin-bottom: .35rem; }
+.coach-node strong { display: block; color: var(--cqu-deep-green); font-size: 1.08rem; margin-bottom: .25rem; }
+.coach-node span:last-child { font-size: .88rem; color: var(--cqu-neutral-mid); }
+.coach-arrow {
+  align-self: center;
+  color: var(--cqu-deep-green);
+  font-weight: 900;
+  font-size: 1.4rem;
+}
+.coach-two-column,
+.coach-toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+.coach-card,
+.coach-toolkit-card,
+.anchor-lab,
+.defend-panel,
+.coach-key-takeaway {
+  background: var(--cqu-white);
+  border: 1px solid #e2efd6;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px var(--cqu-shadow);
+}
+.coach-card { padding: 1.15rem; }
+.coach-card-title { font-weight: 900; margin-bottom: .55rem; }
+.coach-good { border-left: 5px solid var(--success-green); }
+.coach-risk { border-left: 5px solid var(--warning-amber); }
+.coach-good .coach-card-title { color: var(--success-green); }
+.coach-risk .coach-card-title { color: var(--warning-amber); }
+
+.anchor-lab { padding: 1.2rem; margin: 1.4rem 0; }
+.anchor-lab-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.anchor-lab-header h4 { margin: 0 0 .25rem; color: var(--cqu-deep-green); font-size: 1.15rem; }
+.anchor-lab-header p { margin-bottom: 0; color: var(--cqu-neutral-mid); }
+.anchor-badge {
+  background: #eef7e3;
+  border: 1px solid var(--cqu-lime-green);
+  color: var(--cqu-dark-green);
+  border-radius: 999px;
+  padding: .25rem .65rem;
+  font-weight: 800;
+  font-size: .78rem;
+  white-space: nowrap;
+}
+.anchor-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+.anchor-option {
+  border: 1px solid #d7ead8;
+  background: #fbfff6;
+  color: var(--cqu-dark-green);
+  border-radius: 12px;
+  padding: .85rem .6rem;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+  min-height: 92px;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.anchor-option:hover,
+.anchor-option:focus {
+  transform: translateY(-2px);
+  border-color: var(--cqu-lime-green);
+  box-shadow: var(--focus-ring);
+}
+.anchor-option.active {
+  background: var(--cqu-dark-green);
+  color: var(--cqu-white);
+  border-color: var(--cqu-dark-green);
+}
+.anchor-option span { font-size: 1.35rem; }
+.anchor-output {
+  background: var(--cqu-neutral-light);
+  border: 1px dashed #d7ead8;
+  border-radius: 12px;
+  padding: 1rem;
+}
+.anchor-output-title {
+  font-weight: 900;
+  color: var(--cqu-deep-green);
+  margin-bottom: .4rem;
+}
+.prompt-card {
+  background: var(--cqu-white);
+  border-left: 5px solid var(--cqu-deep-green);
+  border-radius: 10px;
+  padding: .95rem 1rem;
+  margin-top: .75rem;
+}
+.prompt-card.compact { margin-top: .7rem; font-style: italic; }
+.prompt-card p { margin-bottom: 0; }
+.prompt-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .45rem;
+}
+.copy-mini {
+  background: var(--cqu-deep-green);
+  color: var(--cqu-white);
+  border: 0;
+  border-radius: 999px;
+  padding: .28rem .65rem;
+  font-weight: 800;
+  font-size: .78rem;
+  cursor: pointer;
+}
+.copy-mini:hover { background: var(--cqu-lime-green); color: var(--cqu-dark-green); }
+
+.coach-toolkit-card {
+  padding: 0;
+  overflow: hidden;
+}
+.coach-toolkit-card summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: 900;
+  color: var(--cqu-deep-green);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.coach-toolkit-card summary::-webkit-details-marker { display: none; }
+.coach-toolkit-card summary::after {
+  content: "▼";
+  margin-left: auto;
+  font-size: .8rem;
+  opacity: .7;
+}
+.coach-toolkit-card[open] summary::after { content: "▲"; }
+.coach-toolkit-card > p,
+.coach-toolkit-card > .prompt-card {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.coach-toolkit-card > .prompt-card { margin-bottom: 1rem; }
+
+.defend-panel {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.25rem;
+  margin: 1.2rem 0;
+  border-left: 5px solid var(--cqu-deep-green);
+}
+.defend-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--cqu-dark-green);
+  color: var(--cqu-white);
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+}
+.defend-panel h4 { color: var(--cqu-deep-green); margin: 0 0 .5rem; }
+
+.anchor-examples-table {
+  display: grid;
+  border: 1px solid #e2efd6;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 1.2rem 0;
+  box-shadow: 0 3px 14px var(--cqu-shadow);
+}
+.anchor-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr 1.4fr;
+}
+.anchor-row > div {
+  padding: .9rem 1rem;
+  border-bottom: 1px solid #edf4e8;
+  background: var(--cqu-white);
+}
+.anchor-head > div {
+  background: #eef7e3;
+  color: var(--cqu-deep-green);
+  font-weight: 900;
+}
+.anchor-row:last-child > div { border-bottom: 0; }
+.coach-key-takeaway {
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #eef6f1 0%, #e8f5d8 100%);
+  border-left: 5px solid var(--success-green);
+  margin: 1.5rem 0;
+  color: var(--cqu-dark-green);
+}
+
+@media (max-width: 780px) {
+  .coach-model { grid-template-columns: 1fr; }
+  .coach-arrow { transform: rotate(90deg); justify-self: center; }
+  .anchor-row { grid-template-columns: 1fr; }
+  .anchor-row > div { border-bottom: 1px solid #edf4e8; }
+  .defend-panel { grid-template-columns: 1fr; }
+}
+
+
     /* Quiz (kept from your draft, minor tweaks) */
     .quiz-container { background: var(--cqu-white); border-radius: 12px; padding: 1.25rem; }
     .quiz-question { background: var(--cqu-neutral-light); padding: 1.25rem; margin-bottom: 1rem; border-radius: 10px; border-left: 5px solid var(--cqu-deep-green); }
@@ -329,7 +595,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
           <a href="student_resources.html" class="active">Student Resources</a>
           <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
             <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
-            <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+            <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">Expanded AI literacy module</div></div></a>
             <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design your assurance checkpoint</div></div></a>
           </div></div>
         </li>
@@ -352,7 +618,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
   <div class="resource-tabs">
     <div class="resource-tabs-inner">
       <a href="student-guide.html" class="resource-tab"><span class="tab-icon">📄</span> Student Guide</a>
-      <a href="genai-101.html" class="resource-tab active"><span class="tab-icon">📖</span> GenAI-101 Module</a>
+      <a href="genai-101.html" class="resource-tab active"><span class="tab-icon">📖</span> GenAI-101 Module <small style="font-size:0.7rem;font-weight:600;background:#1b4332;color:#74c69d;padding:0.1rem 0.4rem;border-radius:999px;margin-left:0.3rem;">v2</small></a>
       <a href="defend_tool.html" class="resource-tab"><span class="tab-icon">🛡️</span> Defend Tool</a>
     </div>
   </div>
@@ -365,7 +631,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
       </div>
       <div class="progress-wrap" aria-live="polite">
         <div class="progress-bar" aria-hidden="true"><span id="progressFill"></span></div>
-        <div class="progress-meta"><span id="progressText">0 of 6 completed</span></div>
+        <div class="progress-meta"><span id="progressText">0 of 14 completed</span></div>
       </div>
       <nav aria-label="Module navigation">
         <ul class="nav-list" id="navList">
@@ -381,6 +647,10 @@ details.accordion > summary::-webkit-details-marker { display: none; }
         <!-- SECTION: Introduction -->
         <section id="introduction" class="section" tabindex="-1" aria-labelledby="h-intro">
   <h2 id="h-intro">Welcome to GenAI Literacy & Numeracy</h2>
+            <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;margin:0.25rem 0 1.25rem;font-size:0.85rem;color:var(--cqu-neutral-mid);line-height:1.5;">
+                <span style="font-weight:700;background:#eef7e3;color:#1b4332;padding:0.2rem 0.6rem;border-radius:999px;border:1px solid #74c69d;white-space:nowrap;">Version 2.0 &middot; Updated June 2026</span>
+                <span>This release adds five lessons: Cognitive Learning Strategies, GenAI Mirroring, the Critical Coach, Working with Your Own Materials, and AI Inside Your Apps.</span>
+            </div>
             <p>This guide has been designed to provide foundational knowledge and practical skills for using Generative AI (GenAI) tools such as ChatGPT, Microsoft Copilot, and Google Gemini effectively, ethically, and responsibly throughout your studies and into your future career.</p>
             
             <p>Learning to use these tools represents an essential digital literacy skill for the modern tertiary education environment. Whilst GenAI offers considerable opportunities to enhance learning outcomes, it also carries significant responsibilities. Understanding how to navigate this technology remains crucial for maintaining academic integrity and maximising the value of your education.</p>
@@ -395,6 +665,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
                     <li>Understand how Large Language Models function and their limitations</li>
                     <li>Apply effective prompt engineering techniques in your discipline</li>
                     <li>Use GenAI tools ethically whilst maintaining academic integrity</li>
+                    <li>Use the SAGE Anchor, Check, Defend model to verify AI responses and prepare to explain your work</li>
                     <li>Recognise when and how to properly acknowledge AI assistance</li>
                 </ul>
             </div>
@@ -408,14 +679,18 @@ details.accordion > summary::-webkit-details-marker { display: none; }
                 <div class="expandable-content">
                     <div class="expandable-inner">
                      <ul style="margin-left: 2rem; line-height: 2;">
-    <li><strong>Lesson 1: What is Generative AI?</strong> - Understanding the foundations, capabilities, and limitations</li>
-    <li><strong>Lesson 2: How to Talk to AI</strong> - Mastering basic prompt engineering techniques</li>
-    <li><strong>Lesson 3: Using AI the Right Way</strong> - Exploring the do's and don'ts of responsible use</li>
-    <li><strong>Lesson 4: Practical Applications</strong> - Comprehensive examples of GenAI use across different study contexts</li>
-    <li><strong>Lesson 5: Personal Tutor (Feedback Loop)</strong> - Using AI to review your work and provide constructive feedback</li>
-    <li><strong>Lesson 6: Finding Academic Sources</strong> - Using AI to help locate and work with credible research</li>
-    <li><strong>Lesson 7: Group Projects & Collaborative Work</strong> - Fair and transparent AI use in team assignments</li>
-    <li><strong>Final Quiz</strong> - Testing your knowledge and understanding</li>
+    <li><strong>Lesson 1: What Is Generative AI?</strong> — Understanding the foundations, capabilities, and limitations</li>
+    <li><strong>Lesson 2: How to Talk to AI</strong> — Mastering effective prompt engineering techniques</li>
+    <li><strong>Lesson 3: Using AI the Right Way</strong> — The do's and don'ts of responsible and ethical use</li>
+    <li><strong>Lesson 4: Practical Applications</strong> — GenAI use across different study contexts</li>
+    <li><strong>Lesson 5: Cognitive Learning Strategies</strong> — Chunk, summarise, and visualise <span style="font-size:0.8rem;font-weight:700;background:#f0f4ff;color:#2d3f8f;padding:0.1rem 0.5rem;border-radius:999px;border:1px solid #c5d0f0;">CQU ALC &middot; New in v2</span></li>
+    <li><strong>Lesson 6: GenAI Mirroring</strong> — Why AI agrees too easily and how to break the mirror <span style="font-size:0.8rem;font-weight:700;background:#f0f4ff;color:#2d3f8f;padding:0.1rem 0.5rem;border-radius:999px;border:1px solid #c5d0f0;">CQU ALC &middot; New in v2</span></li>
+    <li><strong>Lesson 7: Use AI as a Critical Coach</strong> — Anchor, check, and defend AI-assisted thinking <span style="font-size:0.8rem;font-weight:700;background:#eef7e3;color:#1b4332;padding:0.1rem 0.5rem;border-radius:999px;border:1px solid #74c69d;">New in v2</span></li>
+    <li><strong>Lesson 8: Finding Academic Sources</strong> — Using AI to locate and work with credible research</li>
+    <li><strong>Lesson 9: AI in Group Projects</strong> — Fair and transparent AI use in team assignments</li>
+    <li><strong>Lesson 10: AI with Your Own Materials</strong> — File-connected tools like NotebookLM and Claude Code <span style="font-size:0.8rem;font-weight:700;background:#eef7e3;color:#1b4332;padding:0.1rem 0.5rem;border-radius:999px;border:1px solid #74c69d;">New in v2</span></li>
+    <li><strong>Lesson 11: AI Inside Your Apps</strong> — AI built into PowerPoint, docs, and coding tools <span style="font-size:0.8rem;font-weight:700;background:#eef7e3;color:#1b4332;padding:0.1rem 0.5rem;border-radius:999px;border:1px solid #74c69d;">New in v2</span></li>
+    <li><strong>Final Quiz</strong> — Testing your knowledge and understanding</li>
 </ul>
                     </div>
                 </div>
@@ -528,16 +803,13 @@ details.accordion > summary::-webkit-details-marker { display: none; }
     <span class="accordion-icon">▼</span>
   </summary>
   <div class="accordion-body">
-    <figure class="figure-lite" role="group" aria-label="Example study figure">
-  <img
-    src="https://cdn.prod.website-files.com/61cd557c4e697c73451e1e6c/64b8e0c23208460ea5526498_ChatPDF%20(1).png"
-    alt="A laptop screen previewing a PDF alongside an AI chat panel that summarises the document."
-    loading="lazy"
-    style="max-width: 860px; width: 100%; height: auto; display:block; margin: 0 auto 0.75rem; border-radius: 10px; box-shadow: 0 4px 12px var(--cqu-shadow);" />
-  <figcaption class="note-muted" style="text-align:center;">
-    Example: using a tool to <em>summarise a PDF page</em> or <em>explain an image</em>. Always cross-check with your unit materials.
-  </figcaption>
-</figure>
+    <div class="figure-lite" role="group" aria-label="Text-only example of AI support for a PDF or image">
+      <div style="background:#fff;border:1px solid #dfead1;border-radius:8px;padding:0.75rem;text-align:center;font-weight:700;color:var(--cqu-deep-green);">PDF / image</div>
+      <div>
+        <p style="margin-bottom:0.35rem;"><strong>Example:</strong> ask an AI tool to summarise a PDF page, describe a diagram, or explain a chart from your notes.</p>
+        <p class="note-muted" style="margin-bottom:0;">Always compare the explanation with your unit materials, lecture notes, and verified sources before relying on it.</p>
+      </div>
+    </div>
     <p class="note-muted"><strong>Tip:</strong> Ask for a brief explanation of a diagram in your notes—then check it against your materials.</p>
   </div>
 </details>
@@ -632,7 +904,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
 
         <!-- SECTION: Lesson 2 -->
         <section id="lesson2" class="section" tabindex="-1" aria-labelledby="h-lesson2">
-  <h2 id="h-lesson2">Lesson 2: How to Talk to AI (Basic Prompt Engineering)</h2>
+  <h2 id="h-lesson2">Lesson 2: How to Talk to AI</h2>
             
             <p>The quality of output received from a GenAI tool depends almost entirely upon the quality of instructions—or "<span class="tooltip-term">prompts
                 <span class="tooltip-content">A prompt is the instruction or question provided to an AI system. Effective prompts are clear, specific, contextual, and provide sufficient detail to guide the AI toward useful outputs.</span>
@@ -797,7 +1069,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
 
         <!-- SECTION: Lesson 3 -->
        <section id="lesson3" class="section" tabindex="-1" aria-labelledby="h-lesson3">
-           <h2>Lesson 3: Using AI the Right Way (The Do's and Don'ts of Responsible Use)</h2>
+           <h2 id="h-lesson3">Lesson 3: Using AI the Right Way</h2>
             
             <p>Using GenAI at university extends beyond merely obtaining satisfactory results; it concerns using the technology with integrity. Your degree represents a testament to your skills and knowledge, not those of an AI system. This lesson addresses the most important principles that must be followed.</p>
 
@@ -808,7 +1080,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
                 </div>
                 <p style="margin-bottom: 1rem;">This represents the most critical rule of all. At CQUniversity, permission to use GenAI is not universal. It is determined at the unit and assessment level.</p>
                 <ul style="margin-left: 2rem;">
-                    <li><strong>Always consult your  unit profile and specific assessment instructions first.</strong> Your Unit coordinator will specify whether AI is permitted, prohibited, or subject to limitations for a particular task.</li>
+                    <li><strong>Always consult your unit profile and specific assessment instructions first.</strong> Your Unit coordinator will specify whether AI is permitted, prohibited, or subject to limitations for a particular task.</li>
                     <li><strong>If uncertainty exists, always seek clarification from your tutor or unit coordinator.</strong> Do not make assumptions.</li>
                 </ul>
                 <p style="margin-bottom: 0; margin-top: 1rem;"><strong>Submitting AI-generated work when it is not permitted constitutes a serious breach of academic integrity and will be treated accordingly.</strong></p>
@@ -830,7 +1102,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
                     </div>
 
                     <div class="dos-donts-item">
-                        <strong style="color: var(--cqu-deep-green);">Check your  unit profile</strong>
+                        <strong style="color: var(--cqu-deep-green);">Check your unit profile</strong>
                         <p style="margin-top: 0.5rem; margin-bottom: 0;">DO verify whether AI is permitted for a specific assessment by consulting your course documentation before use.</p>
                     </div>
 
@@ -926,6 +1198,41 @@ details.accordion > summary::-webkit-details-marker { display: none; }
                 <p style="margin-bottom: 0; margin-top: 1rem;"><em>Always consult the CQUniversity Library guide for the most current citation requirements.</em></p>
             </div>
 
+            <div class="callout callout-success">
+                <div class="callout-title">
+                    <span class="callout-icon">📋</span>
+                    The Rules Behind This Lesson: The SAGE Assessment Policy
+                </div>
+                <p>The do's and don'ts in this lesson are the everyday version of a formal policy. The <a href="policy.html" style="color: var(--cqu-deep-green); font-weight: 600; text-decoration: underline;">SAGE Assessment Policy</a> sets out the full rules for AI use in assessment — what counts as AI use, how to disclose it, and what happens if you cannot defend your work.</p>
+                <p style="margin-bottom: 0;">It also provides <a href="policy.html#policy-declaration" style="color: var(--cqu-deep-green); font-weight: 600; text-decoration: underline;">ready-to-use declaration templates</a> you can adapt when you acknowledge AI assistance. Remember that your unit profile and assessment instructions always take precedence.</p>
+            </div>
+
+            <h3>If Your Work Is Wrongly Flagged as AI-Generated</h3>
+
+            <p>AI-detection tools are <strong>not reliable</strong>. They produce false positives, and research has shown they disproportionately misflag work by students who write in English as an additional language. A "detector" score is not proof, and most universities do not treat it as standalone evidence. Even so, you may occasionally be asked to account for your work — so it is worth knowing how to protect yourself.</p>
+
+            <div class="callout callout-success">
+                <div class="callout-title">
+                    <span class="callout-icon">🛡️</span>
+                    Your Best Protection Is Your Process
+                </div>
+                <p>The most effective way to show that work is your own is to be able to show <em>how</em> you produced it:</p>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li><strong>Keep your drafts and version history</strong> — Word, Google Docs, and OneDrive all retain edit history that shows your work developing over time.</li>
+                    <li><strong>Save your notes, outlines, and research</strong> — the materials behind your work are strong evidence of authorship.</li>
+                    <li><strong>Keep your AI chat logs</strong> — if you used AI in a permitted way, the conversation shows exactly what you asked for and what you did with it.</li>
+                    <li><strong>Be able to explain your work</strong> — if you can talk through your reasoning, sources, and choices, you can demonstrate ownership in person.</li>
+                </ul>
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">
+                    <span class="callout-icon">💬</span>
+                    If You Are Asked to Account for Your Work
+                </div>
+                <p style="margin-bottom: 0;">Stay calm — being asked is not the same as being accused. Provide your drafts, notes, and any AI chat logs, and offer to talk through your process. You have the right to explain your work. The <a href="policy.html" style="color: var(--cqu-deep-green); font-weight: 600; text-decoration: underline;">SAGE Assessment Policy</a> sets out how this is handled, including what happens if AI-assisted work cannot be fully defended.</p>
+            </div>
+
             <h3>Your Learning is the Priority</h3>
             
             <p>The ultimate objective of your university education is the development of knowledge and skills. Over-reliance on AI can impede that process. Consider these critical questions when using GenAI tools:</p>
@@ -977,7 +1284,7 @@ details.accordion > summary::-webkit-details-marker { display: none; }
 
         <!-- SECTION: Practical Applications -->
         <section id="practical-applications" class="section" tabindex="-1" aria-labelledby="h-prac">
-  <h2 id="h-prac">Practical Applications: Using GenAI Throughout Your Studies</h2>
+  <h2 id="h-prac">Lesson 4: Practical Applications</h2>
             
             <p>Whilst the preceding lessons have established foundational principles for using GenAI responsibly, it is equally important to understand the diverse ways these tools can be applied throughout various stages of the learning process. This section draws upon evidence-based practices from Australian universities to demonstrate how GenAI can serve as a study companion when used appropriately.</p>
 
@@ -986,11 +1293,15 @@ details.accordion > summary::-webkit-details-marker { display: none; }
                     <span class="callout-icon">⚠️</span>
                     Critical Reminder
                 </div>
-                <p style="margin-bottom: 0;">All applications described below are contingent upon permission being granted in your specific unit and assessment. Always consult your  unit profile before employing any of these strategies, and ensure that GenAI use enhances rather than replaces your learning.</p>
+                <p style="margin-bottom: 0;">All applications described below are contingent upon permission being granted in your specific unit and assessment. Always consult your unit profile before employing any of these strategies, and ensure that GenAI use enhances rather than replaces your learning.</p>
+            </div>
+
+            <div style="background:var(--cqu-neutral-light);border-left:4px solid var(--cqu-lime-green);border-radius:8px;padding:0.85rem 1.1rem;margin:1.25rem 0 1.75rem;font-size:0.92rem;">
+                <strong>How this lesson relates to Lesson 5.</strong> This lesson is a practical menu of <em>tasks</em> AI can support across your studies. <a href="#lesson-cls" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">Lesson 5</a> goes one level deeper into the <em>learning science</em> — five cognitive strategies that make study with AI strengthen understanding and memory. Use them together: this lesson for <em>what</em> to do, Lesson 5 for <em>how to learn</em> while you do it.
             </div>
 
             <h3>1. Study Planning and Organisation</h3>
-            
+
             <p>A well-structured study plan represents a cornerstone of academic success. GenAI tools can assist in creating personalised study schedules, recommending time management strategies, and helping to balance competing priorities.</p>
 
             <div class="expandable">
@@ -1155,8 +1466,8 @@ details.accordion > summary::-webkit-details-marker { display: none; }
             </div>
 
             <h3>6. Visual Content and Data Representation</h3>
-            
-            <p>Visual representations can enhance understanding of complex information. GenAI tools can suggest appropriate visualisation methods, create text-based mind maps, and provide guidance on effective visual communication.</p>
+
+            <p>Visual representations can enhance how you <em>communicate</em> data and findings. GenAI tools can suggest appropriate chart types, structure infographics, and provide guidance on effective visual communication. <span class="note-muted">(For using visuals to <em>understand and remember</em> a concept — mind maps and concept maps as a study technique — see <a href="#lesson-cls" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">Lesson 5: Visualise it</a>.)</span></p>
 
             <div class="expandable">
                 <div class="expandable-header" onclick="toggleExpandable(this)">
@@ -1189,8 +1500,8 @@ details.accordion > summary::-webkit-details-marker { display: none; }
             </div>
 
             <h3>7. Exam Preparation and Practice</h3>
-            
-            <p>GenAI can support exam preparation through the generation of practice questions, creation of study guides, and simulation of examination scenarios—helping students to test their knowledge and identify areas requiring further attention.</p>
+
+            <p>GenAI can support exam preparation through the generation of practice questions, the creation of study guides, and the simulation of examination scenarios. <span class="note-muted">(This subsection focuses on exam <em>logistics</em>; for active recall as a study technique that strengthens memory, see <a href="#lesson-cls" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">Lesson 5: Remember it</a>.)</span></p>
 
             <div class="expandable">
                 <div class="expandable-header" onclick="toggleExpandable(this)">
@@ -1307,224 +1618,438 @@ details.accordion > summary::-webkit-details-marker { display: none; }
           </div>
         </section>
 
-<!-- ======================================================
-  LESSON 4: HOW TO USE GenAI AS A PERSONAL TUTOR (FEEDBACK LOOP)
-  Place this section BEFORE the Quiz section. Then add:
-  { id: 'lesson4-tutor-loop', title: 'Lesson 4: Personal Tutor (Feedback Loop)' }
-  to your SECTIONS array so it appears in the sidebar.
-====================================================== -->
-<section id="lesson4-tutor-loop" class="section" tabindex="-1" aria-labelledby="h-lesson4-tutor-loop">
-  <h2 id="h-lesson4-tutor-loop">How to Use GenAI as a Personal Tutor (The Feedback Loop)</h2>
+<!-- ─── LESSON: COGNITIVE LEARNING STRATEGIES ─── -->
+<section id="lesson-cls" class="section" tabindex="-1" aria-labelledby="h-lesson-cls">
+  <h2 id="h-lesson-cls">Lesson 5: Cognitive Learning Strategies</h2>
 
-  <p>The most powerful and academically sound way to use GenAI is not to ask for answers, but to ask for feedback on <em>your</em> answers. You stay in control: you think first, write first, and then use the AI as a 24/7 tutor to find gaps, challenge assumptions, and improve your work.</p>
-  <p>This is a short, three-step conversation. First share the case or context. Second share the question or task. Third share your draft and ask for feedback only.</p>
-
-  <!-- Simple 3-step checklist -->
-  <ol class="checklist" style="margin:1rem 0 2rem 1.25rem; line-height:1.8;">
-    <li><strong>Step 1 – Share context:</strong> Paste the case study or scenario. Tell the AI to use it as the only source. Ask it to reply “Ready”.</li>
-    <li><strong>Step 2 – Share the question:</strong> Paste the assignment question. Tell the AI to wait while you write your own draft.</li>
-    <li><strong>Step 3 – Share your draft:</strong> Paste your draft. Ask for tutor-style feedback only. Do <em>not</em> ask it to rewrite.</li>
-  </ol>
-
-  <div class="callout" style="background:#f1f8e9;border-left:4px solid #558b2f;padding:1rem 1.25rem;border-radius:8px;margin:1.5rem 0;">
-    <strong>Why this works</strong>: You do the thinking and writing. The AI acts as a coach that points out strengths, gaps, and risks based only on the case you provided. This protects academic integrity and builds real skill.
+  <div style="background:#f0f4ff;border:1px solid #c5d0f0;border-left:4px solid #4a6cf7;border-radius:10px;padding:0.9rem 1.25rem;margin-bottom:1.75rem;font-size:0.9rem;color:#374151;display:flex;align-items:flex-start;gap:0.75rem;">
+    <span style="flex-shrink:0;">🏫</span>
+    <span><strong style="color:#2d3f8f;">Adapted lesson contribution</strong> — This lesson is based on a contribution from CQUniversity's Academic Learning Centre and has been adapted for inclusion within the SAGE GenAI-101 module.</span>
   </div>
 
-  <!-- Discipline panels -->
-  <h3 style="margin-top:2rem;">Practice Templates by Discipline</h3>
-  <p>Open the panel that matches your unit. Copy each message in order (Step 1 → Step 2 → Step 3). Replace the placeholders with your own case, question, and draft.</p>
+  <p><a href="#practical-applications" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">Lesson 4</a> set out the practical tasks AI can support across your studies. This lesson goes one level deeper, into the learning science behind effective study. GenAI is most useful when it helps you <em>practise</em> learning, not when it replaces it. <strong>Cognitive Learning Strategies</strong> are structured ways of processing information — breaking it into parts, asking deeper questions, summarising it in your own words, strengthening memory, and representing ideas visually — that turn everyday AI use into deeper understanding and stronger recall.</p>
 
-  <!-- MBA -->
-  <details style="margin:1rem 0;border:1px solid #e0e0e0;border-radius:10px;padding:0.5rem 1rem;background:#fff;">
-    <summary><strong>Business / MBA — Marketing case study</strong></summary>
-    <div style="margin-top:1rem;">
-      <p><strong>Step 1 — Share context</strong></p>
-      <pre id="mba-s1" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-Hello. I will paste a 500-word case study about a company called “TechDrive Solutions”.
-Use this as the ONLY source of truth for our conversation. Do not use external knowledge.
-When finished reading, reply only with: “Context loaded. Ready for questions.”
+  <div class="callout callout-warning">
+    <div class="callout-title"><span class="callout-icon">⚠️</span> Use AI to practise thinking</div>
+    <p style="margin-bottom:0;">Use GenAI as a study coach. Do not ask it to produce assessable work for you. Always check your unit profile and assessment instructions before using AI in any assessment-related activity.</p>
+  </div>
 
-[PASTE FULL CASE STUDY HERE]
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#mba-s1">Copy Step 1</button>
+  <h3>The Five-Strategy Study Sequence</h3>
+  <p>The following sequence turns AI use into an active learning process. Each strategy keeps the student responsible for understanding, judgement, and final work.</p>
 
-      <p style="margin-top:1rem;"><strong>AI should reply:</strong> <em>“Context loaded. Ready for questions.”</em></p>
-
-      <p style="margin-top:1rem;"><strong>Step 2 — Share the question</strong></p>
-      <pre id="mba-s2" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-My assignment question is:
-“Based on the case study, identify TechDrive’s primary market challenge and propose a 3-point plan to address it.”
-
-I will write my own answer first. Please wait for my next message and do nothing until then. Reply: “Acknowledged. Waiting for your draft.”
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#mba-s2">Copy Step 2</button>
-
-      <p style="margin-top:1rem;"><strong>AI should reply:</strong> <em>“Acknowledged. Waiting for your draft.”</em></p>
-
-      <p style="margin-top:1rem;"><strong>Step 3 — Share your draft and ask for feedback</strong></p>
-      <pre id="mba-s3" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-Here is my draft answer:
-
-[PASTE YOUR DRAFT HERE]
-
-Act as my MBA marketing professor. Do NOT rewrite my answer.
-Give feedback only, based solely on the case I provided.
-Use these headings:
-• Strengths
-• Gaps vs. Case (mark anything not in the case as “Not in case”)
-• Alignment with Task
-• Priority Improvements (top 3 fixes I should make next)
-• Quick-Fix Checklist (short, actionable bullets)
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#mba-s3">Copy Step 3</button>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin:1.5rem 0;">
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">1. Chunk it</strong>
+      <p style="margin:0.5rem 0 0;">Break a large topic, reading, or task into manageable parts.</p>
     </div>
-  </details>
-
-  <!-- Cybersecurity -->
-  <details style="margin:1rem 0;border:1px solid #e0e0e0;border-radius:10px;padding:0.5rem 1rem;background:#fff;">
-    <summary><strong>Cybersecurity — BYOD policy for a law firm</strong></summary>
-    <div style="margin-top:1rem;">
-      <p><strong>Step 1 — Share context</strong></p>
-      <pre id="cyber-s1" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-I will paste a case study about a mid-sized law firm (50 employees) with no formal IT security rules.
-Use this as the only context. Do not use external knowledge.
-When finished reading, reply only: “Ready”.
-
-[PASTE CASE STUDY HERE]
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#cyber-s1">Copy Step 1</button>
-
-      <p style="margin-top:1rem;"><strong>AI should reply:</strong> <em>“Ready.”</em></p>
-
-      <p style="margin-top:1rem;"><strong>Step 2 — Share the question</strong></p>
-      <pre id="cyber-s2" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-Task: Draft the key sections of a Bring Your Own Device (BYOD) policy tailored to this law firm.
-
-I will write my own outline now. Please wait. Reply: “Acknowledged.”
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#cyber-s2">Copy Step 2</button>
-
-      <p style="margin-top:1rem;"><strong>AI should reply:</strong> <em>“Acknowledged.”</em></p>
-
-      <p style="margin-top:1rem;"><strong>Step 3 — Share your draft and ask for feedback</strong></p>
-      <pre id="cyber-s3" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-Here is my draft outline:
-1) Employees may use personal phones.
-2) They must set a 4-digit PIN.
-3) The company is not responsible for lost phones.
-
-Act as a Chief Information Security Officer (CISO). Do NOT rewrite my draft.
-Give feedback only, using the case as the sole source.
-Answer these questions:
-• What is the single biggest risk I missed for a law firm?
-• What is the most important policy section I must add?
-• Which of my points is the weakest and why?
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#cyber-s3">Copy Step 3</button>
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">2. Elaborate it</strong>
+      <p style="margin:0.5rem 0 0;">Ask questions that connect, compare, apply, and test ideas.</p>
     </div>
-  </details>
-
-  <!-- Nursing -->
-  <details style="margin:1rem 0;border:1px solid #e0e0e0;border-radius:10px;padding:0.5rem 1rem;background:#fff;">
-    <summary><strong>Nursing — Discharge planning from a brief scenario</strong></summary>
-    <div style="margin-top:1rem;">
-      <p><strong>Step 1 — Share context</strong></p>
-      <pre id="nurse-s1" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-I will paste a 1-paragraph patient scenario. Use this as the only source.
-When finished reading, reply only: “Ready”.
-
-[PASTE PATIENT SCENARIO HERE]
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#nurse-s1">Copy Step 1</button>
-
-      <p style="margin-top:1rem;"><strong>AI should reply:</strong> <em>“Ready.”</em></p>
-
-      <p style="margin-top:1rem;"><strong>Step 2 — Share the question</strong></p>
-      <pre id="nurse-s2" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-Task: Identify two priority nursing diagnoses and one key intervention for each (Australian context).
-
-I will write my answer now. Please wait. Reply: “Acknowledged.”
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#nurse-s2">Copy Step 2</button>
-
-      <p style="margin-top:1rem;"><strong>AI should reply:</strong> <em>“Acknowledged.”</em></p>
-
-      <p style="margin-top:1rem;"><strong>Step 3 — Share your draft and ask for feedback</strong></p>
-      <pre id="nurse-s3" class="copy-block" style="white-space:pre-wrap;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:0.75rem;">
-My draft:
-• Diagnosis: Acute Pain. Intervention: Give pain medication.
-• Diagnosis: Risk for Infection. Intervention: Check the wound.
-
-Act as my Clinical Facilitator. Do NOT rewrite my answer.
-Give feedback only, based on the scenario I provided.
-Answer:
-• Are my interventions specific enough for a care plan (yes/no + why)?
-• What key link to the patient’s history have I failed to make (if any)?
-• List the top 3 changes that would make this plan safer.
-      </pre>
-      <button type="button" class="copy-btn" data-copy="#nurse-s3">Copy Step 3</button>
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">3. Summarise it</strong>
+      <p style="margin:0.5rem 0 0;">Write your own summary, then ask AI to identify gaps or unclear points.</p>
     </div>
-  </details>
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">4. Remember it</strong>
+      <p style="margin:0.5rem 0 0;">Create recall questions, mnemonics, or practice quizzes.</p>
+    </div>
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">5. Visualise it</strong>
+      <p style="margin:0.5rem 0 0;">Represent the topic as a table, flowchart, timeline, or concept map.</p>
+    </div>
+  </div>
 
-  <!-- Common mistakes -->
-  <div class="callout" style="background:#fff3e0;border-left:4px solid #ef6c00;padding:1rem 1.25rem;border-radius:8px;margin:1.5rem 0;">
-    <strong>Common mistakes to avoid</strong>
-    <ul style="margin:0.5rem 0 0 1.25rem;line-height:1.8;">
-      <li>Asking the AI to write the answer for you.</li>
-      <li>Letting the AI use information that is not in your case or scenario.</li>
-      <li>Skipping Step 2 (sharing the exact question) or Step 3 (sharing your draft).</li>
-      <li>Forgetting to ask for “feedback only” and “no rewriting”.</li>
+  <h3>Prompt Templates</h3>
+  <p>Use one prompt at a time. The goal is to guide your learning process, not to create work for submission.</p>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>🧩 Chunking a topic or assignment</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);">
+        <p style="margin-bottom:0;font-style:italic;">"I am studying [topic/task]. Break it into 5–7 manageable parts. For each part, provide a short explanation and one question I should be able to answer after studying it. Do not write an assignment response for me."</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>🤔 Elaboration questions</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);">
+        <p style="margin-bottom:0;font-style:italic;">"I am learning about [concept]. Ask me questions that require me to explain, compare, apply, and evaluate the concept. Ask one question at a time and wait for my response."</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>📝 Checking your own summary</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);">
+        <p style="margin-bottom:0;font-style:italic;">"Here is my summary of [topic]. Give me feedback on whether it is accurate, clear, and complete. Do not rewrite it. Identify the three most important improvements I should make."</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>🧠 Recall and memory practice</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);">
+        <p style="margin-bottom:0;font-style:italic;">"Help me practise recall for [topic]. Ask me one question at a time. If my answer is incomplete, give me a hint before giving the answer."</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>🗺️ Choosing a visual structure</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);">
+        <p style="margin-bottom:0;font-style:italic;">"I am studying [topic]. Suggest whether a mind map, table, timeline, flowchart, or concept map would best represent it. Explain why, then give me a text-only structure I can adapt myself."</p>
+      </div>
+    </div></div>
+  </div>
+
+  <h3>Combined Workflow Prompt</h3>
+  <div style="background:var(--cqu-neutral-light);padding:1.5rem;border-radius:12px;border:2px solid var(--cqu-deep-green);margin:1rem 0;">
+    <p style="margin-bottom:0;font-style:italic;">"I am studying [insert topic]. Guide me through five cognitive learning strategies one step at a time: chunk the topic, ask elaboration questions, help me check my own summary, create a recall activity, and suggest a visual representation. Act as a study coach. Do not write an assignment for me."</p>
+  </div>
+
+  <div class="dos-donts-grid" style="margin-top:1.5rem;">
+    <div class="dos-column">
+      <div class="column-header"><span>✓</span> Strong use</div>
+      <div class="dos-donts-item"><p style="margin:0;">Write or think first, then use AI to test, question, organise, and improve your understanding.</p></div>
+      <div class="dos-donts-item"><p style="margin:0;">Keep a record of prompts and outputs if AI use informs assessment preparation.</p></div>
+    </div>
+    <div class="donts-column">
+      <div class="column-header"><span>✗</span> Risky use</div>
+      <div class="dos-donts-item"><p style="margin:0;">Do not copy AI-generated summaries, visuals, or explanations into assessed work unless explicitly permitted and acknowledged.</p></div>
+      <div class="dos-donts-item"><p style="margin:0;">Do not let AI remove the need to practise recall, explanation, writing, or critical judgement.</p></div>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-title"><span class="callout-icon">🎯</span> Key Takeaway</div>
+    <p style="margin-bottom:0;">Cognitive Learning Strategies turn GenAI into a learning partner. The aim is not the quickest answer, but stronger understanding, clearer organisation, better memory, and more independent thinking.</p>
+  </div>
+
+  <div style="background:#f8f9ff;border:1px solid #d0d9f5;border-radius:10px;padding:1.25rem;margin:2rem 0;font-size:0.88rem;color:#374151;">
+    <strong style="color:#2d3f8f;display:block;margin-bottom:0.75rem;">Lesson sources</strong>
+    <p style="margin:0.4rem 0;line-height:1.7;">[1] R. MacLeod and D. Swanson, "Encouraging ethical engagement and cognitive learning with LLMs: A framework and methodology," in <em>Generative Artificial Intelligence in Higher Education</em>, K. Enomoto, R. Warner, and C. Nygaard, Eds. Oxfordshire, UK: Libri Publishing, 2024, pp. 285–311.</p>
+    <p style="margin:0.4rem 0;line-height:1.7;">[2] R. MacLeod and D. Swanson, "Cultivating strong minds: Leveraging GenAI for academic growth and personal wellbeing," in <em>Compassionate Pedagogy in Higher Education</em>, J. De Wilde, K. Enomoto, R. Warner, and C. Nygaard, Eds. Oxfordshire, England: Libri Publishing, 2025, pp. 167–211.</p>
+  </div>
+
+  <div class="pager">
+    <button type="button" class="prev">Previous</button>
+    <button type="button" class="next" data-complete>Next</button>
+  </div>
+</section>
+<!-- ─── END LESSON: COGNITIVE LEARNING STRATEGIES ─── -->
+
+<!-- ─── LESSON 6: GENAI MIRRORING ─── -->
+<section id="lesson-mirroring" class="section" tabindex="-1" aria-labelledby="h-lesson-mirroring">
+  <h2 id="h-lesson-mirroring">Lesson 6: GenAI Mirroring</h2>
+
+  <div style="background:#f0f4ff;border:1px solid #c5d0f0;border-left:4px solid #4a6cf7;border-radius:10px;padding:0.9rem 1.25rem;margin-bottom:1.75rem;font-size:0.9rem;color:#374151;display:flex;align-items:flex-start;gap:0.75rem;">
+    <span style="flex-shrink:0;">🏫</span>
+    <span><strong style="color:#2d3f8f;">Adapted lesson contribution</strong> — This lesson is based on a contribution from CQUniversity's Academic Learning Centre and has been adapted for inclusion within the SAGE GenAI-101 module.</span>
+  </div>
+
+  <p>In this module, <strong>GenAI mirroring</strong> refers to the tendency of an AI tool to reflect your assumptions, wording, or preferred position back to you in polished form. This can be useful for exploring an idea, but it can also make incomplete or one-sided thinking appear stronger than it is.</p>
+
+  <div class="callout callout-warning">
+    <div class="callout-title"><span class="callout-icon">⚠️</span> Agreement is not evidence</div>
+    <p style="margin-bottom:0;">If you ask AI to support your idea, it will often support it. A confident response does not prove that your argument is correct, balanced, or well-evidenced.</p>
+  </div>
+
+  <h3>Example: The Mirror Effect</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:1.5rem 0;">
+    <div style="background:linear-gradient(135deg,#fff5f5,#ffe8e8);border:2px solid #f5b5b5;border-radius:12px;padding:1.5rem;">
+      <div style="font-weight:800;color:var(--error-red);margin-bottom:0.75rem;">❌ Weak Prompt</div>
+      <p style="font-style:italic;margin-bottom:0.75rem;">"Explain why mindfulness is the best way to reduce stress among university students."</p>
+      <p style="font-size:0.9rem;color:#666;margin-bottom:0;">This encourages the AI to support one position and may ignore limitations, alternatives, or structural causes of stress.</p>
+    </div>
+    <div style="background:linear-gradient(135deg,#f0f9e6,#e4f5d4);border:2px solid #74c69d;border-radius:12px;padding:1.5rem;">
+      <div style="font-weight:800;color:var(--cqu-deep-green);margin-bottom:0.75rem;">✓ Stronger Prompt</div>
+      <p style="font-style:italic;margin-bottom:0.75rem;">"Critically evaluate the claim that mindfulness is the best way to reduce stress among university students. Include benefits, limitations, alternative approaches, and the evidence needed to support the claim."</p>
+      <p style="font-size:0.9rem;color:#555;margin-bottom:0;">This invites balance, evidence, and academic complexity.</p>
+    </div>
+  </div>
+
+  <h3>The Break-the-Mirror Method</h3>
+  <p>Use this short sequence when developing an argument, interpretation, or position.</p>
+
+  <div style="display:grid;gap:1rem;margin:1.25rem 0;">
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1.25rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">1. Mirror the idea</strong>
+      <p style="margin:0.4rem 0 0.75rem;">See the strongest version of your current thinking.</p>
+      <p style="background:var(--cqu-light-green);border-left:5px solid var(--cqu-deep-green);border-radius:8px;padding:1rem;margin:0;font-style:italic;">"Support my argument that [insert argument]. Identify the strongest points in favour of this position."</p>
+    </div>
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1.25rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">2. Challenge the idea</strong>
+      <p style="margin:0.4rem 0 0.75rem;">Create productive friction and expose assumptions.</p>
+      <p style="background:var(--cqu-light-green);border-left:5px solid var(--cqu-deep-green);border-radius:8px;padding:1rem;margin:0;font-style:italic;">"Now challenge this argument. What assumptions am I making? What evidence would I need? What would a sceptical marker, tutor, or peer reviewer question?"</p>
+    </div>
+    <div style="background:var(--cqu-white);border:1px solid #e9f3de;border-radius:12px;padding:1.25rem;box-shadow:0 2px 10px var(--cqu-shadow);">
+      <strong style="color:var(--cqu-deep-green);">3. Improve the idea</strong>
+      <p style="margin:0.4rem 0 0.75rem;">Move from certainty to a more balanced academic position.</p>
+      <p style="background:var(--cqu-light-green);border-left:5px solid var(--cqu-deep-green);border-radius:8px;padding:1rem;margin:0;font-style:italic;">"Help me revise this into a more balanced academic argument. Keep my main idea, but include limitations, alternative perspectives, and areas where more evidence is needed. Do not write the final paragraph for me."</p>
+    </div>
+  </div>
+
+  <h3>Prompts That Reduce Mirroring</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0;">
+    <div class="dos-donts-item"><strong>Challenge my assumptions</strong><p style="margin:0.5rem 0 0;font-style:italic;">"Do not agree with me automatically. Identify the assumptions in my argument and explain which ones need evidence."</p></div>
+    <div class="dos-donts-item"><strong>Act as a sceptical marker</strong><p style="margin:0.5rem 0 0;font-style:italic;">"What would a sceptical university marker question about this argument?"</p></div>
+    <div class="dos-donts-item"><strong>Find the missing perspective</strong><p style="margin:0.5rem 0 0;font-style:italic;">"What perspectives, stakeholders, theories, or evidence have I left out?"</p></div>
+    <div class="dos-donts-item"><strong>Improve without rewriting</strong><p style="margin:0.5rem 0 0;font-style:italic;">"Give feedback on how I can make this more balanced and evidence-based. Do not rewrite it for me."</p></div>
+    <div class="dos-donts-item"><strong>Evidence check</strong><p style="margin:0.5rem 0 0;font-style:italic;">"List the claims in my paragraph that require academic evidence and suggest the type of source needed for each claim."</p></div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-title"><span class="callout-icon">🎯</span> Key Takeaway</div>
+    <p style="margin-bottom:0;">GenAI can make weak ideas sound polished. Strong academic use involves asking the tool to question, test, and complicate your thinking so that the final work remains stronger, balanced, evidence-based, and genuinely your own.</p>
+  </div>
+
+  <div style="background:#f8f9ff;border:1px solid #d0d9f5;border-radius:10px;padding:1.25rem;margin:2rem 0;font-size:0.88rem;color:#374151;">
+    <strong style="color:#2d3f8f;display:block;margin-bottom:0.75rem;">Lesson sources</strong>
+    <p style="margin:0.4rem 0;line-height:1.7;">[1] R. MacLeod and D. Swanson, "Encouraging ethical engagement and cognitive learning with LLMs: A framework and methodology," in <em>Generative Artificial Intelligence in Higher Education</em>, K. Enomoto, R. Warner, and C. Nygaard, Eds. Oxfordshire, UK: Libri Publishing, 2024, pp. 285–311.</p>
+    <p style="margin:0.4rem 0;line-height:1.7;">[2] R. MacLeod and D. Swanson, "Cultivating strong minds: Leveraging GenAI for academic growth and personal wellbeing," in <em>Compassionate Pedagogy in Higher Education</em>, J. De Wilde, K. Enomoto, R. Warner, and C. Nygaard, Eds. Oxfordshire, England: Libri Publishing, 2025, pp. 167–211.</p>
+  </div>
+
+  <div class="pager">
+    <button type="button" class="prev">Previous</button>
+    <button type="button" class="next" data-complete>Next</button>
+  </div>
+</section>
+
+
+<section id="lesson-critical-coach" class="section" tabindex="-1" aria-labelledby="h-lesson-critical-coach">
+  <h2 id="h-lesson-critical-coach">Lesson 7: Use AI as a Critical Coach: Anchor, Check, Defend</h2>
+
+  <p>AI can be useful as a tutor or coach, but a good coach does more than encourage you. A good coach asks difficult questions, checks your reasoning against evidence, and helps you prepare to explain your work without hiding behind the tool.</p>
+
+  <div class="coach-hero" role="region" aria-label="Anchor Check Defend model">
+    <div class="coach-hero-text">
+      <div class="coach-kicker">SAGE Critical Coach Model</div>
+      <h3>Move from friendly feedback to defensible learning</h3>
+      <p>This lesson builds directly on <a href="#lesson-mirroring" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">Lesson 6</a>: mirroring showed how AI agrees too easily, and the Critical Coach is how you push back. Use the three-part model below whenever an AI response sounds convincing but needs to be tested. It puts the SAGE cycle into practice — <strong>Anchor</strong> and <strong>Check</strong> operationalise the <em>Evaluate</em> and <em>AI&nbsp;Critic</em> steps, and <strong>Defend</strong> is the SAGE <em>Defend</em> step itself.</p>
+    </div>
+    <div class="coach-model" aria-label="Anchor Check Defend sequence">
+      <div class="coach-node">
+        <span class="coach-node-icon">⚓</span>
+        <strong>Anchor</strong>
+        <span>Compare the response with an external source.</span>
+      </div>
+      <div class="coach-arrow" aria-hidden="true">→</div>
+      <div class="coach-node">
+        <span class="coach-node-icon">🔍</span>
+        <strong>Check</strong>
+        <span>Look for assumptions, errors, gaps, and contradictions.</span>
+      </div>
+      <div class="coach-arrow" aria-hidden="true">→</div>
+      <div class="coach-node">
+        <span class="coach-node-icon">🛡️</span>
+        <strong>Defend</strong>
+        <span>Practise explaining, adapting, and justifying the work.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-title"><span class="callout-icon">💡</span> The core idea</div>
+    <p style="margin-bottom:0;">Do not only ask whether an AI answer is good. Ask <strong>what it is good against</strong>. A response should be checked against a rubric, standard, guideline, paper, policy, code, dataset, textbook, professional principle, or verified source.</p>
+  </div>
+
+  <h3>1. Coach: Use AI to practise, not to outsource</h3>
+  <p>AI can help you learn by asking questions, giving feedback, explaining difficult points, testing your understanding, or helping you prepare for a discussion. The safest pattern is to think first, draft first, or attempt the task first, then use AI to coach your next improvement.</p>
+
+  <div class="coach-two-column">
+    <div class="coach-card coach-good">
+      <div class="coach-card-title">✓ Strong coaching use</div>
+      <p>"Here is my draft answer. Do not rewrite it. Ask me five questions that will help me improve the reasoning, evidence, and structure."</p>
+    </div>
+    <div class="coach-card coach-risk">
+      <div class="coach-card-title">⚠️ Risky shortcut use</div>
+      <p>"Write the final answer for me and make it sound academic."</p>
+    </div>
+  </div>
+
+  <h3>2. Anchor: Force the answer outside the conversation</h3>
+  <p>An <strong>anchor</strong> is an external reference point that helps test whether an AI response is accurate, relevant, and appropriate. The anchor may be provided by your unit, your discipline, a professional body, a standard, a published paper, or your assessment instructions.</p>
+
+  <div class="anchor-lab" data-anchor-lab>
+    <div class="anchor-lab-header">
+      <div>
+        <h4>Interactive Anchor Selector</h4>
+        <p>Choose an anchor type to see how a student might ask AI to check an answer without simply accepting the first response.</p>
+      </div>
+      <span class="anchor-badge">Click a card</span>
+    </div>
+
+    <div class="anchor-options" role="list" aria-label="Anchor examples">
+      <button type="button" class="anchor-option active"
+        data-anchor-title="Professional standard or framework"
+        data-anchor-body="Use this when the task sits within a recognised discipline or profession, such as cybersecurity, nursing, accounting, education, engineering, social work, design, or construction."
+        data-anchor-prompt="Check this answer against [insert standard/framework/guideline, e.g., NIST CSF, Australian nursing standards, accounting standards, building code, design principle]. Identify where it aligns, where it is incomplete, and which claims I must verify in the original standard. Do not assume the answer is correct.">
+        <span>📘</span><strong>Standard</strong>
+      </button>
+
+      <button type="button" class="anchor-option"
+        data-anchor-title="Assessment rubric or task instructions"
+        data-anchor-body="Use this when you need to test whether the AI response actually answers the assigned task rather than producing a polished but misaligned answer."
+        data-anchor-prompt="Assess this response against the attached assessment instructions and rubric. Identify which criteria are addressed, which criteria are weak or missing, and what I need to revise myself. Do not rewrite the submission.">
+        <span>📋</span><strong>Rubric</strong>
+      </button>
+
+      <button type="button" class="anchor-option"
+        data-anchor-title="Research paper, textbook, or lecture material"
+        data-anchor-body="Use this when the answer needs to be grounded in a specific reading, article, chapter, lecture, or source supplied in the unit."
+        data-anchor-prompt="Check this response against the uploaded research paper or lecture material. For each claim, identify the exact section, page, table, or paragraph that supports it. If a claim is not supported, mark it as unsupported.">
+        <span>🔬</span><strong>Source</strong>
+      </button>
+
+      <button type="button" class="anchor-option"
+        data-anchor-title="Dataset, calculation, code, or technical output"
+        data-anchor-body="Use this when AI helped with analysis, formulas, coding, modelling, design, or other technical work that needs to be tested."
+        data-anchor-prompt="Review this output against the provided data, formula, code, or test results. Identify errors, edge cases, assumptions, and what I should test or recalculate myself before relying on it.">
+        <span>🧪</span><strong>Test</strong>
+      </button>
+    </div>
+
+    <div class="anchor-output" aria-live="polite">
+      <div class="anchor-output-title" id="anchorOutputTitle">Professional standard or framework</div>
+      <p id="anchorOutputBody">Use this when the task sits within a recognised discipline or profession, such as cybersecurity, nursing, accounting, education, engineering, social work, design, or construction.</p>
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <strong>Example prompt</strong>
+          <button type="button" class="copy-mini" data-copy-target="#anchorPromptText">Copy</button>
+        </div>
+        <p id="anchorPromptText">Check this answer against [insert standard/framework/guideline, e.g., NIST CSF, Australian nursing standards, accounting standards, building code, design principle]. Identify where it aligns, where it is incomplete, and which claims I must verify in the original standard. Do not assume the answer is correct.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-title"><span class="callout-icon">⚠️</span> What if you do not know the right anchor yet?</div>
+    <p>Early in a unit, you may not know which standard, guideline, theory, code, framework, or key source is most relevant. You can ask AI to suggest possible anchors, but you must still verify them through the unit materials, lecturer, library databases, or official websites.</p>
+    <p style="margin-bottom:0;font-style:italic;">"I am studying [topic] in [discipline]. What official standards, guidelines, theories, codes, frameworks, or key sources are commonly used to check work in this area? For each one, explain why it may be relevant and how I should verify that it applies to my task."</p>
+  </div>
+
+  <h3>3. Check: Ask for critique, not agreement</h3>
+  <p>Once you have an anchor, use AI to check the response against that anchor. You can also use a fresh chat, another AI tool, or a stricter role to reduce the chance that the tool simply continues agreeing with the earlier conversation.</p>
+
+  <div class="coach-toolkit-grid">
+    <details class="coach-toolkit-card">
+      <summary><span>🧭</span> Ask a stricter question</summary>
+      <p>Turn a claim into a question before asking AI to evaluate it. This reduces the chance that the tool simply supports the position you already stated.</p>
+      <div class="prompt-card compact">
+        <p>"Rewrite my claim as a fair academic question. Then evaluate both sides, identify assumptions, and state what evidence would be needed."</p>
+      </div>
+    </details>
+
+    <details class="coach-toolkit-card">
+      <summary><span>🔁</span> Start a fresh critique</summary>
+      <p>Paste the AI response into a new chat and ask for critique. A fresh context can reduce conversational momentum from the first chat.</p>
+      <div class="prompt-card compact">
+        <p>"Do not assume this AI response is correct. Identify unsupported claims, missing evidence, contradictions, and what I should verify against an external source."</p>
+      </div>
+    </details>
+
+    <details class="coach-toolkit-card">
+      <summary><span>👥</span> Get a second opinion</summary>
+      <p>A different AI tool or a different critical role can reveal gaps, but it is not proof. Treat the second response as another prompt for verification.</p>
+      <div class="prompt-card compact">
+        <p>"Act as a sceptical marker, reviewer, professional assessor, or subject expert. Critique this answer against [anchor] and list revision priorities."</p>
+      </div>
+    </details>
+
+    <details class="coach-toolkit-card">
+      <summary><span>🧩</span> Surface criteria first</summary>
+      <p>Before asking for a final answer, ask the tool to identify the criteria, assumptions, evidence, and limitations that should guide the answer.</p>
+      <div class="prompt-card compact">
+        <p>"Before answering, list the criteria, assumptions, evidence needed, and limitations. Then give a concise answer and tell me what I must verify."</p>
+      </div>
+    </details>
+  </div>
+
+  <h3>4. Defend: Prepare to explain and adapt</h3>
+  <p>A good AI coach should prepare you to demonstrate your own learning. Your lecturer may ask you to explain your reasoning, modify the work, complete a related task, walk through a process, present your choices, or answer questions under assessment or assurance conditions. This is the same habit you will apply as the <a href="#lesson-own-materials" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">Transfer Test</a> in Lessons 10 and 11: if you cannot reproduce or justify the work without the tool, you have not finished learning it.</p>
+
+  <div class="defend-panel">
+    <div class="defend-icon">🛡️</div>
+    <div>
+      <h4>Defend prompt</h4>
+      <p id="defendPrompt">Ask me five questions to test whether I can defend this answer. Include questions about evidence, assumptions, limitations, alternative explanations, and how I would respond if the task requirements changed. Ask one question at a time and wait for my answer.</p>
+      <button type="button" class="copy-mini" data-copy-target="#defendPrompt">Copy defend prompt</button>
+    </div>
+  </div>
+
+  <h3>Apply the model across disciplines</h3>
+  <div class="anchor-examples-table" role="table" aria-label="Examples of anchors across disciplines">
+    <div role="row" class="anchor-row anchor-head">
+      <div role="columnheader">Discipline or task</div>
+      <div role="columnheader">Possible anchor</div>
+      <div role="columnheader">What to check</div>
+    </div>
+    <div role="row" class="anchor-row">
+      <div role="cell">Cybersecurity response</div>
+      <div role="cell">NIST, ISO, organisational policy, unit case study</div>
+      <div role="cell">Controls, risk language, missing evidence, incorrect assumptions</div>
+    </div>
+    <div role="row" class="anchor-row">
+      <div role="cell">Nursing or health scenario</div>
+      <div role="cell">Australian professional standards, clinical guideline, unit case</div>
+      <div role="cell">Safety, scope of practice, unsupported clinical claims</div>
+    </div>
+    <div role="row" class="anchor-row">
+      <div role="cell">Design or user experience critique</div>
+      <div role="cell">Design principles, accessibility standards, user evidence</div>
+      <div role="cell">Usability, assumptions about users, evidence for design choices</div>
+    </div>
+    <div role="row" class="anchor-row">
+      <div role="cell">Code, data, formulas, or models</div>
+      <div role="cell">Tests, dataset, requirements, rubric, code standards</div>
+      <div role="cell">Logic, edge cases, reproducibility, accuracy, limitations</div>
+    </div>
+    <div role="row" class="anchor-row">
+      <div role="cell">Essay, report, policy, or presentation</div>
+      <div role="cell">Rubric, research paper, textbook, lecture, policy document</div>
+      <div role="cell">Claims, citations, scope, balance, relevance to the task</div>
+    </div>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-title"><span class="callout-icon">✅</span> SAGE Checkpoint: Anchor, Check, Defend</div>
+    <ul style="margin-left:1.25rem;margin-bottom:0;line-height:1.8;">
+      <li><strong>Anchor:</strong> What external source, standard, evidence, or criterion should this answer be checked against?</li>
+      <li><strong>Check:</strong> What assumptions, unsupported claims, gaps, or contradictions does the AI response contain?</li>
+      <li><strong>Defend:</strong> Can you explain, adapt, and justify the work if your lecturer asks you to demonstrate your understanding?</li>
     </ul>
   </div>
 
-  <!-- Pager navigation (match your site’s pattern if needed) -->
-  <div class="pager" style="margin-top:2rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
-    <button type="button" class="prev" onclick="document.getElementById('practical-applications')?.scrollIntoView({behavior:'smooth'});">Previous</button>
-    <button type="button" class="next" data-complete onclick="document.getElementById('quiz')?.scrollIntoView({behavior:'smooth'});">Next</button>
+  <h3>Activity: Take an AI answer on a verification ride</h3>
+  <p>Choose one AI response you have received. It may be a paragraph, slide outline, design idea, code explanation, data interpretation, policy draft, or study answer. Then:</p>
+  <ol style="margin-left:1.25rem;line-height:1.9;">
+    <li>Identify the most relevant anchor: rubric, standard, guideline, reading, dataset, code, policy, or professional principle.</li>
+    <li>Ask AI to check the response against that anchor.</li>
+    <li>Use a fresh chat or another AI tool to critique the first response.</li>
+    <li>Open the anchor yourself and verify the most important claim.</li>
+    <li>Ask AI to question you until you can defend the answer in your own words.</li>
+  </ol>
+
+  <div class="coach-key-takeaway">
+    <strong>Key takeaway:</strong> AI can coach you, but you must control the coaching. Anchor the response, check the reasoning, and practise defending the final work yourself.
   </div>
 
-  <!-- Local copy-to-clipboard helper (scoped to this section) -->
-  <script>
-    (function () {
-      const root = document.getElementById('lesson4-tutor-loop');
-      if (!root) return;
-      root.addEventListener('click', async (e) => {
-        const btn = e.target.closest('.copy-btn');
-        if (!btn) return;
-        const targetSel = btn.getAttribute('data-copy');
-        const node = root.querySelector(targetSel);
-        if (!node) return;
-
-        const text = node.innerText;
-        try {
-          await navigator.clipboard.writeText(text);
-          const original = btn.textContent;
-          btn.textContent = 'Copied!';
-          setTimeout(() => (btn.textContent = original), 1200);
-        } catch (err) {
-          // Fallback: select and copy
-          const range = document.createRange();
-          range.selectNodeContents(node);
-          const sel = window.getSelection();
-          sel.removeAllRanges();
-          sel.addRange(range);
-          document.execCommand('copy');
-          sel.removeAllRanges();
-          const original = btn.textContent;
-          btn.textContent = 'Copied!';
-          setTimeout(() => (btn.textContent = original), 1200);
-        }
-      });
-    })();
-  </script>
+  <div class="pager">
+    <button type="button" class="prev">Previous</button>
+    <button type="button" class="next" data-complete>Next</button>
+  </div>
 </section>
-<!-- ============== END LESSON 4 (FEEDBACK LOOP) ============== -->
 
-
-
+<!-- ─── END LESSON 7: CRITICAL COACH ─── -->
 
 <section id="lesson-ai-research" class="section" tabindex="-1" aria-labelledby="h-lesson-ai-research">
-  <h2 id="h-lesson-ai-research">Using AI to Find and Work with Academic Sources</h2>
+  <h2 id="h-lesson-ai-research">Lesson 8: Finding Academic Sources</h2>
   
   <p>This lesson demonstrates how to use AI tools to help you find 3–5 credible sources for your assignment and work with them effectively. AI assists with planning and understanding—it does not write your work or invent references.</p>
 
@@ -2065,7 +2590,7 @@ Answer:
 
 
 <section id="lesson6-group-projects" class="section" tabindex="-1" aria-labelledby="h-lesson6-group">
-  <h2 id="h-lesson6-group">Lesson 6: AI for Group Projects & Collaborative Work</h2>
+  <h2 id="h-lesson6-group">Lesson 9: AI in Group Projects</h2>
   
   <p>Group assignments introduce unique challenges when AI tools are available. This lesson addresses how to use AI fairly and transparently within teams, ensure equitable contributions, and maintain both individual learning and collective academic integrity.</p>
 
@@ -2480,6 +3005,351 @@ Answer:
 </section>
         
 
+
+<!-- SECTION: Lesson 10 -->
+<section id="lesson-own-materials" class="section" tabindex="-1" aria-labelledby="h-lesson-own-materials">
+  <h2 id="h-lesson-own-materials">Lesson 10: AI with Your Own Materials (NotebookLM, Codex, Claude Code)</h2>
+
+  <p>Some AI tools can work directly with the materials you provide. These may include readings, lecture notes, slides, PDFs, textbook chapters, assessment instructions, datasets, drafts, code files, spreadsheets, or connected cloud documents. Examples include NotebookLM, ChatGPT or Claude with uploaded files, Gemini connected to cloud documents, and coding tools such as Codex or Claude Code that can work with files in a project.</p>
+
+  <p>This is different from asking a general chatbot a broad question. When AI works with your own materials, it can help you locate evidence, compare sources, test your understanding, inspect code, and identify gaps in your knowledge. However, it can still misunderstand, oversimplify, miss important details, or make your materials appear more complete than they really are.</p>
+
+  <div style="background:var(--cqu-neutral-light);border-left:4px solid var(--cqu-lime-green);border-radius:8px;padding:0.85rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;">
+    <strong>Lessons 10 and 11 are a pair.</strong> This lesson is about AI that <em>reads</em> the materials you give it. Lesson 11 is about AI that <em>produces</em> work directly inside your files. Both come back to one question: can you still do the thinking yourself? <span class="note-muted">(Specific tools change quickly; the principles here do not.)</span>
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-title"><span class="callout-icon">⚠️</span> Core Principle</div>
+    <p style="margin-bottom:0;">Use AI to engage more carefully with your own materials. Do not use it to avoid reading, practising, testing, verifying, or thinking.</p>
+  </div>
+
+  <h3>Learning Objectives</h3>
+  <ul style="margin-left:2rem;line-height:2;">
+    <li>Recognise when an AI tool is working from your own files, notes, code, sources, or project materials.</li>
+    <li>Use AI to question, compare, and verify materials rather than passively accept summaries.</li>
+    <li>Trace AI responses back to the original source, file, page, paragraph, slide, dataset, or code section.</li>
+    <li>Identify when an AI response may be incomplete, oversimplified, or misleading.</li>
+    <li>Use AI to prepare for assessment tasks that require explanation, adaptation, or defence of your work.</li>
+  </ul>
+
+  <h3>What Changes When AI Can See Your Files?</h3>
+  <p>When an AI tool can access your files, it may appear more reliable because it is using material you uploaded or connected. This can be useful, but it does not make the tool automatically correct. The tool can only work with what it can see. If the file set is incomplete, outdated, duplicated, or one-sided, the AI response may also be incomplete or one-sided.</p>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>🔎 First, check what the AI can see</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Before asking for analysis, check the source environment. This is especially important when working with multiple readings, cloud folders, project files, code repositories, or older drafts.</p>
+      <ul style="margin-left:1.5rem;line-height:1.9;">
+        <li>Have I uploaded or connected the correct files?</li>
+        <li>Are these files current and relevant?</li>
+        <li>Are assessment instructions, required readings, data, or examples missing?</li>
+        <li>Could older drafts or duplicate files confuse the tool?</li>
+        <li>Does the tool know the difference between my notes, my draft, assessment instructions, and published sources?</li>
+      </ul>
+      <div style="background:var(--cqu-light-green);padding:1rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);margin-top:1rem;">
+        <p style="margin-bottom:0;font-style:italic;">"List the files or sources you can see. For each one, briefly state what type of material it appears to be, such as lecture notes, article, assessment instructions, draft, data file, slide deck, or code file. Do not answer my main question yet."</p>
+      </div>
+    </div></div>
+  </div>
+
+  <h3>Four Good Ways to Use File-Connected AI</h3>
+  <p>Click each card to see the prompt template. In all four cases, the goal is to keep you active — thinking, checking, and practising, not passively reading a polished AI summary.</p>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)">
+      <span>🔍 1. Ask for evidence, not just answers</span>
+      <span class="expandable-icon">▼</span>
+    </div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>A weak use is to ask for a general summary. A stronger use is to ask the AI to show where claims come from and what you still need to verify yourself.</p>
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);margin:1rem 0;">
+        <p style="margin-bottom:0;font-style:italic;">"Based only on the uploaded sources, create a table with four columns: claim, supporting source, exact location, and what I need to check myself. Do not include claims that are not supported by the uploaded materials."</p>
+      </div>
+      <p style="margin-bottom:0;">After receiving the answer, open the original file and check whether the cited section really supports the claim.</p>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)">
+      <span>🔗 2. Compare sources and identify differences</span>
+      <span class="expandable-icon">▼</span>
+    </div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>AI can help when you need to work across several materials — comparing two readings, linking slides with a textbook chapter, checking a draft against evidence, or comparing two technical solutions.</p>
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);margin:1rem 0;">
+        <p style="margin-bottom:0;font-style:italic;">"Compare the uploaded sources on [topic]. Identify where they agree, where they differ, and where one source is more cautious than another. For each point, provide the exact source location I should verify."</p>
+      </div>
+      <p style="margin-bottom:0;">This helps you notice relationships between sources. The final judgement remains yours.</p>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)">
+      <span>🧠 3. Turn your materials into active recall</span>
+      <span class="expandable-icon">▼</span>
+    </div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Instead of reading a polished AI summary, ask the tool to question you from your own materials.</p>
+      <div style="background:var(--cqu-light-green);padding:1.25rem;border-radius:8px;border-left:5px solid var(--cqu-deep-green);margin:1rem 0;">
+        <p style="margin-bottom:0;font-style:italic;">"Based only on my uploaded lecture notes and readings, quiz me on [topic]. Ask one question at a time. Do not give me the answer until I respond. After each answer, explain what I understood correctly, what I missed, and where I should look in the source to revise."</p>
+      </div>
+      <p style="margin-bottom:0;">You are practising retrieval, explanation, and correction — not just consuming an AI explanation.</p>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)">
+      <span>💡 4. Clarify — but try the material first</span>
+      <span class="expandable-icon">▼</span>
+    </div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>AI can help when a reading, formula, theory, diagram, dataset, or piece of code is difficult. It is always better to attempt the material first.</p>
+      <div class="dos-donts-grid" style="margin:1rem 0;">
+        <div class="donts-column">
+          <div class="column-header"><span>✗</span> Weak prompt</div>
+          <div class="dos-donts-item"><p style="margin:0;font-style:italic;">"Explain this article to me."</p></div>
+        </div>
+        <div class="dos-column">
+          <div class="column-header"><span>✓</span> Stronger prompt</div>
+          <div class="dos-donts-item"><p style="margin:0;font-style:italic;">"I have read pages [insert pages] and I am confused about [specific concept]. Based on the uploaded source, explain this concept in simpler language. Then ask me two questions to check whether I understood it correctly."</p></div>
+        </div>
+      </div>
+      <p style="margin-bottom:0;">For code, data, or technical files, the same principle applies: ask for explanation and checking before asking for a complete solution.</p>
+    </div></div>
+  </div>
+
+  <h3>The Transfer Test: Can You Still Do It Yourself?</h3>
+  <p>Sometimes students use tools such as Codex, Claude Code, Copilot, ChatGPT, Gemini, or other systems to produce or modify work. A realistic learning rule is needed: if AI helped produce part of your work, you still need to understand the process and be able to apply the skill again.</p>
+  <div class="callout">
+    <div class="callout-title"><span class="callout-icon">🧭</span> Transfer Test</div>
+    <p style="margin-bottom:0;">If AI helped you produce an output, you should be able to explain it, check it, change it, and reproduce the same type of work under different conditions. <span class="note-muted">You will return to this test in Lesson 11, where AI can produce the artefact itself.</span></p>
+  </div>
+  <p>Your lecturer may test this transferable learning through an exam, oral discussion, practical demonstration, code walkthrough, presentation, modified requirement, or another assurance activity. The point is not only whether the final artefact looks correct. The point is whether you developed the skill the assessment was designed to measure.</p>
+
+  <h3>Watch Out: The False Completeness Problem</h3>
+  <p>A file-connected AI may produce an answer that sounds complete, but that does not mean it has covered the whole topic. It may only reflect the materials you uploaded. If important sources, files, data, requirements, or perspectives are missing, the answer may also be missing important information.</p>
+  <div style="background:var(--cqu-neutral-light);padding:1.25rem;border-radius:12px;border:2px solid var(--warning-amber);margin:1rem 0;">
+    <p style="margin-bottom:0;font-style:italic;">"Based on the uploaded materials, identify what this source set does not cover. What additional evidence, perspectives, data, requirements, tests, or readings would I need before making a strong claim or submitting this work?"</p>
+  </div>
+
+  <h3>Quick Check: Read, Trace, Test</h3>
+  <ol style="margin-left:2rem;line-height:2;">
+    <li><strong>Read:</strong> Have I engaged with the original material myself?</li>
+    <li><strong>Trace:</strong> Can I trace the AI's answer back to the exact source, file, or code location?</li>
+    <li><strong>Test:</strong> Can I answer questions or perform a related task without simply repeating the AI output?</li>
+  </ol>
+
+  <h3>Activity: The Source Trace Challenge</h3>
+  <p>Choose one reading, slide deck, dataset, draft, code segment, spreadsheet, or technical file from your unit.</p>
+  <ol style="margin-left:2rem;line-height:2;">
+    <li>Upload or connect the file to an AI tool that can work with your material.</li>
+    <li>Ask the tool to identify three important claims, ideas, findings, steps, or decisions from the file.</li>
+    <li>Ask it to provide the exact source location for each one.</li>
+    <li>Open the original file and check whether each point is accurately represented.</li>
+    <li>Write a short reflection: <em>Which AI response was accurate, which response needed correction, and what did I still need to check myself?</em></li>
+  </ol>
+
+  <div class="callout">
+    <div class="callout-title"><span class="callout-icon">✍️</span> Acknowledge File-Connected AI Use</div>
+    <p style="margin-bottom:0;">If you used a file-connected tool (such as NotebookLM, or ChatGPT or Claude with your uploads) to study or to prepare assessable work, acknowledge it as you would any AI assistance: name the tool, the date, what you uploaded, and how it helped. File-connected tools blur the line between "my notes" and "AI output," so a clear record of what you provided and what the tool produced is your best protection. Always follow your unit's specific acknowledgement instructions.</p>
+  </div>
+
+  <div class="callout callout-success">
+    <div class="callout-title"><span class="callout-icon">🎯</span> Key Takeaway</div>
+    <p style="margin-bottom:0;">AI tools that work with your own materials can help you study more effectively, but only when you remain actively involved. Use them to locate, question, compare, trace, test, and practise your understanding. Do not use them to replace reading, practising, verifying, or thinking.</p>
+  </div>
+
+  <div class="pager">
+    <button type="button" class="prev">Previous</button>
+    <button type="button" class="next" data-complete>Next</button>
+  </div>
+</section>
+
+
+<!-- SECTION: Lesson 11 -->
+<section id="lesson-ai-inside-apps" class="section" tabindex="-1" aria-labelledby="h-lesson-ai-inside-apps">
+  <h2 id="h-lesson-ai-inside-apps">Lesson 11: AI Inside Your Apps (e.g., PowerPoint, Spreadsheets, Code)</h2>
+
+  <p>AI tools are no longer limited to separate chat windows. Many can now work inside the applications students use to produce academic work. This includes documents, slides, spreadsheets, forms, browsers, coding environments, notebooks, cloud drives, design tools, data-analysis platforms, and other digital workspaces.</p>
+
+  <p>These tools can draft, edit, format, generate slides, write code, fill tables, analyse data, create workflows, or make changes directly inside files. They can be useful, but they can also create academic integrity risks because they may produce part of the work that is submitted for assessment.</p>
+
+  <div style="background:var(--cqu-neutral-light);border-left:4px solid var(--cqu-lime-green);border-radius:8px;padding:0.85rem 1.1rem;margin:1.25rem 0;font-size:0.92rem;">
+    <strong>This is the second half of a pair.</strong> Lesson 10 covered AI that <em>reads</em> the materials you provide. This lesson covers AI that <em>produces</em> work inside your files — the higher-stakes side, because the tool can generate part of what you submit.
+  </div>
+
+  <div class="callout callout-warning">
+    <div class="callout-title"><span class="callout-icon">⚠️</span> Key Question</div>
+    <p style="margin-bottom:0;">What did the AI do, and can you explain, verify, adapt, and defend the result?</p>
+  </div>
+
+  <h3>Learning Objectives</h3>
+  <ul style="margin-left:2rem;line-height:2;">
+    <li>Recognise when AI is advising you and when it is producing work for you.</li>
+    <li>Use embedded and agentic AI tools responsibly across different disciplines.</li>
+    <li>Apply the Transfer Test before submitting AI-assisted work.</li>
+    <li>Check AI-generated outputs for accuracy, appropriateness, completeness, and permitted use.</li>
+    <li>Understand why lecturers may use exams, oral discussions, demonstrations, walkthroughs, or other assurance activities to test transferable learning.</li>
+  </ul>
+
+  <h3>Advising Versus Doing</h3>
+  <p>This is the single most important idea in the lesson. Not all AI use carries the same risk: lower-risk use involves AI helping you <em>think</em>; higher-risk use occurs when AI produces the <em>artefact</em> itself. Most uses sit somewhere on a spectrum between the two.</p>
+
+  <div style="margin:1.5rem 0;">
+    <div style="display:flex;justify-content:space-between;font-weight:700;font-size:0.85rem;margin-bottom:0.4rem;">
+      <span style="color:var(--cqu-deep-green);">◀ Advising — you think</span>
+      <span style="color:var(--warning-amber);">Doing — AI produces ▶</span>
+    </div>
+    <div style="height:10px;border-radius:999px;background:linear-gradient(90deg,var(--cqu-lime-green),#f3d250,var(--warning-amber));"></div>
+    <div style="text-align:center;font-size:0.82rem;color:var(--cqu-neutral-mid);margin-top:0.45rem;">The further right you go, the more of the work the AI produces — and the greater your responsibility to explain and defend it.</div>
+  </div>
+
+  <div class="dos-donts-grid">
+    <div class="dos-column">
+      <div class="column-header"><span>✓</span> Lower-risk support</div>
+      <div class="dos-donts-item"><p style="margin:0;">Suggesting questions, helping you plan, explaining a concept after you have tried, identifying gaps, or giving feedback without rewriting.</p></div>
+    </div>
+    <div class="donts-column">
+      <div class="column-header"><span>⚠️</span> Higher-risk production</div>
+      <div class="dos-donts-item"><p style="margin:0;">Generating final wording, creating slides, filling forms, writing code, making formulas, producing analysis, or changing the submitted file directly.</p></div>
+    </div>
+  </div>
+  <p>Higher-risk use is not automatically prohibited in every unit. Some assessments may allow AI assistance. Others may restrict it. The important point is that the more directly AI contributes to the final submitted artefact, the stronger your responsibility becomes.</p>
+
+  <h3>The Transfer Test, Applied to Production</h3>
+  <p>You met the <strong>Transfer Test</strong> in Lesson 10: if AI helped produce part of your work, you should be able to explain it, check it, change it, and reproduce the same kind of work under different conditions. It matters most <em>here</em>, where the tool can generate the artefact itself.</p>
+  <p>This is because your lecturer may assess not only the final artefact, but also the learning behind it — through an exam, an oral discussion, a modified requirement, a walkthrough of your code, spreadsheet, design, report, or presentation, or by asking you to justify your assumptions, sources, calculations, and methods. This is exactly what the SAGE <strong>Defend</strong> step is designed to verify; see the <a href="defend_tool.html" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">Defend Tool</a> for how educators design these checkpoints.</p>
+  <p class="note-muted" style="margin-bottom:0;">The <a href="policy.html" style="color:var(--cqu-deep-green);font-weight:600;text-decoration:underline;">SAGE Assessment Policy</a> spells out what this means for you — including what happens if you cannot fully defend AI-assisted work that you submit.</p>
+
+  <h3>Examples Across Disciplines</h3>
+  <table class="capabilities-table">
+    <caption class="visually-hidden">Examples of AI-assisted outputs and what students must still be able to explain</caption>
+    <thead>
+      <tr><th>AI-assisted output</th><th>What you must still be able to do</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Presentation or slide deck</strong></td><td>Explain the argument, evidence, slide order, visual choices, and why each point is included.</td></tr>
+      <tr><td><strong>Code, application, or notebook</strong></td><td>Explain the logic, variables, functions, dependencies, tests, errors, edge cases, and possible improvements.</td></tr>
+      <tr><td><strong>Spreadsheet or data analysis</strong></td><td>Explain the data source, formulas, assumptions, calculations, method, limitations, and interpretation.</td></tr>
+      <tr><td><strong>Report or written response</strong></td><td>Explain the claims, sources, reasoning, limitations, and how the structure supports the task.</td></tr>
+      <tr><td><strong>Form, template, policy, design brief, clinical scenario, or business model</strong></td><td>Explain why each entry is accurate, appropriate, relevant, and supported by the task requirements.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>A Responsible Workflow for AI Inside Apps</h3>
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>1. Check permission</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Before using AI to produce work, check your unit profile, assessment instructions, and any AI-use guidance. If the task is designed to assess unaided performance, AI-generated output may not be appropriate.</p>
+      <p style="font-style:italic;margin-bottom:0;">Ask yourself: "Is this tool helping me learn, or is it completing the assessed task for me?"</p>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>2. Start with your own plan</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Before asking AI to create something, write a brief plan yourself. This may be an outline, sketch, pseudocode, formula plan, data-analysis plan, slide structure, design rationale, or list of key points.</p>
+      <p style="font-style:italic;margin-bottom:0;">"Here is my plan. Review it for gaps, unclear logic, missing evidence, or weak structure. Do not create the final output yet."</p>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>3. Ask for options, not just a finished product</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Ask AI to provide alternatives and explain trade-offs rather than producing one final answer.</p>
+      <p style="font-style:italic;margin-bottom:0;">"Suggest three possible ways to structure this output. For each option, explain the strengths, limitations, and when it would be appropriate. Do not produce the final version yet."</p>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>4. Review and verify</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Check facts, calculations, formulas, citations, privacy, confidentiality, instructions, tests, and whether the output reflects your understanding.</p>
+      <p style="font-style:italic;margin-bottom:0;">"Review this output for possible errors, unsupported claims, missing steps, weak assumptions, or areas that need human verification. Do not rewrite it. Give me a checklist of what I need to check myself."</p>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>5. Prepare to defend it</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Before submission, practise explaining the work. This prepares you for exams, oral discussions, presentations, demonstrations, code walkthroughs, and other assurance activities.</p>
+      <p style="font-style:italic;margin-bottom:0;">"Act as my lecturer and ask me questions to test whether I understand this work. Include questions about process, evidence, assumptions, limitations, and what I would change if the requirements were modified. Ask one question at a time."</p>
+    </div></div>
+  </div>
+
+  <h3>Special Notes by Output Type</h3>
+  <p>Open the note that matches what you are producing.</p>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>💻 Coding, data, and technical work</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>Some AI tools can write, debug, refactor, or test code. Others can generate formulas, scripts, notebooks, dashboards, models, or application components. These tools can be useful for learning, but they can also hide gaps in understanding.</p>
+      <div class="callout callout-warning">
+        <div class="callout-title"><span class="callout-icon">💻</span> Technical Work Rule</div>
+        <p style="margin-bottom:0;">Do not submit code, formulas, analysis, models, or technical outputs that you could not explain, test, modify, or reproduce.</p>
+      </div>
+      <div class="dos-donts-grid">
+        <div class="dos-column">
+          <div class="column-header"><span>✓</span> Strong use</div>
+          <div class="dos-donts-item"><p style="margin:0;">"Explain this code line by line. Then ask me questions to check whether I understand the logic."</p></div>
+          <div class="dos-donts-item"><p style="margin:0;">"Help me design tests before suggesting a solution."</p></div>
+          <div class="dos-donts-item"><p style="margin:0;">"Review my work for bugs, edge cases, readability, missing checks, or weak assumptions. Do not rewrite it."</p></div>
+        </div>
+        <div class="donts-column">
+          <div class="column-header"><span>✗</span> Risky use</div>
+          <div class="dos-donts-item"><p style="margin:0;">"Write the whole solution for this assignment."</p></div>
+          <div class="dos-donts-item"><p style="margin:0;">"Fix my work and give me the final version without explaining what changed."</p></div>
+          <div class="dos-donts-item"><p style="margin:0;">"Create the full application, analysis, report, or slide deck and tell me what to submit."</p></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="expandable">
+    <div class="expandable-header" onclick="toggleExpandable(this)"><span>📊 Slides, documents, forms, and spreadsheets</span><span class="expandable-icon">▼</span></div>
+    <div class="expandable-content"><div class="expandable-inner">
+      <p>AI tools inside office, browser, and cloud applications can create polished outputs very quickly. They may generate slides, draft documents, fill forms, summarise spreadsheets, produce tables, or restructure your work. This can be helpful, but it can also create the illusion that the work is finished.</p>
+      <p>Before using AI-generated slides, documents, spreadsheets, or forms, ask:</p>
+      <ul style="margin-left:1.5rem;line-height:1.9;">
+        <li>Does this output answer the actual task?</li>
+        <li>Is the evidence accurate and properly represented?</li>
+        <li>Are the assumptions clear?</li>
+        <li>Is the structure appropriate?</li>
+        <li>Do I understand every major claim, entry, formula, visual, or design choice?</li>
+        <li>Could I present, explain, or defend this work without reading from the AI output?</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <h3>Before You Submit: Explain, Adapt, Reproduce</h3>
+  <ol style="margin-left:2rem;line-height:2;">
+    <li><strong>Explain:</strong> Can you explain what the output means and how it was produced?</li>
+    <li><strong>Adapt:</strong> Can you change it if the task, data, audience, or requirements change?</li>
+    <li><strong>Reproduce:</strong> Can you complete a similar task under exam, interview, oral, practical, demonstration, or assurance conditions?</li>
+  </ol>
+
+  <h3>Activity: The Transfer Test Challenge</h3>
+  <p>Choose one AI-assisted output. This may be a paragraph, slide, table, formula, code segment, design, workflow, form, data analysis, or other artefact.</p>
+  <ol style="margin-left:2rem;line-height:2;">
+    <li>Identify which parts were created, edited, suggested, or changed by AI.</li>
+    <li>Explain the purpose of each major part in your own words.</li>
+    <li>Identify one possible error, assumption, limitation, or weakness.</li>
+    <li>Modify the output for a slightly different requirement.</li>
+    <li>Write a short reflection: <em>What did I learn from using AI here, and what would I still need to practise without the tool?</em></li>
+  </ol>
+
+  <div class="callout callout-success">
+    <div class="callout-title"><span class="callout-icon">🎯</span> Key Takeaway</div>
+    <p style="margin-bottom:0;">Responsible use of AI inside apps means more than producing a polished output. You must be able to explain, verify, adapt, reproduce, and acknowledge AI-assisted work where required.</p>
+  </div>
+
+  <div class="pager">
+    <button type="button" class="prev">Previous</button>
+    <button type="button" class="next" data-complete>Next</button>
+  </div>
+</section>
+
+
         <!-- SECTION: Quiz -->
         <section id="quiz" class="section" tabindex="-1" aria-labelledby="h-quiz">
   <h2 id="h-quiz">Final Quiz: Check Your Understanding</h2>
@@ -2491,13 +3361,13 @@ Answer:
                     <span class="callout-icon">📝</span>
                     Quiz Instructions
                 </div>
-                <p style="margin-bottom: 0;">This quiz consists of five multiple-choice questions followed by three short-answer reflection questions. Select the best answer for each multiple-choice question, then click "Submit Quiz" to receive your results and feedback.</p>
+                <p style="margin-bottom: 0;">This quiz consists of twelve multiple-choice questions followed by three short-answer reflection questions. Select the best answer for each multiple-choice question, then click "Submit Quiz" to receive your results and feedback.</p>
             </div>
 
             <div class="quiz-container" style="margin-top: 2rem;">
                 <!-- QUESTION 1 -->
                 <div class="quiz-question" id="q1">
-                    <div class="question-number">Question 1 of 5</div>
+                    <div class="question-number">Question 1 of 12</div>
                     <div class="question-text">What is the best description of how a Large Language Model (LLM) like ChatGPT works?</div>
                     <div class="quiz-options">
                         <div class="quiz-option" onclick="selectOption(this, 'q1', 'a')">
@@ -2522,7 +3392,7 @@ Answer:
 
                 <!-- QUESTION 2 -->
                 <div class="quiz-question" id="q2">
-                    <div class="question-number">Question 2 of 5</div>
+                    <div class="question-number">Question 2 of 12</div>
                     <div class="question-text">What is an "AI hallucination"?</div>
                     <div class="quiz-options">
                         <div class="quiz-option" onclick="selectOption(this, 'q2', 'a')">
@@ -2547,7 +3417,7 @@ Answer:
 
                 <!-- QUESTION 3 -->
                 <div class="quiz-question" id="q3">
-                    <div class="question-number">Question 3 of 5</div>
+                    <div class="question-number">Question 3 of 12</div>
                     <div class="question-text">What is the most important first step before using GenAI for a university assessment?</div>
                     <div class="quiz-options">
                         <div class="quiz-option" onclick="selectOption(this, 'q3', 'a')">
@@ -2556,7 +3426,7 @@ Answer:
                         </div>
                         <div class="quiz-option" onclick="selectOption(this, 'q3', 'b')">
                             <span class="option-letter">B.</span>
-                            <span>Checking the  unit profile and assessment instructions for permission.</span>
+                            <span>Checking the unit profile and assessment instructions for permission.</span>
                         </div>
                         <div class="quiz-option" onclick="selectOption(this, 'q3', 'c')">
                             <span class="option-letter">C.</span>
@@ -2572,7 +3442,7 @@ Answer:
 
                 <!-- QUESTION 4 -->
                 <div class="quiz-question" id="q4">
-                    <div class="question-number">Question 4 of 5</div>
+                    <div class="question-number">Question 4 of 12</div>
                     <div class="question-text">Which of the following is considered a serious breach of academic integrity?</div>
                     <div class="quiz-options">
                         <div class="quiz-option" onclick="selectOption(this, 'q4', 'a')">
@@ -2597,7 +3467,7 @@ Answer:
 
                 <!-- QUESTION 5 -->
                 <div class="quiz-question" id="q5">
-                    <div class="question-number">Question 5 of 5</div>
+                    <div class="question-number">Question 5 of 12</div>
                     <div class="question-text">Why should you avoid entering personal information into public GenAI tools?</div>
                     <div class="quiz-options">
                         <div class="quiz-option" onclick="selectOption(this, 'q5', 'a')">
@@ -2620,6 +3490,182 @@ Answer:
                     <div class="quiz-feedback" id="feedback-q5"></div>
                 </div>
 
+                <!-- QUESTION 6 -->
+                <div class="quiz-question" id="q6">
+                    <div class="question-number">Question 6 of 12</div>
+                    <div class="question-text">Which use of GenAI best supports cognitive learning rather than replacing it?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 'q6', 'a')">
+                            <span class="option-letter">A.</span>
+                            <span>Asking AI to write the final answer and then editing a few words.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q6', 'b')">
+                            <span class="option-letter">B.</span>
+                            <span>Asking AI to generate references that can be copied into the assignment.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q6', 'c')">
+                            <span class="option-letter">C.</span>
+                            <span>Writing your own summary first, then asking AI to identify gaps, unclear points, or questions for revision.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q6', 'd')">
+                            <span class="option-letter">D.</span>
+                            <span>Using AI-generated text because it sounds more academic than your own writing.</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="feedback-q6"></div>
+                </div>
+
+                <!-- QUESTION 7 -->
+                <div class="quiz-question" id="q7">
+                    <div class="question-number">Question 7 of 12</div>
+                    <div class="question-text">What does the SAGE Anchor, Check, Defend model ask you to do after receiving a convincing AI response?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 'q7', 'a')">
+                            <span class="option-letter">A.</span>
+                            <span>Accept the response if it sounds confident and well structured.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q7', 'b')">
+                            <span class="option-letter">B.</span>
+                            <span>Ask the AI to make the response more persuasive before submitting it.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q7', 'c')">
+                            <span class="option-letter">C.</span>
+                            <span>Check the response against an external anchor, identify gaps or assumptions, and practise defending the answer yourself.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q7', 'd')">
+                            <span class="option-letter">D.</span>
+                            <span>Use a second AI response as proof that the first AI response was correct.</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="feedback-q7"></div>
+                </div>
+
+
+                <!-- QUESTION 8 -->
+                <div class="quiz-question" id="q8">
+                    <div class="question-number">Question 8 of 12</div>
+                    <div class="question-text">When using AI with your own readings, files, code, or notes, what is the strongest learning-focused approach?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 'q8', 'a')">
+                            <span class="option-letter">A.</span>
+                            <span>Ask the AI for a polished summary and use it instead of reading the original material.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q8', 'b')">
+                            <span class="option-letter">B.</span>
+                            <span>Ask the AI to locate claims, source locations, gaps, and questions, then verify them against the original material.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q8', 'c')">
+                            <span class="option-letter">C.</span>
+                            <span>Upload as many unrelated files as possible so the AI has more information.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q8', 'd')">
+                            <span class="option-letter">D.</span>
+                            <span>Assume the answer is correct because the AI used uploaded sources.</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="feedback-q8"></div>
+                </div>
+
+                <!-- QUESTION 9 -->
+                <div class="quiz-question" id="q9">
+                    <div class="question-number">Question 9 of 12</div>
+                    <div class="question-text">What does the Transfer Test ask you to check before submitting AI-assisted work?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 'q9', 'a')">
+                            <span class="option-letter">A.</span>
+                            <span>Whether the AI output sounds professional enough to submit.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q9', 'b')">
+                            <span class="option-letter">B.</span>
+                            <span>Whether the AI tool is the newest or most advanced version available.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q9', 'c')">
+                            <span class="option-letter">C.</span>
+                            <span>Whether you can explain, adapt, reproduce, and defend the work under changed or assessment conditions.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q9', 'd')">
+                            <span class="option-letter">D.</span>
+                            <span>Whether the AI has produced a longer answer than you could produce alone.</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="feedback-q9"></div>
+                </div>
+
+                <!-- QUESTION 10 -->
+                <div class="quiz-question" id="q10">
+                    <div class="question-number">Question 10 of 12</div>
+                    <div class="question-text">An AI tool that can read your uploaded files gives you a confident, well-organised answer. Why might it still be incomplete?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 'q10', 'a')">
+                            <span class="option-letter">A.</span>
+                            <span>Because file-connected AI tools are slower than ordinary chatbots.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q10', 'b')">
+                            <span class="option-letter">B.</span>
+                            <span>Because the answer can only reflect the files you provided — any missing sources, data, or perspectives are missing from the answer too.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q10', 'c')">
+                            <span class="option-letter">C.</span>
+                            <span>Because AI tools cannot read PDFs or slides accurately.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q10', 'd')">
+                            <span class="option-letter">D.</span>
+                            <span>Because uploaded files are always out of date.</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="feedback-q10"></div>
+                </div>
+
+                <!-- QUESTION 11 -->
+                <div class="quiz-question" id="q11">
+                    <div class="question-number">Question 11 of 12</div>
+                    <div class="question-text">When AI works inside an app (slides, code, a spreadsheet), which use carries the <em>highest</em> responsibility for you to be able to explain and defend the result?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 'q11', 'a')">
+                            <span class="option-letter">A.</span>
+                            <span>Asking it to suggest questions that help you plan.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q11', 'b')">
+                            <span class="option-letter">B.</span>
+                            <span>Asking it to explain a concept after you have attempted it yourself.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q11', 'c')">
+                            <span class="option-letter">C.</span>
+                            <span>Asking it to generate the final slides, code, or analysis that you submit.</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q11', 'd')">
+                            <span class="option-letter">D.</span>
+                            <span>Asking it to identify gaps in your own draft without rewriting it.</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="feedback-q11"></div>
+                </div>
+
+                <!-- QUESTION 12 -->
+                <div class="quiz-question" id="q12">
+                    <div class="question-number">Question 12 of 12</div>
+                    <div class="question-text">Which prompt best reduces the risk of GenAI mirroring (the tendency of AI to agree with you)?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(this, 'q12', 'a')">
+                            <span class="option-letter">A.</span>
+                            <span>"Tell me why my argument is correct."</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q12', 'b')">
+                            <span class="option-letter">B.</span>
+                            <span>"Make my idea sound more confident and persuasive."</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q12', 'c')">
+                            <span class="option-letter">C.</span>
+                            <span>"Do not agree with me automatically. Identify the assumptions, missing evidence, limitations, and alternative perspectives in my argument."</span>
+                        </div>
+                        <div class="quiz-option" onclick="selectOption(this, 'q12', 'd')">
+                            <span class="option-letter">D.</span>
+                            <span>"Rewrite this paragraph so it proves my position."</span>
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="feedback-q12"></div>
+                </div>
+
                 <button class="quiz-submit" onclick="submitQuiz()">Submit Quiz</button>
 
                 <div class="quiz-results" id="quiz-results">
@@ -2635,7 +3681,7 @@ Answer:
 
             <!-- SHORT ANSWER 1 -->
             <div class="short-answer">
-                <div class="question-number">Question 6: Prompt Makeover</div>
+                <div class="question-number">Question 13: Prompt Makeover</div>
                 <div class="question-text" style="font-size: 1.1rem; margin-bottom: 1rem;">
                     You need to write a 500-word reflective piece on a challenging teamwork experience for your project management course. The simple prompt is: "Write about a teamwork challenge."
                     <br><br>
@@ -2651,7 +3697,7 @@ Answer:
 
             <!-- SHORT ANSWER 2 -->
             <div class="short-answer">
-                <div class="question-number">Question 7: Critique the AI</div>
+                <div class="question-number">Question 14: Critique the AI</div>
                 <div class="question-text" style="font-size: 1.1rem; margin-bottom: 1rem;">
                     Imagine you asked an AI for sources about the history of computing and it provided the following reference:
                     <br><br>
@@ -2672,7 +3718,7 @@ Answer:
 
             <!-- SHORT ANSWER 3 -->
             <div class="short-answer">
-                <div class="question-number">Question 8: Your Personal Strategy</div>
+                <div class="question-number">Question 15: Your Personal Strategy</div>
                 <div class="question-text" style="font-size: 1.1rem; margin-bottom: 1rem;">
                     <strong>Task:</strong> Describe two specific strategies you will personally use to ensure that your use of GenAI enhances your learning rather than replacing your own critical thinking.
                 </div>
@@ -2680,8 +3726,8 @@ Answer:
                 <button class="sample-answer-btn" onclick="toggleSampleAnswer('sample3')">View Sample Answer</button>
                 <div class="sample-answer" id="sample3">
                     <strong style="color: var(--cqu-deep-green);">Sample Answer:</strong>
-                    <p style="margin-top: 1rem;"><strong>Strategy 1: Use AI for questioning, not answering.</strong> Instead of asking AI to write my essay or solve my problem, I will use it to generate probing questions about my topic. For example, asking "What are three counterarguments to my thesis?" forces me to think critically and develop my own reasoned responses.</p>
-                    <p style="margin-top: 1rem;"><strong>Strategy 2: Apply the "explain it back" test.</strong> After using AI to help me understand a difficult concept, I will close the AI tool and attempt to explain the concept in my own words without looking at the AI output. If I cannot explain it clearly, this indicates I have not truly learned it and need to engage more deeply with the material through readings, lectures, or discussion with tutors.</p>
+                    <p style="margin-top: 1rem;"><strong>Strategy 1: Use the Anchor, Check, Defend model.</strong> Before relying on an AI answer, I will check it against a relevant anchor such as a rubric, guideline, standard, research paper, dataset, or unit reading. I will then identify gaps or assumptions and practise explaining the answer in my own words.</p>
+                    <p style="margin-top: 1rem;"><strong>Strategy 2: Use AI for questioning, not simply answering.</strong> Instead of asking AI to write my essay or solve my problem, I will use it to ask probing questions, challenge my assumptions, and test whether I can adapt the answer if the task requirements change.</p>
                 </div>
             </div>
 
@@ -2840,6 +3886,9 @@ Answer:
  <p style="margin: 0.5rem 0; line-height: 1.7; color: #2c3e50; text-indent: -2em; padding-left: 2em;">
   [1] M. Elkhodr and E. Gide, "The SAGE framework for developing critical thinking and responsible generative AI use in cybersecurity education," <em>Discover Education</em>, vol. 4, article 517, Nov. 2025, doi: <a href="https://link.springer.com/article/10.1007/s44217-025-00935-3" target="_blank" style="color: var(--cqu-deep-green); text-decoration: none; border-bottom: 1px dotted var(--cqu-deep-green);">10.1007/s44217-025-00935-3</a>.
 </p>
+ <p style="margin: 1rem 0 0; line-height: 1.7; color: #2c3e50;">
+  This module is informed by the SAGE framework's published research and the authors' broader work on generative AI in higher education. For the full evidence base and reading list, see the <a href="publications.html" style="color: var(--cqu-deep-green); font-weight: 600; text-decoration: none; border-bottom: 1px dotted var(--cqu-deep-green);">Publications</a> page. The contributed lessons (5 and 7) also list their own sources within each lesson.
+</p>
 </section>
 
 <!-- How to cite this module -->
@@ -2850,15 +3899,15 @@ Answer:
   <!-- IEEE (primary) -->
   <p style="margin: .25rem 0;"><strong>IEEE</strong></p>
   <p style="background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:.75rem; font-family:'Courier New', monospace; font-size: 0.9rem;">
-    M. Elkhodr and E. Gide, "Generative AI Literacy & Numeracy Module," Central Queensland University, Rockhampton, Australia, Version 1.0, Jan. 2026. [Online]. Available: https://sage-framework.com/genai-101.html. DOI: 10.5281/zenodo.18295619. [Accessed: 20-Jan-2026].
+    M. Elkhodr and E. Gide, "Generative AI Literacy & Numeracy Module," Central Queensland University, Rockhampton, Australia, Version 2.0, Jun. 2026. [Online]. Available: https://sage-framework.com/genai-101.html. DOI: 10.5281/zenodo.18295619. [Accessed: 22-Jun-2026].
   </p>
   <!-- Harvard -->
   <p style="margin: .75rem 0 .25rem 0;"><strong>Harvard</strong></p>
   <p style="background:#fff; border:1px solid #e6e6e6; border-radius:8px; padding:.75rem; font-family:'Courier New', monospace; font-size: 0.9rem;">
-    Elkhodr, M. and Gide, E., 2026. <em>Generative AI Literacy & Numeracy Module</em>. Version 1.0. Rockhampton: Central Queensland University. DOI: 10.5281/zenodo.18295619. Available at: https://sage-framework.com/genai-101.html (Accessed 20 January 2026).
+    Elkhodr, M. and Gide, E., 2026. <em>Generative AI Literacy & Numeracy Module</em>. Version 2.0. Rockhampton: Central Queensland University. DOI: 10.5281/zenodo.18295619. Available at: https://sage-framework.com/genai-101.html (Accessed 22 June 2026).
   </p>
   <p style="margin-top:.75rem; font-size: 0.9rem; color: #666;">
-    If citing a specific lesson, append the section title and version (e.g., "Lesson 3: Responsible Use, v1.0").
+    If citing a specific lesson, append the section title and version (e.g., "Lesson 3: Responsible Use, v3.0").
   </p>
 </section>
 
@@ -2871,7 +3920,10 @@ Answer:
     This module has been developed as a companion resource to the <strong>Structured AI-Guided Education (SAGE)</strong> framework [<a href="https://link.springer.com/article/10.1007/s44217-025-00935-3" target="_blank" style="color: var(--cqu-deep-green); text-decoration: none; border-bottom: 1px dotted var(--cqu-deep-green);">1</a>], supporting the development of AI literacy among first-year students.
   </p>
   <p style="margin: 0.5rem 0; line-height: 1.7; color: #2c3e50;">
-    <strong>Development Team:</strong> Dr Mahmoud Elkhodr (Senior Lecturer, Cybersecurity & AI Education) and Professor Ergun Gide (School of Engineering and Technology).
+    <strong>Development Team:</strong> Dr Mahmoud Elkhodr (Senior Lecturer, Cybersecurity &amp; AI Education) and Professor Ergun Gide (School of Engineering and Technology).
+  </p>
+  <p style="margin: 0.5rem 0; line-height: 1.7; color: #2c3e50;">
+    <strong>Version 2.0 — Lesson contribution acknowledgement:</strong> Two lesson-level contributions (Cognitive Learning Strategies and GenAI Mirroring) were provided by CQUniversity's Academic Learning Centre and adapted for integration within the SAGE GenAI-101 module. These lessons draw on MacLeod and Swanson's work on ethical engagement, cognitive learning with LLMs, academic growth, and student wellbeing. The overall SAGE Framework, GenAI-101 module structure, responsible-use model, and integration logic remain part of the SAGE work developed by Elkhodr and Gide.
   </p>
 </section>
 
@@ -2908,19 +3960,23 @@ Answer:
    CONFIG: Sections & Labels
    ========================= */
 const SECTIONS = [
-  { id: 'introduction',          title: 'Introduction' },
-  { id: 'lesson1',               title: 'What is AI?' },
-  { id: 'lesson2',               title: 'Prompt Engineering' },
-  { id: 'lesson3',               title: 'Responsible AI Use' },
-  { id: 'practical-applications',title: 'Practical Applications' },
-  { id: 'lesson4-tutor-loop',    title: 'Your Personal Tutor' },
-  { id: 'lesson-ai-research',    title: 'Finding Academic Sources' },
-  { id: 'lesson6-group-projects',    title: 'Group Projects' },
-  { id: 'quiz',                  title: 'Quiz' },
-  { id: 'wrap-up',               title: 'Wrap-Up' }
+  { id: 'introduction',           title: 'Introduction' },
+  { id: 'lesson1',                title: 'L1  What Is AI?' },
+  { id: 'lesson2',                title: 'L2  Talking to AI' },
+  { id: 'lesson3',                title: 'L3  Responsible Use' },
+  { id: 'practical-applications', title: 'L4  Practical Uses' },
+  { id: 'lesson-cls',             title: 'L5  Cognitive Strategies' },
+  { id: 'lesson-mirroring',       title: 'L6  AI Mirroring' },
+  { id: 'lesson-critical-coach',  title: 'L7  Critical Coach' },
+  { id: 'lesson-ai-research',     title: 'L8  Academic Sources' },
+  { id: 'lesson6-group-projects', title: 'L9  Group Projects' },
+  { id: 'lesson-own-materials',   title: 'L10 Own Materials' },
+  { id: 'lesson-ai-inside-apps',  title: 'L11 Inside Apps' },
+  { id: 'quiz',                   title: 'Quiz' },
+  { id: 'wrap-up',                title: 'Wrap-Up' }
 ];
 
-const STORAGE_KEY = 'genai-module-progress-v2';
+const STORAGE_KEY = 'genai-module-progress-v5';
 
 /* =========================
    STATE: load/save progress
@@ -3064,7 +4120,8 @@ resumeBtn.addEventListener('click', () => {
 function toggleExpandable(headerEl) {
   const root = headerEl.closest('.expandable');
   if (!root) return;
-  root.classList.toggle('open');
+  const isOpen = root.classList.toggle('open');
+  headerEl.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   // allow focus toggling for a11y
   headerEl.setAttribute('tabindex', '0');
 }
@@ -3076,12 +4133,65 @@ function toggleSampleAnswer(id) {
 function initExpandables() {
   document.querySelectorAll('.expandable-header').forEach(h => {
     h.setAttribute('tabindex', '0');
+    h.setAttribute('role', 'button');
+    h.setAttribute('aria-expanded', h.closest('.expandable')?.classList.contains('open') ? 'true' : 'false');
     h.addEventListener('keydown', (ev) => {
       if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); h.click(); }
     });
   });
 }
 
+
+
+
+function initCriticalCoach() {
+  const lab = document.querySelector('[data-anchor-lab]');
+  if (!lab) return;
+
+  const buttons = Array.from(lab.querySelectorAll('.anchor-option'));
+  const titleEl = lab.querySelector('#anchorOutputTitle');
+  const bodyEl = lab.querySelector('#anchorOutputBody');
+  const promptEl = lab.querySelector('#anchorPromptText');
+
+  const updateAnchor = (btn) => {
+    buttons.forEach(b => b.classList.toggle('active', b === btn));
+    if (titleEl) titleEl.textContent = btn.dataset.anchorTitle || '';
+    if (bodyEl) bodyEl.textContent = btn.dataset.anchorBody || '';
+    if (promptEl) promptEl.textContent = btn.dataset.anchorPrompt || '';
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => updateAnchor(btn));
+  });
+
+  const active = buttons.find(btn => btn.classList.contains('active')) || buttons[0];
+  if (active) updateAnchor(active);
+}
+
+function initCopyButtons() {
+  document.querySelectorAll('[data-copy-target]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const target = document.querySelector(btn.getAttribute('data-copy-target'));
+      if (!target) return;
+      const value = target.innerText || target.textContent || '';
+      const original = btn.textContent;
+      try {
+        await navigator.clipboard.writeText(value.trim());
+        btn.textContent = 'Copied!';
+      } catch (_) {
+        const range = document.createRange();
+        range.selectNodeContents(target);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        btn.textContent = 'Copied!';
+      }
+      setTimeout(() => { btn.textContent = original; }, 1200);
+    });
+  });
+}
 
 
 /* =========================
@@ -3093,7 +4203,14 @@ const QUIZ_KEY = {
   q2: 'c',
   q3: 'b',
   q4: 'c',
-  q5: 'c'
+  q5: 'c',
+  q6: 'c',
+  q7: 'c',
+  q8: 'b',
+  q9: 'c',
+  q10: 'b',
+  q11: 'c',
+  q12: 'c'
 };
 
 function selectOption(el, qid, letter) {
@@ -3175,6 +4292,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupScrollSpy();
   setupPagers();
   initExpandables();
+  initCriticalCoach();
+  initCopyButtons();
   initQuizA11y();
   updateActiveLink(state.current);
 });
