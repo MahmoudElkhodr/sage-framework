@@ -1,0 +1,1020 @@
+<html>
+<head>
+<style>
+/* --- This is your existing screen style --- */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #dddddd;
+}
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #dddddd;
+  vertical-align: top;
+}
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+h2 {
+  color: #009879;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 5px;
+}
+
+/* --- ADD THIS CODE FOR PRINTING --- */
+@media print {
+
+    /* --- 1. Set Page to Landscape --- */
+    @page {
+        size: A4 landscape; /* A4 size in landscape orientation */
+        margin: 1.5cm;     /* Adjust margins as needed */
+    }
+
+    /* --- 2. Optimize Content for Readability & Fit --- */
+    body {
+        font-size: 9pt; /* Smaller base font for print */
+        color: #000000 !important; /* Force all text to black */
+        background: #ffffff !important; /* Force white background */
+    }
+
+    .styled-table {
+        width: 100%; /* Make table use full page width */
+        font-size: 8pt; /* Further shrink font in tables */
+        box-shadow: none !important; /* Remove shadows */
+        border: 1px solid #999; /* Simple border for print */
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 5px 8px; /* Tighter padding to save space */
+        border: 1px solid #999;
+        word-wrap: break-word; /* Force long text to wrap */
+        color: #000000 !important;
+        background: #ffffff !important; /* Remove all row colors */
+    }
+    
+    .styled-table thead tr {
+        background-color: #eee !important; /* Light grey for header (printer-friendly) */
+        color: #000000 !important;
+    }
+
+    /* --- 3. Control Page Breaks --- */
+    h2 {
+        /* Start each new Task on a new page */
+        page-break-before: always; 
+        /* Prevent a heading from being left alone at the bottom of a page */
+        page-break-after: avoid; 
+        color: #000000 !important;
+        border: none;
+    }
+
+    .styled-table thead {
+        /* This is key: it makes the table header (th) 
+           repeat on every new page the table breaks onto */
+        display: table-header-group; 
+    }
+
+    .styled-table tbody tr {
+        /* Try to keep table rows from splitting in the middle */
+        page-break-inside: avoid;
+    }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #dddddd;
+}
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #dddddd;
+  vertical-align: top;
+}
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+h2 {
+  color: #009879;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 5px;
+}
+</style>
+</head>
+<body>
+<h2>Task 1 - Test Suite Data (All Groups)</h2>
+<table border="1" class="dataframe styled-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Campus</th>
+      <th>GroupLabel</th>
+      <th>TestID</th>
+      <th>Module</th>
+      <th>TestType</th>
+      <th>SimulatedActualResult</th>
+      <th>PassFail</th>
+      <th>Priority</th>
+      <th>QuickInsight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>SRCH_P001</td>
+      <td>Product Search</td>
+      <td>Positive</td>
+      <td>"Product as PASS"</td>
+      <td>PASS</td>
+      <td>High</td>
+      <td>Standard positive test.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>AUTH_N0X</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Verify syst "Pass"</td>
+      <td>FAIL</td>
+      <td>Medium</td>
+      <td>Password length restriction is not enforced during login</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>AUTH_N0X</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Verify logi shou</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Login restriction not triggered after repeated failed attempts</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>SRCH_B001</td>
+      <td>Product Search</td>
+      <td>Boundary</td>
+      <td>Verify syst system cra</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>No input validation for search string length; system crashes</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>DB_E001</td>
+      <td>Database</td>
+      <td>Exception</td>
+      <td>Ensure sys User seei</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>System fails to gracefully handle DB outage; user sees crash/error dump</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>GH-UT-SRH-P01</td>
+      <td>Product Search</td>
+      <td>Positive</td>
+      <td>Verify pro search res</td>
+      <td>PASS</td>
+      <td>Medium</td>
+      <td>Standard positive test.</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>GH-UT-AU-N01</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Verify syst Login is de</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Password policy not enforced; system accepts passwords under 8 characters.</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>GH-UT-SRH-N01</td>
+      <td>Product Search</td>
+      <td>Negative</td>
+      <td>Verify the a validatio</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Missing input length validation triggers application crash on long queries.</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>GH-UT-AU-B01</td>
+      <td>Authentication</td>
+      <td>Boundary</td>
+      <td>Verify logi Login is su</td>
+      <td>PASS</td>
+      <td>Medium</td>
+      <td>Standard boundary test passed.</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>GH-UT-DB-E01</td>
+      <td>Database</td>
+      <td>Exception</td>
+      <td>Verify the a user-frie</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Database outage not gracefully handled; unhandled exception leads to blank/unresponsive UI.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>(Pla AUTHENTI</td>
+      <td>Authentication</td>
+      <td>Positive</td>
+      <td>Test the us The user lc</td>
+      <td>PASS</td>
+      <td>High</td>
+      <td>Standard positive test.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>(Pla AUTHENTI</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Check that The user ci</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed account status check (e.g., inactive).</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>(Pla AUTHENTI</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>The user a After three</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed brute-force lockout.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>(Pla SEARCH_P</td>
+      <td>Product Search</td>
+      <td>Boundary</td>
+      <td>Character System did</td>
+      <td>FAIL</td>
+      <td>Medium</td>
+      <td>Failed boundary length validation.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>(Pla DB_E</td>
+      <td>Database</td>
+      <td>Exception</td>
+      <td>Lost datab Detect losi</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed graceful DB error handling.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>(Mo SRCH_001</td>
+      <td>Search</td>
+      <td>Positive</td>
+      <td>Verify pro Results ret</td>
+      <td>PASS</td>
+      <td>Medium</td>
+      <td>Standard positive test.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>(Mo AUTH_002</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Reject pas: 'Pas'</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed password policy (length/complexity).</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>(Mo AUTH_003</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Lockout at Access der</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed brute-force lockout.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>(Mo SRCH_004</td>
+      <td>Search</td>
+      <td>Boundary</td>
+      <td>255 accepi 255 OK; 25</td>
+      <td>FAIL</td>
+      <td>Medium</td>
+      <td>Failed at 256-char boundary (crash).</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>(Mo DB_005</td>
+      <td>Database</td>
+      <td>Exception</td>
+      <td>Handle DB Friendly m</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed graceful DB error handling.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g4 </td>
+      <td>AUTH_001</td>
+      <td>Authentication</td>
+      <td>Positive</td>
+      <td>Session tim User loggE</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Missing session timeout; security risk on unattended kiosks</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g4 </td>
+      <td>AUTH_002</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Reject pas: 'Error: '</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Password length validation missing; weakens authentication</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g4 </td>
+      <td>SEARCH_P01</td>
+      <td>Product Search</td>
+      <td>Negative</td>
+      <td>Handle quc Product qu</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>SQL LIKE apostrophe not escaped; query breaks</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g4 </td>
+      <td>SEARCH_B01</td>
+      <td>Product Search</td>
+      <td>Boundary</td>
+      <td>Query lengr Show validi</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Boundary input not validated; potential denial-of-service</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g4 </td>
+      <td>DB_E01</td>
+      <td>Database</td>
+      <td>Exception</td>
+      <td>Handle Poi Friendly Err</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Missing exception handling and user messaging on DB timeout</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>AUTH_001</td>
+      <td>Authentication</td>
+      <td>Positive</td>
+      <td>The system logs the user in</td>
+      <td>PASS</td>
+      <td>High</td>
+      <td>Standard positive test.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>AUTH_002</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>System allows login despite the account being inactive</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed account status check.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>AUTH_003</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>System allows login even after 3 failed attempts</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed brute-force lockout.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>PROD_004</td>
+      <td>Product Search</td>
+      <td>Boundary</td>
+      <td>The system searches successfully; empty list returned</td>
+      <td>PASS</td>
+      <td>Medium</td>
+      <td>Tested a passing boundary.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>DB_001</td>
+      <td>Database Connectivity</td>
+      <td>Exception</td>
+      <td>System crashes or throws unhandled exception</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed graceful error handling.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>AUTH_SessionExpiry_001</td>
+      <td>Authentication</td>
+      <td>Positive</td>
+      <td>Session expires and user is logged out</td>
+      <td>Pass</td>
+      <td>High</td>
+      <td>Testing the intended session timeout.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>AUTH_Login_001</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Login succeeds on the fourth attempt</td>
+      <td>Fail</td>
+      <td>High</td>
+      <td>Failed brute-force lockout.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>SEARCH_Product_001</td>
+      <td>Product Search</td>
+      <td>Negative</td>
+      <td>System crashes... "Unhandled input overflow"</td>
+      <td>Fail</td>
+      <td>High</td>
+      <td>Failed graceful handling of long input.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>SEARCH_QueryLimit_001</td>
+      <td>Product Search</td>
+      <td>Boundary</td>
+      <td>System freezes... when 256 chars... entered</td>
+      <td>Fail</td>
+      <td>High</td>
+      <td>Failed at the boundary limit.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>DB_ConnectionLoss_001</td>
+      <td>Database Connectivity</td>
+      <td>Exception</td>
+      <td>System freezes, no message is shown</td>
+      <td>Fail</td>
+      <td>High</td>
+      <td>Failed graceful error handling.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>SEARCH_001</td>
+      <td>Search</td>
+      <td>Positive</td>
+      <td>No results returned for apostrophe query</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed apostrophe handling.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>AUTH_001</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Login accepted with short password</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed password length policy.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>AUTH_002</td>
+      <td>Authentication</td>
+      <td>Negative</td>
+      <td>Fourth login succeeded; no lockout triggered</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed brute-force lockout.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>SEARCH_003</td>
+      <td>Search</td>
+      <td>Boundary</td>
+      <td>Query executed correctly</td>
+      <td>PASS</td>
+      <td>Medium</td>
+      <td>Passed 255-char boundary.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>DB_001</td>
+      <td>Database</td>
+      <td>Exception</td>
+      <td>System froze and failed to recover</td>
+      <td>FAIL</td>
+      <td>High</td>
+      <td>Failed graceful error handling.</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h2>Task 2A - AI Client Review (All Groups)</h2>
+<table border="1" class="dataframe styled-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Campus</th>
+      <th>GroupLabel</th>
+      <th>CaseReviewed</th>
+      <th>Improved_Test_1</th>
+      <th>Improved_Test_2</th>
+      <th>Improved_Test_3</th>
+      <th>Rejected_Suggestion_1</th>
+      <th>Rejection_Justification_1</th>
+      <th>Rejected_Suggestion_2</th>
+      <th>Rejection_Justification_2</th>
+      <th>AddedTest_ID</th>
+      <th>AddedTest_Insight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>AUTH_N0X (Lockout) / DB_E001</td>
+      <td>Add CAPTCHA after 3 failed logins</td>
+      <td>Improve error message clarity (DB outage)</td>
+      <td>Introduce backend logging for DB errors</td>
+      <td>Lock duration test deferred to integration testing</td>
+      <td>AI suggested adding test for specific lock duration (e.g. 15m), but this is integration/config test, not unit test.</td>
+      <td>Background service check</td>
+      <td>AI suggested checking non-essential bg services; rejected as out of scope for this unit test.</td>
+      <td>AUTH_B0X</td>
+      <td>Boundary test for max password length</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>GH-UT-SRH-N01 (Ranking) / GH-UT-DB-E01 (Ranking)</td>
+      <td>Add explicit check for HTTP status 500</td>
+      <td>Add max char test (256) for search</td>
+      <td>Specify error msg content in Expected Result</td>
+      <td>Deferred Accessibility assertions</td>
+      <td>AI suggested adding accessibility checks (contrast, font size) to DB error msg. Rejected as accessibility testing is scheduled for separate review cycle.</td>
+      <td>System-wide resilience test</td>
+      <td>AI suggested a full system recovery test, which is out of scope for this unit-level task and belongs in integration testing.</td>
+      <td>GH-UT-DB-N01</td>
+      <td>Negative test for SQLi in search bar</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>AUTHENTI (Lockout) / DB_E (DB fail)</td>
+      <td>Install lockout mechanism</td>
+      <td>Lock frontend (not just backend)</td>
+      <td>Add CAPTCHA</td>
+      <td>No lock after 3 attempts</td>
+      <td>AI suggested this might be OK for usability; rejected as security risk.</td>
+      <td>Silent auto-truncation (transparency)</td>
+      <td>AI suggested silently truncating long search (SEARCH_B); rejected as it hides potential errors from user.</td>
+      <td>AUTHENTI</td>
+      <td>Negative test for session timeout</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>SRCH_001 (SLA enforce) / DB_005 (Concurrency)</td>
+      <td>Add SLA response time (e.g. &lt;2s)</td>
+      <td>Add log/alert for DB connection pool exhaustion</td>
+      <td>Verify graceful recovery from deadlock</td>
+      <td>Chaos testing (deferred to system level)</td>
+      <td>AI suggested full chaos testing; rejected as this is a unit test, not system/resilience test.</td>
+      <td>Keep SRCH_001 priority Medium (business-driven)</td>
+      <td>AI suggested High priority for SLA test; rejected as occasional slow search is Med busines impact vs. security (High).</td>
+      <td>DB_006</td>
+      <td>Recovery / Exception test for DB rollback</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g4 </td>
+      <td>AUTH_002 (MFA scope) / DB_E01 (Recovery)</td>
+      <td>Add clear error msg for length fail</td>
+      <td>Enforce length validation (backend)</td>
+      <td>Simulate packet loss (DB recovery)</td>
+      <td>MFA out of project scope</td>
+      <td>AI suggested adding MFA test; rejected as MFA not in original project scope for A3.</td>
+      <td>Full disaster simulation out of unit scope</td>
+      <td>AI suggested full DR test; rejected as this is unit test, not system-wide DR test.</td>
+      <td>DB_B01</td>
+      <td>Boundary test for DB connection pool limit (e.g. 101 connections)</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>AUTH_002</td>
+      <td>Enhance Auth Negative Tests (lockout)</td>
+      <td>Add Partial Database Failure Handling</td>
+      <td>Introduce Input Boundary Checks</td>
+      <td>Lowering priority of DB_001 to Medium</td>
+      <td>Database connectivity directly affects... critical kiosk functionality, so High priority remains essential.</td>
+      <td>Removing simulated actual results for AUTH_002</td>
+      <td>Including simulated results highlights gaps... crucial for guiding bug fixes</td>
+      <td>AUTH_004</td>
+      <td>Added "Session Expiration Test" based on AI feedback.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>DB_001</td>
+      <td>Enhance Auth Negative Tests (lockout)</td>
+      <td>Add Partial Database Failure Handling</td>
+      <td>Introduce Input Boundary Checks</td>
+      <td>Lowering priority of DB_001 to Medium</td>
+      <td>Database connectivity directly affects... critical kiosk functionality, so High priority remains essential.</td>
+      <td>Removing simulated actual results for AUTH_002</td>
+      <td>Including simulated results highlights gaps... crucial for guiding bug fixes</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>AUTH_SessionExpiry_001</td>
+      <td>Clarify Session Timeout Tolerance</td>
+      <td>Use Realistic Retail Credentials</td>
+      <td>Add Edge Case for Activity Reset</td>
+      <td>Include CAPTCHA in Lockout Test</td>
+      <td>Rejected: CAPTCHA would degrade usability... Kiosk design uses touch-based interfaces... aligns better with retail workflows.</td>
+      <td>Test Multiple Tabs for Session Expiry</td>
+      <td>Rejected: Kiosk systems operate in a controlled single-session environment... This scenario is irrelevant for our architecture.</td>
+      <td>AUTH_SessionReset_001</td>
+      <td>Added "Session timer resets after user activity" based on AI edge case feedback.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>AUTH_Login_001</td>
+      <td>Clarify Session Timeout Tolerance</td>
+      <td>Use Realistic Retail Credentials</td>
+      <td>Add Edge Case for Activity Reset</td>
+      <td>Include CAPTCHA in Lockout Test</td>
+      <td>Rejected: CAPTCHA would degrade usability... Kiosk design uses touch-based interfaces... aligns better with retail workflows.</td>
+      <td>Test Multiple Tabs for Session Expiry</td>
+      <td>Rejected: Kiosk systems operate in a controlled single-session environment... This scenario is irrelevant for our architecture.</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>AUTH_002</td>
+      <td>Add Observability assertions (logs/metrics)</td>
+      <td>Use Deterministic fault injection profiles</td>
+      <td>Add Layered security validation (rate limits)</td>
+      <td>Full replacement of manual review</td>
+      <td>Rejected: regulatory validation requires human oversight... AI cannot judge legal text... ensures compliance with PCI-DSS.</td>
+      <td>Auto-fixing production config from failures</td>
+      <td>Rejected: Automatic updates could cause cascading system faults... preserves approval workflows... change management.</td>
+      <td>DB_002</td>
+      <td>Added "Verify automatic recovery" after DB outage.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>DB_001</td>
+      <td>Add Observability assertions (logs/metrics)</td>
+      <td>Use Deterministic fault injection profiles</td>
+      <td>Add Layered security validation (rate limits)</td>
+      <td>Full replacement of manual review</td>
+      <td>Rejected: regulatory validation requires human oversight... AI cannot judge legal text... ensures compliance with PCI-DSS.</td>
+      <td>Auto-fixing production config from failures</td>
+      <td>Rejected: Automatic updates could cause cascading system faults... preserves approval workflows... change management.</td>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h2>Task 2B - AI Automation Discovery (All Groups)</h2>
+<table border="1" class="dataframe styled-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Campus</th>
+      <th>GroupLabel</th>
+      <th>Claimed_ManualEffortReduction_%</th>
+      <th>ValuableCapabilities_Top2</th>
+      <th>StatedLimitations_Top2</th>
+      <th>HumanEssentialScenario</th>
+      <th>QuickInsight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>65%</td>
+      <td>Automated script generation; Boundary data generation</td>
+      <td>Weak business context understanding; Cannot assess physical kiosk interactions</td>
+      <td>Usability/accessibility evaluation for elderly users</td>
+      <td>Human-led accessibility/usability/context is essential.</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>70%</td>
+      <td>Automated JS unit tests; Boundary data generation</td>
+      <td>Misses business intent; Weak API integration testing</td>
+      <td>Empathy/accessibility and UX judgement at kiosk</td>
+      <td>Human-led accessibility/usability/context is essential.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>60-70%</td>
+      <td>Automated JS password tests; Boundary data generation (Search)</td>
+      <td>Instability across external API integrations</td>
+      <td>UX/accessibility judgement at kiosk</td>
+      <td>Human-led accessibility/usability/context is essential.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>65-75%</td>
+      <td>Coverage analysis; Failure prediction from complexity</td>
+      <td>Instability across external API integrations</td>
+      <td>UX/accessibility judgement at kiosk</td>
+      <td>Human-led accessibility/usability/context is essential.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>40-60%</td>
+      <td>Automated JS scripts; Boundary data generation</td>
+      <td>AI may not fully understand business context or user experience nuances; AI cannot evaluate visual, tactile, or usability aspects</td>
+      <td>Human testing remains essential for exploratory usability and accessibility assessments.</td>
+      <td>Human-led accessibility/usability/context is essential.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>60-85%</td>
+      <td>Test script generation; Test data creation; Coverage checking</td>
+      <td>don’t fully understand business rules; AI tests can fail... if the app design... changes</td>
+      <td>Human testing is very important for checking usability and customer experience... emotions, accessibility, and ease of use.</td>
+      <td>Human-led accessibility/usability/context is essential.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>60-85%</td>
+      <td>Auth test generation; Boundary-value inputs; DB fault-injection</td>
+      <td>AI struggles with complex, multi-layered system states.; AI... may also mishandle non-deterministic data.</td>
+      <td>Human testers are essential for evaluating user experience, compliance, and ethical handling... AI cannot interpret regulatory meaning or tone... empathy... make human testing irreplaceable.</td>
+      <td>Human-led accessibility/usability/context is essential.</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h2>Task 2C - Literature Investigation (All Groups)</h2>
+<table border="1" class="dataframe styled-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Campus</th>
+      <th>GroupLabel</th>
+      <th>FocusArea</th>
+      <th>Year</th>
+      <th>VenueType</th>
+      <th>Technique_Quant</th>
+      <th>AuthorNoted_Limitation</th>
+      <th>StudentCritical_SynthInsight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>Prioritisation</td>
+      <td>2025</td>
+      <td>Journal</td>
+      <td>Supervised ML (Risk ID acc. 94%)</td>
+      <td>Performance depends on quality/volume of historical data</td>
+      <td>Critique: Model's 94% accuracy is misleading; it fully depends on a mature, stable historical dataset, which a new project like ours lacks.</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>Self-Healing</td>
+      <td>2024</td>
+      <td>Journal</td>
+      <td>Dynamic locator substitution (Reliability 70%-&gt;90%)</td>
+      <td>Does not ensure semantic/business correctness</td>
+      <td>Critique: Self-healing locators (90% reliability) only fix the *symptom* (broken test), not the *cause*. It doesn't guarantee the business logic is still correct.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>Prioritisation</td>
+      <td>2024</td>
+      <td>Journal</td>
+      <td>Risk-based ML model</td>
+      <td>Semantic/business correctness not guaranteed</td>
+      <td>Critique: Prioritisation based on code churn is useful but misses the *business risk* aspect. A simple change in an auth file is more critical.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>Prioritisation</td>
+      <td>2024</td>
+      <td>Journal</td>
+      <td>Deep ensemble CNN (Accuracy 79.18%)</td>
+      <td>Semantic/business correctness not guaranteed</td>
+      <td>Critique: Deep ensemble CNNs are a 'black box.' This makes it impossible to justify *why* a test was de-prioritised, which fails regulatory/audit requirements.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>Automated Test Case Generation</td>
+      <td>2024</td>
+      <td>Journal</td>
+      <td>k-nearest neighbors (KNN)</td>
+      <td>dependence on high-quality historical testing data</td>
+      <td>A critical challenge not fully addressed by the paper is scalability with large and heterogeneous datasets.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>Automated test case generation</td>
+      <td>2024</td>
+      <td>Journal</td>
+      <td>Deep Learning with domain adaptation</td>
+      <td>bounded by dataset size, domain specificity</td>
+      <td>How assertion generation scales... and interacts with dynamic runtime states are not fully covered in the paper.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>Automated Test Case Generation</td>
+      <td>2024</td>
+      <td>Journal</td>
+      <td>transformer-based AI; reinforcement learning</td>
+      <td>incomplete GUI support... computational demands</td>
+      <td>biggest challenge is stateful cross-component testing... doesn’t fully address how AI-generated tests should be reviewed and approved in regulated systems</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h2>Task 2D - AI Automation Reflections (All Groups)</h2>
+<table border="1" class="dataframe styled-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Campus</th>
+      <th>GroupLabel</th>
+      <th>Misconception_Theme</th>
+      <th>HumanCriticalAspect_Theme</th>
+      <th>Quote_1</th>
+      <th>Quote_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel g6</td>
+      <td>AI can fully replace human testing</td>
+      <td>Usability/accessibility require human judgement</td>
+      <td>AI excels at syntax but misses application context.</td>
+      <td>Only humans can assess what feels broken from a user's perspective.</td>
+    </tr>
+    <tr>
+      <td>Online</td>
+      <td>Onl g6</td>
+      <td>AI 'thinks' like a human</td>
+      <td>Context, ethics, and UX sense-making</td>
+      <td>AI follows patterns, output not intentions.</td>
+      <td>Humans connect technical output with business meaning.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g2</td>
+      <td>AI replaces human testers</td>
+      <td>Context, usability, and ethics require human judgement</td>
+      <td>AI follows patterns; humans connect to business meaning.</td>
+      <td>Usability and accessibility remain human-led.</td>
+    </tr>
+    <tr>
+      <td>Sydney</td>
+      <td>Syd g3</td>
+      <td>AI replaces human testers</td>
+      <td>Context, usability, and ethics require human judgement</td>
+      <td>AI follows patterns; humans connect to business meaning.</td>
+      <td>Usability and accessibility remain human-led.</td>
+    </tr>
+    <tr>
+      <td>Melbourne</td>
+      <td>Mel_gX</td>
+      <td>AI can fully replace human judgment</td>
+      <td>evaluating contextual usability and business-critical logic</td>
+      <td>AI... relies on human expertise to... ensure business-relevant coverage.</td>
+      <td>Human testers are uniquely capable of understanding context... judgment and empathy, elements that AI cannot replicate.</td>
+    </tr>
+    <tr>
+      <td>Brisbane</td>
+      <td>Bri_gE</td>
+      <td>AI can replace human judgment</td>
+      <td>Context, usability, and business rules</td>
+      <td>AI can’t understand every special case, like kiosk timeouts or customer rewards.</td>
+      <td>Humans can notice... emotions, accessibility, and ease of use.</td>
+    </tr>
+    <tr>
+      <td>Rockhampton</td>
+      <td>Roc_gA</td>
+      <td>AI replaces human testers</td>
+      <td>Compliance, ethics, and UX</td>
+      <td>AI struggles with complex, multi-layered system states.</td>
+      <td>Human reasoning, empathy, and policy understanding... AI cannot interpret regulatory meaning or tone.</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+</body>
+</html>
