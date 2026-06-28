@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publications & Evidence — SAGE Framework</title>
-  <meta name="description" content="The evidence base behind SAGE: more than 1,500 students across 30+ studies in Australia, China and the United Kingdom, plus the core SAGE publication list." />
+  <title>Evidence &amp; Impact — SAGE Framework</title>
+  <meta name="description" content="SAGE is an empirically formed assessment-design framework grounded in visible student judgement — this page presents the empirical basis, sector alignment, publications and public commentary supporting the program." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://sage-framework.com/publications.html" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -163,19 +163,209 @@
       border-radius: 2px;
     }
 
-    /* ─── HERO ─── */
-    .hero {
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Instrument Sans', sans-serif;
+    }
+
+    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .btn-primary {
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--sage);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(27,67,50,0.22);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--forest);
+      border: 1.5px solid var(--rule);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--sage-mid);
+      background: var(--sage-pale);
+      transform: translateY(-1px);
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--sage-mid);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-body {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── RESEARCH / CORE PUB SECTION ─── */
+    .research-section {
+      background: var(--forest);
+      padding: 5rem 2rem;
+    }
+
+    .research-inner {
       max-width: 1160px;
       margin: 0 auto;
-      padding: 3.75rem 2rem 2.75rem;
     }
 
-    .hero-left {
-      max-width: 940px;
-      margin: 0 auto;
-      text-align: center;
+    .research-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage-light);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
+    .research-label::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--sage-mid);
+      border-radius: 2px;
+    }
+
+    .research-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .research-body {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+      max-width: 680px;
+    }
+
+    .publication-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .publication-item {
+      display: grid;
+      grid-template-columns: 1.5rem minmax(0, 1fr);
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    .publication-number {
+      color: var(--sage-light);
+      font-weight: 700;
+    }
+
+    .publication-citation {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .publication-citation a {
+      color: var(--sage-light);
+      white-space: nowrap;
+    }
+
+    /* ─── MOBILE NAV OVERLAY ─── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 200;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+      gap: 0;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--slate);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── HERO ─── */
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -224,1003 +414,6 @@
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.3s;
     }
-
-    .hero-scope {
-      max-width: 720px;
-      margin: 0 auto 2rem;
-      padding-left: 1rem;
-      border-left: 2px solid var(--sage-light);
-      color: var(--slate);
-      font-size: 0.82rem;
-      line-height: 1.65;
-      text-align: left;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.35s;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.4s;
-    }
-
-    /* ─── CYCLE CARD ─── */
-    .cycle-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 20px;
-      padding: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-
-    .cycle-card-lead {
-      margin-bottom: 2rem;
-    }
-
-    .cycle-card-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    /* Lane rows */
-    .lane {
-      margin-bottom: 1rem;
-    }
-
-    .lane-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .lane-badge {
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-    }
-
-    .lane-badge.open {
-      background: var(--sage-pale);
-      color: var(--sage);
-    }
-
-    .lane-badge.assurance {
-      background: var(--amber-pale);
-      color: var(--amber);
-    }
-
-    .lane-desc {
-      font-size: 0.65rem;
-      color: var(--muted);
-    }
-
-    .lane-steps {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-
-    .step-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: var(--sage-pale);
-      border: 1px solid #c2ddd0;
-      border-radius: 8px;
-      padding: 0.5rem 0.8rem;
-      transition: box-shadow 0.15s, transform 0.15s;
-      cursor: default;
-    }
-
-    .step-pill:hover {
-      box-shadow: 0 2px 8px rgba(45,106,79,0.12);
-      transform: translateY(-1px);
-    }
-
-    .step-pill.defend-pill {
-      background: var(--amber-pale);
-      border-color: #f0c4b4;
-    }
-
-    .step-pill.defend-pill:hover {
-      box-shadow: 0 2px 8px rgba(183,65,14,0.12);
-    }
-
-    .pill-num {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--sage);
-      color: var(--white);
-      font-size: 0.6rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .step-pill.defend-pill .pill-num {
-      background: var(--amber);
-    }
-
-    .pill-name {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--forest);
-    }
-
-    .step-pill.defend-pill .pill-name {
-      color: var(--amber);
-    }
-
-    .pill-arrow {
-      font-size: 0.75rem;
-      color: var(--rule);
-    }
-
-    .lane-divider {
-      border: none;
-      border-top: 1px dashed var(--rule);
-      margin: 1rem 0;
-    }
-
-    .teqsa-inline {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-top: 1.25rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--rule);
-    }
-
-    .teqsa-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--sage-mid);
-      flex-shrink: 0;
-      animation: pulse 2.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .teqsa-inline-text {
-      font-size: 0.7rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    /* ─── SAGE ECOSYSTEM ─── */
-    .ecosystem-section {
-      padding: 3rem 2rem 4rem;
-      background: var(--white);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .ecosystem-inner {
-      max-width: 1040px;
-      margin: 0 auto;
-    }
-
-    .ecosystem-heading {
-      margin-bottom: 2.5rem;
-      text-align: center;
-    }
-
-    .ecosystem-heading .section-label { justify-content: center; }
-
-    .ecosystem-diagram {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .ecosystem-diagram text {
-      font-family: 'Instrument Sans', system-ui, sans-serif;
-    }
-
-    .ecosystem-diagram .eco-connector {
-      fill: none;
-      stroke: var(--sage-mid);
-      stroke-width: 2.25;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0.68;
-    }
-
-    .ecosystem-diagram .eco-connector-forthcoming {
-      fill: none;
-      stroke: var(--muted);
-      stroke-width: 1.5;
-      stroke-dasharray: 7 7;
-      stroke-linecap: round;
-      opacity: 0.7;
-    }
-
-    .ecosystem-diagram .eco-junction {
-      fill: var(--sage-mid);
-      stroke: var(--white);
-      stroke-width: 2;
-    }
-
-    .ecosystem-diagram .eco-umbrella {
-      fill: var(--forest);
-      stroke: var(--forest);
-      stroke-width: 2;
-    }
-
-    .ecosystem-diagram .eco-pedagogy {
-      fill: var(--sage-pale);
-      stroke: var(--sage);
-      stroke-width: 3;
-    }
-
-    .ecosystem-diagram .eco-policy,
-    .ecosystem-diagram .eco-resource {
-      fill: var(--white);
-      stroke: var(--rule);
-      stroke-width: 2;
-    }
-
-    .ecosystem-diagram .eco-forthcoming-box {
-      fill: var(--cream);
-      stroke: var(--muted);
-      stroke-width: 1.5;
-      stroke-dasharray: 7 6;
-      opacity: 0.72;
-    }
-
-    .ecosystem-diagram .eco-umbrella-title {
-      fill: var(--white);
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 34px;
-      font-weight: 600;
-    }
-
-    .ecosystem-diagram .eco-umbrella-subtitle {
-      fill: var(--sage-pale);
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-    }
-
-    .ecosystem-diagram .eco-node-title {
-      fill: var(--forest);
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 25px;
-      font-weight: 600;
-    }
-
-    .ecosystem-diagram .eco-node-subtitle {
-      fill: var(--slate);
-      font-size: 15px;
-      font-weight: 500;
-    }
-
-    .ecosystem-diagram .eco-resource-title {
-      fill: var(--forest);
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .ecosystem-diagram .eco-resource-subtitle,
-    .ecosystem-diagram .eco-edge-label {
-      fill: var(--slate);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .ecosystem-diagram .eco-layer-label {
-      fill: var(--sage);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .ecosystem-mobile {
-      display: none;
-    }
-
-    .ecosystem-mobile-node {
-      position: relative;
-      padding: 1.25rem;
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .ecosystem-mobile-node + .ecosystem-mobile-node {
-      margin-top: 2.75rem;
-    }
-
-    .ecosystem-mobile-node + .ecosystem-mobile-node::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: 100%;
-      width: 1px;
-      height: 2.75rem;
-      background: var(--sage-light);
-    }
-
-    .ecosystem-mobile-node.umbrella {
-      background: var(--forest);
-      border-color: var(--forest);
-      color: var(--white);
-    }
-
-    .ecosystem-mobile-node.pedagogy {
-      background: var(--sage-pale);
-      border: 2px solid var(--sage);
-    }
-
-    .ecosystem-mobile-node.forthcoming {
-      margin: 1rem auto 2.75rem;
-      max-width: 260px;
-      border: 1px dashed var(--muted);
-      background: var(--cream);
-      color: var(--slate);
-    }
-
-    .ecosystem-mobile-node.forthcoming::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: 100%;
-      width: 1px;
-      height: 1rem;
-      border-left: 1px dashed var(--muted);
-    }
-
-    .ecosystem-mobile-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      line-height: 1.2;
-      color: var(--forest);
-    }
-
-    .ecosystem-mobile-node.umbrella .ecosystem-mobile-title {
-      color: var(--white);
-      font-size: 1.6rem;
-    }
-
-    .ecosystem-mobile-subtitle {
-      margin-top: 0.3rem;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
-
-    .ecosystem-mobile-node.umbrella .ecosystem-mobile-subtitle {
-      color: var(--sage-pale);
-    }
-
-    .ecosystem-mobile-edge {
-      position: relative;
-      height: 3.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--slate);
-      font-size: 0.74rem;
-      font-weight: 500;
-      text-align: center;
-    }
-
-    .ecosystem-mobile-edge::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 1px;
-      background: var(--sage-light);
-    }
-
-    .ecosystem-mobile-edge span {
-      position: relative;
-      z-index: 1;
-      padding: 0.2rem 0.65rem;
-      background: var(--white);
-    }
-
-    .ecosystem-mobile-resources {
-      margin-top: 3rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--rule);
-    }
-
-    .ecosystem-mobile-resources-label {
-      margin-bottom: 0.75rem;
-      color: var(--sage);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    .ecosystem-mobile-resource {
-      padding: 1rem;
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .ecosystem-mobile-resource + .ecosystem-mobile-resource {
-      margin-top: 0.65rem;
-    }
-
-    .ecosystem-mobile-resource strong {
-      display: block;
-      color: var(--forest);
-      font-size: 0.9rem;
-    }
-
-    .ecosystem-mobile-resource span {
-      display: block;
-      margin-top: 0.15rem;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-    /* ─── BUTTONS ─── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.4rem;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.15s;
-      border: none;
-      cursor: pointer;
-      font-family: 'Instrument Sans', sans-serif;
-    }
-
-    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
-
-    .btn-primary {
-      background: var(--forest);
-      color: var(--white);
-    }
-
-    .btn-primary:hover {
-      background: var(--sage);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(27,67,50,0.22);
-    }
-
-    .btn-secondary {
-      background: var(--white);
-      color: var(--forest);
-      border: 1.5px solid var(--rule);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--sage-mid);
-      background: var(--sage-pale);
-      transform: translateY(-1px);
-    }
-
-    /* ─── SECTION WRAPPER ─── */
-    .section {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .section-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.6rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section-label::before {
-      content: '';
-      width: 16px;
-      height: 2px;
-      background: var(--sage-mid);
-      border-radius: 2px;
-    }
-
-    .section-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 0.9rem;
-    }
-
-    .section-body {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 640px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ─── WHY SAGE CARDS ─── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.1rem;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.9rem;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 1.75rem;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    .card-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 9px;
-      background: var(--sage-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .card-icon.amber { background: var(--amber-pale); }
-
-    .card-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .card-body {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ─── PATHWAYS ─── */
-    .pathways {
-      background: var(--ink);
-      padding: 5rem 2rem;
-    }
-
-    .pathways-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-    }
-
-    .pathways-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--sage-light);
-      margin-bottom: 0.6rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .pathways-label::before {
-      content: '';
-      width: 16px;
-      height: 2px;
-      background: var(--sage-mid);
-      border-radius: 2px;
-    }
-
-    .pathways-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-      font-weight: 400;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 2.5rem;
-    }
-
-    .pathways-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.1rem;
-    }
-
-    .pathway-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 16px;
-      padding: 2.5rem;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      transition: background 0.2s, transform 0.2s, border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pathway-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--sage-mid);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s ease;
-    }
-
-    .pathway-card:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,255,255,0.16);
-      transform: translateY(-2px);
-    }
-
-    .pathway-card:hover::after { transform: scaleX(1); }
-    .pathway-card.students::after { background: var(--sage-light); }
-
-    .pathway-num {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 3rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.08);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .pathway-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 0.75rem;
-      line-height: 1.25;
-    }
-
-    .pathway-body {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 1.5rem;
-    }
-
-    .pathway-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--sage-light);
-      transition: gap 0.15s;
-    }
-
-    .pathway-card:hover .pathway-arrow { gap: 0.75rem; }
-
-    /* ─── FRAMEWORK POSITIONING ─── */
-    .positioning {
-      background: var(--white);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .positioning-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .positioning-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      overflow: hidden;
-      font-size: 0.86rem;
-    }
-
-    .positioning-table th {
-      padding: 0.7rem 1rem;
-      text-align: left;
-      font-size: 0.66rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--sage-pale);
-      color: var(--sage);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .positioning-table td {
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid var(--rule);
-      color: var(--slate);
-      vertical-align: top;
-      line-height: 1.5;
-    }
-
-    .positioning-table tr:last-child td { border-bottom: none; }
-
-    .positioning-table td:first-child {
-      font-weight: 600;
-      color: var(--ink);
-      white-space: nowrap;
-    }
-
-    .tag {
-      display: inline-block;
-      font-size: 0.62rem;
-      font-weight: 600;
-      padding: 0.18rem 0.5rem;
-      border-radius: 4px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .tag-policy { background: #f0f4ff; color: #4338ca; }
-    .tag-sage   { background: var(--sage-pale); color: var(--sage); }
-
-    /* Positioning block folded into the Why SAGE section */
-    .why-positioning {
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--rule);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .why-positioning-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 0.9rem;
-    }
-
-    /* ─── RESEARCH + STATS ─── */
-    .research-section {
-      background: var(--forest);
-      padding: 5rem 2rem;
-    }
-
-    .research-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-    }
-
-    .research-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .research-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--sage-light);
-      margin-bottom: 0.6rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .research-label::before {
-      content: '';
-      width: 16px;
-      height: 2px;
-      background: var(--sage-mid);
-      border-radius: 2px;
-    }
-
-    .research-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 400;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    .research-body {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.75;
-      margin-bottom: 1.75rem;
-    }
-
-    .publication-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    .publication-item {
-      display: grid;
-      grid-template-columns: 1.5rem minmax(0, 1fr);
-      gap: 0.5rem;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.6;
-    }
-
-    .publication-number {
-      color: var(--sage-light);
-      font-weight: 700;
-    }
-
-    .publication-citation {
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .publication-citation a {
-      color: var(--sage-light);
-      white-space: nowrap;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .stat-box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 1.25rem;
-    }
-
-    .stat-value {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--sage-light);
-      letter-spacing: 0.05em;
-      line-height: 1.4;
-    }
-
-    /* ─── COMMUNITY ─── */
-    .community-band {
-      background: var(--sage-pale);
-      border-top: 1px solid #c2ddd0;
-      border-bottom: 1px solid #c2ddd0;
-      padding: 4rem 2rem;
-    }
-
-    .community-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    /* ─── ABOUT ─── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-top: 0.5rem;
-    }
-
-    .author-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 1.75rem;
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      transition: box-shadow 0.2s;
-    }
-
-    .author-card:hover { box-shadow: var(--shadow-md); }
-
-    .author-photo {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--rule);
-      flex-shrink: 0;
-    }
-
-    .author-name {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.35rem;
-      line-height: 1.2;
-    }
-
-    .author-bio {
-      font-size: 0.855rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 0.5rem;
-    }
-
-    .author-email {
-      font-size: 0.78rem;
-      color: var(--sage);
-      text-decoration: none;
-    }
-
-    .author-email:hover { text-decoration: underline; }
 
     /* ─── FOOTER ─── */
     footer {
@@ -1301,80 +494,495 @@
       white-space: nowrap;
     }
 
-    /* ─── MOBILE NAV OVERLAY ─── */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      inset: 0;
+    /* ════════════════════════════════════════════
+       NEW STYLES — Evidence & Impact page
+       ════════════════════════════════════════════ */
+
+    /* ─── PAGE HERO ─── */
+    .pub-hero {
+      padding: 3.75rem 2rem 2.5rem;
       background: var(--cream);
-      z-index: 200;
-      flex-direction: column;
-      padding: 5rem 2rem 2rem;
-      gap: 0;
     }
 
-    .mobile-nav.open { display: flex; }
+    .pub-hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-    .mobile-nav a {
-      font-size: 1.05rem;
+    /* ─── SECTION JUMPER ─── */
+    .section-jumper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.45s;
+    }
+
+    .section-pill {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--rule);
+      font-size: 0.78rem;
       font-weight: 500;
       color: var(--slate);
       text-decoration: none;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--rule);
+      background: var(--white);
+      transition: all 0.15s;
     }
 
-    .mobile-nav-close {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.5rem;
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      cursor: pointer;
+    .section-pill:hover {
+      border-color: var(--sage-mid);
+      background: var(--sage-pale);
+      color: var(--forest);
+    }
+
+    /* ─── EVIDENCE BASE ─── */
+    .evidence-section {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 5rem 2rem;
+    }
+
+    .evidence-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .evidence-process-col {
+      background: var(--sage-pale);
+      border: 1px solid #c2ddd0;
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+
+    .evidence-process-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.25rem;
+    }
+
+    .evidence-process {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .evidence-step + .evidence-step {
+      padding-top: 1.1rem;
+      border-top: 1px solid #d4e6db;
+    }
+
+    .evidence-step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .evidence-step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--sage-light);
+      color: var(--sage);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .evidence-step-label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .evidence-step-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Stat boxes — light version */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .stat-box.light {
+      background: var(--sage-pale);
+      border-color: #c2ddd0;
+    }
+
+    .stat-value {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-box.light .stat-value { color: var(--forest); }
+
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--sage-light);
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+
+    .stat-box.light .stat-label { color: var(--sage); }
+
+    /* ─── TEQSA SECTION ─── */
+    .teqsa-section {
+      background: var(--sage-pale);
+      border-top: 1px solid #c2ddd0;
+      border-bottom: 1px solid #c2ddd0;
+      padding: 5rem 2rem;
+    }
+
+    .teqsa-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .teqsa-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.5rem;
+    }
+
+    .teqsa-hub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--white);
+      border: 1.5px solid #c2ddd0;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--forest);
+      text-decoration: none;
+      transition: box-shadow 0.15s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .teqsa-hub-link:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    .teqsa-hub-link svg { width: 12px; height: 12px; }
+
+    .teqsa-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+    }
+
+    .teqsa-card {
+      background: var(--white);
+      border: 1px solid #c2ddd0;
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .teqsa-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .teqsa-hub-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.6rem;
+      border-radius: 4px;
+      background: var(--sage-pale);
+      color: var(--sage);
+      border: 1px solid #c2ddd0;
+      align-self: flex-start;
+    }
+
+    .teqsa-card-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .teqsa-card-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .teqsa-card-date {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--sage);
+    }
+
+    .teqsa-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--sage);
+      text-decoration: none;
+      margin-top: auto;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--rule);
+      transition: color 0.15s;
+    }
+
+    .teqsa-card-link:hover { color: var(--forest); }
+    .teqsa-card-link svg { width: 12px; height: 12px; }
+
+    /* ─── MEDIA SECTION ─── */
+    .media-section {
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      padding: 5rem 2rem;
+    }
+
+    .media-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .media-card {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .media-card:hover { box-shadow: var(--shadow-md); }
+
+    .media-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outlet-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .outlet-the      { background: #1a1a2e; color: #fff; }
+    .outlet-herdsa   { background: var(--sage-pale); color: var(--sage); border: 1px solid #c2ddd0; }
+    .outlet-future   { background: #e0f0f8; color: #1a6b8a; }
+    .outlet-cqu      { background: var(--amber-pale); color: var(--amber); }
+    .outlet-educator { background: #f0f4ff; color: #4338ca; }
+    .outlet-local    { background: #f0f0f0; color: #555; }
+    .outlet-linkedin { background: #e8f0fe; color: #0a66c2; }
+    .outlet-scien    { background: #f0f0f0; color: #555; }
+
+    .media-date {
+      font-size: 0.68rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .media-card-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.45;
+      text-decoration: none;
+      display: block;
+    }
+
+    .media-card-title:hover { color: var(--sage); }
+
+    .media-card-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ─── RADIO / BROADCAST ─── */
+    .radio-subsection {
+      padding-top: 3rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .radio-subsection-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .radio-subsection-label::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--sage-mid);
+      border-radius: 2px;
+    }
+
+    .radio-subsection-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .radio-card {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--sage-mid);
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .radio-card-top {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .outlet-abc { background: #00003e; color: #fff; }
+    .outlet-sbs { background: #c8102e; color: #fff; }
+
+    .radio-card-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .radio-card-date { font-size: 0.72rem; color: var(--muted); }
+
+    .radio-card-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ─── EXTENDED PORTFOLIO SECTION ─── */
+    .portfolio-section {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      padding: 5rem 2rem;
+    }
+
+    .portfolio-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* Light publication list (for portfolio section on white bg) */
+    .publication-list.light .publication-item {
       color: var(--slate);
     }
 
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .publication-list.light .publication-number {
+      color: var(--sage);
+    }
+
+    .publication-list.light .publication-citation a {
+      color: var(--sage);
+      white-space: normal;
     }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
-      .hero {
-        padding: 3rem 1.5rem 2.25rem;
-      }
-      .hero-subtitle { max-width: 100%; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: repeat(2, 1fr); }
-      .pathways-grid { grid-template-columns: 1fr; }
-      .positioning-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .why-positioning { grid-template-columns: 1fr; gap: 2.5rem; }
-      .research-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .community-inner { grid-template-columns: 1fr; }
-      .about-grid { grid-template-columns: 1fr; }
-      .ecosystem-diagram { display: none; }
-      .ecosystem-mobile {
-        display: block;
-        max-width: 520px;
-        margin: 0 auto;
-      }
+      .evidence-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .teqsa-grid { grid-template-columns: 1fr; }
+      .teqsa-header { grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+      .media-grid { grid-template-columns: repeat(2, 1fr); }
+      .radio-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
-      .section { padding: 3.5rem 1.25rem; }
-      .hero { padding: 2.75rem 1.25rem 2rem; }
-      .ecosystem-section { padding: 2.5rem 1.25rem 3.25rem; }
-      .cycle-card { padding: 1.25rem; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .pathways { padding: 3.5rem 1.25rem; }
-      .research-section { padding: 3.5rem 1.25rem; }
-      .community-band { padding: 3rem 1.25rem; }
-      footer { padding: 2.5rem 1.25rem 1.5rem; }
+      .pub-hero { padding: 2.75rem 1.25rem 2rem; }
+      .section-jumper { justify-content: flex-start; }
+      .evidence-section,
+      .teqsa-section,
+      .media-section,
+      .research-section,
+      .portfolio-section { padding: 3.5rem 1.25rem; }
+      .media-grid { grid-template-columns: 1fr; }
+      .radio-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -1403,7 +1011,7 @@
         </div></div>
       </li>
       <li><a href="downloads.html">Downloads</a></li>
-      <li><a href="publications.html">Publications</a></li>
+      <li><a href="publications.html">Evidence</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="about.html" class="nav-cta">About</a></li>
     </ul>
@@ -1424,58 +1032,311 @@
   <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student-Facing Policy</a>
   <a href="policy-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Educator Guidance</a>
   <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Downloads</a>
-  <a href="publications.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Publications</a>
+  <a href="publications.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Evidence</a>
   <a href="community.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
   <a href="about.html" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
 </div>
 
-<!-- ─── RESEARCH + STATS ─── -->
-<section class="research-section" id="research">
-  <div class="research-inner">
-    <div class="research-grid">
-      <div>
-        <div class="research-label">Publications</div>
-        <h2 class="research-title">The evidence base</h2>
-        <p class="research-body">
-          SAGE is grounded in 30+ studies spanning cybersecurity education, systems analysis and design, data analytics, and first-year ICT, delivered across campuses in Australia, China, and the United Kingdom with more than 1,500 students.
-        </p>
-        <div style="display:flex; gap: 0.75rem; flex-wrap: wrap;">
-          <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" class="btn btn-secondary" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--white);">
-            Implementation Guide DOI
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </a>
-          <a href="sage.html" class="btn btn-secondary" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--white);">
-            Read the Framework
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </a>
-        </div>
-      </div>
+<!-- ─── HERO ─── -->
+<div class="pub-hero">
+  <div class="pub-hero-inner">
+    <div class="hero-eyebrow">Evidence &amp; Impact</div>
+    <h1 class="hero-title">The empirical case <em>for SAGE</em></h1>
+    <p class="hero-subtitle">SAGE is an empirically formed assessment-design framework grounded in visible student judgement — this page presents the empirical basis, sector alignment, publications and public commentary supporting the program.</p>
+    <nav class="section-jumper" aria-label="Page sections">
+      <a href="#evidence-base" class="section-pill">Evidence base</a>
+      <a href="#teqsa-alignment" class="section-pill">TEQSA GenAI Hub</a>
+      <a href="#media" class="section-pill">Media &amp; commentary</a>
+      <a href="#publications" class="section-pill">Core publications</a>
+      <a href="#portfolio" class="section-pill">Extended portfolio</a>
+    </nav>
+  </div>
+</div>
 
+<!-- ─── EVIDENCE BASE ─── -->
+<section class="evidence-section" id="evidence-base">
+  <div class="evidence-inner">
+    <div class="evidence-lead">
+      <div class="section-label">Evidence base</div>
+      <h2 class="section-title">The empirical foundation</h2>
+      <p class="section-body">SAGE was not designed from theory alone — it was shaped iteratively through classroom redesign, student data collection, cross-campus evaluation, and reflective refinement across three countries and multiple cohorts.</p>
       <div class="stats-grid">
-        <div class="stat-box">
+        <div class="stat-box light">
           <div class="stat-value">1,500+</div>
           <div class="stat-label">Students across validation studies</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box light">
           <div class="stat-value">30+</div>
           <div class="stat-label">Studies across Australia, China &amp; the UK</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box light">
           <div class="stat-value">73%</div>
           <div class="stat-label">Independently verified AI claims against authoritative sources</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box light">
           <div class="stat-value">81%</div>
           <div class="stat-label">Engaged in deep revision — rewriting or iterative refinement</div>
         </div>
       </div>
+    </div>
+    <div class="evidence-process-col">
+      <div class="evidence-process-label">How SAGE was formed</div>
+      <div class="evidence-process">
+        <div class="evidence-step">
+          <div class="evidence-step-num">1</div>
+          <div>
+            <div class="evidence-step-label">Classroom redesign</div>
+            <div class="evidence-step-desc">Assessment tasks were redesigned to embed AI explicitly, requiring students to document, verify, and defend their AI-assisted work as part of the assessment process.</div>
+          </div>
+        </div>
+        <div class="evidence-step">
+          <div class="evidence-step-num">2</div>
+          <div>
+            <div class="evidence-step-label">Student evidence collection</div>
+            <div class="evidence-step-desc">Empirical data was gathered on how students actually engaged with AI — including verification behaviours, revision patterns, dependency levels, and how they exercised judgement.</div>
+          </div>
+        </div>
+        <div class="evidence-step">
+          <div class="evidence-step-num">3</div>
+          <div>
+            <div class="evidence-step-label">Evaluation</div>
+            <div class="evidence-step-desc">Findings were evaluated against learning outcomes, academic integrity criteria, and sector expectations, across institutions in Australia, China, and the United Kingdom.</div>
+          </div>
+        </div>
+        <div class="evidence-step">
+          <div class="evidence-step-num">4</div>
+          <div>
+            <div class="evidence-step-label">Refinement</div>
+            <div class="evidence-step-desc">SAGE evolved through successive cycles, with each iteration informing the pedagogical structure, policy language, and student-facing resources that constitute the current framework.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TEQSA GENAIAI HUB ─── -->
+<section class="teqsa-section" id="teqsa-alignment">
+  <div class="teqsa-inner">
+    <div class="teqsa-header">
+      <div>
+        <div class="section-label">Sector alignment</div>
+        <h2 class="section-title">TEQSA GenAI Knowledge Hub</h2>
+        <p class="section-body" style="margin-bottom:0;">Three SAGE-affiliated resources are listed on TEQSA's GenAI Knowledge Hub — the primary national repository for higher education good practice in generative AI. TEQSA is Australia's national higher education regulator and quality assurance authority.</p>
+      </div>
+      <a href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub" target="_blank" rel="noopener" class="teqsa-hub-link">
+        Visit TEQSA GenAI Hub
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+    <div class="teqsa-grid">
+
+      <!-- Listing 1: Academic Integrity & Assessment Reform -->
+      <div class="teqsa-card">
+        <span class="teqsa-hub-badge">Academic Integrity &amp; Assessment Reform</span>
+        <div class="teqsa-card-title">Embedding generative AI in curriculum: The SAGE framework and evidence-based implementation guide</div>
+        <div class="teqsa-card-meta">Listed under: Academic integrity and assessment reform resources — Central Queensland University</div>
+        <div class="teqsa-card-date">January 2026</div>
+        <a href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-academic-integrity-and-assessment-reform" target="_blank" rel="noopener" class="teqsa-card-link">
+          View TEQSA listing
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <!-- Listing 2: Student Resources – GenAI literacy module -->
+      <div class="teqsa-card">
+        <span class="teqsa-hub-badge">Student Resources &amp; Support</span>
+        <div class="teqsa-card-title">Generative AI literacy and numeracy module: A SAGE framework application</div>
+        <div class="teqsa-card-meta">Listed under: Student resources — Central Queensland University</div>
+        <div class="teqsa-card-date">January 2026</div>
+        <a href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-student-resources-and-support" target="_blank" rel="noopener" class="teqsa-card-link">
+          View TEQSA listing
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <!-- Listing 3: Student Support – AI use patterns study -->
+      <div class="teqsa-card">
+        <span class="teqsa-hub-badge">Student Resources &amp; Support</span>
+        <div class="teqsa-card-title">How first-year students actually use AI in permitted assessments</div>
+        <div class="teqsa-card-meta">Listed under: Student support — Central Queensland University</div>
+        <div class="teqsa-card-date">January 2026</div>
+        <a href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-student-resources-and-support" target="_blank" rel="noopener" class="teqsa-card-link">
+          View TEQSA listing
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
 
     </div>
+  </div>
+</section>
 
-    <!-- Publication list -->
-    <div style="grid-column: 1 / -1; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-      <h3 style="font-family:'Fraunces',Georgia,serif; font-size:1.15rem; font-weight:400; color:var(--white); margin-bottom:1.25rem;">Core publications</h3>
-      <!-- PUBLICATIONS: canonical list, keep index.html and sage.html in sync -->
+<!-- ─── MEDIA & COMMENTARY ─── -->
+<section class="media-section" id="media">
+  <div class="media-inner">
+
+    <div style="margin-bottom: 2.5rem;">
+      <div class="section-label">Media &amp; commentary</div>
+      <h2 class="section-title">Public &amp; sector commentary</h2>
+      <p class="section-body">Coverage and commentary spanning higher education trade press, university news, specialist media, and professional channels.</p>
+    </div>
+
+    <div class="media-grid">
+
+      <!-- THE Campus -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-the">THE Campus</span>
+        </div>
+        <a href="https://www.timeshighereducation.com/campus/students-are-asking-ai-guidance-not-just-policy" target="_blank" rel="noopener" class="media-card-title">Students are asking for AI guidance, not just policy</a>
+        <p class="media-card-desc">Why higher education must move from blanket policy statements to structured, practical guidance that helps students use AI responsibly and with critical judgement.</p>
+      </div>
+
+      <!-- HERDSA Connect -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-herdsa">HERDSA Connect</span>
+        </div>
+        <a href="https://herdsa.org.au/herdsa-connect/students-are-asking-ai-guidance-not-just-policy-comprehensive-practical-framework-ai" target="_blank" rel="noopener" class="media-card-title">Students are asking for AI guidance, not just policy: A comprehensive, practical framework for AI integration</a>
+        <p class="media-card-desc">Adapted for the HERDSA community — a practical framework for embedding structured AI guidance within assessment design in higher education.</p>
+      </div>
+
+      <!-- Future Campus -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-future">Future Campus</span>
+          <span class="media-date">Apr 2026</span>
+        </div>
+        <a href="https://futurecampus.com.au/2026/04/11/ai-era-must-not-become-excuse-to-default-to-low-tech-exams/" target="_blank" rel="noopener" class="media-card-title">AI era must not become an excuse to default to low-tech exams</a>
+        <p class="media-card-desc">Commentary arguing that reverting to high-surveillance, low-authenticity assessment is an impoverished response to AI — and why pedagogy must keep pace with the tools students use.</p>
+      </div>
+
+      <!-- CQU News: Teaching to think -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-cqu">CQU News</span>
+        </div>
+        <a href="https://www.cqu.edu.au/news/1267512/teaching-students-to-think-with-ai--not-cheat-with-it" target="_blank" rel="noopener" class="media-card-title">Teaching students to think with AI — not cheat with it</a>
+        <p class="media-card-desc">CQUniversity news feature on the SAGE framework's approach to making AI a visible part of assessment rather than a prohibited tool students work around.</p>
+      </div>
+
+      <!-- CQU News: AI-ready education -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-cqu">CQU News</span>
+          <span class="media-date">Mar 2026</span>
+        </div>
+        <a href="https://www.cqu.edu.au/news/1270316/cquniversity-leads-shift-in-ai-ready-education" target="_blank" rel="noopener" class="media-card-title">CQUniversity leads shift in AI-ready education</a>
+        <p class="media-card-desc">How CQUniversity's SAGE-based approach is equipping graduates to work alongside AI effectively, responsibly, and with the critical capacity to verify and own their outputs.</p>
+      </div>
+
+      <!-- The Educator Online -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-educator">The Educator</span>
+        </div>
+        <a href="https://www.theeducatoronline.com/k12/news/opinion-teaching-students-to-think-with-ai--not-cheat-with-it/288838" target="_blank" rel="noopener" class="media-card-title">Opinion: Teaching students to think with AI — not cheat with it</a>
+        <p class="media-card-desc">Opinion piece reframing the AI-in-education debate — from treating AI as an integrity threat to embedding it as a critical thinking scaffold within assessment design.</p>
+      </div>
+
+      <!-- CQU News: Smart Cities -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-cqu">CQU News</span>
+        </div>
+        <a href="https://www.cqu.edu.au/news/1280233/smart-cities-of-the-future-could-think-for-themselves" target="_blank" rel="noopener" class="media-card-title">Smart cities of the future could think for themselves</a>
+        <p class="media-card-desc">Research feature on AI integration in smart city systems, exploring autonomous decision-making and the role of human oversight — themes central to SAGE's pedagogical positioning.</p>
+      </div>
+
+      <!-- Gladstone Today -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-local">Gladstone Today</span>
+          <span class="media-date">Mar 2026</span>
+        </div>
+        <a href="https://gladstonetoday.com.au/news/2026/03/28/cquniversity-leads-shift-in-ai-ready-education/" target="_blank" rel="noopener" class="media-card-title">CQUniversity leads shift in AI-ready education</a>
+        <p class="media-card-desc">Regional coverage of CQUniversity's SAGE-led approach to AI-integrated assessment design and what it means for graduate readiness in the region.</p>
+      </div>
+
+      <!-- SciEnMag -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-scien">SciEnMag</span>
+        </div>
+        <a href="https://scienmag.com/empowering-cybersecurity-education-with-responsible-ai-framework/" target="_blank" rel="noopener" class="media-card-title">Empowering cybersecurity education with responsible AI framework</a>
+        <p class="media-card-desc">Science media coverage of the SAGE framework applied to cybersecurity education, highlighting how responsible AI integration can deepen disciplinary critical thinking.</p>
+      </div>
+
+      <!-- LinkedIn Pulse -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-linkedin">LinkedIn</span>
+        </div>
+        <a href="https://www.linkedin.com/pulse/protect-your-research-age-generative-ai-rethinking-preprint-elkhodr-du7tc" target="_blank" rel="noopener" class="media-card-title">Protect your research in the age of generative AI: Rethinking the preprint</a>
+        <p class="media-card-desc">Professional commentary on managing research integrity and preprint strategy in an era where generative AI complicates authorship, originality, and dissemination norms.</p>
+      </div>
+
+    </div><!-- /media-grid -->
+
+    <!-- ─ Radio & Broadcast ─ -->
+    <div class="radio-subsection">
+      <div class="radio-subsection-label">Radio &amp; broadcast</div>
+      <h3 class="radio-subsection-title">Interviews &amp; broadcasts</h3>
+      <div class="radio-grid">
+
+        <div class="radio-card">
+          <div class="radio-card-top">
+            <span class="outlet-badge outlet-abc">ABC Queensland</span>
+          </div>
+          <div class="radio-card-title">The Morning Show — Responsible AI use in education</div>
+          <div class="radio-card-date">November 2025</div>
+          <p class="radio-card-desc">Interview on how educators can support students in using AI tools responsibly, including SAGE's approach to scaffolded assessment and visible AI engagement.</p>
+        </div>
+
+        <div class="radio-card">
+          <div class="radio-card-top">
+            <span class="outlet-badge outlet-sbs">SBS Radio</span>
+          </div>
+          <div class="radio-card-title">AI's impact on the workforce — and AI-ready graduates</div>
+          <div class="radio-card-date">February 2026</div>
+          <p class="radio-card-desc">Discussion on how AI is reshaping workplace expectations and how structured approaches like SAGE help prepare students for AI-integrated professional environments.</p>
+        </div>
+
+        <div class="radio-card">
+          <div class="radio-card-top">
+            <span class="outlet-badge outlet-abc">ABC Radio</span>
+          </div>
+          <div class="radio-card-title">Why defaulting to final exams is not the answer</div>
+          <div class="radio-card-date">May 2026</div>
+          <p class="radio-card-desc">Interview following the Future Campus article — making the case that returning to high-surveillance assessment undermines authentic learning in an AI-integrated world.</p>
+        </div>
+
+      </div>
+    </div><!-- /radio-subsection -->
+
+  </div>
+</section>
+
+<!-- ─── CORE PUBLICATIONS ─── -->
+<section class="research-section" id="publications">
+  <div class="research-inner">
+
+    <div class="research-label">Core publications</div>
+    <h2 class="research-title">The SAGE empirical and conceptual papers</h2>
+    <p class="research-body">The primary peer-reviewed papers and preprints forming the direct research base for the SAGE framework, spanning cybersecurity education, systems analysis and design, assessment policy, first-year ICT, and AI use behaviour.</p>
+    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+      <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" class="btn btn-secondary" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:var(--white);">
+        Implementation Guide DOI
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <a href="sage.html" class="btn btn-secondary" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:var(--white);">
+        Read the Framework
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+
+    <!-- PUBLICATIONS: canonical list, keep index.html and sage.html in sync -->
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:2.5rem;">
       <ol class="publication-list">
         <li class="publication-item"><span class="publication-number">1.</span><span class="publication-citation">M. Elkhodr, E. Gide, R. Wu, and O. Darwish, "ICT students' perceptions towards ChatGPT: An experimental reflective lab analysis," <em>STEM Education</em>, vol. 3, no. 2, pp. 70&ndash;88, 2023. [Online]. Available: <a href="https://doi.org/10.3934/steme.2023006">https://doi.org/10.3934/steme.2023006</a></span></li>
         <li class="publication-item"><span class="publication-number">2.</span><span class="publication-citation">R. Sandu, E. Gide, and M. Elkhodr, "The role and impact of ChatGPT in educational practices: Insights from an Australian higher education case study," <em>Discover Education</em>, vol. 3, no. 1, art. 71, 2024. [Online]. Available: <a href="https://doi.org/10.1007/s44217-024-00126-6">https://doi.org/10.1007/s44217-024-00126-6</a></span></li>
@@ -1485,31 +1346,45 @@
         <li class="publication-item"><span class="publication-number">6.</span><span class="publication-citation">M. Elkhodr and E. Gide, "Embedding assurance within learning: Empirical evidence from the SAGE framework for repositioning take-home assessment in AI-integrated higher education," <em>STEM Education</em>, vol. 6, no. 4, pp. 584&ndash;605, 2026.</span></li>
         <li class="publication-item"><span class="publication-number">7.</span><span class="publication-citation">M. Elkhodr and E. Gide, "AI as Critic: Validating SAGE Pedagogy for Human Authority and Responsible GenAI Use in Systems Analysis and Design Education," <em>EdArXiv Preprints</em>, 2025. [Online]. Available: <a href="https://osf.io/preprints/edarxiv/8j3xf">https://osf.io/preprints/edarxiv/8j3xf</a></span></li>
         <li class="publication-item"><span class="publication-number">8.</span><span class="publication-citation">M. Elkhodr, A. Azra, and E. Gide, "How First-Year Students Actually Use ChatGPT in Permitted Assessments: Empirical Typologies, Verification Gaps, and the Policy-Practice Divide," submitted to <em>Discover Education</em>, 2026. Preprint: <a href="https://doi.org/10.21203/rs.3.rs-8628653/v1">https://doi.org/10.21203/rs.3.rs-8628653/v1</a></span></li>
-      </ol>
-
-      <h3 style="font-family:'Fraunces',Georgia,serif; font-size:1.15rem; font-weight:400; color:var(--white); margin:2.5rem 0 1.25rem;">Extended Research Portfolio: GenAI in Education</h3>
-      <ol class="publication-list">
-        <li class="publication-item"><span class="publication-number">9.</span><span class="publication-citation">M. Elkhodr and E. Gide, Eds., <em>Generative Artificial Intelligence Empowered Learning: A New Frontier in Educational Technology</em>, 1st ed. New York, NY: Taylor and Francis, 2025, 248 pp. doi: <a href="https://doi.org/10.1201/9781003422433">10.1201/9781003422433</a>. eBook ISBN: 9781003422433</span></li>
-        <li class="publication-item"><span class="publication-number">10.</span><span class="publication-citation">R. Jamal Eddine, E. Gide, and A. Al-Sabbagh, "Generative AI in higher education: A cross-sector analysis of ChatGPT's impact on STEM, social sciences, and healthcare," <em>STEM Education</em>, vol. 5, no. 5, pp. 757&ndash;801, 2025. doi: <a href="https://doi.org/10.3934/steme.2025035">10.3934/steme.2025035</a></span></li>
-        <li class="publication-item"><span class="publication-number">11.</span><span class="publication-citation">K. Wangsa, S. Karim, E. Gide, and M. Elkhodr, "A systematic review and comprehensive analysis of pioneering AI chatbot models from education to healthcare: ChatGPT, Bard, Llama, Ernie and Grok," <em>Future Internet</em>, vol. 16, no. 7, art. 219, 2024. doi: <a href="https://doi.org/10.3390/fi16070219">10.3390/fi16070219</a></span></li>
-        <li class="publication-item"><span class="publication-number">12.</span><span class="publication-citation">K. Wangsa, R. Sandu, S. Karim, M. Elkhodr, and E. Gide, "A systematic review and analysis on the potentials and challenges of GenAI chatbots in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837608">10.1109/ITHET61869.2024.10837608</a></span></li>
-        <li class="publication-item"><span class="publication-number">13.</span><span class="publication-citation">A. Al Tawara, J. El-Den, E. Gide, and Y. Sebastian, "A systematic review and comprehensive analysis of AI-enabled re-skilling and upskilling in education: Transformative strategies for the future," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;10. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837638">10.1109/ITHET61869.2024.10837638</a></span></li>
-        <li class="publication-item"><span class="publication-number">14.</span><span class="publication-citation">A. Al Tawara, E. Gide, and J. El-Den, "Systematic review and comprehensive analysis of integrating human-centered AI in higher education: Enhancing teaching, learning, and ethics," in <em>Proc. 12th Int. Conf. Future Internet of Things and Cloud (FiCloud)</em>, Aug. 2025, pp. 305&ndash;312. doi: <a href="https://doi.org/10.1109/FiCloud61071.2025.00051">10.1109/FiCloud61071.2025.00051</a></span></li>
-        <li class="publication-item"><span class="publication-number">15.</span><span class="publication-citation">H. Ranasinghe, E. Gide, and M. Elkhodr, "The significance of GenAI empowered ERP systems course teaching in quality education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837679">10.1109/ITHET61869.2024.10837679</a></span></li>
-        <li class="publication-item"><span class="publication-number">16.</span><span class="publication-citation">G. Chaudhry, E. Gide, E. Yadegaridehkordi, and R. Tumpa, "Generative AI-powered teaching and learning in engineering and project management higher education: A systematic review," in <em>Joint International Conference on AI, Big Data and Blockchain</em>, Cham, Switzerland: Springer Nature, Aug. 2025, pp. 99&ndash;113.</span></li>
-        <li class="publication-item"><span class="publication-number">17.</span><span class="publication-citation">E. Gusman, E. Gide, M. Elkhodr, and G. Chaudhry, "The benefits and challenges of using artificial intelligence in teaching English as a foreign language in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837597">10.1109/ITHET61869.2024.10837597</a></span></li>
-        <li class="publication-item"><span class="publication-number">18.</span><span class="publication-citation">E. Gusman, E. Gide, G. Chaudhry, and M. Elkhodr, "A comprehensive review to identify the challenges and opportunities of using digital technology in English teaching in higher education," in <em>International Society for Technology, Education, and Science</em>, 2023.</span></li>
-        <li class="publication-item"><span class="publication-number">19.</span><span class="publication-citation">R. Sandu, E. Gide, S. Karim, and P. Singh, "A framework for GenAI-empowered curriculum and learning resources: A case study from an Australian higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;8. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837623">10.1109/ITHET61869.2024.10837623</a></span></li>
-        <li class="publication-item"><span class="publication-number">20.</span><span class="publication-citation">N. Sandu and E. Gide, "Adoption of AI-Chatbots to enhance student learning experience in higher education in India," in <em>Proc. 18th Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Sept. 2019, pp. 1&ndash;5. doi: <a href="https://doi.org/10.1109/ITHET46829.2019.8937382">10.1109/ITHET46829.2019.8937382</a></span></li>
-        <li class="publication-item"><span class="publication-number">21.</span><span class="publication-citation">M. Elkhodr, K. Wangsa, E. Gide, and S. Karim, "A systematic review and multifaceted analysis of the integration of artificial intelligence and blockchain: Shaping the future of Australian higher education," <em>Future Internet</em>, vol. 16, no. 10, art. 378, 2024. doi: <a href="https://doi.org/10.3390/fi16100378">10.3390/fi16100378</a></span></li>
-        <li class="publication-item"><span class="publication-number">22.</span><span class="publication-citation">M. Elkhodr, E. Gide, and N. Pandey, "Enhancing mental health support for international students: A digital framework for holistic well-being in higher education," <em>STEM Education</em>, vol. 4, no. 4, pp. 466&ndash;488, 2024. doi: <a href="https://doi.org/10.3934/steme.2024025">10.3934/steme.2024025</a></span></li>
-        <li class="publication-item"><span class="publication-number">23.</span><span class="publication-citation">N. Abbasi, E. Gide, P. Kalutara, and P. Lawrence, "Barriers and opportunities in online delivery of architecture and building design studios: Australian educators' perspectives," 2024.</span></li>
-        <li class="publication-item"><span class="publication-number">24.</span><span class="publication-citation">R. Jamal Eddine, E. Gide, and A. Al-Sabbagh, "Systematised evidence mapping of generative artificial intelligence (GenAI) and digital divide phenomena in higher education," <em>Discover Computing</em>, vol. 29, art. 157, 2026. doi: <a href="https://doi.org/10.1007/s10791-026-10044-w">10.1007/s10791-026-10044-w</a></span></li>
-        <li class="publication-item"><span class="publication-number">25.</span><span class="publication-citation">A. Azra, E. Gide, R. M. X. Wu, S. Karim, and R. Sandu, "Artificial Intelligence Enhancing Learning and Satisfaction in Higher Education," in <em>CQU Scholarship of Tertiary Teaching Online Conference</em>, Australia, 2020.</span></li>
-        <li class="publication-item"><span class="publication-number">26.</span><span class="publication-citation">R. MacLeod and D. Swanson, "Encouraging ethical engagement and cognitive learning with LLMs: A framework and methodology," in <em>Generative Artificial Intelligence in Higher Education</em>, K. Enomoto, R. Warner, and C. Nygaard, Eds. Oxfordshire, UK: Libri Publishing, 2024, pp. 285–311.</span></li>
-        <li class="publication-item"><span class="publication-number">27.</span><span class="publication-citation">R. MacLeod and D. Swanson, "Cultivating strong minds: Leveraging GenAI for academic growth and personal wellbeing," in <em>Compassionate Pedagogy in Higher Education</em>, J. De Wilde, K. Enomoto, R. Warner, and C. Nygaard, Eds. Oxfordshire, England: Libri Publishing, 2025, pp. 167–211.</span></li>
+        <li class="publication-item"><span class="publication-number">9.</span><span class="publication-citation">M. Elkhodr and E. Gide, "Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment," <em>Frontiers in Education</em>, 2026, accepted.</span></li>
+        <li class="publication-item"><span class="publication-number">10.</span><span class="publication-citation">M. Elkhodr and E. Gide, "Supervising Research in the Age of Generative AI: The SAGE Research Framework," submitted to <em>Journal of Applied Learning and Teaching</em>, 2026, under review.</span></li>
+        <li class="publication-item"><span class="publication-number">11.</span><span class="publication-citation">M. Fakirah, M. Elkhodr, and S. Hussain, "Promoting Critical AI Literacy in Transnational Computing Education Through a SAGE-Guided Intervention," in <em>Proc. 2026 2nd International Conference on Artificial Intelligence and Educational Systems (ICAIES 2026)</em>, Chengdu, China, Jul. 2026.</span></li>
+        <li class="publication-item"><span class="publication-number">12.</span><span class="publication-citation">M. Fakirah, M. Elkhodr, and S. Hussain, "Developing Critical AI Literacy through the SAGE Framework in Transnational Computing Education: Evidence from a UK&ndash;China Higher Education Programme," 2026, under review.</span></li>
       </ol>
     </div>
+
+  </div>
+</section>
+
+<!-- ─── EXTENDED RESEARCH PORTFOLIO ─── -->
+<section class="portfolio-section" id="portfolio">
+  <div class="portfolio-inner">
+
+    <div class="section-label">Extended research portfolio</div>
+    <h2 class="section-title">GenAI in education — broader research base</h2>
+    <p class="section-body">Broader related work spanning GenAI in education, AI literacy, assessment reform, digital divide, curriculum design, and interdisciplinary applications — situating SAGE within a wider research programme.</p>
+
+    <ol class="publication-list light" start="13">
+      <li class="publication-item"><span class="publication-number">13.</span><span class="publication-citation">M. Elkhodr and E. Gide, Eds., <em>Generative Artificial Intelligence Empowered Learning: A New Frontier in Educational Technology</em>, 1st ed. New York, NY: Taylor and Francis, 2025, 248 pp. doi: <a href="https://doi.org/10.1201/9781003422433">10.1201/9781003422433</a>. eBook ISBN: 9781003422433</span></li>
+      <li class="publication-item"><span class="publication-number">14.</span><span class="publication-citation">R. Jamal Eddine, E. Gide, and A. Al-Sabbagh, "Generative AI in higher education: A cross-sector analysis of ChatGPT's impact on STEM, social sciences, and healthcare," <em>STEM Education</em>, vol. 5, no. 5, pp. 757&ndash;801, 2025. doi: <a href="https://doi.org/10.3934/steme.2025035">10.3934/steme.2025035</a></span></li>
+      <li class="publication-item"><span class="publication-number">15.</span><span class="publication-citation">K. Wangsa, S. Karim, E. Gide, and M. Elkhodr, "A systematic review and comprehensive analysis of pioneering AI chatbot models from education to healthcare: ChatGPT, Bard, Llama, Ernie and Grok," <em>Future Internet</em>, vol. 16, no. 7, art. 219, 2024. doi: <a href="https://doi.org/10.3390/fi16070219">10.3390/fi16070219</a></span></li>
+      <li class="publication-item"><span class="publication-number">16.</span><span class="publication-citation">K. Wangsa, R. Sandu, S. Karim, M. Elkhodr, and E. Gide, "A systematic review and analysis on the potentials and challenges of GenAI chatbots in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837608">10.1109/ITHET61869.2024.10837608</a></span></li>
+      <li class="publication-item"><span class="publication-number">17.</span><span class="publication-citation">A. Al Tawara, J. El-Den, E. Gide, and Y. Sebastian, "A systematic review and comprehensive analysis of AI-enabled re-skilling and upskilling in education: Transformative strategies for the future," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;10. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837638">10.1109/ITHET61869.2024.10837638</a></span></li>
+      <li class="publication-item"><span class="publication-number">18.</span><span class="publication-citation">A. Al Tawara, E. Gide, and J. El-Den, "Systematic review and comprehensive analysis of integrating human-centered AI in higher education: Enhancing teaching, learning, and ethics," in <em>Proc. 12th Int. Conf. Future Internet of Things and Cloud (FiCloud)</em>, Aug. 2025, pp. 305&ndash;312. doi: <a href="https://doi.org/10.1109/FiCloud61071.2025.00051">10.1109/FiCloud61071.2025.00051</a></span></li>
+      <li class="publication-item"><span class="publication-number">19.</span><span class="publication-citation">H. Ranasinghe, E. Gide, and M. Elkhodr, "The significance of GenAI empowered ERP systems course teaching in quality education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837679">10.1109/ITHET61869.2024.10837679</a></span></li>
+      <li class="publication-item"><span class="publication-number">20.</span><span class="publication-citation">G. Chaudhry, E. Gide, E. Yadegaridehkordi, and R. Tumpa, "Generative AI-powered teaching and learning in engineering and project management higher education: A systematic review," in <em>Joint International Conference on AI, Big Data and Blockchain</em>, Cham, Switzerland: Springer Nature, Aug. 2025, pp. 99&ndash;113.</span></li>
+      <li class="publication-item"><span class="publication-number">21.</span><span class="publication-citation">E. Gusman, E. Gide, M. Elkhodr, and G. Chaudhry, "The benefits and challenges of using artificial intelligence in teaching English as a foreign language in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837597">10.1109/ITHET61869.2024.10837597</a></span></li>
+      <li class="publication-item"><span class="publication-number">22.</span><span class="publication-citation">E. Gusman, E. Gide, G. Chaudhry, and M. Elkhodr, "A comprehensive review to identify the challenges and opportunities of using digital technology in English teaching in higher education," in <em>International Society for Technology, Education, and Science</em>, 2023.</span></li>
+      <li class="publication-item"><span class="publication-number">23.</span><span class="publication-citation">R. Sandu, E. Gide, S. Karim, and P. Singh, "A framework for GenAI-empowered curriculum and learning resources: A case study from an Australian higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1&ndash;8. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837623">10.1109/ITHET61869.2024.10837623</a></span></li>
+      <li class="publication-item"><span class="publication-number">24.</span><span class="publication-citation">N. Sandu and E. Gide, "Adoption of AI-Chatbots to enhance student learning experience in higher education in India," in <em>Proc. 18th Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Sept. 2019, pp. 1&ndash;5. doi: <a href="https://doi.org/10.1109/ITHET46829.2019.8937382">10.1109/ITHET46829.2019.8937382</a></span></li>
+      <li class="publication-item"><span class="publication-number">25.</span><span class="publication-citation">M. Elkhodr, K. Wangsa, E. Gide, and S. Karim, "A systematic review and multifaceted analysis of the integration of artificial intelligence and blockchain: Shaping the future of Australian higher education," <em>Future Internet</em>, vol. 16, no. 10, art. 378, 2024. doi: <a href="https://doi.org/10.3390/fi16100378">10.3390/fi16100378</a></span></li>
+      <li class="publication-item"><span class="publication-number">26.</span><span class="publication-citation">M. Elkhodr, E. Gide, and N. Pandey, "Enhancing mental health support for international students: A digital framework for holistic well-being in higher education," <em>STEM Education</em>, vol. 4, no. 4, pp. 466&ndash;488, 2024. doi: <a href="https://doi.org/10.3934/steme.2024025">10.3934/steme.2024025</a></span></li>
+      <li class="publication-item"><span class="publication-number">27.</span><span class="publication-citation">N. Abbasi, E. Gide, P. Kalutara, and P. Lawrence, "Barriers and opportunities in online delivery of architecture and building design studios: Australian educators' perspectives," 2024. [Online]. Available: <a href="https://archscience.org/paper/barriers-and-opportunities-in-online-delivery-of-architecture-and-building-design-studios-australian-educators-perspectives/">https://archscience.org/paper/barriers-and-opportunities-in-online-delivery-of-architecture-and-building-design-studios-australian-educators-perspectives/</a></span></li>
+      <li class="publication-item"><span class="publication-number">28.</span><span class="publication-citation">R. Jamal Eddine, E. Gide, and A. Al-Sabbagh, "Systematised evidence mapping of generative artificial intelligence (GenAI) and digital divide phenomena in higher education," <em>Discover Computing</em>, vol. 29, art. 157, 2026. doi: <a href="https://doi.org/10.1007/s10791-026-10044-w">10.1007/s10791-026-10044-w</a></span></li>
+      <li class="publication-item"><span class="publication-number">29.</span><span class="publication-citation">A. Azra, E. Gide, R. M. X. Wu, S. Karim, and R. Sandu, "Artificial Intelligence Enhancing Learning and Satisfaction in Higher Education," in <em>CQU Scholarship of Tertiary Teaching Online Conference</em>, Australia, 2020.</span></li>
+      <li class="publication-item"><span class="publication-number">30.</span><span class="publication-citation">A. M. Al Tawara, E. Gide, and M. El Khodr, "A Systematic Review and Framework for AI-Driven Transformation from E-Business to AI-Business in Australian SMEs," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, May 2026.</span></li>
+      <li class="publication-item"><span class="publication-number">31.</span><span class="publication-citation">A. M. Al Tawara, E. Gide, and M. El Khodr, "Development of an AI-Business Transformation Framework for Australian SMEs: A PRISMA-Based Systematic Review and Design Science Approach," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, May 2026.</span></li>
+    </ol>
 
   </div>
 </section>
@@ -1522,7 +1397,7 @@
         <div class="footer-wordmark">SAGE Framework</div>
         <div class="footer-tagline">Structured AI-Guided Education — a validated pedagogical framework for higher education. Licensed CC BY 4.0.</div>
         <br>
-         <div class="footer-tagline">Disclaimer: This website presents independent scholarly resources developed by the author. It is not an official CQUniversity or TEQSA publication.</div>
+        <div class="footer-tagline">Disclaimer: This website presents independent scholarly resources developed by the author. It is not an official CQUniversity or TEQSA publication.</div>
       </div>
       <!-- FOOTER NAV: keep identical across all pages -->
       <div class="footer-links">
@@ -1530,7 +1405,7 @@
         <a href="student_resources.html">Student Resources</a>
         <a href="policy.html">Assessment Policy</a>
         <a href="downloads.html">Downloads</a>
-        <a href="publications.html">Publications</a>
+        <a href="publications.html">Evidence</a>
         <a href="community.html">Community of Practice</a>
         <a href="about.html">About</a>
       </div>
