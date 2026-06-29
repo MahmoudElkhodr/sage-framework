@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAGE 2026 - International Symposium on AI-Guided Education - 22 June 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-coral: #ff6b6b;
+            --accent-teal: #4ecdc4;
+            --dark-gray: #1f2937;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary-blue);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent-teal);
+        }
+
+       /* Hero Section - UPDATED with Background Image */
+.hero {
+    background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(59, 130, 246, 0.85)),
+                url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1920&q=80') center/cover;
+    color: var(--white);
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #6ee7b7;
+    font-style: italic;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero .sponsor {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero .sponsor strong {
+    color: #4ecdc4;
+    font-weight: 700;
+}
+
+.hero .details {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero .tagline {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    line-height: 1.8;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Value Proposition Box */
+.value-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1000px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.value-box h3 {
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: none;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.value-item {
+    text-align: center;
+    padding: 1rem;
+}
+
+.crossed-price {
+    font-size: 1.5rem;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 0.5rem;
+}
+
+.free-price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent-coral);
+    text-shadow: none;
+}
+
+.value-label {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.value-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--accent-teal);
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.value-footer strong {
+    font-size: 1.3rem;
+    color: var(--accent-coral);
+}
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: var(--accent-coral);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-coral);
+        }
+
+        h3 {
+            color: var(--secondary-blue);
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+
+        h4 {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .info-box.highlight {
+            border-left: 5px solid var(--accent-coral);
+        }
+
+        /* Important Dates */
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .date-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .date-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .date-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .date-card .date {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .date-card .label {
+            color: var(--dark-gray);
+        }
+
+        /* Topics List */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .topic-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 4px solid var(--accent-teal);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .topic-card h4 {
+            margin-top: 0;
+        }
+
+        .topic-card ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .topic-card li {
+            margin: 0.3rem 0;
+        }
+
+        /* Committee Grid */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .committee-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .committee-card.organizer {
+            border-top: 5px solid var(--accent-coral);
+        }
+
+        .committee-card.honorary {
+            border-top: 5px solid var(--accent-teal);
+        }
+
+        .committee-card.program {
+            border-top: 5px solid var(--secondary-blue);
+        }
+
+        .committee-card h4 {
+            color: var(--primary-blue);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .committee-card .title {
+            color: var(--secondary-blue);
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .committee-card .affiliation {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Registration Cards */
+        .registration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .registration-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .registration-card.featured {
+            border: 3px solid var(--accent-coral);
+            transform: scale(1.05);
+        }
+
+        .registration-card .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-coral);
+            margin: 1rem 0;
+        }
+
+        .registration-card .price.free {
+            color: var(--accent-teal);
+        }
+
+        .registration-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .registration-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .registration-card li:before {
+            content: "✓ ";
+            color: var(--accent-teal);
+            font-weight: bold;
+        }
+
+        /* Schedule Table */
+        .schedule-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .schedule-table th {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        .schedule-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .schedule-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        .schedule-table .time {
+            font-weight: bold;
+            color: var(--secondary-blue);
+            width: 150px;
+        }
+
+        .schedule-table .keynote {
+            background: #fef3c7;
+        }
+
+        .schedule-table .break {
+            background: #dbeafe;
+            font-style: italic;
+        }
+
+        /* Speaker Card */
+        .speaker-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .speaker-card .placeholder-image {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--accent-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        /* Alert Box */
+        .alert {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .alert.success {
+            background: #d1fae5;
+            border-left-color: var(--accent-teal);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        footer .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: var(--accent-teal);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-coral);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .speaker-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .schedule-table {
+                font-size: 0.9rem;
+            }
+
+            .schedule-table th,
+            .schedule-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        strong {
+            color: var(--primary-blue);
+        }
+
+        a {
+            color: var(--secondary-blue);
+        }
+
+        a:hover {
+            color: var(--accent-coral);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">SAGE 2026</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#call-for-papers">Call for Papers</a></li>
+                <li><a href="#dates">Important Dates</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#registration">Registration</a></li>
+                <li><a href="#speakers">Speakers</a></li>
+                <li><a href="#committee">Committee</a></li>
+                <li><a href="#proceedings">Proceedings</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+   <!-- Hero Section -->
+    <header class="hero">
+        <h1>International Symposium on AI-Guided Education - SAGE 2026</h1>
+       
+        <p class="tagline">"Orchestrating AI for Learning and Teaching Excellence"</p>
+        <div class="sponsor">Proudly Sponsored by the <strong>Future AI Research Lab (FAIR)</strong></div>
+        <div class="sponsor">
+            📅 <strong>22 June 2026</strong> | 
+            📍 <strong>Hybrid Conference</strong> - CQU Sydney & Online | 
+            🌐 <strong>Fully Virtual Participation Available</strong>
+        </div>
+        <p class="tagline">Join educators, researchers, and innovators worldwide in advancing AI-integrated pedagogy through the evidence-based SAGE framework and beyond.</p>
+        
+        <!-- Value Proposition Box -->
+        <div class="value-box">
+            <h3>🎉 Unprecedented Value - 2026 Launch Year Special</h3>
+            <div class="value-grid">
+                <div class="value-item">
+                    <div class="crossed-price">$500 AUD</div>
+                    <div class="free-price">FREE</div>
+                    <div class="value-label">Conference Registration</div>
+                </div>
+                <div class="value-item">
+                    <div class="free-price">FREE</div>
+                    <div class="value-label">Taylor & Francis Book Chapter (No APCs)</div>
+                </div>
+                <div class="value-item">
+                    <div class="free-price">FREE</div>
+                    <div class="value-label">STEME Journal Publication (Open Access)</div>
+                </div>
+                <div class="value-item">
+                    <div class="free-price">FREE</div>
+                    <div class="value-label">CQU Acquire Proceedings (Green OA)</div>
+                </div>
+            </div>
+            <p class="value-footer">
+                <strong>Total Value: $2,500+ AUD | Your contribution: $0</strong><br>
+                Thanks to FAIR Lab sponsorship
+            </p>
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="#registration" class="btn btn-primary">Register Free</a>
+            <a href="#call-for-papers" class="btn btn-secondary">Submit Paper</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About the Conference</h2>
+            <div class="info-box">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    <strong>SAGE 2026</strong> marks the inaugural international symposium dedicated to structured approaches for integrating generative AI in higher education. Building on the empirically-validated <strong>SAGE (Structured AI-Guided Education)</strong> framework, this conference brings together researchers, educators, instructional designers, and technology leaders to share evidence-based practices, innovative implementations, and emerging research in AI-enhanced pedagogy.
+                </p>
+            </div>
+
+            <h3>Conference Objectives</h3>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h4>🔬 Research Excellence</h4>
+                    <ul>
+                        <li>Present original research on GenAI integration</li>
+                        <li>Share empirical validation studies</li>
+                        <li>Advance theoretical frameworks</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <h4>💡 Practical Implementation</h4>
+                    <ul>
+                        <li>Share case studies across disciplines</li>
+                        <li>Demonstrate assessment strategies</li>
+                        <li>Exchange best practices</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <h4>🤝 Community Building</h4>
+                    <ul>
+                        <li>Foster international collaborations</li>
+                        <li>Connect researchers and practitioners</li>
+                        <li>Build sustainable networks</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <h4>🎯 Future Directions</h4>
+                    <ul>
+                        <li>Explore emerging AI technologies</li>
+                        <li>Address policy and ethics</li>
+                        <li>Shape research agendas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call for Papers -->
+    <section id="call-for-papers">
+        <div class="container">
+            <h2>Call for Papers</h2>
+            
+            <div class="alert success">
+                <strong>We invite submissions on all aspects of generative AI in education, including but not limited to the following themes:</strong>
+            </div>
+
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h4>Theme 1: Pedagogical Frameworks & Models</h4>
+                    <ul>
+                        <li>AI orchestration competencies and skill development</li>
+                        <li>Framework design and validation studies</li>
+                        <li>Constructivist and situated learning approaches</li>
+                        <li>Bloom's taxonomy applications in AI contexts</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>Theme 2: Assessment & Academic Integrity</h4>
+                    <ul>
+                        <li>AI-integrated assessment design</li>
+                        <li>Authentic assessment strategies</li>
+                        <li>Detection vs. integration approaches</li>
+                        <li>Evaluation rubrics for AI-enhanced work</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>Theme 3: Disciplinary Applications</h4>
+                    <ul>
+                        <li>SAGE framework adaptations across fields</li>
+                        <li>Discipline-specific implementation case studies</li>
+                        <li>AI literacy in professional education</li>
+                        <li>Technical, health, business, and humanities contexts</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>Theme 4: Student Learning & Outcomes</h4>
+                    <ul>
+                        <li>AI literacy development</li>
+                        <li>Critical thinking with AI tools</li>
+                        <li>Student perceptions and experiences</li>
+                        <li>Equity and accessibility considerations</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>Theme 5: Institutional Policy & Practice</h4>
+                    <ul>
+                        <li>University-wide AI integration strategies</li>
+                        <li>Policy development and governance</li>
+                        <li>Faculty development and support</li>
+                        <li>Ethical frameworks and guidelines</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>Theme 6: Emerging Technologies & Future Directions</h4>
+                    <ul>
+                        <li>Multimodal AI in education (text, image, video, code)</li>
+                        <li>AI agents and educational applications</li>
+                        <li>Learning analytics and AI</li>
+                        <li>Future research agendas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="mt-2">Submission Guidelines</h3>
+            <div class="info-box highlight">
+                <h4>Submission Types:</h4>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>Full Research Papers:</strong> 5-8 pages (presenting complete research with methodology, results, and conclusions)</li>
+                    <li><strong>Short Papers & Work-in-Progress:</strong> 5-6 pages (preliminary findings, ongoing research, or emerging ideas)</li>
+                    <li><strong>Case Studies & Implementation Reports:</strong> 5-8 pages (detailed accounts of practical implementations)</li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem;">Format Requirements:</h4>
+                <ul style="margin-left: 2rem; margin-top: 1rem;">
+                    <li><strong>Format:</strong> IEEE Conference format (<a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">download templates</a>)</li>
+                    <li><strong>Page Limits:</strong> Minimum 5 pages, maximum 8 pages</li>
+                    <li><strong>Review Process:</strong> Single-blind peer review (minimum 2 reviewers per paper)</li>
+                    <li><strong>Language:</strong> English</li>
+                    <li><strong>Submission Platform:</strong> EasyChair (link to be provided)</li>
+                </ul>
+
+                <div class="alert" style="margin-top: 1.5rem;">
+                    <strong>📝 Submission Platform:</strong> All papers must be submitted through EasyChair. The submission link will be activated in early May 2026.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Dates -->
+    <section id="dates">
+        <div class="container">
+            <h2>Important Dates</h2>
+            <div class="dates-grid">
+                <div class="date-card">
+                    <div class="icon">📝</div>
+                    <div class="date">24 May 2026</div>
+                    <div class="label">Paper Submission Deadline</div>
+                </div>
+                <div class="date-card">
+                    <div class="icon">📧</div>
+                    <div class="date">7 June 2026</div>
+                    <div class="label">Notification of Acceptance</div>
+                </div>
+                <div class="date-card">
+                    <div class="icon">📄</div>
+                    <div class="date">14 June 2026</div>
+                    <div class="label">Camera-Ready Submission</div>
+                </div>
+                <div class="date-card">
+                    <div class="icon">🎓</div>
+                    <div class="date">22 June 2026</div>
+                    <div class="label">Conference Day</div>
+                </div>
+            </div>
+            <p class="text-center" style="margin-top: 2rem; font-style: italic;">All deadlines are 23:59 AoE (Anywhere on Earth)</p>
+        </div>
+    </section>
+
+    
+   <!-- Schedule -->
+    <section id="schedule">
+        <div class="container">
+            <h2>Conference Schedule</h2>
+            <p class="text-center mb-2">Sunday, 22 June 2026 | All times in AEST (Australian Eastern Standard Time)</p>
+            
+            <div class="alert" style="margin-bottom: 2rem;">
+                <strong>Hybrid Format:</strong> Morning sessions (9:00 AM - 1:00 PM) feature physical presentations at CQU Sydney for Australian researchers. Afternoon sessions (2:00 PM - 7:00 PM) accommodate international online presenters. All sessions are accessible online for global participants.
+            </div>
+
+            <h3 style="color: var(--accent-coral); text-align: center; margin: 2rem 0;">Morning Session: Physical Presentations (Sydney)</h3>
+            
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time (AEST)</th>
+                        <th>Session</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="break">
+                        <td class="time">8:30 - 9:00</td>
+                        <td><strong>Registration & Arrival</strong></td>
+                        <td>Sydney venue opens; Online platform available; Morning refreshments</td>
+                    </tr>
+                    <tr class="keynote">
+                        <td class="time">9:00 - 9:15</td>
+                        <td><strong>Opening Ceremony</strong></td>
+                        <td>Welcome Address by Conference Chairs<br><em>Dr Mahmoud Elkhodr & Professor Ergun Gide</em><br>Remarks by Honorary Chairs</td>
+                    </tr>
+                    <tr class="keynote">
+                        <td class="time">9:15 - 10:15</td>
+                        <td><strong>Keynote Address 1</strong></td>
+                        <td><strong>Noor Demashk</strong><br>Head of Engineering, Atlassian<br><em>"AI-Powered Collaboration: Transforming Software Development and Team Productivity"</em></td>
+                    </tr>
+                    <tr class="break">
+                        <td class="time">10:15 - 10:30</td>
+                        <td><strong>Morning Tea</strong></td>
+                        <td>Networking break; Refreshments at Sydney venue</td>
+                    </tr>
+                    <tr>
+                        <td class="time">10:30 - 12:45</td>
+                        <td><strong>Session 1: Research Papers - Physical Presentations</strong></td>
+                        <td>
+                            <strong>8 Papers (10 min presentation + 5 min Q&A each)</strong><br>
+                            Australian researchers present in person at CQU Sydney<br>
+                            <em>Topics across all conference themes</em><br>
+                            • Pedagogical frameworks & assessment design<br>
+                            • SAGE implementations & adaptations<br>
+                            • Student learning outcomes<br>
+                            • Institutional policies & practices
+                        </td>
+                    </tr>
+                    <tr class="break">
+                        <td class="time">12:45 - 1:00</td>
+                        <td><strong>Morning Session Close</strong></td>
+                        <td>Summary of morning presentations; Transition to afternoon session</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert success" style="margin: 2rem 0;">
+                <strong>Lunch Break: 1:00 - 2:00 PM</strong><br>
+                Light lunch provided for Sydney attendees at CQU venue. Online participants encouraged to take a break before the afternoon international session.
+            </div>
+
+            <h3 style="color: var(--secondary-blue); text-align: center; margin: 2rem 0;">Afternoon Session: International Online Presentations</h3>
+
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time (AEST)</th>
+                        <th>Session</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="keynote">
+                        <td class="time">2:00 - 2:15</td>
+                        <td><strong>Afternoon Session Opening</strong></td>
+                        <td>Welcome to international participants; Technical setup check</td>
+                    </tr>
+                    <tr class="keynote">
+                        <td class="time">2:15 - 3:15</td>
+                        <td><strong>Keynote Address 2</strong></td>
+                        <td><strong>Professor Irfan Awan</strong><br>Professor of Computer Science, University of Bradford, UK<br><em>"Securing the Future: Cybersecurity Challenges in AI-Enhanced Educational Systems"</em></td>
+                    </tr>
+                    <tr class="break">
+                        <td class="time">3:15 - 3:30</td>
+                        <td><strong>Afternoon Break</strong></td>
+                        <td>Short refreshment break; Virtual networking rooms</td>
+                    </tr>
+                    <tr>
+                        <td class="time">3:30 - 6:30</td>
+                        <td><strong>Session 2: Research Papers - Online Presentations</strong></td>
+                        <td>
+                            <strong>12 Papers (10 min presentation + 5 min Q&A each)</strong><br>
+                            International researchers present online<br>
+                            <em>Topics across all conference themes</em><br>
+                            • Emerging technologies & AI applications<br>
+                            • Cross-cultural & international perspectives<br>
+                            • Case studies from diverse contexts<br>
+                            • Future directions in AI education<br>
+                            <br>
+                            <em>Brief 10-minute breaks scheduled between paper blocks</em>
+                        </td>
+                    </tr>
+                    <tr class="keynote">
+                        <td class="time">6:30 - 6:50</td>
+                        <td><strong>Panel Discussion</strong></td>
+                        <td><em>"Future of AI in Education: Global Perspectives"</em><br>Featuring keynote speakers and selected paper presenters</td>
+                    </tr>
+                    <tr class="keynote">
+                        <td class="time">6:50 - 7:00</td>
+                        <td><strong>Closing Ceremony</strong></td>
+                        <td>Awards for best papers; Publication pathway announcements<br>Closing remarks from Conference Chairs<br>Thank you to sponsors and participants</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert" style="margin-top: 2rem;">
+                <strong>Note:</strong> The final programme with specific paper titles, authors, and session assignments will be announced after notification of acceptance (7 June 2026). All presenters can participate online regardless of scheduled session time. Sydney venue remains open throughout the day for local attendees who wish to stay for afternoon sessions.
+            </div>
+        </div>
+    </section>
+
+   <!-- Registration -->
+    <section id="registration">
+        <div class="container">
+            <h2>Registration</h2>
+            
+            <div class="info-box" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1)); padding: 3rem; text-align: center; border: 3px solid var(--accent-coral);">
+                <h3 style="font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 1rem;">🎉 FREE Registration for All Participants</h3>
+                <div style="margin: 2rem 0;">
+                    <div class="crossed-price" style="font-size: 2rem; color: #999; text-decoration: line-through;">$500 AUD</div>
+                    <div class="free-price" style="font-size: 4rem; color: var(--accent-coral); font-weight: bold; margin: 1rem 0;">FREE</div>
+                    <p style="font-size: 1.3rem; color: var(--secondary-blue); font-weight: bold;">
+                        Registration Fee Waived for 2026 Launch Year
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 10px; margin: 2rem 0; text-align: left;">
+                    <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">All Participants Receive:</h4>
+                    <ul style="font-size: 1.1rem; line-height: 2;">
+                        <li>✓ Full conference access (online or hybrid)</li>
+                        <li>✓ Both keynote presentations</li>
+                        <li>✓ All paper presentation sessions</li>
+                        <li>✓ Conference proceedings (digital, Green OA)</li>
+                        <li>✓ Certificate of participation</li>
+                        <li>✓ Access to recorded sessions (30 days)</li>
+                        <li>✓ Virtual networking opportunities</li>
+                        <li>✓ <strong>Optional:</strong> Sydney venue attendance with lunch</li>
+                        <li>✓ <strong>Invitation consideration:</strong> Taylor & Francis book chapter</li>
+                        <li>✓ <strong>Invitation consideration:</strong> STEME journal Special Issue</li>
+                    </ul>
+                </div>
+
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--dark-gray); margin-top: 2rem;">
+                    <strong>Thanks to FAIR Lab sponsorship</strong>, SAGE 2026 eliminates all financial barriers to participation. 
+                    This represents an unprecedented opportunity for educators and researchers worldwide to engage with 
+                    cutting-edge AI education scholarship without registration costs.
+                </p>
+
+                <a href="#contact" class="btn btn-primary" style="margin-top: 2rem; font-size: 1.3rem; padding: 1.5rem 3rem;">Register Free Now</a>
+            </div>
+
+            <div class="info-box highlight" style="margin-top: 3rem;">
+                <h3>🌍 Free & Open Access for All</h3>
+                <p style="font-size: 1.1rem; margin-top: 1rem; line-height: 1.8;">
+                    Free registration makes SAGE 2026 particularly accessible to researchers who typically face financial barriers, including:
+                </p>
+                <ul style="margin: 1rem 0 1rem 2rem; font-size: 1.05rem; line-height: 1.8;">
+                    <li><strong>Indigenous Australian researchers</strong> – Supporting Aboriginal and Torres Strait Islander scholars in AI education research</li>
+                    <li><strong>Participants from developing nations</strong> – Enabling global South perspectives in AI pedagogy conversations</li>
+                    <li><strong>Early career researchers</strong> – Removing financial barriers for PhD students and early-stage academics</li>
+                    <li><strong>Independent educators and practitioners</strong> – Welcoming those without institutional funding support</li>
+                </ul>
+                <p style="font-size: 1.05rem; margin-top: 1.5rem; line-height: 1.8;">
+                    SAGE 2026's commitment to free access reflects FAIR Lab's mission to democratize AI education research and ensure diverse voices shape the future of AI-integrated pedagogy.
+                </p>
+            </div>
+
+            <div class="alert" style="margin-top: 2rem;">
+                <strong>Registration Opens:</strong> Early May 2026. All participants will receive online platform access details one week prior to the conference. Sydney venue capacity is limited; please indicate your intention to attend physically during registration.
+            </div>
+        </div>
+    </section>
+
+    <!-- Keynote Speakers -->
+    <section id="speakers">
+        <div class="container">
+            <h2>Keynote Speakers</h2>
+            
+            <div class="speaker-card">
+                <div class="placeholder-image">👤</div>
+                <div>
+                    <h3>Noor Demashk</h3>
+                    <p style="color: var(--secondary-blue); font-size: 1.2rem; font-weight: bold; margin: 0.5rem 0;">Head of Engineering</p>
+                    <p style="font-size: 1.1rem; margin: 0.5rem 0;"><strong>Atlassian, Australia</strong></p>
+                    <p style="margin-top: 1rem; line-height: 1.8;">
+                        Noor Demashk leads engineering initiatives at Atlassian, one of Australia's most successful technology companies. With extensive experience in software development, team collaboration tools, and technical leadership, Noor brings industry perspectives on AI integration in professional practice and workplace learning contexts.
+                    </p>
+                    <p style="margin-top: 1rem; font-style: italic; color: var(--accent-coral);">
+                        <strong>Keynote Session:</strong> Morning (9:15 AM - 10:15 AM AEST)
+                    </p>
+                    <p style="margin-top: 0.5rem; font-style: italic; color: var(--secondary-blue);">
+                        <strong>Keynote Topic:</strong> "AI-Powered Collaboration: Transforming Software Development and Team Productivity"
+                    </p>
+                </div>
+            </div>
+
+            <div class="speaker-card" style="margin-top: 2rem;">
+                <div class="placeholder-image">👤</div>
+                <div>
+                    <h3>Professor Irfan Awan</h3>
+                    <p style="color: var(--secondary-blue); font-size: 1.2rem; font-weight: bold; margin: 0.5rem 0;">Professor of Computer Science</p>
+                    <p style="font-size: 1.1rem; margin: 0.5rem 0;"><strong>University of Bradford, United Kingdom</strong></p>
+                    <p style="margin-top: 1rem; line-height: 1.8;">
+                        Professor Awan is an internationally recognized researcher in computer science with extensive expertise in distributed systems, cybersecurity, and emerging technologies. His research contributions span theoretical foundations and practical applications, with particular focus on next-generation computing systems and their societal impacts.
+                    </p>
+                    <p style="margin-top: 1rem; font-style: italic; color: var(--accent-coral);">
+                        <strong>Keynote Session:</strong> Afternoon (2:15 PM - 3:15 PM AEST)
+                    </p>
+                    <p style="margin-top: 0.5rem; font-style: italic; color: var(--secondary-blue);">
+                        <strong>Keynote Topic:</strong> "Securing the Future: Cybersecurity Challenges in AI-Enhanced Educational Systems"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee -->
+    <section id="committee">
+        <div class="container">
+            <h2>Conference Committee</h2>
+            
+            <h3>Conference Chairs</h3>
+            <div class="committee-grid">
+                <div class="committee-card organizer">
+                    <h4>Dr Mahmoud Elkhodr</h4>
+                    <div class="title">Conference Co-Chair</div>
+                    <div class="affiliation">
+                        Senior Lecturer (ICT)<br>
+                        School of Engineering and Technology<br>
+                        Central Queensland University<br>
+                        Australia
+                    </div>
+                    
+                </div>
+
+                <div class="committee-card organizer">
+                    <h4>Professor Ergun Gide</h4>
+                    <div class="title">Conference Co-Chair</div>
+                    <div class="affiliation">
+                        Professor of Information Systems<br>
+                        School of Engineering and Technology<br>
+                        Central Queensland University<br>
+                        Australia
+                    </div>
+                    
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Programme Committee Chair</h3>
+            <div class="committee-grid">
+                <div class="committee-card program">
+                    <h4>Professor Jamshid Aghaei</h4>
+                    <div class="title">Programme Committee Chair</div>
+                    <div class="affiliation">
+                        Deputy Dean (Research)<br>
+                        School of Engineering and Technology<br>
+                        Central Queensland University<br>
+                        Australia
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;">
+                        Leading research strategy and oversight for the School's research portfolio and quality assurance.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Honorary Conference Chairs</h3>
+            <div class="committee-grid">
+                <div class="committee-card honorary">
+                    <h4>Professor Christina Hong</h4>
+                    <div class="title">Honorary Chair</div>
+                    <div class="affiliation">
+                        Deputy Vice President<br>
+                        Central Queensland University<br>
+                        Australia
+                    </div>
+                </div>
+
+                <div class="committee-card honorary">
+                    <h4>Professor Michelle Bellingan</h4>
+                    <div class="title">Honorary Chair</div>
+                    <div class="affiliation">
+                        Vice-President (Academic)<br>
+                        Central Queensland University<br>
+                        Australia
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 3rem;">
+                <h3>Technical Program Committee</h3>
+                <p style="font-size: 1.05rem;">
+                    The Technical Program Committee comprises distinguished researchers and practitioners in AI education, instructional design, and educational technology. Committee members will be announced following the submission deadline. All papers undergo rigorous single-blind peer review by a minimum of two expert reviewers.
+                </p>
+            </div>
+        </div>
+    </section>
+
+   <!-- Proceedings & Publication -->
+    <section id="proceedings">
+        <div class="container">
+            <h2>Proceedings & Publication Opportunities</h2>
+            
+            <div class="info-box highlight">
+                <h3>📚 Conference Proceedings - Green Open Access (FREE)</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                    All accepted papers will be published in <strong>CQUniversity's Acquire repository</strong>, ensuring broad accessibility and discoverability through Green Open Access. This commitment to open scholarship ensures your research reaches the widest possible audience without paywalls or access barriers.
+                </p>
+                <ul style="margin: 1rem 0 0 2rem; font-size: 1.05rem;">
+                    <li>Permanent digital object identifier (DOI) for each paper</li>
+                    <li>Indexed and searchable globally</li>
+                    <li><strong>No publication fees or page charges</strong></li>
+                    <li>Institutional archival preservation</li>
+                    <li>Citation tracking and impact metrics</li>
+                </ul>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem; background: linear-gradient(135deg, #fef3c7 0%, #dbeafe 100%); border-left: 5px solid var(--accent-coral);">
+                <h3>📖 Extended Publication Opportunity - Taylor & Francis (FREE)</h3>
+                <p style="font-size: 1.15rem; font-weight: bold; color: var(--primary-blue); margin-top: 1rem;">
+                    Selected high-quality papers will receive invitations to submit extended chapters to:
+                </p>
+                <p style="font-size: 1.3rem; font-weight: bold; color: var(--accent-coral); margin: 1rem 0;">
+                    Volume 2: Generative Artificial Intelligence Empowered Learning
+                </p>
+                <p style="font-size: 1.05rem; line-height: 1.8;">
+                    <strong>Published by Taylor & Francis (Routledge), 2026</strong><br>
+                    Edited by Dr Mahmoud Elkhodr and Professor Ergun Gide
+                </p>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
+                    <h4>Extended Chapter Benefits:</h4>
+                    <ul style="margin-left: 2rem; margin-top: 1rem;">
+                        <li><strong>FREE publication</strong> – No author fees or article processing charges (APCs) thanks to FAIR Lab sponsorship</li>
+                        <li><strong>International reach</strong> through Taylor & Francis distribution network</li>
+                        <li><strong>Rigorous peer review</strong> ensuring publication quality</li>
+                        <li><strong>Extended format</strong> (8,000-10,000 words) for comprehensive treatment</li>
+                        <li><strong>Professional editing</strong> and production support</li>
+                        <li><strong>ISBN and DOI</strong> for permanent citation</li>
+                        <li><strong>Global library distribution</strong> (print and electronic)</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1.5rem; font-size: 1.05rem;">
+                        <strong>Selection Criteria:</strong> Papers demonstrating exceptional research quality, novel contributions, significant findings, or substantial practical impact will be considered. Invitations will be extended during the conference or shortly thereafter.
+                    </p>
+                </div>
+
+                <p style="margin-top: 1.5rem; font-size: 1.05rem;">
+                    Learn more about Volume 1: <a href="https://www.taylorfrancis.com/books/edit/10.1201/9781003422433/generative-artificial-intelligence-empowered-learning-mahmoud-elkhodr-ergun-gide" target="_blank">Generative Artificial Intelligence Empowered Learning</a> (Taylor & Francis, 2025)
+                </p>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem; background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); border-left: 5px solid var(--accent-teal);">
+                <h3>📊 STEME Journal Special Issue - FREE Open Access (Scopus-Indexed)</h3>
+                <p style="font-size: 1.15rem; font-weight: bold; color: var(--primary-blue); margin-top: 1rem;">
+                    Extended papers from SAGE 2026 are invited for submission to a Special Issue:
+                </p>
+                <p style="font-size: 1.3rem; font-weight: bold; color: var(--secondary-blue); margin: 1rem 0;">
+                    "Advances in AI-Guided Education: Research, Practice and Innovation"
+                </p>
+                <p style="font-size: 1.05rem; line-height: 1.8;">
+                    <strong>Published in STEM Education (AIMS Press) - Scopus-Indexed</strong><br>
+                    Guest Edited by Dr Mahmoud Elkhodr and Professor Ergun Gide
+                </p>
+                
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
+                    <h4>Special Issue Benefits:</h4>
+                    <ul style="margin-left: 2rem; margin-top: 1rem;">
+                        <li><strong>FREE Open Access publication</strong> – No author fees or APCs thanks to FAIR Lab sponsorship</li>
+                        <li><strong>Scopus-indexed journal</strong> with international visibility and impact</li>
+                        <li><strong>Rigorous peer review</strong> ensuring high academic standards</li>
+                        <li><strong>International visibility</strong> through AIMS Press distribution</li>
+                        <li><strong>DOI assignment</strong> and permanent archival</li>
+                        <li><strong>Indexed</strong> in major academic databases including Scopus</li>
+                        <li><strong>Extended format</strong> allowing comprehensive treatment (6,000-8,000 words)</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1.5rem; font-size: 1.05rem;">
+                        <strong>Submission Timeline:</strong> Conference presenters will receive invitations in July 2026, with submissions accepted through November 2026. All papers undergo independent peer review following STEME's rigorous standards.
+                    </p>
+                    
+                    <p style="margin-top: 1rem; font-size: 1.05rem;">
+                        About STEME: <a href="https://www.aimspress.com/journal/steme" target="_blank">STEM Education (AIMS Press)</a> is a Scopus-indexed, peer-reviewed open access journal focusing on innovative approaches to STEM teaching and learning.
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert success" style="margin-top: 2rem;">
+                <strong>Triple Publication Pathway – All FREE:</strong><br><br>
+                
+                <strong>1. Immediate dissemination →</strong> CQU Acquire proceedings (Green Open Access, guaranteed for all accepted papers)<br><br>
+                
+                <strong>2. Premium book chapter →</strong> Taylor & Francis "Generative Artificial Intelligence Empowered Learning Volume 2" (by invitation, no APCs)<br><br>
+                
+                <strong>3. Scopus-indexed journal →</strong> STEME Special Issue guest edited by Conference Chairs (by invitation, no author fees)<br><br>
+                
+                <strong>Thanks to FAIR Lab sponsorship, all three publication pathways are completely FREE</strong> – eliminating the typical $2,000-3,000 AUD in combined conference registration and publication fees. This creates unprecedented opportunity for researchers worldwide to disseminate their work through multiple prestigious channels at zero cost.
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue & Format -->
+    <section id="venue">
+        <div class="container">
+            <h2>Conference Format & Venue</h2>
+            
+            <div class="info-box">
+                <h3>🌐 Hybrid Conference Model</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                    SAGE 2026 operates as a <strong>hybrid-flexible conference</strong>, combining the convenience of virtual participation with an optional physical gathering space for those who can attend in person.
+                </p>
+            </div>
+
+            <div class="topics-grid" style="margin-top: 2rem;">
+                <div class="topic-card">
+                    <h4>🖥️ Primary Mode: Online Presentations</h4>
+                    <ul>
+                        <li>All presentations delivered via video conferencing</li>
+                        <li>Global accessibility - no travel required</li>
+                        <li>Interactive Q&A and discussion sessions</li>
+                        <li>Recorded sessions available for 30 days</li>
+                        <li>Virtual networking breakout rooms</li>
+                        <li>Live technical support throughout</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🏢 Physical Hub: CQU Sydney (Optional)</h4>
+                    <ul>
+                        <li>Venue for local attendees who wish to gather</li>
+                        <li>Attendance not compulsory - fully optional</li>
+                        <li>Light lunch provided for in-person participants</li>
+                        <li>Shared viewing of online presentations</li>
+                        <li>Face-to-face networking opportunities</li>
+                        <li>Professional conference environment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem;">
+                <h3>📍 Sydney Venue Details</h3>
+                <p style="font-size: 1.1rem; margin-top: 1rem;">
+                    <strong>CQUniversity Sydney Campus</strong><br>
+                    400 Kent Street<br>
+                    Sydney NSW 2000<br>
+                    Australia
+                </p>
+                <p style="font-size: 1.05rem; margin-top: 1rem; line-height: 1.8;">
+                    The Sydney campus is centrally located in the heart of the city, easily accessible by public transport. The venue will feature comfortable seating, high-quality audiovisual equipment, and catering facilities. Please indicate your intention to attend in person during registration.
+                </p>
+            </div>
+
+            <div class="alert" style="margin-top: 2rem;">
+                <strong>Platform Details:</strong> Registered participants will receive video conferencing platform access details (Zoom/Microsoft Teams) one week prior to the conference, including links for all sessions, breakout rooms, and technical support contacts.
+            </div>
+        </div>
+    </section>
+
+    <!-- About FAIR Lab -->
+    <section id="fair-lab">
+        <div class="container">
+            <h2>About the Future AI Research Lab (FAIR)</h2>
+            
+            <div class="info-box" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    The <strong>Future AI Research Lab</strong> at Central Queensland University conducts research across artificial intelligence, cybersecurity, blockchain integration, and educational technology. The lab advances both theoretical foundations and practical applications, with emphasis on creating meaningful impact in academic and industry contexts.
+                </p>
+            </div>
+
+            <div class="topics-grid" style="margin-top: 2rem;">
+                <div class="topic-card">
+                    <h4>🎓 Research Excellence</h4>
+                    <ul>
+                        <li>100+ peer-reviewed publications</li>
+                        <li>3,600+ total citations</li>
+                        <li>8 current HDR students</li>
+                        <li>32 completed doctoral/masters supervisions</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🧠 Educational Innovation</h4>
+                    <ul>
+                        <li>SAGE framework development and validation</li>
+                        <li>AI orchestration competency research</li>
+                        <li>International framework adoption</li>
+                        <li>Evidence-based pedagogical approaches</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🔬 Core Research Areas</h4>
+                    <ul>
+                        <li>AI systems and machine learning</li>
+                        <li>Cybersecurity and IoT security</li>
+                        <li>Blockchain applications</li>
+                        <li>Smart cities and healthcare technology</li>
+                    </ul>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🌏 Global Impact</h4>
+                    <ul>
+                        <li>International collaborations</li>
+                        <li>Framework adoption (NUS, Warwick, others)</li>
+                        <li>Conference leadership roles</li>
+                        <li>Community engagement initiatives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://raw.githack.com/MahmoudElkhodr/fair/main/FAIR.html" target="_blank" class="btn btn-primary">Learn More About FAIR Lab</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact & Inquiries</h2>
+            
+            <div class="info-box">
+                <h3>Conference Secretariat</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <h4>Dr Mahmoud Elkhodr</h4>
+                        <p style="margin-top: 0.5rem;">
+                            <strong>Conference Co-Chair</strong><br>
+                            Senior Lecturer (ICT)<br>
+                            School of Engineering and Technology<br>
+                            Central Queensland University<br>
+                            <br>
+                            📧 Email: <a href="mailto:m.elkhodr@cqu.edu.au">m.elkhodr@cqu.edu.au</a>
+                        </p>
+                    </div>
+                    <div>
+                        <h4>Professor Ergun Gide</h4>
+                        <p style="margin-top: 0.5rem;">
+                            <strong>Conference Co-Chair</strong><br>
+                            Professor of Information Systems<br>
+                            School of Engineering and Technology<br>
+                            Central Queensland University<br>
+                            <br>
+                            📧 Email: <a href="mailto:e.gide1@cqu.edu.au">e.gide1@cqu.edu.au</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topics-grid" style="margin-top: 3rem;">
+                <div class="topic-card">
+                    <h4>📝 Paper Submissions</h4>
+                    <p>For questions about paper formatting, submission guidelines, or review process.</p>
+                    <p style="margin-top: 1rem;"><a href="mailto:m.elkhodr@cqu.edu.au">m.elkhodr@cqu.edu.au</a></p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>💰 Registration Inquiries</h4>
+                    <p>For registration assistance, student verification, or diversity scholarship applications.</p>
+                    <p style="margin-top: 1rem;"><a href="mailto:m.elkhodr@cqu.edu.au">m.elkhodr@cqu.edu.au</a></p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🤝 Sponsorship & Partnerships</h4>
+                    <p>For sponsorship opportunities, institutional partnerships, or collaboration inquiries.</p>
+                    <p style="margin-top: 1rem;"><a href="mailto:e.gide1@cqu.edu.au">e.gide1@cqu.edu.au</a></p>
+                </div>
+
+                <div class="topic-card">
+                    <h4>🌐 General Inquiries</h4>
+                    <p>For any other questions about the conference, venue, or participation.</p>
+                    <p style="margin-top: 1rem;">Contact either chair above</p>
+                </div>
+            </div>
+
+            <div class="alert success" style="margin-top: 3rem;">
+                <strong>Stay Updated:</strong> Follow #SAGE2026 on social media for conference updates, deadline reminders, and community discussions. We'll be announcing additional speakers, program details, and networking opportunities as they're confirmed.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3 style="color: white; margin-bottom: 1rem;">SAGE 2026 - International Symposium on AI-Guided Education</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">22 June 2026 | Hybrid Conference - CQU Sydney & Online</p>
+            <p style="margin-bottom: 2rem;">Proudly Sponsored by the Future AI Research Lab (FAIR)</p>
+            
+            <div class="footer-links">
+                <a href="https://www.cqu.edu.au" target="_blank">CQUniversity Australia</a>
+                <a href="https://raw.githack.com/MahmoudElkhodr/fair/main/FAIR.html" target="_blank">FAIR Lab</a>
+                <a href="https://raw.githack.com/MahmoudElkhodr/fair/GENAI-101/SAGE.html" target="_blank">SAGE Framework</a>
+                <a href="mailto:m.elkhodr@cqu.edu.au">Contact</a>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="font-size: 0.9rem;">© 2026 SAGE Conference | Central Queensland University</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">All rights reserved | Website designed for SAGE 2026</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
