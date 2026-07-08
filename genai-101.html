@@ -579,7 +579,8 @@ details.accordion > summary::-webkit-details-marker { display: none; }
     /* Responsive */
     @media (max-width: 1024px) {
       .layout { grid-template-columns: 1fr; }
-      .sidebar { position: static; order: -1; }
+      .main { order: -1; }
+      .sidebar { position: static; order: 0; }
     }
   </style>
 </head>
