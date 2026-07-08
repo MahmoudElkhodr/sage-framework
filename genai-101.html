@@ -17,6 +17,9 @@
   <meta name="twitter:title" content="GenAI-101 v3 — AI Literacy Module for Students" />
   <meta name="twitter:description" content="Eleven-lesson guide to responsible generative AI use, including the SAGE Critical Coach model, specialised AI tools, AI inside apps, Cognitive Learning Strategies, and GenAI Mirroring." />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  </script>
   <style>
     /* ===== CSS VARIABLES - SAGE FRAMEWORK PALETTE ===== */
     :root {
@@ -4297,6 +4300,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyButtons();
   initQuizA11y();
   updateActiveLink(state.current);
+  if (!window.location.hash) window.scrollTo(0, 0);
+});
+
+window.addEventListener('pageshow', () => {
+  if (!window.location.hash) window.scrollTo(0, 0);
 });
 </script>
 
