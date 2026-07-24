@@ -26,6 +26,8 @@
       --muted:      #6b7a72;
       --rule:       #dde5e0;
       --white:      #ffffff;
+      --deep-panel: #123326;
+      --deep-panel-2: #173f30;
       --shadow:     0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
       --shadow-md:  0 2px 8px rgba(0,0,0,0.09), 0 8px 32px rgba(0,0,0,0.07);
     }
@@ -374,7 +376,7 @@
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--sage);
+      color: var(--sage-light);
       margin-bottom: 0.5rem;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.1s;
@@ -384,7 +386,7 @@
       content: '';
       width: 20px;
       height: 2px;
-      background: var(--sage-mid);
+      background: var(--sage-light);
       border-radius: 2px;
     }
 
@@ -394,7 +396,7 @@
       font-weight: 300;
       line-height: 1.05;
       letter-spacing: -0.03em;
-      color: var(--ink);
+      color: var(--white);
       margin-bottom: 0.25em;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.2s;
@@ -402,12 +404,12 @@
 
     .hero-title em {
       font-style: italic;
-      color: var(--sage);
+      color: var(--sage-light);
     }
 
     .hero-subtitle {
       font-size: 0.95rem;
-      color: var(--muted);
+      color: rgba(255,255,255,0.72);
       max-width: 680px;
       line-height: 1.45;
       margin: 0 auto 0.25rem;
@@ -501,7 +503,8 @@
     /* ─── PAGE HERO ─── */
     .pub-hero {
       padding: 1.25rem 2rem 1rem;
-      background: var(--cream);
+      background: linear-gradient(135deg, var(--ink) 0%, var(--forest) 58%, var(--deep-panel-2) 100%);
+      border-bottom: 3px solid var(--sage-mid);
     }
 
     .pub-hero-inner {
@@ -512,11 +515,15 @@
 
     /* ─── SECTION JUMPER ─── */
     .section-jumper {
+      position: static;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.5rem;
       margin-top: 0.75rem;
+      background: transparent;
+      border: 0;
+      backdrop-filter: none;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.45s;
     }
@@ -525,19 +532,19 @@
       display: inline-block;
       padding: 0.32rem 0.85rem;
       border-radius: 20px;
-      border: 1.5px solid var(--rule);
+      border: 1.5px solid rgba(116,198,157,0.35);
       font-size: 0.78rem;
       font-weight: 500;
-      color: var(--slate);
+      color: rgba(255,255,255,0.82);
       text-decoration: none;
-      background: var(--white);
+      background: rgba(255,255,255,0.08);
       transition: all 0.15s;
     }
 
     .section-pill:hover {
-      border-color: var(--sage-mid);
-      background: var(--sage-pale);
-      color: var(--forest);
+      border-color: rgba(116,198,157,0.75);
+      background: rgba(116,198,157,0.16);
+      color: var(--white);
     }
 
     /* ─── EVIDENCE BASE ─── */
@@ -558,10 +565,11 @@
     }
 
     .evidence-process-col {
-      background: var(--sage-pale);
-      border: 1px solid #c2ddd0;
+      background: linear-gradient(135deg, var(--deep-panel) 0%, var(--forest) 100%);
+      border: 1px solid rgba(116,198,157,0.24);
       border-radius: 16px;
       padding: 1.75rem;
+      box-shadow: var(--shadow);
     }
 
     .evidence-process-label {
@@ -569,7 +577,7 @@
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--sage);
+      color: var(--sage-light);
       margin-bottom: 1.25rem;
     }
 
@@ -581,7 +589,7 @@
 
     .evidence-step + .evidence-step {
       padding-top: 1.1rem;
-      border-top: 1px solid #d4e6db;
+      border-top: 1px solid rgba(255,255,255,0.12);
     }
 
     .evidence-step {
@@ -594,9 +602,9 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: var(--white);
-      border: 1.5px solid var(--sage-light);
-      color: var(--sage);
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(116,198,157,0.55);
+      color: var(--sage-light);
       font-size: 0.72rem;
       font-weight: 700;
       display: flex;
@@ -609,13 +617,13 @@
     .evidence-step-label {
       font-size: 0.84rem;
       font-weight: 600;
-      color: var(--ink);
+      color: var(--white);
       margin-bottom: 0.2rem;
     }
 
     .evidence-step-desc {
       font-size: 0.8rem;
-      color: var(--muted);
+      color: rgba(255,255,255,0.68);
       line-height: 1.6;
     }
 
@@ -634,8 +642,9 @@
     }
 
     .stat-box.light {
-      background: var(--sage-pale);
-      border-color: #c2ddd0;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--deep-panel-2) 100%);
+      border-color: rgba(116,198,157,0.24);
+      box-shadow: var(--shadow);
     }
 
     .stat-value {
@@ -647,7 +656,7 @@
       margin-bottom: 0.3rem;
     }
 
-    .stat-box.light .stat-value { color: var(--forest); }
+    .stat-box.light .stat-value { color: var(--sage-light); }
 
     .stat-label {
       font-size: 0.72rem;
@@ -657,15 +666,20 @@
       line-height: 1.4;
     }
 
-    .stat-box.light .stat-label { color: var(--sage); }
+    .stat-box.light .stat-label { color: rgba(255,255,255,0.74); }
 
     /* ─── TEQSA SECTION ─── */
     .teqsa-section {
-      background: var(--sage-pale);
-      border-top: 1px solid #c2ddd0;
-      border-bottom: 1px solid #c2ddd0;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--deep-panel) 100%);
+      border-top: 1px solid rgba(116,198,157,0.25);
+      border-bottom: 1px solid rgba(116,198,157,0.25);
       padding: 5rem 2rem;
     }
+
+    .teqsa-section .section-label { color: var(--sage-light); }
+    .teqsa-section .section-label::before { background: var(--sage-light); }
+    .teqsa-section .section-title { color: var(--white); }
+    .teqsa-section .section-body { color: rgba(255,255,255,0.72); }
 
     .teqsa-inner {
       max-width: 1160px;
@@ -686,7 +700,7 @@
       gap: 0.5rem;
       padding: 0.5rem 1rem;
       background: var(--white);
-      border: 1.5px solid #c2ddd0;
+      border: 1.5px solid rgba(116,198,157,0.45);
       border-radius: 8px;
       font-size: 0.75rem;
       font-weight: 600;
@@ -711,7 +725,7 @@
 
     .teqsa-card {
       background: var(--white);
-      border: 1px solid #c2ddd0;
+      border: 1px solid rgba(116,198,157,0.3);
       border-radius: 14px;
       padding: 1.75rem;
       display: flex;
@@ -733,9 +747,9 @@
       text-transform: uppercase;
       padding: 0.22rem 0.6rem;
       border-radius: 4px;
-      background: var(--sage-pale);
-      color: var(--sage);
-      border: 1px solid #c2ddd0;
+      background: var(--forest);
+      color: var(--sage-light);
+      border: 1px solid rgba(116,198,157,0.45);
       align-self: flex-start;
     }
 
