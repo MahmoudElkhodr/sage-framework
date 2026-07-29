@@ -19,9 +19,9 @@
       --light:#74c69d; --pale:#eef6f1; --cream:#f8f6f1; --white:#fff;
       --slate:#374151; --muted:#64736b; --rule:#dbe4de; --amber:#9a4318;
       --amber-pale:#fff4ee; --shadow:0 1px 3px rgba(0,0,0,.07),0 10px 28px rgba(13,31,22,.06);
-      --nav:64px; --jump:52px;
+      --nav:64px;
     }
-    html { scroll-behavior:smooth; scroll-padding-top:calc(var(--nav) + var(--jump) + 1rem); }
+    html { scroll-behavior:smooth; scroll-padding-top:calc(var(--nav) + 1rem); }
     body { background:var(--cream); color:var(--slate); font-family:"Instrument Sans",system-ui,sans-serif; font-size:16px; line-height:1.58; -webkit-font-smoothing:antialiased; }
     a { color:var(--sage); }
     a:hover { color:var(--forest); }
@@ -51,11 +51,19 @@
     .mobile-nav a { padding:.85rem 0; border-bottom:1px solid var(--rule); color:var(--slate); font-size:1.02rem; font-weight:600; text-decoration:none; }
     .mobile-nav .sub-link { padding-left:1.25rem; color:var(--muted); font-size:.9rem; }
     .mobile-nav-close { position:absolute; top:1.1rem; right:1.5rem; padding:.5rem; border:0; background:transparent; color:var(--slate); cursor:pointer; font:inherit; font-weight:700; }
-    .jump { position:sticky; top:var(--nav); z-index:90; min-height:var(--jump); background:rgba(255,255,255,.97); border-bottom:1px solid var(--rule); backdrop-filter:blur(12px); }
-    .jump-inner { max-width:1160px; min-height:var(--jump); margin:auto; padding:0 2rem; display:flex; align-items:center; gap:.5rem; overflow-x:auto; }
-    .jump strong { flex:0 0 auto; margin-right:.15rem; color:var(--muted); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; }
-    .jump a { flex:0 0 auto; padding:.35rem .58rem; border-radius:999px; color:var(--slate); font-size:.72rem; font-weight:700; text-decoration:none; white-space:nowrap; }
-    .jump a:hover { background:var(--pale); color:var(--forest); }
+    .evidence-layout { display:grid; grid-template-columns:210px minmax(0,1fr); max-width:1440px; margin:auto; align-items:start; }
+    .evidence-layout > main { min-width:0; }
+    .evidence-sidebar { position:sticky; top:calc(var(--nav) + 1rem); align-self:start; max-height:calc(100vh - var(--nav) - 2rem); padding:2rem 0 2rem 1rem; overflow-y:auto; scrollbar-width:thin; }
+    .evidence-sidebar-panel,.mobile-index { border:1px solid var(--rule); border-radius:12px; background:#fff; box-shadow:var(--shadow); }
+    .evidence-sidebar-panel { padding:1rem; }
+    .evidence-sidebar-label { margin-bottom:.5rem; color:var(--muted); font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .evidence-sidebar-links { display:grid; gap:.12rem; }
+    .evidence-sidebar-links a { display:flex; align-items:center; width:100%; padding:.48rem .52rem; border-radius:6px; color:var(--slate); font-size:.8rem; font-weight:600; line-height:1.4; text-decoration:none; }
+    .evidence-sidebar-links a:hover { background:var(--pale); color:var(--forest); }
+    .evidence-sidebar-links a.active { padding-left:.68rem; background:var(--pale); box-shadow:inset 3px 0 0 var(--forest); color:var(--forest); font-weight:700; }
+    .mobile-index { display:none; }
+    .mobile-index summary { padding:.8rem 1rem; color:var(--forest); font-weight:700; cursor:pointer; }
+    .mobile-index .evidence-sidebar-panel { border:0; border-top:1px solid var(--rule); border-radius:0; box-shadow:none; }
     .hero { padding:clamp(3.4rem,7vw,6rem) 2rem 3.4rem; background:linear-gradient(135deg,var(--ink),var(--forest) 65%,#1e543d); color:#fff; border-bottom:3px solid var(--mid); }
     .wrap { max-width:1160px; margin:auto; }
     .eyebrow,.label { display:flex; align-items:center; gap:.45rem; margin-bottom:.7rem; color:var(--light); font-size:.67rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
@@ -156,8 +164,10 @@
     .lightbox img { max-width:95vw; max-height:90vh; object-fit:contain; background:#fff; box-shadow:0 20px 80px rgba(0,0,0,.45); }
     .lightbox button { position:absolute; top:1rem; right:1.2rem; border:0; background:transparent; color:#fff; font-size:1rem; font-weight:700; cursor:pointer; }
     @media(max-width:980px){ .main-links{display:none}.hamburger{display:block}.metrics{grid-template-columns:repeat(2,1fr)}.claim{grid-template-columns:1fr}.claim-evidence{padding-left:0;padding-top:.8rem;border-left:0;border-top:1px solid var(--rule)}.thumbs{grid-template-columns:repeat(2,1fr)}.documents{grid-template-columns:repeat(2,1fr)} }
-    @media(max-width:700px){ .nav-inner,.jump-inner{padding:0 1.1rem}.hero,.section,.closing{padding-left:1.1rem;padding-right:1.1rem}.metrics,.thumbs,.documents{grid-template-columns:1fr}.metric{min-height:0}.theory-row{grid-template-columns:1fr;gap:.25rem}.thumb img{height:auto}.jump strong{display:none}.video-frame{padding:1rem}.video-frame strong{font-size:1.15rem}.video-frame span{font-size:.68rem} }
+    @media(max-width:1100px){.evidence-layout{grid-template-columns:1fr}.evidence-sidebar{position:static;max-height:none;padding:1rem 1.1rem 0;overflow:visible}.desktop-index{display:none}.mobile-index{display:block}}
+    @media(max-width:700px){ .nav-inner{padding:0 1.1rem}.hero,.section,.closing{padding-left:1.1rem;padding-right:1.1rem}.metrics,.thumbs,.documents{grid-template-columns:1fr}.metric{min-height:0}.theory-row{grid-template-columns:1fr;gap:.25rem}.thumb img{height:auto}.video-frame{padding:1rem}.video-frame strong{font-size:1.15rem}.video-frame span{font-size:.68rem} }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.evidence-sidebar{display:none!important}.evidence-layout{display:block;max-width:none}}
 
     .proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin-top:1.25rem}
     .proof-card{overflow:hidden;border:1px solid var(--rule);border-radius:11px;background:#fff;box-shadow:var(--shadow)}
@@ -247,7 +257,6 @@
 <a href="../community.html">Community</a>
 <a href="../about.html">About</a>
 </div>
-<nav aria-label="Page sections" class="jump"><div class="jump-inner"><strong>Evidence index</strong><a href="#core-evidence">Core studies</a><a href="#criterion-a">A. Student impact</a><a href="#criterion-b">B. Recognition</a><a href="#program-video">Video</a><a href="#criterion-c">C. Innovation</a><a href="#criterion-d">D. Scholarship</a><a href="#documents">Evidence archive</a><a href="#outstanding">Pending</a></div></nav>
 <header class="hero">
 <div class="wrap">
 <div class="eyebrow">2026 AAUT Program Award supporting evidence</div>
@@ -265,6 +274,37 @@
 <div class="evidence-principle"><strong>Reading rule</strong><p>Each major claim is paired with its primary publication evidence and, where available, a separate record such as a result history, institutional guide, email, letter, media record or external case-study page.</p></div>
 </div>
 </header>
+<div class="evidence-layout">
+<aside aria-label="Evidence index" class="evidence-sidebar">
+<div class="evidence-sidebar-panel desktop-index">
+<div class="evidence-sidebar-label">Evidence index</div>
+<nav aria-label="Page sections" class="evidence-sidebar-links">
+<a href="#core-evidence">Core studies</a>
+<a href="#criterion-a">A. Student impact</a>
+<a href="#criterion-b">B. Recognition</a>
+<a href="#program-video">Video</a>
+<a href="#criterion-c">C. Innovation</a>
+<a href="#criterion-d">D. Scholarship</a>
+<a href="#documents">Evidence archive</a>
+<a href="#outstanding">Pending</a>
+</nav>
+</div>
+<details class="mobile-index">
+<summary>On this page</summary>
+<div class="evidence-sidebar-panel">
+<nav aria-label="Page sections" class="evidence-sidebar-links">
+<a href="#core-evidence">Core studies</a>
+<a href="#criterion-a">A. Student impact</a>
+<a href="#criterion-b">B. Recognition</a>
+<a href="#program-video">Video</a>
+<a href="#criterion-c">C. Innovation</a>
+<a href="#criterion-d">D. Scholarship</a>
+<a href="#documents">Evidence archive</a>
+<a href="#outstanding">Pending</a>
+</nav>
+</div>
+</details>
+</aside>
 <main id="main">
 <section class="section white" id="core-evidence">
 <div class="wrap">
@@ -314,11 +354,11 @@
 <div class="wrap">
 <div class="section-head"><div class="label">Criterion B — official adoption and independent recognition</div><h2>Recognition, adoption and implementation</h2><p class="lead">The evidence distinguishes formal institutional incorporation, national resource listing, independent educator uptake, cross-institutional implementation, international engagement and scholarly/public reach.</p></div>
 <div class="claim-list">
-<article class="claim"><div><h3>CQUniversity formally incorporated SAGE into its assessment model</h3><p>The 2026 Guided-Assured Assessment Model Educator Guide names the Structured AI-Guided Education framework, reproduces the six-step cycle and maps SAGE orchestration levels to university assessment guidance. This is direct institutional incorporation, not merely a testimonial.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Official guide page 17:</strong> SAGE named and the six steps explained.</div><div class="evidence-line"><strong>Official guide page 12:</strong> SAGE Student Orchestration Levels mapped to DEC alignment and submission requirements.</div><div class="evidence-line"><strong>Staff development:</strong> Dr Daniel Maddock described SAGE as the practical centrepiece for the GenAI for Educators course.</div></div></article>
-<article class="claim"><div><h3>Educators outside ICT independently selected SAGE resources for their students</h3><p>A Business Ethics lecturer independently discovered the Generative AI Literacy and Numeracy Module, described it as clear, practical, accessible and tangible for students, and committed to sharing it with her class.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Evidence:</strong> unsolicited email from Dr Renata Klafke, School of Business and Law.</div><div class="evidence-line"><strong>Value:</strong> cross-disciplinary recognition and intended uptake without mandate or direct promotion.</div><div class="evidence-line"><strong>Careful wording:</strong> evidence of committed uptake; completed student outcomes are not claimed.</div></div></article>
+<article class="claim"><div><h3>CQUniversity formally incorporated SAGE into its assessment model</h3><p>The 2026 Guided-Assured Assessment Model Educator Guide names the Structured AI-Guided Education framework, reproduces the six-step cycle and maps SAGE orchestration levels to university assessment guidance. This is direct institutional incorporation, not merely a testimonial.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Official guide page 17:</strong> <a href="assets/evidence/cqu-guide-page-17-sage-six-steps.png" rel="noopener" target="_blank">view the SAGE six-step evidence ↗</a>.</div><div class="evidence-line"><strong>Official guide page 12:</strong> <a href="assets/evidence/cqu-guide-page-12-sage-orchestration.png" rel="noopener" target="_blank">view the orchestration-level mapping ↗</a>.</div><div class="evidence-line"><strong>Staff development:</strong> <a href="assets/evidence/daniel-maddock-genai-for-educators-email.png" rel="noopener" target="_blank">view Dr Daniel Maddock’s GenAI for Educators email ↗</a>.</div></div></article>
+<article class="claim"><div><h3>Educators outside ICT independently selected SAGE resources for their students</h3><p>A Business Ethics lecturer independently discovered the Generative AI Literacy and Numeracy Module, described it as clear, practical, accessible and tangible for students, and committed to sharing it with her class.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Evidence:</strong> <a href="assets/evidence/renata-independent-uptake-public.jpg" rel="noopener" target="_blank">view the redacted email from Dr Renata Klafke ↗</a>, School of Business and Law.</div><div class="evidence-line"><strong>Value:</strong> cross-disciplinary recognition and intended uptake without mandate or direct promotion.</div><div class="evidence-line"><strong>Careful wording:</strong> evidence of committed uptake; completed student outcomes are not claimed.</div></div></article>
 <article class="claim"><div><h3>Three SAGE resources received national TEQSA listing</h3><p>Archived TEQSA pages show the implementation guide under Academic integrity and assessment reform, and the literacy/numeracy module and first-year student-use resource under Student resources and support.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Evidence:</strong> three separate national resource entries.</div><div class="evidence-line"><strong>Supporting resources:</strong> P5, P8 and the evidence-based implementation guide.</div><div class="evidence-line"><strong>Careful wording:</strong> national recognition and resource listing, not national adoption.</div></div></article>
 <article class="claim"><div><h3>External academics initiated and implemented cross-institutional work</h3><p>Dr Raj Sandu's record supports the Australian cross-institutional study. Associate Professor Maged Fakirah independently approached the team after identifying SAGE as a structured, evidence-based framework suitable for UK-Chinese transnational education, leading to the documented technical implementation and accepted conference work.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Australian evidence:</strong> P2 and implementation email.</div><div class="evidence-line"><strong>International evidence:</strong> P11 and P12, initial unsolicited approach and support/grant letter.</div><div class="evidence-line"><strong>Independent recognition:</strong> University of Warwick Education Portal case study.</div></div></article>
-<article class="claim"><div><h3>The research and resources show substantial scholarly and practitioner reach</h3><p>Dated publisher, Google Scholar and Zenodo records provide transparent evidence of readership, citation and resource uptake. Platform-specific metrics are labelled rather than combined as if they were directly equivalent.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Selected publisher reach:</strong> more than 51,000 combined views/accesses across three selected publications.</div><div class="evidence-line"><strong>Selected Google Scholar records:</strong> 176, 112 and 95 citations at capture.</div><div class="evidence-line"><strong>Open resource uptake:</strong> implementation guide version 3 recorded 616 views and 507 downloads at capture.</div></div></article>
+<article class="claim"><div><h3>The research and resources show substantial scholarly and practitioner reach</h3><p>Dated publisher, Google Scholar and Zenodo records provide transparent evidence of readership, citation and resource uptake. Platform-specific metrics are labelled rather than combined as if they were directly equivalent.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Selected publisher reach:</strong> view the dated records for the <a href="assets/evidence/ict-study-publisher-metrics.png" rel="noopener" target="_blank">2023 ICT study</a>, <a href="assets/evidence/discover-education-publisher-metrics.png" rel="noopener" target="_blank">2024 cross-institutional study</a> and <a href="assets/evidence/systematic-review-publisher-metrics.png" rel="noopener" target="_blank">systematic review ↗</a>.</div><div class="evidence-line"><strong>Selected Google Scholar records:</strong> <a href="https://scholar.google.com.au/citations?hl=en&amp;user=xqeZJm4AAAAJ&amp;pagesize=80&amp;view_op=list_works" rel="noopener" target="_blank">open the Google Scholar publication profile ↗</a>.</div><div class="evidence-line"><strong>Open resource uptake:</strong> <a href="assets/evidence/zenodo-sage-resource-uptake-v3.png" rel="noopener" target="_blank">view the implementation guide metrics ↗</a>.</div></div></article>
 </div>
 <div class="proof-grid">
 <article class="proof-card tall"><a href="https://www.cqu.edu.au/about-us/excellence-education/the-cquniversity-learning-and-teaching-strategy-futurenow/cqu-guided-assured-assessment-model-educator-guide" rel="noopener" target="_blank"><img alt="CQUniversity Guided-Assured Assessment Model page 17 naming SAGE and presenting its six steps" src="assets/evidence/cqu-guide-page-17-sage-six-steps.png"/></a><div class="proof-body"><h3>Official CQUniversity adoption: six-step cycle</h3><p>Page 17 names SAGE and incorporates Generate, Evaluate, Refine, AI Critic, Reflect and Defend.</p><div class="proof-links"><a href="https://www.cqu.edu.au/about-us/excellence-education/the-cquniversity-learning-and-teaching-strategy-futurenow/cqu-guided-assured-assessment-model-educator-guide" target="_blank">Open official webpage</a><a href="assets/evidence/cqu-guided-assured-assessment-model-2026.pdf" target="_blank">Open guide PDF</a></div></div></article>
@@ -333,7 +373,7 @@
 <div class="reach-card"><strong>507</strong><span>downloads of version 3 of the SAGE implementation guide, from 616 views</span></div>
 </div>
 <div class="proof-grid">
-<article class="proof-card"><a data-lightbox="" href="assets/evidence/google-scholar-selected-citations.png"><img alt="Google Scholar screenshot showing selected citation counts" src="assets/evidence/google-scholar-selected-citations.png"/></a><div class="proof-body"><h3>Selected Google Scholar citation counts</h3><p>176 citations for the origin study, 112 for the systematic review and 95 for the cross-institutional case study at capture.</p></div></article>
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/google-scholar-selected-citations.png"><img alt="Google Scholar screenshot showing selected citation counts" src="assets/evidence/google-scholar-selected-citations.png"/></a><div class="proof-body"><h3>Selected Google Scholar citation counts</h3><p>176 citations for the origin study, 112 for the systematic review and 95 for the cross-institutional case study at capture.</p><div class="proof-links"><a href="https://scholar.google.com.au/citations?hl=en&amp;user=xqeZJm4AAAAJ&amp;pagesize=80&amp;view_op=list_works" rel="noopener" target="_blank">Open Google Scholar profile ↗</a></div></div></article>
 <article class="proof-card"><a data-lightbox="" href="assets/evidence/zenodo-sage-resource-uptake-v3.png"><img alt="Zenodo screenshot showing version 3 implementation guide views and downloads" src="assets/evidence/zenodo-sage-resource-uptake-v3.png"/></a><div class="proof-body"><h3>Open-resource uptake</h3><p>Version 3 of the implementation guide recorded 616 views and 507 downloads, alongside use of related SAGE tools.</p></div></article>
 </div>
 <p class="source-note">Publisher metrics and Google Scholar counts use different databases and are therefore displayed separately. The values are dated evidence snapshots and should be refreshed shortly before submission.</p>
@@ -396,6 +436,7 @@
 </div>
 </section>
 </main>
+</div>
 <section class="closing"><div class="wrap"><div class="label" style="justify-content:center">Evidence trail</div><h2>From classroom evidence to an integrated programme</h2><p>The core studies show how successive student findings shaped the programme. The records on this page corroborate institutional uptake, national recognition, international transfer, professional relevance and sustained implementation.</p><div class="buttons"><a class="btn primary" href="#core-evidence">Review core studies</a><a class="btn" href="../publications.html">View all publications</a><a class="btn" href="../sage.html">View the SAGE framework</a><a class="btn" href="../about.html">Contact the team</a></div></div></section>
 <footer>
 <div class="footer-inner">
@@ -434,6 +475,30 @@
   menuButton.addEventListener('click',()=>setMobileMenu(true));
   mobileClose.addEventListener('click',()=>setMobileMenu(false));
   mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMobileMenu(false)));
+  const evidenceIndexLinks=[...document.querySelectorAll('.evidence-sidebar-links a[href^="#"]')];
+  function setActiveEvidenceSection(id){
+    evidenceIndexLinks.forEach(link=>{
+      const active=link.getAttribute('href')===`#${id}`;
+      link.classList.toggle('active',active);
+      if(active)link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  evidenceIndexLinks.forEach(link=>link.addEventListener('click',()=>{
+    link.closest('.mobile-index')?.removeAttribute('open');
+    setActiveEvidenceSection(link.hash.slice(1));
+  }));
+  const evidenceSections=[...document.querySelectorAll('.evidence-sidebar-links a[href^="#"]')]
+    .map(link=>document.querySelector(link.getAttribute('href')))
+    .filter((section,index,sections)=>section&&sections.indexOf(section)===index);
+  if('IntersectionObserver' in window){
+    const evidenceObserver=new IntersectionObserver(entries=>{
+      const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+      if(visible[0])setActiveEvidenceSection(visible[0].target.id);
+    },{rootMargin:'-18% 0px -68% 0px',threshold:0});
+    evidenceSections.forEach(section=>evidenceObserver.observe(section));
+  }
+  setActiveEvidenceSection('core-evidence');
   const publicationReferences={
     P1:{title:'ICT students’ perceptions towards ChatGPT: An experimental reflective lab analysis',href:'https://doi.org/10.3934/steme.2023006'},
     P2:{title:'The role and impact of ChatGPT in educational practices: Insights from an Australian higher education case study',href:'https://doi.org/10.1007/s44217-024-00126-6'},
