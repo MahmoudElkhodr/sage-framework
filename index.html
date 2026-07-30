@@ -174,15 +174,19 @@
 
     /* ─── HERO ─── */
     .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(380px, 1.08fr);
+      align-items: center;
+      gap: clamp(2.5rem, 5vw, 5rem);
       max-width: 1160px;
       margin: 0 auto;
       padding: 3.75rem 2rem 2.75rem;
     }
 
     .hero-left {
-      max-width: 940px;
-      margin: 0 auto;
-      text-align: center;
+      max-width: 560px;
+      margin: 0;
+      text-align: left;
     }
 
     .hero-eyebrow {
@@ -209,7 +213,7 @@
 
     .hero-title {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      font-size: clamp(2.1rem, 4.4vw, 3.5rem);
       font-weight: 300;
       line-height: 1.05;
       letter-spacing: -0.03em;
@@ -227,16 +231,16 @@
     .hero-subtitle {
       font-size: 1rem;
       color: var(--muted);
-      max-width: 680px;
+      max-width: 560px;
       line-height: 1.75;
-      margin: 0 auto 1rem;
+      margin: 0 0 1rem;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.3s;
     }
 
     .hero-scope {
-      max-width: 720px;
-      margin: 0 auto 2rem;
+      max-width: 560px;
+      margin: 0 0 2rem;
       padding-left: 1rem;
       border-left: 2px solid var(--sage-light);
       color: var(--slate);
@@ -250,10 +254,75 @@
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 0.75rem;
       opacity: 0;
       animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+
+    .hero-video {
+      min-width: 0;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+
+    .hero-video-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-video-kicker {
+      margin-bottom: 0.25rem;
+      color: var(--sage);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-video-title {
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .hero-video-duration {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .hero-video-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .hero-video-footer a {
+      flex: 0 0 auto;
+      color: var(--forest);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: var(--sage-light);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.2rem;
+    }
+
+    .hero-video-footer a:hover {
+      color: var(--sage);
+      text-decoration-color: currentColor;
     }
 
     /* ─── CYCLE CARD ─── */
@@ -835,6 +904,81 @@
       line-height: 1.7;
     }
 
+    .video-embed {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      background: #07110c;
+      box-shadow: 0 20px 55px rgba(13,31,22,0.18);
+    }
+
+    .video-embed iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      background: #07110c;
+      color: var(--white);
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .video-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .video-poster::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 42%, rgba(7,17,12,0.82));
+    }
+
+    .video-poster:hover img {
+      filter: brightness(0.86);
+      transform: scale(1.015);
+    }
+
+    .video-play {
+      position: absolute;
+      left: 1.25rem;
+      bottom: 1.15rem;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .video-play-icon {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 50%;
+      background: rgba(27,67,50,0.92);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+      font-size: 1rem;
+    }
+
     /* ─── PATHWAYS ─── */
     .pathways {
       background: var(--ink);
@@ -1353,9 +1497,13 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
       .hero {
+        grid-template-columns: 1fr;
+        gap: 2.75rem;
         padding: 3rem 1.5rem 2.25rem;
       }
-      .hero-subtitle { max-width: 100%; }
+      .hero-left { max-width: 720px; }
+      .hero-subtitle, .hero-scope { max-width: 720px; }
+      .hero-video { width: 100%; max-width: 760px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cards-grid { grid-template-columns: 1fr; }
@@ -1383,6 +1531,7 @@
       .pathways { padding: 3.5rem 1.25rem; }
       .research-section { padding: 3.5rem 1.25rem; }
       .community-band { padding: 3rem 1.25rem; }
+      .hero-video-footer { align-items: flex-start; flex-direction: column; gap: 0.45rem; }
       footer { padding: 2.5rem 1.25rem 1.5rem; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -1462,6 +1611,28 @@
         Resources for Your Students
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
+    </div>
+  </div>
+
+  <!-- Right: framework overview video -->
+  <div class="hero-video">
+    <div class="hero-video-heading">
+      <div>
+        <div class="hero-video-kicker">Featured video · GenAI-101 Module 4.3</div>
+        <h2 class="hero-video-title" id="sage-cycle-video-title">From Process to Proof: The SAGE Cycle</h2>
+      </div>
+      <span class="hero-video-duration">11 min 54 sec</span>
+    </div>
+    <div class="video-embed" data-youtube-id="uLIZpclJHdg">
+      <button class="video-poster" type="button" aria-label="Play From Process to Proof: The SAGE Cycle">
+        <img alt="" loading="eager" src="https://i.ytimg.com/vi/uLIZpclJHdg/maxresdefault.jpg"/>
+        <span class="video-play"><span aria-hidden="true" class="video-play-icon">▶</span><span class="video-play-text">Watch the video</span></span>
+      </button>
+      <noscript><a href="https://www.youtube.com/watch?v=uLIZpclJHdg" rel="noopener" target="_blank">Watch From Process to Proof on YouTube</a></noscript>
+    </div>
+    <div class="hero-video-footer">
+      <span>See how the six-step SAGE cycle turns AI-supported work into defensible evidence of learning.</span>
+      <a href="https://www.youtube.com/watch?v=uLIZpclJHdg" rel="noopener" target="_blank">Watch on YouTube ↗</a>
     </div>
   </div>
 
@@ -1841,6 +2012,36 @@
     </div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('[data-youtube-id]').forEach(container => {
+    const playButton = container.querySelector('.video-poster');
+    const playText = container.querySelector('.video-play-text');
+    const videoId = container.dataset.youtubeId;
+    const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+    if (location.protocol === 'file:' && playText) {
+      playText.textContent = 'Open video on YouTube';
+    }
+
+    playButton?.addEventListener('click', () => {
+      if (location.protocol === 'file:') {
+        window.open(videoUrl, '_blank', 'noopener,noreferrer');
+        return;
+      }
+
+      const iframe = document.createElement('iframe');
+      const origin = encodeURIComponent(location.origin);
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&origin=${origin}`;
+      iframe.title = 'From Process to Proof: The SAGE Cycle';
+      iframe.loading = 'lazy';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      container.replaceChildren(iframe);
+    });
+  });
+</script>
 
 </body>
 </html>
