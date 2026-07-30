@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>2026 AAUT Program Award Evidence — SAGE Framework</title>
+<meta content="Evidence-first supporting page for the 2026 AAUT Program Award nomination of the Structured AI-Guided Education Program, mapping publications and documentary evidence to all four assessment criteria." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://sage-framework.com/aaut-program-award" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+    :root {
+      --ink:#0d1f16; --forest:#1b4332; --sage:#2d6a4f; --mid:#40916c;
+      --light:#74c69d; --pale:#eef6f1; --cream:#f8f6f1; --white:#fff;
+      --slate:#374151; --muted:#64736b; --rule:#dbe4de; --amber:#9a4318;
+      --gold:#e2bd4f; --gold-pale:#fbf5df; --gold-deep:#72570c;
+      --amber-pale:#fff4ee; --shadow:0 1px 3px rgba(0,0,0,.07),0 10px 28px rgba(13,31,22,.06);
+      --nav:64px;
+    }
+    html { scroll-behavior:smooth; scroll-padding-top:calc(var(--nav) + 1rem); }
+    body { background:var(--cream); color:var(--slate); font-family:"Instrument Sans",system-ui,sans-serif; font-size:16px; line-height:1.58; -webkit-font-smoothing:antialiased; }
+    a { color:var(--sage); }
+    a:hover { color:var(--forest); }
+    :focus-visible { outline:3px solid #f0a26f; outline-offset:3px; }
+    .skip { position:fixed; top:-5rem; left:1rem; z-index:1000; padding:.75rem 1rem; background:#fff; border-radius:7px; font-weight:700; }
+    .skip:focus { top:1rem; }
+    .site-nav { position:sticky; top:0; z-index:100; height:var(--nav); background:rgba(248,246,241,.97); border-bottom:1px solid var(--rule); backdrop-filter:blur(12px); }
+    .nav-inner { max-width:1160px; height:100%; margin:auto; padding:0 2rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .brand { color:var(--forest); font-family:"Fraunces",Georgia,serif; font-size:1.45rem; font-weight:600; text-decoration:none; }
+    .brand small { margin-left:.4rem; color:var(--muted); font-family:"Instrument Sans",sans-serif; font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; }
+    .main-links { display:flex; align-items:center; gap:.15rem; list-style:none; padding:0; }
+    .main-links > li > a { display:block; padding:.42rem .72rem; border-radius:6px; color:var(--slate); font-size:.8rem; font-weight:600; text-decoration:none; white-space:nowrap; }
+    .main-links > li > a:hover { background:var(--pale); color:var(--forest); }
+    .main-links .cta { background:var(--forest); color:#fff; }
+    .main-links .cta:hover { background:var(--sage); color:#fff; }
+    .nav-dropdown { position:relative; }
+    .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; z-index:110; padding-top:.4rem; transform:translateX(-50%); }
+    .nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
+    .nav-dropdown-panel { min-width:220px; padding:.5rem; border:1px solid var(--rule); border-radius:10px; background:#fff; box-shadow:var(--shadow); }
+    .nav-dropdown-panel a { display:block; padding:.55rem .75rem; border-radius:7px; color:var(--slate); text-decoration:none; }
+    .nav-dropdown-panel a:hover { background:var(--pale); color:var(--forest); }
+    .dd-label { display:block; color:var(--ink); font-size:.78rem; font-weight:700; }
+    .dd-desc { display:block; margin-top:.1rem; color:var(--muted); font-size:.68rem; }
+    .hamburger { display:none; padding:.5rem; border:0; background:transparent; color:var(--forest); cursor:pointer; font:inherit; font-weight:700; }
+    .mobile-nav { display:none; position:fixed; inset:0; z-index:250; flex-direction:column; overflow-y:auto; padding:5rem 2rem 2rem; background:var(--cream); }
+    .mobile-nav.open { display:flex; }
+    .mobile-nav a { padding:.85rem 0; border-bottom:1px solid var(--rule); color:var(--slate); font-size:1.02rem; font-weight:600; text-decoration:none; }
+    .mobile-nav .sub-link { padding-left:1.25rem; color:var(--muted); font-size:.9rem; }
+    .mobile-nav-close { position:absolute; top:1.1rem; right:1.5rem; padding:.5rem; border:0; background:transparent; color:var(--slate); cursor:pointer; font:inherit; font-weight:700; }
+    .evidence-layout { display:grid; grid-template-columns:210px minmax(0,1fr); max-width:1440px; margin:auto; align-items:start; }
+    .evidence-layout > main { min-width:0; }
+    .evidence-sidebar { position:sticky; top:calc(var(--nav) + 1rem); align-self:start; max-height:calc(100vh - var(--nav) - 2rem); padding:2rem 0 2rem 1rem; overflow-y:auto; scrollbar-width:thin; }
+    .evidence-sidebar-panel,.mobile-index { border:1px solid var(--rule); border-radius:12px; background:#fff; box-shadow:var(--shadow); }
+    .evidence-sidebar-panel { padding:1rem; }
+    .evidence-sidebar-label { margin-bottom:.5rem; color:var(--muted); font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .evidence-sidebar-links { display:grid; gap:.12rem; }
+    .evidence-sidebar-links a { display:flex; align-items:center; width:100%; padding:.48rem .52rem; border-radius:6px; color:var(--slate); font-size:.8rem; font-weight:600; line-height:1.4; text-decoration:none; }
+    .evidence-sidebar-links a:hover { background:var(--pale); color:var(--forest); }
+    .evidence-sidebar-links a.active { padding-left:.68rem; background:var(--pale); box-shadow:inset 3px 0 0 var(--forest); color:var(--forest); font-weight:700; }
+    .mobile-index { display:none; }
+    .mobile-index summary { padding:.8rem 1rem; color:var(--forest); font-weight:700; cursor:pointer; }
+    .mobile-index .evidence-sidebar-panel { border:0; border-top:1px solid var(--rule); border-radius:0; box-shadow:none; }
+    .hero { padding:clamp(3.4rem,7vw,6rem) 2rem 3.4rem; background:linear-gradient(135deg,var(--ink),var(--forest) 65%,#1e543d); color:#fff; border-bottom:3px solid var(--mid); }
+    .wrap { max-width:1160px; margin:auto; }
+    .eyebrow,.label { display:flex; align-items:center; gap:.45rem; margin-bottom:.7rem; color:var(--light); font-size:.67rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
+    .eyebrow::before,.label::before { content:""; width:18px; height:2px; background:currentColor; }
+    h1,h2,h3 { color:var(--ink); font-family:"Fraunces",Georgia,serif; font-weight:400; line-height:1.12; letter-spacing:-.025em; }
+    h1 { max-width:900px; color:#fff; font-size:clamp(2.5rem,6vw,5rem); font-weight:300; }
+    h1 em { color:var(--light); font-weight:300; }
+    h2 { font-size:clamp(1.9rem,4vw,3rem); }
+    h3 { font-size:1.23rem; }
+    .hero-sub { margin-top:.8rem; color:var(--light); font-family:"Fraunces",Georgia,serif; font-size:clamp(1.1rem,2vw,1.45rem); }
+    .team { margin-top:.45rem; color:rgba(255,255,255,.72); font-size:.9rem; }
+    .hero-note { max-width:850px; margin-top:1.2rem; color:rgba(255,255,255,.84); font-size:1.02rem; }
+    .hero-video-action { margin-top:1rem; }
+    .hero-video-action .btn { padding:.58rem .85rem; border-color:rgba(255,255,255,.45); background:transparent; color:#fff; }
+    .hero-video-action .btn:hover { border-color:#fff; background:rgba(255,255,255,.08); }
+    .metrics { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.75rem; max-width:1080px; margin-top:1.65rem; }
+    .metric { padding:.95rem; border:1px solid rgba(255,255,255,.16); border-radius:10px; background:rgba(255,255,255,.07); }
+    .metric strong { display:block; color:#fff; font-family:"Fraunces",Georgia,serif; font-size:1.55rem; font-weight:400; }
+    .metric span { display:block; margin-top:.28rem; color:rgba(255,255,255,.65); font-size:.75rem; line-height:1.35; }
+    .metric-gold { border-color:rgba(226,189,79,.78); background:linear-gradient(145deg,rgba(226,189,79,.25),rgba(226,189,79,.08)); box-shadow:0 0 0 1px rgba(226,189,79,.08),0 12px 28px rgba(0,0,0,.14); transform:translateY(-2px); }
+    .metric-gold strong { color:var(--gold); font-weight:600; }
+    .metric-gold span { color:#f6e9b6; font-weight:600; }
+    .section { padding:clamp(3.8rem,7vw,6rem) 2rem; border-bottom:1px solid var(--rule); }
+    .white { background:#fff; } .pale { background:var(--pale); } .deep { background:var(--forest); color:rgba(255,255,255,.78); }
+    .section-head { max-width:880px; margin-bottom:1.65rem; }
+    .label { color:var(--sage); }
+    .deep h2,.deep h3 { color:#fff; } .deep .label { color:var(--light); }
+    .lead { margin-top:.75rem; color:var(--muted); font-size:.98rem; }
+    .deep .lead { color:rgba(255,255,255,.67); }
+    .evidence-principle { display:grid; grid-template-columns:auto 1fr; gap:.75rem; align-items:start; max-width:970px; margin-top:1.35rem; padding:1rem 1.1rem; border-left:4px solid var(--light); border-radius:0 9px 9px 0; background:rgba(255,255,255,.08); }
+    .evidence-principle strong { color:var(--light); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; }
+    .evidence-principle p { color:rgba(255,255,255,.82); font-size:.88rem; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--rule); border-radius:12px; background:#fff; box-shadow:var(--shadow); }
+    table { width:100%; border-collapse:collapse; text-align:left; }
+    th { background:var(--forest); color:#fff; font-size:.71rem; letter-spacing:.035em; }
+    th,td { padding:.75rem .78rem; border-bottom:1px solid var(--rule); vertical-align:top; }
+    td { color:var(--muted); font-size:.78rem; }
+    tbody tr:last-child td { border-bottom:0; }
+    tbody tr:hover { background:#fbfdfc; }
+    .pub-title { color:var(--ink); font-weight:700; }
+    .pub-meta { display:block; margin-top:.18rem; color:var(--muted); font-size:.7rem; }
+    .finding { color:var(--slate); }
+    .badges { display:flex; flex-wrap:wrap; gap:.25rem; margin-top:.32rem; }
+    .badge { display:inline-flex; align-items:center; padding:.16rem .38rem; border-radius:999px; background:var(--pale); color:var(--sage); font-size:.62rem; font-weight:700; }
+    .badge.theory { background:#f3f0e8; color:#705c22; }
+    .badge.status { background:var(--amber-pale); color:var(--amber); }
+    .open-link { white-space:nowrap; font-weight:700; text-decoration:none; }
+    .claim-list { display:grid; gap:1rem; }
+    .claim { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(290px,.92fr); gap:1rem; padding:1.15rem; border:1px solid var(--rule); border-radius:12px; background:#fff; box-shadow:var(--shadow); }
+    .claim h3 { margin-bottom:.45rem; }
+    .claim p { color:var(--muted); font-size:.84rem; }
+    .claim-evidence { padding-left:1rem; border-left:1px solid var(--rule); }
+    .evidence-line { padding:.42rem 0; border-top:1px solid var(--rule); font-size:.76rem; }
+    .evidence-line:first-child { padding-top:0; border-top:0; }
+    .evidence-line strong { color:var(--ink); }
+    .citation-link { font-weight:700; text-decoration:none; }
+    .thumbs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.75rem; margin-top:1.4rem; }
+    .thumb { overflow:hidden; border:1px solid var(--rule); border-radius:11px; background:#fff; box-shadow:var(--shadow); }
+    .thumb a { display:block; color:inherit; text-decoration:none; }
+    .thumb img { width:100%; height:190px; object-fit:cover; object-position:top; display:block; background:#eef1ee; }
+    .thumb-body { padding:.8rem; }
+    .thumb h3 { font-family:"Instrument Sans",sans-serif; font-size:.84rem; font-weight:700; letter-spacing:0; line-height:1.3; }
+    .thumb p { margin-top:.3rem; color:var(--muted); font-size:.72rem; }
+    .thumb .source { display:block; margin-top:.45rem; color:var(--sage); font-size:.66rem; font-weight:700; }
+    .video { background:var(--ink); }
+    .video-frame { max-width:960px; aspect-ratio:16/9; overflow:hidden; margin-top:1.4rem; border:1px solid rgba(255,255,255,.24); border-radius:13px; background:#07110c; box-shadow:0 18px 45px rgba(0,0,0,.24); }
+    .video-frame video { display:block; width:100%; height:100%; aspect-ratio:16/9; object-fit:contain; background:#07110c; }
+    .video-note { max-width:960px; margin-top:.72rem; color:rgba(255,255,255,.62); font-size:.75rem; }
+    .theory-map { border-top:1px solid var(--rule); }
+    .theory-row { display:grid; grid-template-columns:minmax(160px,.7fr) minmax(260px,1.3fr) minmax(260px,1.15fr); gap:1rem; padding:.95rem 0; border-bottom:1px solid var(--rule); }
+    .theory-row strong { color:var(--ink); font-size:.82rem; }
+    .theory-row p { color:var(--muted); font-size:.78rem; }
+    .documents { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.75rem; }
+    .doc-card { padding:.9rem; border:1px solid var(--rule); border-radius:10px; background:#fff; }
+    .doc-card strong { display:block; color:var(--ink); font-size:.78rem; }
+    .doc-card span { display:block; margin-top:.3rem; color:var(--muted); font-size:.68rem; }
+    .doc-card a { display:inline-block; margin-top:.45rem; font-size:.69rem; font-weight:700; text-decoration:none; }
+    .outstanding { max-width:920px; padding:1.2rem; border:1px solid #e4c7b8; border-radius:10px; background:var(--amber-pale); }
+    .outstanding ul { margin-top:.65rem; padding-left:1.15rem; }
+    .outstanding li { margin-top:.35rem; color:#74401f; font-size:.8rem; }
+    .closing { padding:4rem 2rem; background:linear-gradient(135deg,var(--pale),#fff); text-align:center; }
+    .closing p { max-width:790px; margin:.8rem auto 0; color:var(--muted); }
+    .buttons { display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin-top:1.2rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:.66rem 1rem; border:1px solid var(--rule); border-radius:8px; background:#fff; color:var(--forest); font-size:.8rem; font-weight:700; text-decoration:none; }
+    .btn.primary { border-color:var(--forest); background:var(--forest); color:#fff; }
+    footer { padding:3rem 2rem 2rem; border-top:1px solid rgba(255,255,255,.06); background:var(--ink); }
+    .footer-inner { max-width:1160px; margin:auto; }
+    .footer-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2rem; margin-bottom:1.5rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,.08); }
+    .footer-wordmark { margin-bottom:.4rem; color:#fff; font-family:"Fraunces",Georgia,serif; font-size:1.2rem; font-weight:600; }
+    .footer-tagline { max-width:320px; color:rgba(255,255,255,.38); font-size:.76rem; line-height:1.55; }
+    .footer-tagline + .footer-tagline { margin-top:.8rem; }
+    .footer-links { display:flex; flex-direction:column; gap:.3rem; }
+    .footer-links a { color:rgba(255,255,255,.5); font-size:.76rem; text-decoration:none; }
+    .footer-links a:hover { color:var(--light); }
+    .footer-bottom { display:flex; justify-content:space-between; flex-wrap:wrap; gap:.75rem; }
+    .footer-citation { max-width:660px; color:rgba(255,255,255,.3); font-size:.69rem; line-height:1.65; }
+    .footer-citation a { color:rgba(255,255,255,.45); }
+    .footer-licence { color:rgba(255,255,255,.3); font-size:.69rem; white-space:nowrap; }
+    .lightbox { display:none; position:fixed; inset:0; z-index:500; padding:2rem; background:rgba(4,14,9,.9); align-items:center; justify-content:center; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width:95vw; max-height:90vh; object-fit:contain; background:#fff; box-shadow:0 20px 80px rgba(0,0,0,.45); }
+    .lightbox button { position:absolute; top:1rem; right:1.2rem; border:0; background:transparent; color:#fff; font-size:1rem; font-weight:700; cursor:pointer; }
+    @media(max-width:980px){ .main-links{display:none}.hamburger{display:block}.metrics{grid-template-columns:repeat(2,1fr)}.claim{grid-template-columns:1fr}.claim-evidence{padding-left:0;padding-top:.8rem;border-left:0;border-top:1px solid var(--rule)}.thumbs{grid-template-columns:repeat(2,1fr)}.documents{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:1100px){.evidence-layout{grid-template-columns:1fr}.evidence-sidebar{position:static;max-height:none;padding:1rem 1.1rem 0;overflow:visible}.desktop-index{display:none}.mobile-index{display:block}}
+    @media(max-width:700px){ .nav-inner{padding:0 1.1rem}.hero,.section,.closing{padding-left:1.1rem;padding-right:1.1rem}.metrics,.thumbs,.documents{grid-template-columns:1fr}.metric{min-height:0}.theory-row{grid-template-columns:1fr;gap:.25rem}.thumb img{height:auto} }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.evidence-sidebar{display:none!important}.evidence-layout{display:block;max-width:none}}
+
+    .proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin-top:1.25rem}
+    .proof-card{overflow:hidden;border:1px solid var(--rule);border-radius:11px;background:#fff;box-shadow:var(--shadow)}
+    .proof-card img{width:100%;height:265px;object-fit:cover;object-position:top;display:block;background:#eef1ee}
+    .proof-card.tall img{height:360px;object-fit:contain;background:#fff}
+    .proof-body{padding:.9rem}
+    .proof-body h3{font-family:"Instrument Sans",sans-serif;font-size:.88rem;font-weight:700;letter-spacing:0}
+    .proof-body p{margin-top:.35rem;color:var(--muted);font-size:.75rem}
+    .proof-links{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.55rem}
+    .proof-links a{font-size:.7rem;font-weight:700;text-decoration:none}
+    .dashboard-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin-top:1.25rem}
+    .dashboard-card{padding:1rem;border:1px solid var(--rule);border-left:4px solid var(--mid);border-radius:10px;background:#fff;box-shadow:var(--shadow)}
+    .dashboard-card strong{display:block;color:var(--ink);font-size:.87rem}
+    .dashboard-card p{margin-top:.35rem;color:var(--muted);font-size:.76rem}
+    .dashboard-card a{display:inline-block;margin-top:.55rem;font-size:.72rem;font-weight:700;text-decoration:none}
+    .reach-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin-top:1.25rem}
+    .reach-card{padding:.9rem;border:1px solid var(--rule);border-radius:10px;background:#fff;box-shadow:var(--shadow)}
+    .reach-card strong{display:block;color:var(--forest);font-family:"Fraunces",Georgia,serif;font-size:1.45rem;font-weight:400}
+    .reach-card span{display:block;margin-top:.2rem;color:var(--muted);font-size:.7rem;line-height:1.35}
+    details.archive{border:1px solid var(--rule);border-radius:10px;background:#fff}
+    details.archive+details.archive{margin-top:.55rem}
+    details.archive summary{cursor:pointer;padding:.85rem 1rem;color:var(--ink);font-size:.82rem;font-weight:700}
+    details.archive .archive-body{padding:0 1rem 1rem;color:var(--muted);font-size:.75rem}
+    .archive-links{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.5rem}
+    .archive-links a{font-size:.71rem;font-weight:700;text-decoration:none}
+    .pending-compact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-top:1rem}
+    .pending-item{padding:.8rem;border:1px solid #e4c7b8;border-radius:9px;background:var(--amber-pale);color:#74401f;font-size:.77rem}
+    .source-note{margin-top:.85rem;padding:.8rem;border-left:3px solid var(--mid);background:#f7faf8;color:var(--muted);font-size:.76rem}
+    #main a:not([data-lightbox]):not(.publication-ref):not(.commentary-ref){color:var(--forest);font-weight:700;text-decoration-line:underline;text-decoration-color:var(--mid);text-decoration-thickness:.1em;text-underline-offset:.18em}
+    #main a:not([data-lightbox]):not(.publication-ref):not(.commentary-ref):hover{border-radius:3px;background:#e8f0eb;box-shadow:0 0 0 .18rem #e8f0eb;color:var(--ink)}
+    #main .thumb>a{background:transparent;box-shadow:none;color:inherit;text-decoration:none}
+    #main .thumb>a:hover{background:transparent;box-shadow:none;color:inherit}
+    .publication-ref,.commentary-ref{position:relative;display:inline-flex;align-items:center;margin:0 .08em;padding:.05rem .34rem;border:1px solid #b8c9bf;border-radius:5px;background:#f2f6f3;color:var(--forest);font-size:.92em;font-weight:800;line-height:1.35;text-decoration:none;white-space:nowrap}
+    .commentary-ref{border-color:#cfbf83;background:var(--gold-pale);color:var(--gold-deep)}
+    .publication-ref:hover,.publication-ref:focus-visible{border-color:var(--sage);background:#e5eee8;color:var(--ink)}
+    .commentary-ref:hover,.commentary-ref:focus-visible{border-color:#a9871b;background:#f6ebbd;color:#4f3c09}
+    .publication-ref::after,.commentary-ref::after{content:attr(data-title);position:absolute;left:50%;bottom:calc(100% + .55rem);z-index:60;width:max-content;max-width:min(30rem,80vw);padding:.62rem .72rem;border:1px solid #31483b;border-radius:7px;background:var(--ink);box-shadow:0 10px 30px rgba(13,31,22,.2);color:#fff;font-size:.72rem;font-weight:600;line-height:1.4;opacity:0;pointer-events:none;transform:translate(-50%,.2rem);transition:opacity .15s ease,transform .15s ease;white-space:normal}
+    .publication-ref:hover::after,.publication-ref:focus-visible::after,.commentary-ref:hover::after,.commentary-ref:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+    [data-lightbox]{position:relative;display:block;overflow:hidden}
+    [data-lightbox]::after{content:"Click to expand";position:absolute;right:.65rem;bottom:.65rem;padding:.35rem .55rem;border:1px solid rgba(255,255,255,.55);border-radius:6px;background:rgba(13,31,22,.88);box-shadow:0 4px 18px rgba(0,0,0,.18);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.02em;opacity:0;transform:translateY(.3rem);transition:opacity .18s ease,transform .18s ease}
+    [data-lightbox] img{transition:transform .22s ease,filter .22s ease}
+    [data-lightbox]:hover::after,[data-lightbox]:focus-visible::after{opacity:1;transform:translateY(0)}
+    [data-lightbox]:hover img,[data-lightbox]:focus-visible img{filter:brightness(.82);transform:scale(1.015)}
+    #criterion-b .claim:nth-child(odd){background:#f7f8f7}
+    #criterion-b .claim:nth-child(even){background:#edf1ef}
+    #criterion-c .claim:nth-child(odd){background:#f5f7f6}
+    #criterion-c .claim:nth-child(even){background:#e8eeea}
+    #criterion-b .claim,#criterion-c .claim{border-color:#cfd9d3;box-shadow:0 1px 2px rgba(13,31,22,.05),0 8px 22px rgba(13,31,22,.045)}
+    #criterion-b .claim-evidence,#criterion-c .claim-evidence{border-color:#c7d3cc}
+    .research-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin:1.2rem 0}
+    .research-summary-card{padding:.9rem;border:1px solid var(--rule);border-radius:10px;background:#fff}
+    .research-summary-card strong{display:block;color:var(--forest);font-family:"Fraunces",Georgia,serif;font-size:1.35rem;font-weight:500}
+    .research-summary-card span{display:block;margin-top:.2rem;color:var(--muted);font-size:.72rem;line-height:1.4}
+    .research-list{border:1px solid var(--rule);border-radius:12px;background:#fff;box-shadow:var(--shadow)}
+    .research-list summary{padding:1rem 1.1rem;color:var(--forest);font-weight:800;cursor:pointer}
+    .research-list[open] summary{border-bottom:1px solid var(--rule)}
+    .broader-publications{display:grid;gap:0;padding:0 1.1rem 1rem;list-style:none;counter-reset:broader 12}
+    .broader-publications li{position:relative;padding:.72rem .3rem .72rem 2.45rem;border-bottom:1px solid var(--rule);color:var(--muted);font-size:.76rem;line-height:1.48;counter-increment:broader}
+    .broader-publications li:last-child{border-bottom:0}
+    .broader-publications li::before{content:counter(broader) ".";position:absolute;left:.2rem;top:.72rem;color:var(--sage);font-weight:800}
+    .broader-publications em{color:var(--slate)}
+    .commentary-intro{max-width:880px;margin-top:2.4rem;padding-top:2rem;border-top:1px solid var(--rule)}
+    .commentary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-top:1.2rem}
+    .commentary-card{position:relative;padding:1rem 1rem 1rem 3.15rem;border:1px solid #d8d6cc;border-radius:10px;background:#faf9f5;box-shadow:0 1px 2px rgba(13,31,22,.04)}
+    .commentary-number{position:absolute;left:1rem;top:1rem}
+    .commentary-card .outlet{display:block;margin-bottom:.2rem;color:var(--gold-deep);font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .commentary-card>a{display:inline;color:var(--ink);font-family:"Fraunces",Georgia,serif;font-size:1rem;font-weight:500;line-height:1.3}
+    .commentary-card p{margin-top:.42rem;color:var(--muted);font-size:.72rem}
+    .commentary-note{margin-top:1rem;color:var(--muted);font-size:.76rem}
+    @media(max-width:980px){.proof-grid,.dashboard-strip{grid-template-columns:1fr}.reach-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){.reach-grid,.pending-compact,.research-summary,.commentary-grid{grid-template-columns:1fr}.proof-card img,.proof-card.tall img{height:auto}}
+    @media(hover:none){[data-lightbox]::after{opacity:1;transform:none}.publication-ref::after,.commentary-ref::after{display:none}}
+
+    .claim-anchor{display:inline-flex;float:right;margin-left:.65rem;padding:.18rem .45rem;border-radius:999px;background:var(--pale);color:var(--sage);font-family:"Instrument Sans",sans-serif;font-size:.64rem;font-weight:700;letter-spacing:.03em;text-decoration:none}
+    .claim-anchor:hover{background:#dfeee5;color:var(--forest)}
+    .claim:target,.theory-row:target,tr:target{scroll-margin-top:calc(var(--nav) + 1rem);box-shadow:0 0 0 3px rgba(64,145,108,.25)}
+    .theory-anchor{display:inline-flex;margin-left:.45rem;padding:.12rem .36rem;border-radius:999px;background:var(--pale);color:var(--sage);font-size:.62rem;font-weight:700;text-decoration:none;vertical-align:middle}
+    .nomination-ref{font-weight:700;color:var(--forest);white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to evidence</a>
+<nav aria-label="Main navigation" class="site-nav">
+<div class="nav-inner">
+<a class="brand" href="../index.html">SAGE <small>Framework</small></a>
+<ul class="main-links">
+<li><a href="../sage.html">The Framework</a></li>
+<li class="nav-dropdown"><a href="../student_resources.html">Student Resources</a><div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+<a href="../student-guide.html"><span class="dd-label">Student Guide</span><span class="dd-desc">Five-step process for responsible AI use</span></a>
+<a href="../genai-101.html"><span class="dd-label">GenAI-101 Module</span><span class="dd-desc">10-lesson AI literacy course</span></a>
+<a href="../defend_tool.html"><span class="dd-label">Defend Tool</span><span class="dd-desc">Design your assurance checkpoint</span></a>
+</div></div></li>
+<li class="nav-dropdown"><a href="../policy.html">Assessment Policy</a><div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+<a href="../policy.html"><span class="dd-label">Student-Facing Policy</span><span class="dd-desc">Policy text, declarations, examples, and FAQ</span></a>
+<a href="../policy-guide.html"><span class="dd-label">Educator Guidance</span><span class="dd-desc">Implementation and adaptation guidance</span></a>
+</div></div></li>
+<li><a href="../downloads.html">Downloads</a></li>
+<li><a href="../publications.html">Evidence</a></li>
+<li><a href="../community.html">Community</a></li>
+<li><a class="cta" href="../about.html">About</a></li>
+</ul>
+<button aria-controls="mobile-nav" aria-expanded="false" class="hamburger" type="button">Menu</button>
+</div>
+</nav>
+<div aria-hidden="true" class="mobile-nav" id="mobile-nav">
+<button class="mobile-nav-close" type="button">Close</button>
+<a href="../sage.html">The Framework</a>
+<a href="../student_resources.html">Student Resources</a>
+<a class="sub-link" href="../student-guide.html">Student Guide</a>
+<a class="sub-link" href="../genai-101.html">GenAI-101 Module</a>
+<a class="sub-link" href="../defend_tool.html">Defend Tool</a>
+<a href="../policy.html">Assessment Policy</a>
+<a href="../downloads.html">Downloads</a>
+<a href="../publications.html">Evidence</a>
+<a href="../community.html">Community</a>
+<a href="../about.html">About</a>
+</div>
+<header class="hero">
+<div class="wrap">
+<div class="eyebrow">Supporting Material 1 (SM1) · 2026 AAUT Program Award</div>
+<h1>Structured <em>AI-Guided</em> Education Program</h1>
+<p class="hero-sub">Evidence website aligned to the nomination claims and references</p>
+<p class="team">Dr Mahmoud Elkhodr and Professor Ergun Gide · Category 2.3 Curriculum transformation and innovative pedagogy</p>
+<p class="hero-note">This page presents the primary and corroborating evidence supporting the nomination. Bracketed numbers match the application reference list; SM1-A1 to SM1-D7 are permanent claim anchors.</p>
+<p class="hero-video-action"><a class="btn" href="#program-video">Watch the three-minute program overview</a></p>
+<div class="metrics">
+<div class="metric"><strong>1,500+</strong><span>students represented across SAGE validation and implementation contexts</span></div>
+<div class="metric"><strong>2022–2026</strong><span>sustained classroom development, evaluation and refinement</span></div>
+<div class="metric"><strong>12</strong><span>core empirical and conceptual SAGE studies mapped below</span></div>
+<div class="metric"><strong>40+</strong><span>SAGE publications and related scholarly outputs in the broader research base</span></div>
+<div class="metric metric-gold"><strong>3</strong><span>TEQSA national resource listings, evidenced by archived pages</span></div>
+</div>
+<div class="evidence-principle"><strong>Reading rule</strong><p>Each major claim is paired with its primary publication evidence and, where available, a separate record such as a result history, institutional guide, email, letter, media record or external case-study page.</p></div>
+</div>
+</header>
+<div class="evidence-layout">
+<aside aria-label="Evidence index" class="evidence-sidebar">
+<div class="evidence-sidebar-panel desktop-index">
+<div class="evidence-sidebar-label">Evidence index</div>
+<nav aria-label="Page sections" class="evidence-sidebar-links">
+<a href="#core-evidence">Application sources</a>
+<a href="#broader-research">Broader research</a>
+<a href="#criterion-a">A. Student impact</a>
+<a href="#criterion-b">B. Recognition</a>
+<a href="#sector-commentary">Sector commentary</a>
+<a href="#criterion-c">C. Innovation</a>
+<a href="#criterion-d">D. Scholarship</a>
+<a href="#documents">Evidence archive</a>
+<a href="#program-video">Video</a>
+</nav>
+</div>
+<details class="mobile-index">
+<summary>On this page</summary>
+<div class="evidence-sidebar-panel">
+<nav aria-label="Page sections" class="evidence-sidebar-links">
+<a href="#core-evidence">Application sources</a>
+<a href="#broader-research">Broader research</a>
+<a href="#criterion-a">A. Student impact</a>
+<a href="#criterion-b">B. Recognition</a>
+<a href="#sector-commentary">Sector commentary</a>
+<a href="#criterion-c">C. Innovation</a>
+<a href="#criterion-d">D. Scholarship</a>
+<a href="#documents">Evidence archive</a>
+<a href="#program-video">Video</a>
+</nav>
+</div>
+</details>
+</aside>
+<main id="main">
+<section class="section white" id="core-evidence">
+<div class="wrap">
+<div class="section-head"><div class="label">Primary evidence — presented first</div><h2>Core SAGE studies and what each one evidences</h2><p class="lead">Each study is mapped to the claims, criteria and scholarly foundations it supports. Bracketed labels match the nomination reference list; clearly labelled supplementary studies extend, but do not replace, those cited sources.</p></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Nomination ref.</th><th>Study</th><th>Direct evidence contribution</th><th>AAUT criteria and theory anchors</th><th>Record</th></tr></thead>
+<tbody>
+<tr id="study-ref-2"><td><a class="nomination-ref" href="#study-ref-2" title="Nomination reference [2]">[2]</a></td><td><span class="pub-title">ICT students’ perceptions towards ChatGPT: An experimental reflective lab analysis</span><span class="pub-meta">STEM Education, 2023</span></td><td class="finding">Origin study: student engagement and performance across three ICT case studies; identified over-reliance and the need for structured evaluation and reflection.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Constructivism</span><span class="badge theory">Bloom</span><span class="badge theory">Self-regulation</span></div></td><td><a class="open-link" href="https://doi.org/10.3934/steme.2023006" rel="noopener" target="_blank">DOI ↗</a></td></tr>
+<tr id="study-ref-3"><td><a class="nomination-ref" href="#study-ref-3" title="Nomination reference [3]">[3]</a></td><td><span class="pub-title">The role and impact of ChatGPT in educational practices: Insights from an Australian higher education case study</span><span class="pub-meta">Discover Education, 2024</span></td><td class="finding">Cross-institutional transfer and student-rated benefit; demonstrates that the approach could move beyond its originating classroom and educators.</td><td><div class="badges"><span class="badge">A</span><span class="badge">B</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Situated learning</span><span class="badge theory">Design-based research</span></div></td><td><a class="open-link" href="https://doi.org/10.1007/s44217-024-00126-6" rel="noopener" target="_blank">DOI ↗</a></td></tr>
+<tr id="study-ref-4"><td><a class="nomination-ref" href="#study-ref-4" title="Nomination reference [4]">[4]</a></td><td><span class="pub-title">The SAGE framework for developing critical thinking and responsible generative AI use in cybersecurity education</span><span class="pub-meta">Discover Education, 2025</span></td><td class="finding">Cybersecurity cohorts evaluated AI advice against regulatory, organisational and professional constraints; evidence of critical thinking, completion and discipline-specific judgement.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Situated learning</span><span class="badge theory">Constructive alignment</span><span class="badge theory">Evaluative judgement</span></div></td><td><a class="open-link" href="https://doi.org/10.1007/s44217-025-00935-3" rel="noopener" target="_blank">DOI ↗</a></td></tr>
+<tr id="study-ref-5"><td><a class="nomination-ref" href="#study-ref-5" title="Nomination reference [5]">[5]</a></td><td><span class="pub-title">AI leads, humans lead, or collaborate? Empirical findings and the SAGE roadmap for systems analysis and design education</span><span class="pub-meta">STEM Education, 2026</span></td><td class="finding">Eighteen groups across four delivery contexts: selective AI orchestration, systematic error detection, context-sensitive rejection and accessibility improvement.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Situated learning</span><span class="badge theory">Evaluative judgement</span><span class="badge theory">Constructive alignment</span></div></td><td><a class="open-link" href="https://doi.org/10.3934/steme.2026009" rel="noopener" target="_blank">DOI ↗</a></td></tr>
+<tr id="study-sage-ap"><td><a class="nomination-ref" href="#study-sage-ap" title="SAGE-AP peer-reviewed study">Supplementary</a></td><td><span class="pub-title">From Permission to Pedagogy: The Structured AI-Guided Education Assessment Policy (SAGE-AP)</span><span class="pub-meta">Education Sciences, 2026</span></td><td class="finding">Translates broad AI permission levels into task-level guidance on verification, declaration, student judgement and defensible authorship.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">AI literacy</span><span class="badge theory">Constructive alignment</span><span class="badge theory">Assessment design</span></div></td><td><a class="open-link" href="https://doi.org/10.3390/educsci16060986" rel="noopener" target="_blank">DOI ↗</a></td></tr>
+<tr id="study-ref-11"><td><a class="nomination-ref" href="#study-ref-11" title="Nomination reference [11]">[11]</a></td><td><span class="pub-title">Embedding assurance within learning: Empirical evidence from SAGE for repositioning take-home assessment</span><span class="pub-meta">STEM Education, 2026</span></td><td class="finding">Audit evidence showed that only three of twenty-five process logs were substantially auditable; supports the shift from documentation policing to assurance embedded in learning.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Assessment security</span><span class="badge theory">Programmatic assessment</span><span class="badge theory">Assurance by design</span></div></td><td><a class="open-link" href="https://doi.org/10.3934/steme.2026024" rel="noopener" target="_blank">DOI ↗</a></td></tr>
+<tr id="study-ai-critic"><td><a class="nomination-ref" href="#study-ai-critic" title="AI as Critic preprint">Supplementary</a></td><td><span class="pub-title">AI as Critic: Validating SAGE Pedagogy for Human Authority and Responsible GenAI Use</span><span class="pub-meta">EdArXiv preprint, 2025</span></td><td class="finding">Examines how students accept, modify or reject AI critique and retain authority over the final disciplinary decision.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Self-regulation</span><span class="badge theory">Evaluative judgement</span><span class="badge theory">Metacognition</span></div></td><td><a class="open-link" href="https://osf.io/preprints/edarxiv/8j3xf" rel="noopener" target="_blank">Preprint ↗</a></td></tr>
+<tr id="study-ref-6"><td><a class="nomination-ref" href="#study-ref-6" title="Nomination reference [6]">[6]</a></td><td><span class="pub-title">How first-year students actually use ChatGPT in permitted assessments</span><span class="pub-meta">Preprint / submitted, 2026</span></td><td class="finding">First-year cohort (n=167): 73% verified systematically, 81% revised deeply, 95.2% would deepen a second attempt; identifies verification gaps and student demand for practical guidance.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Self-regulated learning</span><span class="badge theory">Metacognition</span><span class="badge theory">AI literacy</span></div></td><td><a class="open-link" href="https://doi.org/10.21203/rs.3.rs-8628653/v1" rel="noopener" target="_blank">Preprint ↗</a></td></tr>
+<tr id="study-ref-12"><td><a class="nomination-ref" href="#study-ref-12" title="Nomination reference [12]">[12]</a></td><td><span class="pub-title">Assurance by Design: Embedding the SAGE Defend Step in AI-Integrated Higher Education Assessment</span><span class="pub-meta">Frontiers in Education, accepted 2026</span></td><td class="finding">Formalises discipline-matched Defend activities and fair, visible verification of student learning within AI-integrated assessment.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Assessment security</span><span class="badge theory">Programmatic assessment</span><span class="badge theory">Constructive alignment</span></div></td><td><span class="badge status">Accepted</span></td></tr>
+<tr id="study-sage-r"><td><a class="nomination-ref" href="#study-sage-r" title="SAGE-R study under review">Supplementary</a></td><td><span class="pub-title">Supervising Research in the Age of Generative AI: The SAGE Research Framework</span><span class="pub-meta">Under review, 2026</span></td><td class="finding">Extends structured verification, disclosure, reflection and defensible authorship into research candidature and supervision.</td><td><div class="badges"><span class="badge">A</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Self-regulation</span><span class="badge theory">Research integrity</span><span class="badge theory">Evaluative judgement</span></div></td><td><span class="badge status">Under review</span></td></tr>
+<tr id="study-ref-7"><td><a class="nomination-ref" href="#study-ref-7" title="Nomination reference [7]">[7]</a></td><td><span class="pub-title">Promoting Critical AI Literacy in Transnational Computing Education Through a SAGE-Guided Intervention</span><span class="pub-meta">ICAIES 2026, accepted and presented</span></td><td class="finding">UK–China Level 4 computing implementation: confidence rose from 2.84 to 3.63/5 and 57.3% correctly identified and justified an AI error.</td><td><div class="badges"><span class="badge">A</span><span class="badge">B</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Situated learning</span><span class="badge theory">Critical AI literacy</span></div></td><td><span class="badge status">Presented</span></td></tr>
+<tr id="study-transnational-follow-up"><td><a class="nomination-ref" href="#study-transnational-follow-up" title="Transnational follow-up study under review">Supplementary</a></td><td><span class="pub-title">Developing Critical AI Literacy through SAGE in Transnational Computing Education</span><span class="pub-meta">Under review, 2026</span></td><td class="finding">Fuller account of the international intervention, disciplinary error-checking and transferability within a UK–China higher education programme.</td><td><div class="badges"><span class="badge">A</span><span class="badge">B</span><span class="badge">C</span><span class="badge">D</span><span class="badge theory">Situated learning</span><span class="badge theory">Design-based research</span></div></td><td><span class="badge status">Under review</span></td></tr>
+</tbody>
+</table></div>
+</div>
+</section>
+<section class="section pale" id="broader-research">
+<div class="wrap">
+<div class="section-head">
+<div class="label">Broader scholarly programme</div>
+<h2>GenAI in education — broader research base</h2>
+<p class="lead">The 12 studies above are the direct SAGE evidence. Together with the related outputs below, they form a 40+ publication research base spanning GenAI in education, AI literacy, assessment reform, curriculum design and interdisciplinary applications. This broader corpus demonstrates sustained scholarship; it does not replace the criterion-specific evidence.</p>
+</div>
+<div aria-label="Research programme summary" class="research-summary">
+<div class="research-summary-card"><strong>12</strong><span>core SAGE studies mapped directly to the award criteria</span></div>
+<div class="research-summary-card"><strong>40+</strong><span>publications and related scholarly outputs across the broader programme</span></div>
+<div class="research-summary-card"><strong>100,000+</strong><span>collective views reported across the broader research corpus in the application</span></div>
+</div>
+<details class="research-list">
+<summary>View all 28 broader publications (13–40)</summary>
+<ol class="broader-publications">
+<li>M. Elkhodr and E. Gide, Eds., <em>Generative Artificial Intelligence Empowered Learning: A New Frontier in Educational Technology</em>, 1st ed. New York, NY: Taylor and Francis, 2025, 248 pp. doi: <a href="https://doi.org/10.1201/9781003422433" rel="noopener" target="_blank">10.1201/9781003422433</a>. eBook ISBN: 9781003422433</li>
+<li>R. Jamal Eddine, E. Gide, and A. Al-Sabbagh, "Generative AI in higher education: A cross-sector analysis of ChatGPT's impact on STEM, social sciences, and healthcare," <em>STEM Education</em>, vol. 5, no. 5, pp. 757–801, 2025. doi: <a href="https://doi.org/10.3934/steme.2025035" rel="noopener" target="_blank">10.3934/steme.2025035</a></li>
+<li>K. Wangsa, S. Karim, E. Gide, and M. Elkhodr, "A systematic review and comprehensive analysis of pioneering AI chatbot models from education to healthcare: ChatGPT, Bard, Llama, Ernie and Grok," <em>Future Internet</em>, vol. 16, no. 7, art. 219, 2024. doi: <a href="https://doi.org/10.3390/fi16070219" rel="noopener" target="_blank">10.3390/fi16070219</a></li>
+<li>K. Wangsa, R. Sandu, S. Karim, M. Elkhodr, and E. Gide, "A systematic review and analysis on the potentials and challenges of GenAI chatbots in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1–7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837608" rel="noopener" target="_blank">10.1109/ITHET61869.2024.10837608</a></li>
+<li>A. Al Tawara, J. El-Den, E. Gide, and Y. Sebastian, "A systematic review and comprehensive analysis of AI-enabled re-skilling and upskilling in education: Transformative strategies for the future," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1–10. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837638" rel="noopener" target="_blank">10.1109/ITHET61869.2024.10837638</a></li>
+<li>A. Al Tawara, E. Gide, and J. El-Den, "Systematic review and comprehensive analysis of integrating human-centered AI in higher education: Enhancing teaching, learning, and ethics," in <em>Proc. 12th Int. Conf. Future Internet of Things and Cloud (FiCloud)</em>, Aug. 2025, pp. 305–312. doi: <a href="https://doi.org/10.1109/FiCloud61071.2025.00051" rel="noopener" target="_blank">10.1109/FiCloud61071.2025.00051</a></li>
+<li>H. Ranasinghe, E. Gide, and M. Elkhodr, "The significance of GenAI empowered ERP systems course teaching in quality education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1–7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837679" rel="noopener" target="_blank">10.1109/ITHET61869.2024.10837679</a></li>
+<li>G. Chaudhry, E. Gide, E. Yadegaridehkordi, and R. Tumpa, "Generative AI-powered teaching and learning in engineering and project management higher education: A systematic review," in <em>Joint International Conference on AI, Big Data and Blockchain</em>, Cham, Switzerland: Springer Nature, Aug. 2025, pp. 99–113.</li>
+<li>E. Gusman, E. Gide, M. Elkhodr, and G. Chaudhry, "The benefits and challenges of using artificial intelligence in teaching English as a foreign language in higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1–7. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837597" rel="noopener" target="_blank">10.1109/ITHET61869.2024.10837597</a></li>
+<li>E. Gusman, E. Gide, G. Chaudhry, and M. Elkhodr, "A comprehensive review to identify the challenges and opportunities of using digital technology in English teaching in higher education," in <em>International Society for Technology, Education, and Science</em>, 2023.</li>
+<li>R. Sandu, E. Gide, S. Karim, and P. Singh, "A framework for GenAI-empowered curriculum and learning resources: A case study from an Australian higher education," in <em>Proc. 21st Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Paris, France, Nov. 2024, pp. 1–8. doi: <a href="https://doi.org/10.1109/ITHET61869.2024.10837623" rel="noopener" target="_blank">10.1109/ITHET61869.2024.10837623</a></li>
+<li>N. Sandu and E. Gide, "Adoption of AI-Chatbots to enhance student learning experience in higher education in India," in <em>Proc. 18th Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Sept. 2019, pp. 1–5. doi: <a href="https://doi.org/10.1109/ITHET46829.2019.8937382" rel="noopener" target="_blank">10.1109/ITHET46829.2019.8937382</a></li>
+<li>M. Elkhodr, K. Wangsa, E. Gide, and S. Karim, "A systematic review and multifaceted analysis of the integration of artificial intelligence and blockchain: Shaping the future of Australian higher education," <em>Future Internet</em>, vol. 16, no. 10, art. 378, 2024. doi: <a href="https://doi.org/10.3390/fi16100378" rel="noopener" target="_blank">10.3390/fi16100378</a></li>
+<li>M. Elkhodr, E. Gide, and N. Pandey, "Enhancing mental health support for international students: A digital framework for holistic well-being in higher education," <em>STEM Education</em>, vol. 4, no. 4, pp. 466–488, 2024. doi: <a href="https://doi.org/10.3934/steme.2024025" rel="noopener" target="_blank">10.3934/steme.2024025</a></li>
+<li>N. Abbasi, E. Gide, P. Kalutara, and P. Lawrence, "Barriers and opportunities in online delivery of architecture and building design studios: Australian educators' perspectives," 2024. [Online]. Available: <a href="https://archscience.org/paper/barriers-and-opportunities-in-online-delivery-of-architecture-and-building-design-studios-australian-educators-perspectives/" rel="noopener" target="_blank">Architecture Science</a></li>
+<li>R. Jamal Eddine, E. Gide, and A. Al-Sabbagh, "Systematised evidence mapping of generative artificial intelligence (GenAI) and digital divide phenomena in higher education," <em>Discover Computing</em>, vol. 29, art. 157, 2026. doi: <a href="https://doi.org/10.1007/s10791-026-10044-w" rel="noopener" target="_blank">10.1007/s10791-026-10044-w</a></li>
+<li>A. Azra, E. Gide, R. M. X. Wu, S. Karim, and R. Sandu, "Artificial Intelligence Enhancing Learning and Satisfaction in Higher Education," in <em>CQU Scholarship of Tertiary Teaching Online Conference</em>, Australia, 2020.</li>
+<li>A. M. Al Tawara, E. Gide, and M. El Khodr, "A Systematic Review and Framework for AI-Driven Transformation from E-Business to AI-Business in Australian SMEs," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, May 2026.</li>
+<li>A. M. Al Tawara, E. Gide, and M. El Khodr, "Development of an AI-Business Transformation Framework for Australian SMEs: A PRISMA-Based Systematic Review and Design Science Approach," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, May 2026.</li>
+<li>R. Agaloos, E. Gide, and M. ElKhodr, "An Analysis of GenAI Adoption Effectiveness in Philippines Healthcare SMEs," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–7. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11585098" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11585098</a></li>
+<li>A. Al Tawara, E. Gide, and M. El Khodr, "Development of an AI-Business Transformation Framework for Australian SMEs: A PRISMA-Based Systematic Review and Design Science Approach," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–9. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11584989" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11584989</a></li>
+<li>A. Al Tawara, E. Gide, and M. El Khodr, "A Systematic Review and Framework for AI-Driven Transformation from E-Business to AI-Business in Australian SMEs," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–8. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11585085" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11585085</a></li>
+<li>R. Agaloos, E. Gide, and M. ElKhodr, "Investigating GenAI Adoption Readiness of Healthcare SMEs in Phillippines," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–7. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11584974" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11584974</a></li>
+<li>H. Ranasinghe, E. Gide, and M. ElKhodr, "A Systematic Review of AI-ERP Integration for Educational Data Analytics and Institutional Insights," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–8. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11585168" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11585168</a></li>
+<li>A. Azra, E. Gide, S. Karim, and M. ElKhodr, "A Comprehensive Analysis to Identify the Opportunities and Challenges of GenAI-Driven Research in Higher Education," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–10. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11585029" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11585029</a></li>
+<li>H. Ranasinghe, E. Gide, and M. ElKhodr, "A Systematic Review of AI Applications in ERP Systems in Higher Education," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–9. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11585080" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11585080</a></li>
+<li>S. Karim, E. Gide, A. Azra, M. Chowdhury, and R. Sandu, "The Impact of AI on the Quality of Learning and Teaching in Higher Education," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–5. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11585171" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11585171</a></li>
+<li>A. Ul Hassan, G. Chaudhry, and E. Gide, "Using Generative AI to Educate and Train SMEs in Adopting Renewable Energy in Regional Australia," in <em>Proc. 22nd Int. Conf. Information Technology Based Higher Education and Training (ITHET)</em>, Lilihammer, Norway, 2026, pp. 1–10. doi: <a href="https://doi.org/10.1109/ITHET69978.2026.11585089" rel="noopener" target="_blank">10.1109/ITHET69978.2026.11585089</a></li>
+</ol>
+</details>
+<p class="source-note">Publications 1–12 are the core studies mapped above. The same full record is maintained on the <a href="../publications.html#portfolio" rel="noopener" target="_blank">SAGE publications page ↗</a>.</p>
+</div>
+</section>
+<section class="section pale" id="criterion-a">
+<div class="wrap">
+<div class="section-head"><div class="label">Criterion A — publications plus direct student evidence</div><h2>A. Positively impacted on student learning, student engagement or the overall student experience for a period of no less than three years</h2><p class="lead">The empirical studies are the primary evidence. Dashboards, de-identified student decisions, result histories and independent educator observations show the underlying student behaviour and implementation context.</p></div>
+<div class="claim-list">
+<article class="claim" id="A1"><div><h3><a class="claim-anchor" href="#A1">SM1-A1</a>Sustained impact across levels, disciplines and delivery modes</h3><p>Successive SAGE studies document progression from initial ICT classroom use to cybersecurity, systems analysis, first-year communication, research candidature and international technical tasks. More than 1,500 students are represented across direct teaching and validation contexts from 2022 to 2026.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publications:</strong> <a class="citation-link" href="#study-ref-2">[2]</a>, <a class="citation-link" href="#study-ref-3">[3]</a>, <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a>, <a class="citation-link" href="#study-ai-critic">AI Critic study</a>, <a class="citation-link" href="#study-ref-6">[6]</a>, <a class="citation-link" href="#study-sage-r">SAGE-R study</a>, <a class="citation-link" href="#study-ref-7">[7]</a> and <a class="citation-link" href="#study-transnational-follow-up">transnational follow-up study</a>.</div><div class="evidence-line"><strong>Implementation records:</strong> unit result histories for COIT20268, COIT12212, COIT20263 and COIT20248.</div><div class="evidence-line"><strong>Evaluation cycle:</strong> observed student difficulty led to a documented program refinement in each phase.</div></div></article>
+<article class="claim" id="A2"><div><h3><a class="claim-anchor" href="#A2">SM1-A2</a>First-year students learned to verify and revise rather than accept AI output</h3><p>The n=167 first-year study records 73% systematic verification, 81% deeper revision and 95.2% intention to deepen a future attempt. Verification remained challenging, with 77.8% identifying accuracy checking as the hardest part, showing both active engagement and the continuing need for guided practice.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publication:</strong> <a class="citation-link" href="#study-ref-6">[6]</a>.</div><div class="evidence-line"><strong>Interactive evidence:</strong> the public first-year dashboard presents the response distributions and learner profiles.</div><div class="evidence-line"><strong>Independent corroboration:</strong> Dr Ahmedi Azra reported that students valued the clarity and structure and were taught appropriate AI use rather than approaching it mainly through fear of cheating.</div><div class="evidence-line"><strong>Public translation (corroborating):</strong> C1 and C2 translate the student demand for practical guidance to higher-education audiences.</div></div></article>
+<article class="claim" id="A3"><div><h3><a class="claim-anchor" href="#A3">SM1-A3</a>Advanced students demonstrated selective disciplinary judgement</h3><p>Cybersecurity and systems-analysis students evaluated AI recommendations against regulatory, organisational, usability and task constraints. Strong acceptance of valid advice alongside rejection of contextually inappropriate advice indicates selective orchestration rather than indiscriminate compliance.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publications:</strong> <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a> and <a class="citation-link" href="#study-ai-critic">AI Critic study</a>.</div><div class="evidence-line"><strong>De-identified artefacts:</strong> the systems-analysis dataset records tests, AI recommendations, acceptance/rejection decisions and student reasons.</div><div class="evidence-line"><strong>Corroboration:</strong> tutor feedback and an Atlassian engineering review of the authentic cybersecurity case.</div><div class="evidence-line"><strong>Public translation (corroborating):</strong> C9 reports the cybersecurity implementation for a wider science audience.</div></div></article>
+<article class="claim" id="A4"><div><h3><a class="claim-anchor" href="#A4">SM1-A4</a>The learning model transferred beyond the originating classroom</h3><p>The 2024 cross-institutional study included undergraduate and postgraduate students from business and ICT settings. The UK-China implementation then applied SAGE to a graph-theory problem in which students had to identify and justify an AI error.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publications:</strong> <a class="citation-link" href="#study-ref-3">[3]</a>, <a class="citation-link" href="#study-ref-7">[7]</a> and <a class="citation-link" href="#study-transnational-follow-up">transnational follow-up study</a>.</div><div class="evidence-line"><strong>Australian implementation record:</strong> Dr Raj Sandu documented the multi-institution participant context and classroom/tutorial activities.</div><div class="evidence-line"><strong>International outcome:</strong> confidence increased from 2.84 to 3.63/5 and 57.3% correctly identified and justified the technical error.</div></div></article>
+<article class="claim" id="A5"><div><h3><a class="claim-anchor" href="#A5">SM1-A5</a>SAGE principles extended into research candidature</h3><p>SAGE-R applies structured verification, reflection and defensible authorship to research supervision. The first graduate associated with this agenda completed a thesis rated by both examiners as outstanding quality and within the top 10% of the field.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publication:</strong> <a class="citation-link" href="#study-sage-r">SAGE-R study</a>.</div><div class="evidence-line"><strong>Corroborating record:</strong> the Dean, School of Graduate Research congratulatory letter.</div><div class="evidence-line"><strong>Careful interpretation:</strong> the record corroborates the graduate outcome; it does not attribute that outcome solely to SAGE.</div></div></article>
+</div>
+<div class="dashboard-strip">
+<div class="dashboard-card"><strong>First-year verification dashboard</strong><p>Interactive evidence for the n=167 study, including verification, revision, challenge and learner-profile findings.</p><a href="../dashboard.html" rel="noopener" target="_blank">Open dashboard ↗</a></div>
+<div class="dashboard-card"><strong>Systems-analysis decision dataset</strong><p>De-identified group artefacts showing AI recommendations accepted, rejected or deferred with disciplinary reasons.</p><a href="../datasetsage.html" rel="noopener" target="_blank">Open dataset ↗</a></div>
+</div>
+<div class="proof-grid">
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/first-year-student-survey-results.png"><img alt="Screenshot of first-year student survey results supporting the SAGE verification study" src="assets/evidence/first-year-student-survey-results.png"/></a><div class="proof-body"><h3>First-year student survey evidence</h3><p>Direct response evidence associated with the public dashboard and <a class="citation-link" href="#study-ref-6">[6]</a>.</p><div class="proof-links"><a href="../dashboard.html" target="_blank">Open interactive dashboard</a></div></div></article>
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/azra-first-year-feedback-public.jpg"><img alt="Educator email reporting student appreciation of the clarity and structure of the SAGE redesign" src="assets/evidence/azra-first-year-feedback-public.jpg"/></a><div class="proof-body"><h3>Independent first-year educator observation</h3><p>Students appreciated the redesign's clarity and structure and received practical guidance on appropriate AI use.</p></div></article>
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/raj-cross-institutional-public.jpg"><img alt="Cross-institutional implementation record describing participant groups and learning activities" src="assets/evidence/raj-cross-institutional-public.jpg"/></a><div class="proof-body"><h3>Cross-institutional implementation record</h3><p>Documents undergraduate/postgraduate, ICT/business and multi-institution participation behind <a class="citation-link" href="#study-ref-3">[3]</a>.</p></div></article>
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/coit20248-tutor-feedback.png"><img alt="Tutor feedback reporting that the redesigned tutorial was working well" src="assets/evidence/coit20248-tutor-feedback.png"/></a><div class="proof-body"><h3>Independent tutor feedback</h3><p>Corroborates improved alignment between tutorial activity and lectures in the systems-analysis redesign.</p></div></article>
+</div>
+</div>
+</section>
+<section class="section white" id="criterion-b">
+<div class="wrap">
+<div class="section-head"><div class="label">Criterion B — official adoption and independent recognition</div><h2>B. Gained recognition from colleagues, the institution and/or the broader community</h2><p class="lead">The evidence distinguishes formal institutional incorporation, national resource listing, independent educator uptake, cross-institutional implementation, international engagement and scholarly/public reach.</p></div>
+<div class="claim-list">
+<article class="claim" id="B1"><div><h3><a class="claim-anchor" href="#B1">SM1-B1</a>CQUniversity formally incorporated SAGE into its assessment model</h3><p>The evidence should be read as a sequence. The 2026 Guided-Assured Assessment Model Educator Guide first establishes SAGE inside the official model by naming the framework, reproducing its six-step cycle and mapping SAGE orchestration levels to university assessment guidance. A 30 July 2026 implementation notice then shows the Guided-Assured model moving into operational use across Term 3 unit-profile updates, while the Academic Learning Centre directly adopted the named SAGE GenAI-101 module in its student-facing GenAI resources. Together, these records demonstrate formal incorporation, operational rollout and central learning-support adoption.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>1. Official guide:</strong> <a href="assets/evidence/cqu-guide-page-17-sage-six-steps.png" rel="noopener" target="_blank">view the SAGE six-step evidence</a> and <a href="assets/evidence/cqu-guide-page-12-sage-orchestration.png" rel="noopener" target="_blank">orchestration-level mapping ↗</a>.</div><div class="evidence-line"><strong>2. Operational rollout, 30 July 2026:</strong> <a href="assets/evidence/cqu-guided-assured-term3-rollout-30-july-2026.png" rel="noopener" target="_blank">view the redacted Term 3 implementation notice ↗</a>.</div><div class="evidence-line"><strong>3. Direct central-service adoption:</strong> <a href="assets/evidence/cqu-alc-sage-genai101-adoption.png" rel="noopener" target="_blank">view the Academic Learning Centre’s student-facing SAGE GenAI-101 listing ↗</a>.</div><div class="evidence-line"><strong>Staff development:</strong> <a href="assets/evidence/daniel-maddock-genai-for-educators-email.png" rel="noopener" target="_blank">view Dr Daniel Maddock’s GenAI for Educators email ↗</a>.</div><div class="evidence-line"><strong>Careful interpretation:</strong> the rollout notice operationalises the Guided-Assured model across Term 3 units; it is not presented as proof that every unit must use SAGE specifically.</div></div></article>
+<article class="claim" id="B2"><div><h3><a class="claim-anchor" href="#B2">SM1-B2</a>Educators outside ICT independently selected SAGE resources for their students</h3><p>A Business Ethics lecturer independently discovered the Generative AI Literacy and Numeracy Module, described it as clear, practical, accessible and tangible for students, and committed to sharing it with her class.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Evidence:</strong> <a href="assets/evidence/renata-independent-uptake-public.jpg" rel="noopener" target="_blank">view the redacted email from Dr Renata Klafke ↗</a>, School of Business and Law.</div><div class="evidence-line"><strong>Value:</strong> cross-disciplinary recognition and intended uptake without mandate or direct promotion.</div><div class="evidence-line"><strong>Careful wording:</strong> evidence of committed uptake; completed student outcomes are not claimed.</div></div></article>
+<article class="claim" id="B3"><div><h3><a class="claim-anchor" href="#B3">SM1-B3</a>Three SAGE resources received national TEQSA listing</h3><p>Archived TEQSA pages show the implementation guide under Academic integrity and assessment reform, and the literacy/numeracy module and first-year student-use resource under Student resources and support.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Evidence:</strong> three separate national resource entries.</div><div class="evidence-line"><strong>Supporting resources:</strong> <a class="citation-link" href="#study-sage-ap">SAGE-AP study</a>, <a class="citation-link" href="#study-ref-6">[6]</a> and the evidence-based implementation guide.</div><div class="evidence-line"><strong>Careful wording:</strong> national recognition and resource listing, not national adoption.</div></div></article>
+<article class="claim" id="B4"><div><h3><a class="claim-anchor" href="#B4">SM1-B4</a>External academics initiated and implemented cross-institutional work</h3><p>Dr Raj Sandu's record supports the Australian cross-institutional study. Associate Professor Maged Fakirah independently approached the team after identifying SAGE as a structured, evidence-based framework suitable for UK-Chinese transnational education, leading to the documented technical implementation and accepted conference work.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Australian evidence:</strong> <a class="citation-link" href="#study-ref-3">[3]</a> and implementation email.</div><div class="evidence-line"><strong>International evidence:</strong> <a class="citation-link" href="#study-ref-7">[7]</a> and <a class="citation-link" href="#study-transnational-follow-up">transnational follow-up study</a>, initial unsolicited approach and support/grant letter.</div><div class="evidence-line"><strong>Independent recognition:</strong> University of Warwick Education Portal case study.</div></div></article>
+<article class="claim" id="B5"><div><h3><a class="claim-anchor" href="#B5">SM1-B5</a>The research and resources show substantial scholarly and practitioner reach</h3><p>Dated publisher, Google Scholar and Zenodo records provide transparent evidence of readership, citation and resource uptake. Platform-specific metrics are labelled rather than combined as if they were directly equivalent.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Selected publisher reach:</strong> view the dated records for the <a href="assets/evidence/ict-study-publisher-metrics.png" rel="noopener" target="_blank">2023 ICT study</a>, <a href="assets/evidence/discover-education-publisher-metrics.png" rel="noopener" target="_blank">2024 cross-institutional study</a> and <a href="assets/evidence/systematic-review-publisher-metrics.png" rel="noopener" target="_blank">systematic review ↗</a>.</div><div class="evidence-line"><strong>Selected Google Scholar records:</strong> <a href="https://scholar.google.com.au/citations?hl=en&amp;user=xqeZJm4AAAAJ&amp;pagesize=80&amp;view_op=list_works" rel="noopener" target="_blank">open the Google Scholar publication profile ↗</a>.</div><div class="evidence-line"><strong>Open resource uptake:</strong> <a href="assets/evidence/zenodo-sage-resource-uptake-v3.png" rel="noopener" target="_blank">view the implementation guide metrics ↗</a>.</div><div class="evidence-line"><strong>Public and sector commentary:</strong> C1, C2, C3, C4, C5, C6, C8 and C9 translate the research for sector and community audiences.</div></div></article>
+</div>
+<div class="proof-grid">
+<article class="proof-card tall"><a href="https://www.cqu.edu.au/about-us/excellence-education/the-cquniversity-learning-and-teaching-strategy-futurenow/cqu-guided-assured-assessment-model-educator-guide" rel="noopener" target="_blank"><img alt="CQUniversity Guided-Assured Assessment Model page 17 naming SAGE and presenting its six steps" src="assets/evidence/cqu-guide-page-17-sage-six-steps.png"/></a><div class="proof-body"><h3>Official CQUniversity adoption: six-step cycle</h3><p>Page 17 names SAGE and incorporates Generate, Evaluate, Refine, AI Critic, Reflect and Defend.</p><div class="proof-links"><a href="https://www.cqu.edu.au/about-us/excellence-education/the-cquniversity-learning-and-teaching-strategy-futurenow/cqu-guided-assured-assessment-model-educator-guide" target="_blank">Open official webpage</a><a href="assets/evidence/cqu-guided-assured-assessment-model-2026.pdf" target="_blank">Open guide PDF</a></div></div></article>
+<article class="proof-card tall"><a data-lightbox="" href="assets/evidence/cqu-guide-page-12-sage-orchestration.png"><img alt="CQUniversity guide page 12 mapping SAGE student orchestration levels" src="assets/evidence/cqu-guide-page-12-sage-orchestration.png"/></a><div class="proof-body"><h3>Official CQUniversity adoption: orchestration levels</h3><p>Page 12 maps SAGE Student Orchestration Levels to guidance, permitted use and student submission requirements.</p></div></article>
+<article class="proof-card tall"><a data-lightbox="" href="assets/evidence/cqu-guided-assured-term3-rollout-30-july-2026.png"><img alt="Redacted 30 July 2026 CQUniversity notice stating that the Guided-Assured Assessment Model will be implemented from Term 3 and requires unit-profile updates" src="assets/evidence/cqu-guided-assured-term3-rollout-30-july-2026.png"/></a><div class="proof-body"><h3>Operational rollout of the Guided-Assured model</h3><p>On 30 July 2026, Term 3 Unit Coordinators were advised that the Guided-Assured Assessment Model would be implemented from Term 3 and that assessment structures must be updated through the University Unit Profile process. Read after the official guide above, this shows the institutional mechanism through which SAGE-informed guided-assurance practice can move into operational use.</p></div></article>
+<article class="proof-card tall"><a data-lightbox="" href="assets/evidence/cqu-alc-sage-genai101-adoption.png"><img alt="CQUniversity Academic Learning Centre student-facing GenAI resources page incorporating the SAGE GenAI-101 Generative AI Literacy and Numeracy module" src="assets/evidence/cqu-alc-sage-genai101-adoption.png"/></a><div class="proof-body"><h3>Direct Academic Learning Centre adoption</h3><p>CQUniversity’s Academic Learning Centre incorporated the SAGE GenAI-101: Generative AI Literacy and Numeracy module into its student-facing GenAI Resources and Workshops site, extending SAGE beyond individual units into central academic-learning support.</p></div></article>
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/renata-independent-uptake-public.jpg"><img alt="Business Ethics lecturer email praising and committing to share the SAGE literacy and numeracy module" src="assets/evidence/renata-independent-uptake-public.jpg"/></a><div class="proof-body"><h3>Independent cross-disciplinary uptake</h3><p>Unsolicited recognition from a Business Ethics lecturer outside ICT.</p></div></article>
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/maged-initial-approach-public.jpg"><img alt="Unsolicited international email proposing UK-Chinese transnational implementation of SAGE" src="assets/evidence/maged-initial-approach-public.jpg"/></a><div class="proof-body"><h3>Unsolicited international approach</h3><p>Initial external contact proposing SAGE deployment and transferability testing in UK-Chinese TNE contexts.</p><div class="proof-links"><a href="assets/evidence/maged-fakirah-international-support-letter.pdf" target="_blank">Open subsequent support letter</a></div></div></article>
+</div>
+<div aria-label="Selected reach metrics" class="reach-grid">
+<div class="reach-card"><strong>16,641</strong><span>publisher-recorded views for the 2023 ICT study, plus 922 PDF downloads</span></div>
+<div class="reach-card"><strong>16k</strong><span>publisher-recorded accesses for the 2024 cross-institutional study</span></div>
+<div class="reach-card"><strong>18,676</strong><span>publisher-recorded views for the systematic review</span></div>
+<div class="reach-card"><strong>507</strong><span>downloads of version 3 of the SAGE implementation guide, from 616 views</span></div>
+</div>
+<div class="proof-grid">
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/google-scholar-selected-citations.png"><img alt="Google Scholar screenshot showing selected citation counts" src="assets/evidence/google-scholar-selected-citations.png"/></a><div class="proof-body"><h3>Selected Google Scholar citation counts</h3><p>176 citations for the origin study, 112 for the systematic review and 95 for the cross-institutional case study at capture.</p><div class="proof-links"><a href="https://scholar.google.com.au/citations?hl=en&amp;user=xqeZJm4AAAAJ&amp;pagesize=80&amp;view_op=list_works" rel="noopener" target="_blank">Open Google Scholar profile ↗</a></div></div></article>
+<article class="proof-card"><a data-lightbox="" href="assets/evidence/zenodo-sage-resource-uptake-v3.png"><img alt="Zenodo screenshot showing version 3 implementation guide views and downloads" src="assets/evidence/zenodo-sage-resource-uptake-v3.png"/></a><div class="proof-body"><h3>Open-resource uptake</h3><p>Version 3 of the implementation guide recorded 616 views and 507 downloads, alongside use of related SAGE tools.</p></div></article>
+</div>
+<p class="source-note">Publisher metrics and Google Scholar counts use different databases and are therefore displayed separately. The values are dated evidence snapshots and should be refreshed shortly before submission.</p>
+<div class="commentary-intro" id="sector-commentary">
+<div class="label">Corroborating public translation</div>
+<h3>Public &amp; sector commentary</h3>
+<p class="lead">These numbered sources show how SAGE research and its implications have been translated for higher-education, professional and community audiences. They evidence dissemination, reach and sector engagement; the primary evidence remains the peer-reviewed studies and implementation records above.</p>
+</div>
+<div class="commentary-grid">
+<article class="commentary-card"><div class="commentary-number">C1</div><span class="outlet">THE Campus · 23 April 2026</span><a href="https://www.timeshighereducation.com/campus/students-are-asking-ai-guidance-not-just-policy" rel="noopener" target="_blank">Students are asking for AI guidance, not just policy ↗</a><p>Why higher education must move from blanket policy statements to structured, practical guidance that helps students use AI responsibly and with critical judgement.</p></article>
+<article class="commentary-card"><div class="commentary-number">C2</div><span class="outlet">HERDSA Connect · 17 June 2026</span><a href="https://herdsa.org.au/herdsa-connect/students-are-asking-ai-guidance-not-just-policy-comprehensive-practical-framework-ai" rel="noopener" target="_blank">Students are asking for AI guidance, not just policy: A comprehensive, practical framework for AI integration ↗</a><p>An adaptation for the HERDSA community focused on embedding structured AI guidance in assessment.</p></article>
+<article class="commentary-card"><div class="commentary-number">C3</div><span class="outlet">Future Campus · 11 April 2026</span><a href="https://futurecampus.com.au/2026/04/11/ai-era-must-not-become-excuse-to-default-to-low-tech-exams/" rel="noopener" target="_blank">AI era must not become an excuse to default to low-tech exams ↗</a><p>Commentary arguing that low-tech, high-surveillance assessment is an impoverished response to AI.</p></article>
+<article class="commentary-card"><div class="commentary-number">C4</div><span class="outlet">CQUniversity News · 4 March 2026</span><a href="https://www.cqu.edu.au/news/1267512/teaching-students-to-think-with-ai--not-cheat-with-it" rel="noopener" target="_blank">Teaching students to think with AI — not cheat with it ↗</a><p>A CQUniversity feature on making student AI use, judgement and verification visible in assessment.</p></article>
+<article class="commentary-card"><div class="commentary-number">C5</div><span class="outlet">CQUniversity News · 24 March 2026</span><a href="https://www.cqu.edu.au/news/1270316/cquniversity-leads-shift-in-ai-ready-education" rel="noopener" target="_blank">CQUniversity leads shift in AI-ready education ↗</a><p>Coverage of the SAGE-based approach and its focus on developing AI-ready graduates.</p></article>
+<article class="commentary-card"><div class="commentary-number">C6</div><span class="outlet">The Educator · 13 March 2026</span><a href="https://www.theeducatoronline.com/k12/news/opinion-teaching-students-to-think-with-ai--not-cheat-with-it/288838" rel="noopener" target="_blank">Opinion: Teaching students to think with AI — not cheat with it ↗</a><p>Reframes the AI debate from integrity threat to a scaffold for critical thinking and defensible judgement.</p></article>
+<article class="commentary-card"><div class="commentary-number">C7</div><span class="outlet">CQUniversity News · 13 May 2026</span><a href="https://www.cqu.edu.au/news/1280233/smart-cities-of-the-future-could-think-for-themselves" rel="noopener" target="_blank">Smart cities of the future could think for themselves ↗</a><p>Public translation of AI and human-oversight themes that are central to the SAGE programme.</p></article>
+<article class="commentary-card"><div class="commentary-number">C8</div><span class="outlet">Gladstone Today · 28 March 2026</span><a href="https://gladstonetoday.com.au/news/2026/03/28/cquniversity-leads-shift-in-ai-ready-education/" rel="noopener" target="_blank">CQUniversity leads shift in AI-ready education ↗</a><p>Regional coverage of SAGE-led AI-integrated assessment and graduate readiness.</p></article>
+<article class="commentary-card"><div class="commentary-number">C9</div><span class="outlet">SciEnMag · 27 November 2025</span><a href="https://scienmag.com/empowering-cybersecurity-education-with-responsible-ai-framework/" rel="noopener" target="_blank">Empowering cybersecurity education with responsible AI framework ↗</a><p>Science-media coverage of the cybersecurity implementation of SAGE.</p></article>
+<article class="commentary-card"><div class="commentary-number">C10</div><span class="outlet">LinkedIn · 14 March 2026</span><a href="https://www.linkedin.com/pulse/protect-your-research-age-generative-ai-rethinking-preprint-elkhodr-du7tc" rel="noopener" target="_blank">Protect your research in the age of generative AI: Rethinking the preprint ↗</a><p>Professional commentary on research integrity, authorship and preprint practices in the age of generative AI.</p></article>
+</div>
+<p class="commentary-note">References C1–C10 are used throughout Criteria A–D as corroborating translation and reach evidence.</p>
+</div>
+</section>
+<section class="section pale" id="criterion-c">
+<div class="wrap">
+<div class="section-head"><div class="label">Criterion C — innovation evidenced through use and adoption</div><h2>C. Shown creativity, imagination and/or innovation</h2><p class="lead">The innovation is not the existence of six labels. It is the integration of guided AI use, disciplinary judgement and direct assurance within one adaptable learning-and-assessment architecture.</p></div>
+<div class="claim-list">
+<article class="claim" id="C1"><div><h3><a class="claim-anchor" href="#C1">SM1-C1</a>A six-step architecture joins learning with assurance</h3><p>Generate, Evaluate, Refine, AI Critic and Reflect develop capability in open conditions; Defend provides a discipline-appropriate check of individual understanding. The architecture has moved from empirical classroom design into CQUniversity's official assessment guidance.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publications:</strong> <a class="citation-link" href="#study-ref-2">[2]</a>, <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a> and <a class="citation-link" href="#study-ref-12">[12]</a>.</div><div class="evidence-line"><strong>Official incorporation:</strong> CQUniversity Guided-Assured Assessment Model, page 17.</div><div class="evidence-line"><strong>Novel contribution:</strong> guidance and assurance are designed as a connected sequence rather than separate policy and policing activities.</div><div class="evidence-line"><strong>Public translation (corroborating):</strong> C4 and C6 explain the architecture's focus on critical thinking and visible student judgement.</div></div></article>
+<article class="claim" id="C2"><div><h3><a class="claim-anchor" href="#C2">SM1-C2</a>AI Critic makes student authority visible</h3><p>Students ask AI to critique their work and then judge the critique. They must accept, reject or modify advice with reasons, making authority calibration and evaluative judgement visible.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publications:</strong> <a class="citation-link" href="#study-ref-5">[5]</a> and <a class="citation-link" href="#study-ai-critic">AI Critic study</a>.</div><div class="evidence-line"><strong>Direct artefacts:</strong> the systems-analysis dataset records decisions and reasons.</div><div class="evidence-line"><strong>Theory:</strong> evaluative judgement, metacognition and self-regulated learning.</div></div></article>
+<article class="claim" id="C3"><div><h3><a class="claim-anchor" href="#C3">SM1-C3</a>Assurance by design replaces unreliable retrospective proof</h3><p>After the process-log audit found only three of twenty-five submissions substantially auditable, the program shifted toward task-matched Defend activities and articulated assurance debt and assurance by design.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publications:</strong> <a class="citation-link" href="#study-ref-11">[11]</a> and <a class="citation-link" href="#study-ref-12">[12]</a>.</div><div class="evidence-line"><strong>Supporting tool:</strong> SAGE Defend Planner.</div><div class="evidence-line"><strong>Student benefit:</strong> ownership is demonstrated through the learning activity rather than inferred from a final artefact or potentially unreliable log.</div><div class="evidence-line"><strong>Sector debate:</strong> C3 positions assurance by design against defaulting to low-tech examinations.</div></div></article>
+<article class="claim" id="C4"><div><h3><a class="claim-anchor" href="#C4">SM1-C4</a>SAGE developed into an integrated, portable program</h3><p>SAGE Pedagogy develops student judgement; SAGE-AP converts permission into assessment requirements; SAGE-R extends responsible authorship into research; and SAGE-I is the planned workplace translation. The core is adapted to disciplinary evidence and defence formats rather than copied rigidly.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>SAGE Pedagogy:</strong> <a class="citation-link" href="#study-ref-2">[2]</a>, <a class="citation-link" href="#study-ref-3">[3]</a>, <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a>, <a class="citation-link" href="#study-ai-critic">AI Critic study</a> and <a class="citation-link" href="#study-ref-6">[6]</a>.</div><div class="evidence-line"><strong>SAGE-AP and Defend:</strong> <a class="citation-link" href="#study-sage-ap">SAGE-AP study</a>, <a class="citation-link" href="#study-ref-11">[11]</a> and <a class="citation-link" href="#study-ref-12">[12]</a>.</div><div class="evidence-line"><strong>SAGE-R:</strong> <a class="citation-link" href="#study-sage-r">SAGE-R study</a> and graduate evidence. <strong>SAGE-I:</strong> retained as emerging/pending evidence.</div></div></article>
+<article class="claim" id="C5"><div><h3><a class="claim-anchor" href="#C5">SM1-C5</a>Authenticity was tested against professional practice</h3><p>The Head of Engineering at Atlassian reviewed the cybersecurity assessment case and confirmed alignment with contemporary industry risks, challenges and opportunities, supporting the authenticity of the context in which students judged AI advice.</p></div><div class="claim-evidence"><div class="evidence-line"><strong>Primary publication context:</strong> <a class="citation-link" href="#study-ref-4">[4]</a>.</div><div class="evidence-line"><strong>Independent corroboration:</strong> redacted industry review.</div><div class="evidence-line"><strong>Value:</strong> validates the professional context, not merely the novelty of the pedagogy.</div></div></article>
+</div>
+<div class="dashboard-strip">
+<div class="dashboard-card"><strong>See AI judgement in student artefacts</strong><p>The public dataset shows recommendations, decisions and reasons rather than only reporting summary percentages.</p><a href="../datasetsage.html" target="_blank">Open systems-analysis evidence ↗</a></div>
+<div class="dashboard-card"><strong>Design assurance activities</strong><p>The SAGE Defend Planner translates the innovation into practical assessment design choices.</p><a href="../defend_tool.html" target="_blank">Open Defend Planner ↗</a></div>
+</div>
+</div>
+</section>
+<section class="section white" id="criterion-d">
+<div class="wrap">
+<div class="section-head"><div class="label">Criterion D — theory mapped to decisions and studies</div><h2>D. Drawn on the scholarly literature on teaching and learning to inform the development of initiatives, programs and/or practice</h2><p class="lead">The table maps each scholarly foundation to the programme decision it informed and the publications where that decision was evaluated or formalised. These are best-fit mappings rather than claims that a paper relied on only one theory.</p></div>
+<div class="theory-map">
+<div class="theory-row" id="D1"><strong>Constructivism and revised Bloom’s taxonomy<a class="theory-anchor" href="#D1">SM1-D1</a></strong><p>Students begin with a draft or problem representation, then analyse, evaluate, revise and defend rather than submit AI output as an answer.</p><p><b>Mapped studies:</b> <a class="citation-link" href="#study-ref-2">[2]</a>, <a class="citation-link" href="#study-ref-3">[3]</a>, <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a> and <a class="citation-link" href="#study-ai-critic">AI Critic study</a>. <b>Programme decision:</b> progression from Generate to Evaluate, Refine and Defend.</p></div>
+<div class="theory-row" id="D2"><strong>Situated learning<a class="theory-anchor" href="#D2">SM1-D2</a></strong><p>AI output is judged against the standards, constraints and practices of the student’s discipline rather than generic accuracy alone.</p><p><b>Mapped studies:</b> <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a>, <a class="citation-link" href="#study-ref-7">[7]</a> and <a class="citation-link" href="#study-transnational-follow-up">transnational follow-up study</a>. <b>Programme decision:</b> cybersecurity frameworks, organisational constraints and mathematical optimisation principles become evidence anchors.</p></div>
+<div class="theory-row" id="D3"><strong>Self-regulated learning and metacognition<a class="theory-anchor" href="#D3">SM1-D3</a></strong><p>Students monitor their reliance on AI, explain changes, reflect on weaknesses and plan a more effective subsequent attempt.</p><p><b>Mapped studies:</b> <a class="citation-link" href="#study-ref-2">[2]</a>, <a class="citation-link" href="#study-ai-critic">AI Critic study</a>, <a class="citation-link" href="#study-ref-6">[6]</a> and <a class="citation-link" href="#study-sage-r">SAGE-R study</a>. <b>Programme decision:</b> explicit reflection, iteration and disclosure of accepted, modified and rejected output.</p></div>
+<div class="theory-row" id="D4"><strong>Constructive alignment<a class="theory-anchor" href="#D4">SM1-D4</a></strong><p>AI conditions, learning activities, disciplinary evidence and the method of assurance are aligned with the intended learning outcomes.</p><p><b>Mapped studies:</b> <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a>, <a class="citation-link" href="#study-sage-ap">SAGE-AP study</a>, <a class="citation-link" href="#study-ref-11">[11]</a> and <a class="citation-link" href="#study-ref-12">[12]</a>. <b>Programme decision:</b> task-level guidance and discipline-matched Defend activities.</p></div>
+<div class="theory-row" id="D5"><strong>Assessment security and programmatic assessment<a class="theory-anchor" href="#D5">SM1-D5</a></strong><p>Assurance is accumulated through appropriate checks across learning rather than concentrated in one final examination or inferred from process logs.</p><p><b>Mapped studies:</b> <a class="citation-link" href="#study-ref-11">[11]</a> and <a class="citation-link" href="#study-ref-12">[12]</a>. <b>Programme decision:</b> assurance by design and management of assurance debt.</p></div>
+<div class="theory-row" id="D6"><strong>Evaluative judgement and AI literacy<a class="theory-anchor" href="#D6">SM1-D6</a></strong><p>Students learn to judge the quality, relevance and consequences of AI output and to retain authority over the final decision.</p><p><b>Mapped studies:</b> <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a>, <a class="citation-link" href="#study-sage-ap">SAGE-AP study</a>, <a class="citation-link" href="#study-ref-11">[11]</a>, <a class="citation-link" href="#study-ai-critic">AI Critic study</a>, <a class="citation-link" href="#study-ref-6">[6]</a>, <a class="citation-link" href="#study-ref-12">[12]</a>, <a class="citation-link" href="#study-ref-7">[7]</a> and <a class="citation-link" href="#study-transnational-follow-up">transnational follow-up study</a>. <b>Programme decision:</b> AI Critic, evidence anchoring and reasoned acceptance/rejection.</p></div>
+<div class="theory-row" id="D7"><strong>Design-based research<a class="theory-anchor" href="#D7">SM1-D7</a></strong><p>Each implementation identified a student problem, introduced a change, collected classroom evidence and informed the next iteration.</p><p><b>Mapped studies:</b> <a class="citation-link" href="#study-ref-2">[2]</a>, <a class="citation-link" href="#study-ref-3">[3]</a>, <a class="citation-link" href="#study-ref-4">[4]</a>, <a class="citation-link" href="#study-ref-5">[5]</a>, <a class="citation-link" href="#study-sage-ap">SAGE-AP study</a>, <a class="citation-link" href="#study-ref-11">[11]</a>, <a class="citation-link" href="#study-ai-critic">AI Critic study</a>, <a class="citation-link" href="#study-ref-6">[6]</a>, <a class="citation-link" href="#study-ref-12">[12]</a>, <a class="citation-link" href="#study-sage-r">SAGE-R study</a>, <a class="citation-link" href="#study-ref-7">[7]</a> and <a class="citation-link" href="#study-transnational-follow-up">transnational follow-up study</a>. <b>Programme decision:</b> a cumulative programme evolving from classroom pedagogy to SAGE-AP, Defend, SAGE-R and international adaptation.</p></div>
+</div>
+<div class="source-note"><strong>How to read the mapping:</strong> these are best-fit theory anchors across a cumulative research programme. The empirical papers commonly draw on several foundations; the mapping is intended to show how scholarship informed specific design decisions, not to force each paper into a single theory.</div>
+<div class="source-note"><strong>Public translation:</strong> C1, C2, C3 and C10 carry the scholarly reasoning into assessment-policy, research-integrity and sector-practice discussions.</div>
+</div>
+</section>
+<section class="section pale" id="documents">
+<div class="wrap">
+<div class="section-head"><div class="label">Evidence archive</div><h2>Documents and dated screenshots used on this page</h2><p class="lead">The main page shows only the strongest evidence. The archive below provides the complete supporting trail without crowding the criterion sections.</p></div>
+<details class="archive" open=""><summary>Institutional adoption and national recognition</summary><div class="archive-body"><p>Official CQUniversity guide, staff-development email and TEQSA resource listings.</p><div class="archive-links"><a href="assets/evidence/cqu-guided-assured-assessment-model-2026.pdf" target="_blank">CQUniversity guide PDF</a><a href="assets/evidence/cqu-guide-page-17-sage-six-steps.png" target="_blank">Guide page 17</a><a href="assets/evidence/cqu-guide-page-12-sage-orchestration.png" target="_blank">Guide page 12</a><a href="assets/evidence/daniel-maddock-genai-for-educators-email.png" target="_blank">GenAI for Educators email</a><a href="assets/evidence/teqsa-academic-integrity-assessment-reform.pdf" target="_blank">TEQSA assessment listing</a><a href="assets/evidence/teqsa-student-resources-support.pdf" target="_blank">TEQSA student listings</a></div></div></details>
+<details class="archive"><summary>Student impact and implementation records</summary><div class="archive-body"><p>First-year evidence, educator observations, result histories and cross-institutional context.</p><div class="archive-links"><a href="assets/evidence/first-year-student-survey-results.png" target="_blank">First-year survey screenshot</a><a href="assets/evidence/azra-first-year-feedback-public.jpg" target="_blank">First-year educator feedback</a><a href="assets/evidence/raj-cross-institutional-public.jpg" target="_blank">Cross-institutional record</a><a href="assets/evidence/coit20248-tutor-feedback.png" target="_blank">Tutor feedback</a><a href="assets/evidence/coit20268-result-history.png" target="_blank">COIT20268 history</a><a href="assets/evidence/coit12212-result-history.png" target="_blank">COIT12212 history</a><a href="assets/evidence/coit20263-result-history.png" target="_blank">COIT20263 history</a><a href="assets/evidence/coit20248-result-history.png" target="_blank">COIT20248 history</a><a href="../dashboard.html" target="_blank">Interactive first-year dashboard</a><a href="../datasetsage.html" target="_blank">Systems-analysis dataset</a></div></div></details>
+<details class="archive"><summary>Independent, international, research and industry corroboration</summary><div class="archive-body"><p>Cross-disciplinary uptake, international approach/support, external case study, graduate outcome and industry review.</p><div class="archive-links"><a href="assets/evidence/renata-independent-uptake-public.jpg" target="_blank">Business Ethics uptake email</a><a href="assets/evidence/maged-initial-approach-public.jpg" target="_blank">Initial international approach</a><a href="assets/evidence/maged-fakirah-international-support-letter.pdf" target="_blank">International support letter</a><a href="assets/evidence/university-warwick-case-study.png" target="_blank">Warwick case study</a><a href="assets/evidence/elvina-gusman-conferral-letter.pdf" target="_blank">Graduate conferral letter</a><a href="assets/evidence/atlassian-industry-review-redacted.pdf" target="_blank">Industry review</a></div></div></details>
+<details class="archive"><summary>Scholarly reach and open-resource uptake</summary><div class="archive-body"><p>Dated publisher, Google Scholar and Zenodo captures.</p><div class="archive-links"><a href="assets/evidence/ict-study-publisher-metrics.png" target="_blank">ICT study publisher metrics</a><a href="assets/evidence/discover-education-publisher-metrics.png" target="_blank">Discover Education metrics</a><a href="assets/evidence/systematic-review-publisher-metrics.png" target="_blank">Systematic review metrics</a><a href="assets/evidence/google-scholar-selected-citations.png" target="_blank">Google Scholar counts</a><a href="assets/evidence/zenodo-sage-resource-uptake-v3.png" target="_blank">Zenodo version 3 uptake</a><a href="../publications.html" target="_blank">Complete SAGE publication record</a></div></div></details>
+<details class="archive"><summary>Practice publications and media records</summary><div class="archive-body"><p>Sector-facing translation and public communication already catalogued on the main publication page.</p><div class="archive-links"><a href="assets/evidence/future-campus-low-tech-exams.pdf" target="_blank">Future Campus</a><a href="assets/evidence/the-educator-teaching-students-to-think-with-ai.pdf" target="_blank">The Educator</a><a href="assets/evidence/cqu-news-teaching-students-to-think-with-ai.pdf" target="_blank">CQUniversity News</a><a href="assets/evidence/gladstone-today-ai-ready-education.pdf" target="_blank">Gladstone Today</a><a href="assets/evidence/scienmag-cybersecurity-sage.pdf" target="_blank">SciEnMag</a><a href="../publications.html" target="_blank">Times Higher Education, HERDSA and full list</a></div></div></details>
+</div>
+</section>
+<section class="section video deep" id="program-video">
+<div class="wrap">
+<div class="section-head"><div class="label">Supporting Material 2 (SM2) · Program synthesis</div><h2>Three-minute SAGE Program Overview</h2><p class="lead">This three-minute video provides a concise overview of the program’s development, student impact and wider adoption. The detailed evidence supporting these claims is presented throughout this page.</p></div>
+<div class="video-frame">
+<video aria-label="Three-minute SAGE Program overview" controls="" playsinline="" poster="assets/video/sage-aaut-overview-poster.jpg" preload="metadata">
+<source src="assets/video/sage-aaut-overview.mp4" type="video/mp4"/>
+Your browser does not support embedded video.
+</video>
+</div>
+<p class="video-note">Duration: 2 minutes 58 seconds. The video is embedded here for convenience and is also available as a standalone supporting material: <a href="https://sage-framework.com/aaut-program-award/assets/video/sage-aaut-overview.mp4" rel="noopener" target="_blank">open SM2 directly ↗</a>. The publications and documentary records on SM1 remain the detailed evidence base.</p>
+</div>
+</section>
+</main>
+</div>
+<section class="closing"><div class="wrap"><div class="label" style="justify-content:center">Evidence trail</div><h2>From classroom evidence to an integrated programme</h2><p>The core studies show how successive student findings shaped the programme. The records on this page corroborate institutional uptake, national recognition, international transfer, professional relevance and sustained implementation.</p><div class="buttons"><a class="btn primary" href="#core-evidence">Review core studies</a><a class="btn" href="../publications.html">View all publications</a><a class="btn" href="../sage.html">View the SAGE framework</a><a class="btn" href="../about.html">Contact the team</a></div></div></section>
+<footer>
+<div class="footer-inner">
+<div class="footer-top">
+<div>
+<div class="footer-wordmark">SAGE Framework</div>
+<div class="footer-tagline">Structured AI-Guided Education — a validated pedagogical framework for higher education. Licensed CC BY 4.0.</div>
+<div class="footer-tagline">Disclaimer: This website presents independent scholarly resources developed by the author. It is not an official CQUniversity or TEQSA publication.</div>
+</div>
+<div class="footer-links">
+<a href="../sage.html">The Framework</a>
+<a href="../student_resources.html">Student Resources</a>
+<a href="../policy.html">Assessment Policy</a>
+<a href="../downloads.html">Downloads</a>
+<a href="../publications.html">Evidence</a>
+<a href="../community.html">Community of Practice</a>
+<a href="../about.html">About</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="footer-citation">Elkhodr, M. &amp; Gide, E. (2026). <em>The SAGE Framework: Structured AI-Guided Education</em>. Central Queensland University. DOI: <a href="https://doi.org/10.5281/zenodo.18383951" rel="noopener" target="_blank">10.5281/zenodo.18383951</a></div>
+<div class="footer-licence">CC BY 4.0 · sage-framework.com</div>
+</div>
+</div>
+</footer>
+<div aria-hidden="true" aria-label="Expanded evidence image" aria-modal="true" class="lightbox" id="lightbox" role="dialog"><button aria-label="Close expanded evidence image" type="button">Close ✕</button><img alt=""/></div>
+<script>
+  const menuButton=document.querySelector('.hamburger'), mobileNav=document.querySelector('.mobile-nav'), mobileClose=document.querySelector('.mobile-nav-close');
+  function setMobileMenu(open){
+    mobileNav.classList.toggle('open',open);
+    mobileNav.setAttribute('aria-hidden',String(!open));
+    menuButton.setAttribute('aria-expanded',String(open));
+    document.body.style.overflow=open?'hidden':'';
+    (open?mobileClose:menuButton).focus();
+  }
+  menuButton.addEventListener('click',()=>setMobileMenu(true));
+  mobileClose.addEventListener('click',()=>setMobileMenu(false));
+  mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMobileMenu(false)));
+  const evidenceIndexLinks=[...document.querySelectorAll('.evidence-sidebar-links a[href^="#"]')];
+  function setActiveEvidenceSection(id){
+    evidenceIndexLinks.forEach(link=>{
+      const active=link.getAttribute('href')===`#${id}`;
+      link.classList.toggle('active',active);
+      if(active)link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  evidenceIndexLinks.forEach(link=>link.addEventListener('click',()=>{
+    link.closest('.mobile-index')?.removeAttribute('open');
+    setActiveEvidenceSection(link.hash.slice(1));
+  }));
+  const evidenceSections=[...document.querySelectorAll('.evidence-sidebar-links a[href^="#"]')]
+    .map(link=>document.querySelector(link.getAttribute('href')))
+    .filter((section,index,sections)=>section&&sections.indexOf(section)===index);
+  if('IntersectionObserver' in window){
+    const evidenceObserver=new IntersectionObserver(entries=>{
+      const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+      if(visible[0])setActiveEvidenceSection(visible[0].target.id);
+    },{rootMargin:'-18% 0px -68% 0px',threshold:0});
+    evidenceSections.forEach(section=>evidenceObserver.observe(section));
+  }
+  setActiveEvidenceSection('core-evidence');
+  const commentaryReferences={
+    C1:{title:'Students are asking for AI guidance, not just policy — THE Campus',href:'https://www.timeshighereducation.com/campus/students-are-asking-ai-guidance-not-just-policy'},
+    C2:{title:'Students are asking for AI guidance, not just policy: A comprehensive, practical framework for AI integration — HERDSA Connect',href:'https://herdsa.org.au/herdsa-connect/students-are-asking-ai-guidance-not-just-policy-comprehensive-practical-framework-ai'},
+    C3:{title:'AI era must not become an excuse to default to low-tech exams — Future Campus',href:'https://futurecampus.com.au/2026/04/11/ai-era-must-not-become-excuse-to-default-to-low-tech-exams/'},
+    C4:{title:'Teaching students to think with AI — not cheat with it — CQUniversity News',href:'https://www.cqu.edu.au/news/1267512/teaching-students-to-think-with-ai--not-cheat-with-it'},
+    C5:{title:'CQUniversity leads shift in AI-ready education — CQUniversity News',href:'https://www.cqu.edu.au/news/1270316/cquniversity-leads-shift-in-ai-ready-education'},
+    C6:{title:'Opinion: Teaching students to think with AI — not cheat with it — The Educator',href:'https://www.theeducatoronline.com/k12/news/opinion-teaching-students-to-think-with-ai--not-cheat-with-it/288838'},
+    C7:{title:'Smart cities of the future could think for themselves — CQUniversity News',href:'https://www.cqu.edu.au/news/1280233/smart-cities-of-the-future-could-think-for-themselves'},
+    C8:{title:'CQUniversity leads shift in AI-ready education — Gladstone Today',href:'https://gladstonetoday.com.au/news/2026/03/28/cquniversity-leads-shift-in-ai-ready-education/'},
+    C9:{title:'Empowering cybersecurity education with responsible AI framework — SciEnMag',href:'https://scienmag.com/empowering-cybersecurity-education-with-responsible-ai-framework/'},
+    C10:{title:'Protect your research in the age of generative AI: Rethinking the preprint — LinkedIn',href:'https://www.linkedin.com/pulse/protect-your-research-age-generative-ai-rethinking-preprint-elkhodr-du7tc'}
+  };
+  const referencePattern=/(C(?:10|[1-9]))/g;
+  const referenceNodes=[];
+  const referenceWalker=document.createTreeWalker(document.getElementById('main'),NodeFilter.SHOW_TEXT,{
+    acceptNode(node){
+      return node.parentElement?.closest('a,script,style')||!/\bC(?:10|[1-9])\b/.test(node.nodeValue)
+        ?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  while(referenceWalker.nextNode())referenceNodes.push(referenceWalker.currentNode);
+  referenceNodes.forEach(node=>{
+    const fragment=document.createDocumentFragment();
+    node.nodeValue.split(referencePattern).forEach(part=>{
+      const reference=commentaryReferences[part];
+      if(!reference){fragment.append(document.createTextNode(part));return;}
+      const link=document.createElement('a');
+      link.className='commentary-ref';
+      link.href=reference.href;
+      link.target='_blank';
+      link.rel='noopener';
+      link.title=reference.title;
+      link.dataset.title=reference.title;
+      link.setAttribute('aria-label',`${part}: ${reference.title} — opens in a new tab`);
+      link.textContent=part;
+      fragment.append(link);
+    });
+    node.replaceWith(fragment);
+  });
+  const box=document.getElementById('lightbox'), boxImg=box.querySelector('img'), closeBtn=box.querySelector('button');
+  let lightboxTrigger=null;
+  document.querySelectorAll('[data-lightbox]').forEach(a=>{
+    const imageAlt=a.querySelector('img')?.alt||'evidence image';
+    a.setAttribute('aria-label',`Click to expand: ${imageAlt}`);
+    a.addEventListener('click',e=>{
+    e.preventDefault();
+    lightboxTrigger=a;
+    boxImg.src=a.href;
+    boxImg.alt=imageAlt;
+    box.classList.add('open');
+    box.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+    });
+  });
+  function closeBox(){
+    box.classList.remove('open');
+    box.setAttribute('aria-hidden','true');
+    boxImg.src='';
+    document.body.style.overflow='';
+    lightboxTrigger?.focus();
+    lightboxTrigger=null;
+  }
+  closeBtn.addEventListener('click',closeBox);
+  box.addEventListener('click',e=>{if(e.target===box)closeBox();});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&box.classList.contains('open'))closeBox();
+    else if(e.key==='Escape'&&mobileNav.classList.contains('open'))setMobileMenu(false);
+  });
+</script>
+</body>
+</html>
