@@ -4,18 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Educator Resources — SAGE Framework Implementation Guide</title>
-  <meta name="description" content="The complete SAGE implementation guide for educators: six-step AI-integrated assessment cycle, two-stage progression, discipline-specific Defend formats, and the full evidence base. Validated with more than 1,500 students across 30+ studies. By Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
+  <meta name="description" content="The complete SAGE implementation guide for educators, defining the SAGE six-step AI-integrated assessment cycle and Student Orchestration Levels, with two-stage progression, discipline-specific Defend formats, and the full evidence base. Validated with more than 1,500 students across 30+ studies. By Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
   <meta name="keywords" content="SAGE implementation guide, Structured AI-Guided Education, AI assessment design, SAGE cycle, Defend step, AI Critic, generative AI pedagogy, assessment assurance, supervised assessment, AI literacy, responsible AI use, higher education, Mahmoud Elkhodr, Ergun Gide, TEQSA" />
   <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
+  <meta name="version" content="3.0" />
+  <meta name="date" content="2026-06-03" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://sage-framework.com/sage.html" />
   <meta property="og:title" content="SAGE Framework — Educator Implementation Guide" />
-  <meta property="og:description" content="The complete six-step SAGE cycle for embedding generative AI into higher education assessment. Includes discipline-specific Defend formats and full evidence base." />
+  <meta property="og:description" content="The complete six-step SAGE cycle and canonical Student Orchestration Levels for embedding generative AI into higher education assessment. Includes discipline-specific Defend formats and the full evidence base." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://sage-framework.com/sage.html" />
+  <meta property="article:published_time" content="2026-06-03" />
+  <meta property="article:modified_time" content="2026-06-03" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="SAGE Educator Resources — Implementation Guide" />
-  <meta name="twitter:description" content="Six-step AI assessment framework with supervised Defend checkpoint. 1,500+ students, 30+ studies, TEQSA-aligned." />
+  <meta name="twitter:description" content="Six-step AI assessment framework with Student Orchestration Levels and a supervised Defend checkpoint. 1,500+ students, 30+ studies, TEQSA-aligned." />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -336,7 +340,14 @@
       font-family: 'Fraunces', Georgia, serif;
       font-size: 1.15rem;
       font-weight: 600;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .cycle-step .step-subtitle {
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      opacity: 0.9;
     }
 
     .cycle-step .step-desc {
@@ -487,6 +498,13 @@
       color: var(--ink);
     }
 
+    .step-detail .detail-subtitle {
+      color: var(--sage);
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin: -0.15rem 0 0.55rem;
+    }
+
     .step-detail p {
       font-size: 0.92rem;
       margin-bottom: 0.5rem;
@@ -500,6 +518,146 @@
     }
 
     .step-detail.defend-step .detail-num { color: var(--amber); }
+
+    /* STUDENT ORCHESTRATION LEVELS */
+    #orchestration-levels { scroll-margin-top: 80px; }
+
+    .orchestration-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+
+    .orchestration-card {
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--sage);
+      border-radius: 12px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .orchestration-card.baseline { border-top-color: var(--amber); }
+
+    .orchestration-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .orchestration-level-label {
+      color: var(--sage);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+    }
+
+    .orchestration-card.baseline .orchestration-level-label { color: var(--amber); }
+
+    .orchestration-card h3 {
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.25;
+      margin: 0;
+      text-transform: none;
+    }
+
+    .orchestration-status {
+      max-width: 180px;
+      background: var(--amber-pale);
+      border: 1px solid rgba(183,65,14,0.22);
+      border-radius: 999px;
+      color: var(--amber);
+      font-size: 0.65rem;
+      font-weight: 700;
+      line-height: 1.35;
+      padding: 0.3rem 0.55rem;
+    }
+
+    .orchestration-card .orchestration-definition {
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .orchestration-card dl { margin: 0; }
+
+    .orchestration-card dl div {
+      border-top: 1px solid var(--rule);
+      padding-top: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .orchestration-card dt {
+      color: var(--sage);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+    }
+
+    .orchestration-card.baseline dt { color: var(--amber); }
+
+    .orchestration-card dd {
+      color: var(--slate);
+      font-size: 0.84rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .orchestration-note {
+      background: var(--forest);
+      border-left: 4px solid var(--sage-light);
+      border-radius: 10px;
+      color: rgba(255,255,255,0.86);
+      margin: 1.5rem 0;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .orchestration-note-title {
+      color: var(--white);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .orchestration-note ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .orchestration-note li {
+      font-size: 0.86rem;
+      line-height: 1.6;
+      margin-bottom: 0.35rem;
+      padding-left: 0.15rem;
+    }
+
+    .orchestration-note li:last-child { margin-bottom: 0; }
+
+    .doc-section p.orchestration-relationship {
+      border-bottom: 1px solid var(--rule);
+      border-top: 1px solid var(--rule);
+      color: var(--forest);
+      font-size: 0.92rem;
+      font-weight: 500;
+      margin: 1.75rem 0 0;
+      padding: 1.15rem 0;
+    }
 
     /* ─── CALLOUT ─── */
     .callout {
@@ -810,7 +968,7 @@
       .page-header h1 { font-size: 1.35rem; }
       .doc-section { padding: 1.2rem 0; }
       .cycle-container { break-inside: avoid; }
-      .callout, .step-detail, .author-card { break-inside: avoid; }
+      .callout, .step-detail, .author-card, .orchestration-card, .orchestration-note { break-inside: avoid; }
       h2, h3 { break-after: avoid; }
       .defend-table thead { display: table-header-group; }
       .defend-table tr { break-inside: avoid; }
@@ -828,6 +986,8 @@
       .cycle-step { flex: 1 1 100%; }
       .cycle-step .step-arrow { display: none; }
       .stage-grid { grid-template-columns: 1fr; }
+      .orchestration-grid { grid-template-columns: 1fr; }
+      .orchestration-card { padding: 1.2rem 1.25rem; }
       .page-header { padding: 3rem 1.25rem 2.5rem; }
       .content { padding: 0 1.25rem; }
       .doc-section { padding: 2rem 0; }
@@ -916,7 +1076,7 @@
 
     <!-- Compact meta row -->
     <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;font-size:0.75rem;color:rgba(255,255,255,0.45);">
-      <span><strong style="color:rgba(255,255,255,0.7);">Version 2</strong> &middot; February 2026</span>
+      <span><strong style="color:rgba(255,255,255,0.7);">Version 3.0</strong> &middot; 3 June 2026</span>
       <span>DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener" style="color:var(--sage-light);text-decoration:none;">10.5281/zenodo.18383951</a></span>
       <span>Elkhodr &amp; Gide &middot; Central Queensland University</span>
     </div>
@@ -932,7 +1092,7 @@
   <h2>1. What Is SAGE</h2>
   <p class="lead">The Structured AI-Guided Education (SAGE) framework is a validated pedagogy for developing students' capacity to orchestrate generative AI outputs rather than passively accept them. It treats GenAI as an assistive tool whose outputs require explicit, evidence-based decisions to accept, modify, or reject; it is neither an authority to mimic nor a tool to ban.</p>
   <p>SAGE was developed through three years of sustained empirical research involving more than 1,500 students across 30+ studies, spanning cybersecurity management, data analytics, Professional Communication, and systems analysis and design, delivered across campuses in Australia, China, and the United Kingdom. The framework has been referenced by researchers at institutions including the University of Warwick and the National University of Singapore.</p>
-  <p>Version 2 of this guide introduces a sixth step &mdash; <strong>Defend</strong> &mdash; which places assurance of individual competence within the cycle itself rather than relying on an additional supervised assessment. The complete evidence base, discipline-specific examples, implementation templates, and detailed rubrics are available in <a href="https://doi.org/10.5281/zenodo.18383952">Version 1 of this guide</a>.</p>
+  <p>Version 3.0 of this guide defines the canonical SAGE <a href="#orchestration-levels">Student Orchestration Levels</a> and retains the sixth step &mdash; <strong>Defend</strong> &mdash; introduced in Version 2, which places assurance of individual competence within the cycle itself rather than relying on an additional supervised assessment. The complete evidence base, discipline-specific examples, implementation templates, and detailed rubrics are available in <a href="https://doi.org/10.5281/zenodo.18383952">Version 1 of this guide</a>.</p>
 </section>
 
 <!-- §2 THE SAGE CYCLE -->
@@ -962,7 +1122,8 @@
     <div class="cycle-step">
       <div class="step-number">Step 4</div>
       <div class="step-name">AI Critic</div>
-      <div class="step-desc">Assign AI a domain-specific persona to critically re-evaluate your refined output.</div>
+      <div class="step-subtitle">Audit the critic</div>
+      <div class="step-desc">Ask GenAI to act as a critic, examiner, reviewer, auditor, or devil's advocate, then evaluate its criticism and justify what you accept, modify, or reject.</div>
       <span class="step-arrow">&rarr;</span>
     </div>
     <div class="cycle-step">
@@ -978,7 +1139,7 @@
     </div>
   </div>
 
-  <p>The cycle is sequenced to move students progressively through Bloom's revised taxonomy. Steps 1&ndash;3 operate at the Apply and Analyse levels: students generate output, compare it against domain standards, and modify it with evidence. Step 4 inverts the AI relationship: the student assigns AI a critical role and must evaluate the evaluator, operating at Bloom's Evaluate level. Step 5 requires metacognitive synthesis. This is the highest cognitive operation in the taxonomy, in which students articulate patterns of AI strength and failure across the task. Step 6 closes the cycle by requiring the student to demonstrate, under supervised conditions, that the competency developed through the preceding steps has been individually internalised rather than merely documented.</p>
+  <p>The cycle is sequenced to move students progressively through Bloom's revised taxonomy. Steps 1&ndash;3 operate at the Apply and Analyse levels: students generate output, compare it against domain standards, and modify it with evidence. Step 4, <strong>AI Critic</strong>, inverts the AI relationship: the student assigns AI a critical role and must audit the critic by evaluating the evaluator, operating at Bloom's Evaluate level. Step 5 requires metacognitive synthesis. This is the highest cognitive operation in the taxonomy, in which students articulate patterns of AI strength and failure across the task. Step 6 closes the cycle by requiring the student to demonstrate, under supervised conditions, that the competency developed through the preceding steps has been individually internalised rather than merely documented.</p>
 
   <div class="callout principle">
     <div class="callout-label">Design Principle</div>
@@ -1063,7 +1224,8 @@
       <span class="detail-num">Step 4</span>
       <span class="detail-name">AI Critic</span>
     </div>
-    <p>Students assign the AI tool a domain-specific persona (e.g., "You are a senior cybersecurity auditor reviewing this policy for regulatory compliance") and submit their refined output for critical evaluation. They then analyse the AI's feedback, determining which critiques are valid, which reflect the AI's own limitations, and which require human judgement to resolve. This step develops metacognitive sophistication and strengthens the student's authority over the AI.</p>
+    <div class="detail-subtitle">Audit the critic</div>
+    <p>Students ask GenAI to act as a critic, examiner, reviewer, auditor, or devil's advocate. They must then evaluate the AI's criticism rather than automatically accepting it, deciding which recommendations to accept, modify, or reject and providing reasons. This step develops metacognitive sophistication and strengthens the student's authority over the AI.</p>
   </div>
 
   <div class="step-detail">
@@ -1081,6 +1243,109 @@
     </div>
     <p>Students demonstrate, under supervised conditions, that they can reproduce or explain the reasoning documented in their open assessment without reliance on the artefacts that produced it. The format is determined by disciplinary context (see Section 5). The defining criterion is that the student shows they own the competency &mdash; they can identify risks, explain trade-offs, justify decisions, and respond to challenge questions &mdash; not merely that they submitted a document containing these elements. This step carries the institutional assurance function: it is the evidence that the intended learning outcomes have been individually achieved.</p>
   </div>
+</section>
+
+<!-- SAGE STUDENT ORCHESTRATION LEVELS -->
+<section class="doc-section" id="orchestration-levels">
+  <h2>SAGE Student Orchestration Levels</h2>
+  <p class="lead">The SAGE Student Orchestration Levels describe the observable quality of a student's collaboration with generative AI. They are different from an AI guidance or permission level. A guidance level states what use of GenAI is permitted in an assessment; an orchestration level describes the capability that the learning design seeks to develop and that assessment criteria may evaluate.</p>
+  <p>The levels represent a developmental progression. Passive Acceptor is a baseline condition that SAGE is designed to remediate, rather than a desired learning outcome.</p>
+
+  <div class="orchestration-grid">
+    <article class="orchestration-card baseline">
+      <div class="orchestration-card-header">
+        <div>
+          <div class="orchestration-level-label">Level 1</div>
+          <h3>Passive Acceptor</h3>
+        </div>
+        <span class="orchestration-status">Baseline condition &mdash; not a target state</span>
+      </div>
+      <p class="orchestration-definition">Accepts AI output with minimal critical evaluation, disciplinary verification, or justification.</p>
+      <dl>
+        <div>
+          <dt>Observable indicator</dt>
+          <dd>The process record contains accept decisions only, or explanations that merely repeat the AI output rather than testing it against an authoritative source, disciplinary standard, rubric, or other evaluation anchor.</dd>
+        </div>
+        <div>
+          <dt>Developmental purpose</dt>
+          <dd>SAGE is designed to move students beyond passive acceptance through evaluation, refinement, documented decision-making, and reflection.</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="orchestration-card">
+      <div class="orchestration-card-header">
+        <div>
+          <div class="orchestration-level-label">Level 2</div>
+          <h3>Selective Adapter</h3>
+        </div>
+      </div>
+      <p class="orchestration-definition">Filters AI output using disciplinary knowledge and evidence, accepting, modifying, or rejecting selected elements.</p>
+      <dl>
+        <div>
+          <dt>Observable indicator</dt>
+          <dd>The student records meaningful accept, modify, and reject decisions, with important modifications and rejections justified against a specific source, professional standard, rubric criterion, dataset, policy, or disciplinary principle.</dd>
+        </div>
+        <div>
+          <dt>Developmental purpose</dt>
+          <dd>The student begins to exercise visible human judgement rather than treating AI output as authoritative.</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="orchestration-card">
+      <div class="orchestration-card-header">
+        <div>
+          <div class="orchestration-level-label">Level 3</div>
+          <h3>Balanced Integrator</h3>
+        </div>
+      </div>
+      <p class="orchestration-definition">Systematically combines human and AI contributions through explicit trade-off reasoning, contextual judgement, and iterative refinement.</p>
+      <dl>
+        <div>
+          <dt>Observable indicator</dt>
+          <dd>The student explains the trade-offs at points where the human and AI positions diverged, including why one contribution was preferred, combined, revised, or rejected in the specific assessment context.</dd>
+        </div>
+        <div>
+          <dt>Developmental purpose</dt>
+          <dd>The student treats GenAI as a collaborative tool while retaining responsibility for disciplinary accuracy, contextual suitability, and final decisions.</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="orchestration-card">
+      <div class="orchestration-card-header">
+        <div>
+          <div class="orchestration-level-label">Level 4</div>
+          <h3>Critical Synthesiser</h3>
+        </div>
+      </div>
+      <p class="orchestration-definition">Proactively identifies gaps, assumptions, and bias and develops a traceable synthesis, reframing, solution, or contextual adaptation that extends beyond both the original human position and the AI output.</p>
+      <dl>
+        <div>
+          <dt>Observable indicator</dt>
+          <dd>The final work contains a substantive development that was present in neither the student's initial attempt nor the original AI output, together with evidence explaining how and why that development was produced.</dd>
+        </div>
+        <div>
+          <dt>Developmental purpose</dt>
+          <dd>The student uses GenAI as one input within an advanced process of critical inquiry, synthesis, innovation, and disciplinary judgement.</dd>
+        </div>
+      </dl>
+    </article>
+  </div>
+
+  <aside class="orchestration-note" aria-labelledby="orchestration-note-title">
+    <div class="orchestration-note-title" id="orchestration-note-title">How to interpret the levels</div>
+    <ul>
+      <li>The levels describe student behaviour and capability; they do not independently determine whether GenAI is permitted.</li>
+      <li>A student may display different orchestration levels across different parts of the same assessment.</li>
+      <li>Educators should assess observable decisions, evidence, reasoning, and transformations rather than the number or sophistication of prompts.</li>
+      <li>Passive Acceptor should not be presented as a permitted or desirable endpoint.</li>
+      <li>Selective Adapter, Balanced Integrator, and Critical Synthesiser can be used as progressive learning targets.</li>
+    </ul>
+  </aside>
+
+  <p class="orchestration-relationship">Steps 1&ndash;5 provide the process through which stronger orchestration capability can develop. Generate creates material for examination; Evaluate introduces authoritative anchors; Refine makes human contribution visible; AI Critic tests the developing work; and Reflect requires students to account for their decisions. Step 6, Defend, verifies whether the student has personally internalised the reasoning represented in the final work.</p>
 </section>
 
 <!-- §5 DEFEND ACROSS DISCIPLINES -->
