@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SAGE Student Guide — Five Steps for Responsible AI Use</title>
-  <meta name="description" content="The SAGE student-facing guide: a five-step process for using generative AI responsibly in coursework and assessment. Download, adapt, and hand directly to your students. Developed by Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
+  <title>SAGE Student Guide — Six Steps for Responsible AI Use and Defensible Learning</title>
+  <meta name="description" content="The SAGE student-facing guide: a six-step process for using generative AI responsibly, documenting decisions, and demonstrating defensible learning in coursework and assessment." />
   <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://sage-framework.com/student-guide.html" />
@@ -463,6 +463,81 @@
       border-bottom: 1px solid var(--rule);
     }
 
+    /* Student-led learning and educator-led verification */
+    .responsibility-map {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(210px, 2fr);
+      margin: 0 0 2rem;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .responsibility-phase { padding: 1rem 1.15rem; }
+    .responsibility-phase.student-led { background: #f2f7f4; }
+    .responsibility-phase.educator-led {
+      background: var(--ink);
+      color: var(--white);
+      border-left: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .responsibility-kicker {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--sage);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .educator-led .responsibility-kicker { color: var(--sage-light); }
+    .responsibility-phase strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.9rem;
+      line-height: 1.35;
+    }
+    .educator-led strong { color: var(--white); }
+    .responsibility-phase p {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.5;
+    }
+    .educator-led p { color: rgba(255,255,255,0.62); }
+
+    .step-sequence {
+      display: grid;
+      grid-template-columns: repeat(5, 24px);
+      gap: 0.3rem;
+      margin-top: 0.75rem;
+    }
+    .step-sequence span {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+
+    .phase-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0 0.85rem;
+      color: var(--sage);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .phase-heading::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
     /* ─── STEP CARDS ─── */
     .step-card {
       border: 1px solid var(--rule);
@@ -646,6 +721,215 @@
 
     .audit-note strong { color: var(--amber); font-weight: 600; }
 
+    /* Step 6: educator-led Defend */
+    .phase-heading.defend-phase { margin-top: 2rem; color: var(--forest); }
+
+    .step-card-defend {
+      margin-top: 0;
+      border-color: #9db9aa;
+      border-top: 4px solid var(--forest);
+    }
+    .step-card-defend .step-card-header {
+      background: var(--ink);
+      border-bottom-color: rgba(255,255,255,0.12);
+      flex-wrap: wrap;
+    }
+    .step-card-defend .step-num-badge { background: var(--sage-light); color: var(--ink); }
+    .step-card-defend .step-label { color: var(--sage-light); }
+    .step-card-defend .step-name { color: var(--white); }
+    .step-card-defend .step-imperative { color: rgba(255,255,255,0.7); }
+
+    .step-header-aside {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.3rem;
+      margin-left: auto;
+    }
+    .step-header-aside .step-imperative { margin-left: 0; }
+    .step-role {
+      display: inline-flex;
+      padding: 0.18rem 0.5rem;
+      border: 1px solid rgba(116,198,157,0.45);
+      border-radius: 4px;
+      color: var(--sage-light);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .defend-section { padding: 1.35rem 0; border-top: 1px solid var(--rule); }
+    .defend-section:first-child { padding-top: 0; border-top: 0; }
+    .defend-section:last-child { padding-bottom: 0; }
+    .defend-section h3 {
+      margin: 0 0 0.65rem;
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .defend-section-intro {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--sage);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .defend-principle {
+      margin: 1rem 0 0;
+      padding: 0.8rem 0 0.8rem 1rem;
+      border-left: 4px solid var(--sage-mid);
+      color: var(--forest);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+    .defend-principle strong { display: block; margin-bottom: 0.15rem; }
+
+    .defend-format-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 0.9rem;
+      border-top: 1px solid var(--rule);
+    }
+    .defend-format-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 0.65rem;
+      align-items: start;
+      padding: 0.75rem 0.8rem 0.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .defend-format-item:nth-child(odd) { padding-right: 1rem; }
+    .defend-format-item:nth-child(even) { padding-left: 1rem; border-left: 1px solid var(--rule); }
+    .defend-format-icon {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--sage-pale);
+      color: var(--sage);
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+    .defend-format-item span:last-child { color: var(--slate); font-size: 0.82rem; line-height: 1.5; }
+
+    .institution-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+    .institution-note-label {
+      color: var(--sage);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .institution-note p { margin: 0 !important; font-size: 0.82rem !important; }
+
+    .capability-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 0.75rem;
+      border-top: 1px solid var(--rule);
+    }
+    .capability-item {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 0.65rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .capability-item:nth-child(odd) { padding-right: 1rem; }
+    .capability-item:nth-child(even) { padding-left: 1rem; border-left: 1px solid var(--rule); }
+    .capability-item:last-child { grid-column: 1 / -1; padding-right: 0; border-left: 0; }
+    .capability-number {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #b8cec2;
+      border-radius: 50%;
+      color: var(--sage);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .capability-item strong { display: block; margin-bottom: 0.15rem; font-size: 0.84rem; }
+    .capability-item p { margin: 0 !important; color: var(--muted); font-size: 0.78rem !important; line-height: 1.55; }
+
+    .record-list { margin: 0.6rem 0 0 1.1rem; color: var(--slate); }
+    .record-list li { margin-bottom: 0.35rem; padding-left: 0.25rem; font-size: 0.84rem; line-height: 1.55; }
+
+    .readiness-check {
+      margin: 0.85rem 0 0;
+      padding: 1rem 0;
+      border: 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .readiness-check legend {
+      padding-right: 0.6rem;
+      color: var(--sage);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .readiness-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .readiness-grid label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      min-height: 54px;
+      padding: 0.65rem 0.8rem 0.65rem 0;
+      border-bottom: 1px solid var(--rule);
+      color: var(--slate);
+      font-size: 0.8rem;
+      line-height: 1.45;
+      cursor: pointer;
+    }
+    .readiness-grid label:nth-child(even) { padding-left: 0.8rem; border-left: 1px solid var(--rule); }
+    .readiness-grid input { margin-top: 0.18rem; accent-color: var(--sage); flex: 0 0 auto; }
+    .readiness-result { margin: 0.85rem 0 0 !important; color: var(--forest) !important; font-size: 0.82rem !important; }
+
+    .practice-block {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 0.25rem;
+      padding: 1.1rem 1.2rem;
+      background: var(--forest);
+      color: var(--white);
+    }
+    .practice-block h3 { color: var(--white); margin-bottom: 0.35rem; }
+    .practice-block p { margin: 0 !important; color: rgba(255,255,255,0.72) !important; font-size: 0.82rem !important; }
+    .practice-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 6px;
+      color: var(--white);
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .practice-link:hover { background: rgba(255,255,255,0.1); border-color: var(--sage-light); }
+
     /* ─── ATTRIBUTION BLOCK ─── */
     .attribution-block {
       background: var(--sage-pale);
@@ -770,6 +1054,32 @@
       .breadcrumb { padding: 0.65rem 1.25rem; }
       .step-imperative { display: none; }
       .download-bar { flex-direction: column; align-items: flex-start; }
+      .responsibility-map { grid-template-columns: 1fr; }
+      .responsibility-phase.educator-led { border-top: 1px solid rgba(255,255,255,0.12); border-left: 0; }
+      .defend-format-list, .capability-list, .readiness-grid { grid-template-columns: 1fr; }
+      .defend-format-item:nth-child(odd), .defend-format-item:nth-child(even),
+      .capability-item:nth-child(odd), .capability-item:nth-child(even) {
+        padding-right: 0;
+        padding-left: 0;
+        border-left: 0;
+      }
+      .capability-item:last-child { grid-column: auto; }
+      .institution-note { grid-template-columns: 1fr; gap: 0.3rem; }
+      .readiness-grid label:nth-child(even) { padding-left: 0; border-left: 0; }
+      .practice-block { grid-template-columns: 1fr; }
+      .practice-link { width: 100%; }
+      .step-header-aside { width: 100%; margin-left: 2.4rem; align-items: flex-start; }
+    }
+
+    @media print {
+      nav, .mobile-nav, .resource-tabs, .page-header, .educator-intro,
+      .guide-divider, .download-bar, footer { display: none !important; }
+      body, .guide-preview, .guide-body { background: #fff; }
+      .content { max-width: none; padding: 0; }
+      .guide-preview { border: 0; border-radius: 0; }
+      .step-card { break-inside: avoid; }
+      .step-card-defend { break-inside: auto; }
+      .defend-section, .practice-block { break-inside: avoid; }
     }
   </style>
 </head>
@@ -785,7 +1095,7 @@
       <li class="nav-dropdown">
         <a href="student_resources.html" class="active">Resources</a>
         <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
-          <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
+          <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Six-step process for responsible AI use</div></div></a>
           <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
           <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design an assurance checkpoint</div></div></a>
           <a href="downloads.html"><span class="dd-icon">&#x2B07;</span><div><div class="dd-label">Downloads</div><div class="dd-desc">Guides, templates and implementation resources</div></div></a>
@@ -848,7 +1158,7 @@
   <div class="page-header-inner">
     <div class="page-header-badge">For Educators</div>
     <h1>The SAGE Student Guide</h1>
-    <p class="subtitle">A five-step guide for responsible AI use in coursework and assessment. Download, adapt for your unit context, and hand directly to your students.</p>
+    <p class="subtitle">A six-step guide for responsible AI use and defensible learning. Download, adapt for your unit context, and hand directly to your students.</p>
   </div>
 </div>
 
@@ -861,7 +1171,7 @@
     <h2>What this guide is and how to use it</h2>
     <p>This is the student-facing component of the SAGE framework. It does not tell students whether they may use AI — that is determined by your unit policy and the AI Assessment Scale level you have set. It tells them <em>how</em> to use AI in a way that develops genuine learning and maintains academic integrity.</p>
     <p>The guide is designed to be handed to students at the start of a unit or before a SAGE-integrated assessment task. You can use it verbatim, adapt the step names for your discipline, or reframe the examples to match your context. The log template in Step 3 can be provided as a separate document or embedded in your assessment instructions.</p>
-    <p>The guide works alongside the educator-facing six-step SAGE cycle. Steps 1–5 here correspond to Steps 1–5 of the full SAGE cycle. The sixth step — Defend — is not included in this guide because it is a supervised assessment checkpoint, not a student-led process. The closing note in Step 5 prepares students for it without revealing the assurance design.</p>
+    <p>Steps 1–5 describe the student-led SAGE learning process. Step 6 explains how students may be asked to demonstrate the capability developed through that process. Educators should adapt the Defend section to match the assessment format, weighting, learning outcomes and institutional requirements without disclosing the exact challenge questions in advance.</p>
 
     <div class="adapt-note">
       <div class="adapt-note-icon">✏️</div>
@@ -887,7 +1197,23 @@
     <div class="guide-body">
 
       <!-- Intro -->
-      <p class="guide-intro">Generative AI can produce fluent, confident, and convincing output on almost any topic within seconds. That is precisely why using it well requires a structured process. SAGE guides you through five steps that ensure the thinking behind your work is yours — not the AI's. Each step builds on the last, creating a documented trail of your reasoning that demonstrates what you know.</p>
+      <p class="guide-intro">Generative AI can produce fluent, confident, and convincing output on almost any topic within seconds. That is precisely why using it well requires a structured process. SAGE guides you through six steps that ensure the thinking behind your work is yours — not the AI's. Steps 1–5 help you build and document the learning; Step 6 gives you an opportunity to demonstrate that capability. Each step builds on the last, creating a traceable record of your reasoning and contribution.</p>
+
+      <div class="responsibility-map" aria-label="Responsibility across the six SAGE steps">
+        <div class="responsibility-phase student-led">
+          <span class="responsibility-kicker">Steps 1–5</span>
+          <strong>You lead the learning process</strong>
+          <p>Generate, evaluate, refine, test and reflect while keeping your decisions visible.</p>
+          <div class="step-sequence" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+        </div>
+        <div class="responsibility-phase educator-led">
+          <span class="responsibility-kicker">Step 6</span>
+          <strong>Your educator verifies your capability</strong>
+          <p>Defend may be included to confirm that you can explain, apply and adapt the learning.</p>
+        </div>
+      </div>
+
+      <div class="phase-heading">Steps 1–5 &middot; You lead the learning process</div>
 
       <!-- ─── STEP 1 ─── -->
       <div class="step-card">
@@ -999,9 +1325,9 @@
           <div class="step-num-badge">4</div>
           <div class="step-name-wrap">
             <div class="step-label">Step 4</div>
-            <div class="step-name">Audit</div>
+            <div class="step-name">AI Critic</div>
           </div>
-          <div class="step-imperative">Turn the AI into your auditor — then audit the auditor.</div>
+          <div class="step-imperative">Audit the critic — do not accept its judgement automatically.</div>
         </div>
         <div class="step-card-body">
           <p>You have now built a log of documented decisions. In this step, you feed that log back into the AI — but this time you change the AI's role.</p>
@@ -1025,7 +1351,7 @@
             </div>
           </div>
 
-          <p>This adjudication is the final act of this step. The Audit is a single bounded pass — you do not loop back and forth with the AI indefinitely. One critique, one adjudication, documented. You cannot construct a meaningful Audit prompt without a genuine log from Step 3. No log, no meaningful critique. The steps are designed to build on each other.</p>
+          <p>This adjudication is the final act of this step. AI Critic is a single bounded pass — you do not loop back and forth with the AI indefinitely. One critique, one adjudication, documented. You cannot construct a meaningful critique prompt without a genuine log from Step 3. No log, no meaningful critique. The steps are designed to build on each other.</p>
         </div>
       </div>
 
@@ -1053,7 +1379,123 @@
           </div>
 
           <p>Take a moment to consider: what did you learn about AI's limitations in this task? What would you do differently next time? Where did your own disciplinary knowledge prove essential in ways the AI could not replicate?</p>
-          <p><strong>A note on what may come next:</strong> In many professional and academic settings, you will be expected to walk others through your reasoning — not just present a finished product. Your educator may include a supervised session where you discuss your work, explain your decisions, and demonstrate your understanding. The log and reflections you have built across these steps are your preparation for that conversation. This is not a test of memory. It is an opportunity to show that the thinking is yours.</p>
+          <p>The log and reflection you have developed across Steps 1–5 will help you prepare for Defend. They should allow you to trace your decisions, explain your contribution and identify the evidence supporting the final work.</p>
+        </div>
+      </div>
+
+      <div class="phase-heading defend-phase">Step 6 &middot; Your educator verifies your capability</div>
+
+      <!-- STEP 6 -->
+      <div class="step-card step-card-defend" id="step-6-defend">
+        <div class="step-card-header">
+          <div class="step-num-badge">6</div>
+          <div class="step-name-wrap">
+            <div class="step-label">Step 6</div>
+            <div class="step-name">Defend</div>
+          </div>
+          <div class="step-header-aside">
+            <span class="step-role">Educator-led assurance</span>
+            <div class="step-imperative">Show that the learning is yours.</div>
+          </div>
+        </div>
+
+        <div class="step-card-body">
+          <section class="defend-section">
+            <span class="defend-section-intro">Capability, not suspicion</span>
+            <h3>Show that the learning is yours</h3>
+            <p>In some assessments, your submitted work may be followed by a supervised activity in which you explain, apply, modify or reproduce part of what you learned. SAGE calls this <strong>Defend</strong>.</p>
+            <p>Defend is not a test of whether you can memorise your submission word for word. It is an opportunity to demonstrate that you understand the work, can explain the decisions represented in it, and can apply the same capability when the question, context or requirements change.</p>
+            <p>Your educator will tell you whether Defend forms part of your assessment, what format will be used, and how it will be marked.</p>
+            <div class="defend-principle">
+              <strong>The purpose of Defend</strong>
+              You used GenAI as part of the learning process. Now demonstrate that you understand, can apply and can take responsibility for the work.
+            </div>
+          </section>
+
+          <section class="defend-section">
+            <span class="defend-section-intro">Possible formats</span>
+            <h3>What might Defend involve?</h3>
+            <p>Depending on your discipline and assessment, you may be asked to:</p>
+            <div class="defend-format-list">
+              <div class="defend-format-item"><span class="defend-format-icon">01</span><span>Participate in an interactive oral assessment or viva.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">02</span><span>Explain and justify decisions during a presentation or demonstration.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">03</span><span>Walk through code, formulas, data analysis, a design or a technical process.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">04</span><span>Debug or modify part of your solution under observation.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">05</span><span>Complete a short related practical task.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">06</span><span>Respond to an unseen scenario or changed requirement.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">07</span><span>Explain the evidence, standards or sources supporting your decisions.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">08</span><span>Identify limitations, errors or alternative approaches.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">09</span><span>Distinguish what you contributed from what GenAI contributed.</span></div>
+            </div>
+            <div class="institution-note">
+              <div class="institution-note-label">CQUniversity context</div>
+              <p>At CQUniversity, a Tier 2 guided-assured assessment normally combines a lower-weighted GenAI-supported submission with a higher-weighted interactive oral assessment in which students explain, defend and extend their work in real time.</p>
+            </div>
+            <div class="institution-note">
+              <div class="institution-note-label">Other contexts</div>
+              <p>Other institutions or assessments may use a viva, code walkthrough, live practical, professional role-play, design defence, structured presentation questioning or another supervised format suited to the capability being assessed.</p>
+            </div>
+          </section>
+
+          <section class="defend-section">
+            <span class="defend-section-intro">Your responsibility</span>
+            <h3>What does this mean for you?</h3>
+            <p>When GenAI is permitted, do not submit work simply because it looks polished or correct. Before submitting, make sure you can:</p>
+            <div class="capability-list">
+              <div class="capability-item"><span class="capability-number">1</span><div><strong>Explain it</strong><p>Describe the purpose, reasoning and meaning of every major part in your own words.</p></div></div>
+              <div class="capability-item"><span class="capability-number">2</span><div><strong>Trace it</strong><p>Identify which ideas, wording, code, calculations or recommendations came from GenAI and which decisions were yours.</p></div></div>
+              <div class="capability-item"><span class="capability-number">3</span><div><strong>Justify it</strong><p>Explain why you accepted, modified or rejected important AI suggestions using evidence, standards, sources or disciplinary reasoning.</p></div></div>
+              <div class="capability-item"><span class="capability-number">4</span><div><strong>Test it</strong><p>Check claims, calculations, references, code, assumptions, edge cases and limitations.</p></div></div>
+              <div class="capability-item"><span class="capability-number">5</span><div><strong>Adapt it</strong><p>Change the work when the requirements, data, audience, scenario or constraints change.</p></div></div>
+              <div class="capability-item"><span class="capability-number">6</span><div><strong>Reproduce the capability</strong><p>Complete a similar task, or part of it, without relying on the original AI conversation.</p></div></div>
+              <div class="capability-item"><span class="capability-number">7</span><div><strong>Acknowledge limitations honestly</strong><p>If you do not know an answer, explain what you would check or how you would approach the problem rather than guessing or bluffing.</p></div></div>
+            </div>
+          </section>
+
+          <section class="defend-section">
+            <span class="defend-section-intro">Process evidence</span>
+            <h3>Preserve an authentic AI-use record</h3>
+            <p>Where your assessment requires an AI log, decision log, chat export or declaration:</p>
+            <ul class="record-list">
+              <li>Preserve the complete and authentic record required by the assessment.</li>
+              <li>Do not fabricate, selectively alter or misrepresent AI interactions.</li>
+              <li>Do not delete relevant conversations after submission.</li>
+              <li>Record meaningful accept, modify and reject decisions.</li>
+              <li>Retain the sources, standards and evidence used to check AI output.</li>
+              <li>Protect personal, confidential and restricted information.</li>
+              <li>Follow the storage and submission instructions supplied by your educator.</li>
+            </ul>
+            <p style="margin-top:0.85rem;">Your log helps demonstrate your process, but the log alone is not proof that you developed the capability. You must also be able to explain and apply the learning represented in the final work.</p>
+          </section>
+
+          <section class="defend-section">
+            <span class="defend-section-intro">Readiness check</span>
+            <h3>Prepare before submission</h3>
+            <p>Use this checklist before you submit. Tick each statement only when you can do it without relying on the original AI output.</p>
+            <fieldset class="readiness-check">
+              <legend>Ask yourself</legend>
+              <div class="readiness-grid">
+                <label><input type="checkbox" /> <span>Can I explain every major part without reading from the AI output?</span></label>
+                <label><input type="checkbox" /> <span>Can I identify an important error, limitation or assumption?</span></label>
+                <label><input type="checkbox" /> <span>Can I justify my choices using an authoritative anchor?</span></label>
+                <label><input type="checkbox" /> <span>Can I modify the work for a different requirement?</span></label>
+                <label><input type="checkbox" /> <span>Can I complete a similar task without asking AI to reproduce the same answer?</span></label>
+                <label><input type="checkbox" /> <span>Can I answer questions about my reasoning, contribution and learning?</span></label>
+              </div>
+              <p class="readiness-result"><strong>If the answer to any of these questions is no, your learning process is not yet complete.</strong></p>
+            </fieldset>
+          </section>
+
+          <section class="defend-section">
+            <div class="practice-block">
+              <div>
+                <span class="defend-section-intro" style="color:var(--sage-light);">Practise before you Defend</span>
+                <h3>Build confidence before the supervised activity</h3>
+                <p>Complete the GenAI-101 module, particularly <strong>Lesson 7: Use AI as a Critical Coach</strong>, and the <strong>Transfer Test activities in Lessons 10 and 11</strong>. These lessons show you how to use GenAI to practise answering questions, explain your reasoning, identify weaknesses and prepare to adapt your work under changed conditions.</p>
+              </div>
+              <a class="practice-link" href="genai-101.html">Open GenAI-101&nbsp;&rarr;</a>
+            </div>
+          </section>
         </div>
       </div>
 
