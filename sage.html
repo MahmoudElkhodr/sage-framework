@@ -118,7 +118,8 @@
 
     .nav-dropdown { position: relative; }
     .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); padding-top:0.4rem; z-index:110; }
-    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
     .nav-dropdown-panel { background:var(--white); border:1px solid var(--rule); border-radius:10px; box-shadow:var(--shadow-md); padding:0.5rem; min-width:220px; }
     .nav-dropdown-panel a { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.75rem; border-radius:7px; font-size:0.8rem; font-weight:500; color:var(--slate); text-decoration:none; transition:background 0.12s; }
     .nav-dropdown-panel a:hover { background:var(--sage-pale); color:var(--forest); }
@@ -301,6 +302,187 @@
     }
 
     .doc-section a:hover { text-decoration-color: var(--sage); }
+
+    /* WHY SAGE */
+    .why-sage-shift {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: stretch;
+      gap: 0.85rem;
+      margin: 1.75rem 0;
+    }
+
+    .mindset-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .mindset-card.risk-first {
+      background: var(--amber-pale);
+      border-top: 3px solid var(--amber);
+    }
+
+    .mindset-card.capability-first {
+      background: var(--sage-pale);
+      border-top: 3px solid var(--sage);
+    }
+
+    .mindset-label {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.45rem;
+      text-transform: uppercase;
+    }
+
+    .risk-first .mindset-label { color: var(--amber); }
+    .capability-first .mindset-label { color: var(--sage); }
+
+    .mindset-card h3 {
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.35;
+      margin: 0 0 0.55rem;
+      text-transform: none;
+    }
+
+    .mindset-card p {
+      color: var(--slate);
+      font-size: 0.86rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .shift-arrow {
+      align-self: center;
+      color: var(--sage);
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .design-questions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .design-question {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--sage);
+      border-radius: 10px;
+      padding: 1.05rem 1.15rem;
+    }
+
+    .design-question-number {
+      display: grid;
+      place-items: center;
+      flex: 0 0 1.7rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      background: var(--sage-pale);
+      border-radius: 50%;
+      color: var(--sage);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .design-question strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.88rem;
+      line-height: 1.45;
+      margin-bottom: 0.3rem;
+    }
+
+    .design-question p {
+      color: var(--muted);
+      font-size: 0.81rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .capability-examples {
+      border-bottom: 1px solid var(--rule);
+      border-top: 1px solid var(--rule);
+      margin: 1.15rem 0 1.5rem;
+    }
+
+    .capability-example {
+      display: grid;
+      grid-template-columns: minmax(140px, 0.32fr) minmax(0, 1fr);
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .capability-example:last-child { border-bottom: 0; }
+
+    .capability-example strong {
+      color: var(--forest);
+      font-size: 0.84rem;
+    }
+
+    .capability-example span {
+      color: var(--slate);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .design-sequence {
+      background: var(--forest);
+      border-radius: 10px;
+      margin: 1.5rem 0;
+      padding: 1.25rem 1.35rem;
+    }
+
+    .design-sequence-title {
+      color: var(--sage-light);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      margin-bottom: 0.85rem;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .design-sequence-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .design-sequence-item {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 6px;
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.35;
+      padding: 0.45rem 0.6rem;
+      text-align: center;
+    }
+
+    .design-sequence-arrow {
+      color: var(--sage-light);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
 
     /* ─── CYCLE VISUAL ─── */
     .cycle-container {
@@ -968,7 +1150,7 @@
       .page-header h1 { font-size: 1.35rem; }
       .doc-section { padding: 1.2rem 0; }
       .cycle-container { break-inside: avoid; }
-      .callout, .step-detail, .author-card, .orchestration-card, .orchestration-note { break-inside: avoid; }
+      .callout, .step-detail, .author-card, .orchestration-card, .orchestration-note, .mindset-card, .design-question, .design-sequence { break-inside: avoid; }
       h2, h3 { break-after: avoid; }
       .defend-table thead { display: table-header-group; }
       .defend-table tr { break-inside: avoid; }
@@ -985,6 +1167,12 @@
     @media (max-width: 640px) {
       .cycle-step { flex: 1 1 100%; }
       .cycle-step .step-arrow { display: none; }
+      .why-sage-shift { grid-template-columns: 1fr; }
+      .shift-arrow { justify-self: center; transform: rotate(90deg); }
+      .design-questions { grid-template-columns: 1fr; }
+      .capability-example { grid-template-columns: 1fr; gap: 0.2rem; }
+      .design-sequence-flow { flex-direction: column; }
+      .design-sequence-arrow { transform: rotate(90deg); }
       .stage-grid { grid-template-columns: 1fr; }
       .orchestration-grid { grid-template-columns: 1fr; }
       .orchestration-card { padding: 1.2rem 1.25rem; }
@@ -1008,11 +1196,12 @@
     <ul class="nav-links">
       <li><a href="sage.html" class="active">The Framework</a></li>
       <li class="nav-dropdown">
-        <a href="student_resources.html">Student Resources</a>
+        <a href="student_resources.html">Resources</a>
         <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
           <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
-          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
-          <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design your assurance checkpoint</div></div></a>
+          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+          <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design an assurance checkpoint</div></div></a>
+          <a href="downloads.html"><span class="dd-icon">&#x2B07;</span><div><div class="dd-label">Downloads</div><div class="dd-desc">Guides, templates and implementation resources</div></div></a>
         </div></div>
       </li>
       <li class="nav-dropdown">
@@ -1022,7 +1211,13 @@
           <a href="policy-guide.html"><div><div class="dd-label">Educator Guidance</div><div class="dd-desc">Implementation and adaptation guidance</div></div></a>
         </div></div>
       </li>
-      <li><a href="downloads.html">Downloads</a></li>
+      <li class="nav-dropdown">
+        <a href="cqu-guided-assured.html">Implementations</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="cqu-guided-assured.html"><div><div class="dd-label">CQUniversity &mdash; Guided&ndash;Assured Assessment</div><div class="dd-desc">Practical unit-level implementation mapping</div></div></a>
+          <a aria-disabled="true" style="cursor:default;opacity:0.72;"><div><div class="dd-label">CDUT&ndash;Oxford Brookes College (Coming soon)</div><div class="dd-desc">Institutional implementation and collaboration</div></div></a>
+        </div></div>
+      </li>
       <li><a href="publications.html">Evidence</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="about.html" class="nav-cta">About</a></li>
@@ -1036,14 +1231,17 @@
 <div class="mobile-nav">
   <button class="mobile-nav-close" onclick="document.querySelector('.mobile-nav').classList.remove('open')">&#x2715;</button>
   <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">The Framework</a>
-  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Student Resources</a>
+  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Resources</a>
   <a href="student-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student Guide</a>
-  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101 Module</a>
+  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101</a>
   <a href="defend_tool.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Defend Tool</a>
+  <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Downloads</a>
   <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Assessment Policy</a>
   <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student-Facing Policy</a>
   <a href="policy-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Educator Guidance</a>
-  <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Downloads</a>
+  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Implementations</a>
+  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+  <a aria-disabled="true" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;cursor:default;opacity:0.72;">CDUT&ndash;Oxford Brookes College (Coming soon)</a>
   <a href="publications.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Evidence</a>
   <a href="community.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
   <a href="about.html" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
@@ -1095,9 +1293,118 @@
   <p>Version 3.0 of this guide defines the canonical SAGE <a href="#orchestration-levels">Student Orchestration Levels</a> and retains the sixth step &mdash; <strong>Defend</strong> &mdash; introduced in Version 2, which places assurance of individual competence within the cycle itself rather than relying on an additional supervised assessment. The complete evidence base, discipline-specific examples, implementation templates, and detailed rubrics are available in <a href="https://doi.org/10.5281/zenodo.18383952">Version 1 of this guide</a>.</p>
 </section>
 
-<!-- §2 THE SAGE CYCLE -->
+<!-- §2 WHY SAGE -->
+<section class="doc-section" id="why-sage">
+  <h2>2. Why SAGE</h2>
+
+  <p class="lead">Assessment redesign in the age of generative AI should not begin only with the question, &ldquo;How can we reduce the risk of students using AI?&rdquo; It should begin with the learning outcome, the capability students must demonstrate, and the evidence required to show that learning has occurred.</p>
+
+  <div class="why-sage-shift">
+    <article class="mindset-card risk-first">
+      <div class="mindset-label">Risk-only starting point</div>
+      <h3>How can we stop or detect AI use?</h3>
+      <p>This approach often adds restrictions, surveillance, or detection measures to an existing task without first asking whether the task still measures the intended learning.</p>
+    </article>
+
+    <div class="shift-arrow" aria-hidden="true">&rarr;</div>
+
+    <article class="mindset-card capability-first">
+      <div class="mindset-label">Capability-first starting point</div>
+      <h3>What should students be able to do?</h3>
+      <p>Define the capability, decide whether it should be demonstrated with or without GenAI, and select evidence that validly demonstrates student learning.</p>
+    </article>
+  </div>
+
+  <div class="callout principle">
+    <div class="callout-label">The mindset shift</div>
+    Risk is not ignored. It is considered after the intended capability, authentic role of GenAI, and required evidence have been established.
+  </div>
+
+  <h3>Four questions before designing the assessment</h3>
+
+  <div class="design-questions">
+    <article class="design-question">
+      <div class="design-question-number">1</div>
+      <div>
+        <strong>What capability should students develop?</strong>
+        <p>Begin with the learning outcome rather than the existing assessment format.</p>
+      </div>
+    </article>
+
+    <article class="design-question">
+      <div class="design-question-number">2</div>
+      <div>
+        <strong>What must students demonstrate independently?</strong>
+        <p>Identify foundational knowledge, reasoning, or procedural competence that must remain personally internalised.</p>
+      </div>
+    </article>
+
+    <article class="design-question">
+      <div class="design-question-number">3</div>
+      <div>
+        <strong>Where is GenAI an authentic professional tool?</strong>
+        <p>Consider whether graduates will be expected to use, test, challenge, and take responsibility for AI-supported work.</p>
+      </div>
+    </article>
+
+    <article class="design-question">
+      <div class="design-question-number">4</div>
+      <div>
+        <strong>What evidence would demonstrate the capability?</strong>
+        <p>Select evidence that matches the learning: performance, explanation, application, artefacts, decisions, or supervised defence.</p>
+      </div>
+    </article>
+  </div>
+
+  <h3>The answer may differ across learning outcomes</h3>
+
+  <div class="capability-examples">
+    <div class="capability-example">
+      <strong>Programming</strong>
+      <span>Write and debug foundational code independently, or use GenAI to develop, test, validate, and defend a reliable software solution.</span>
+    </div>
+
+    <div class="capability-example">
+      <strong>Networking</strong>
+      <span>Explain the TCP/IP layers and apply them to an unseen troubleshooting scenario.</span>
+    </div>
+
+    <div class="capability-example">
+      <strong>Statistics</strong>
+      <span>Use SPSS to produce appropriate descriptive statistics and correctly interpret the resulting output.</span>
+    </div>
+
+    <div class="capability-example">
+      <strong>Professional judgement</strong>
+      <span>Evaluate AI-generated recommendations against evidence, standards, and contextual constraints before making a defensible decision.</span>
+    </div>
+  </div>
+
+  <p>A written submission is not always the most valid evidence of these capabilities. Similarly, conducting an assessment during a scheduled class does not automatically make it secure. Evidence should be selected because it matches the capability, not merely because it is familiar or convenient.</p>
+
+  <div class="design-sequence">
+    <div class="design-sequence-title">A capability-first assessment-design sequence</div>
+    <div class="design-sequence-flow">
+      <span class="design-sequence-item">Learning outcome</span>
+      <span class="design-sequence-arrow" aria-hidden="true">&rarr;</span>
+      <span class="design-sequence-item">Required capability</span>
+      <span class="design-sequence-arrow" aria-hidden="true">&rarr;</span>
+      <span class="design-sequence-item">Role of GenAI</span>
+      <span class="design-sequence-arrow" aria-hidden="true">&rarr;</span>
+      <span class="design-sequence-item">Evidence of learning</span>
+      <span class="design-sequence-arrow" aria-hidden="true">&rarr;</span>
+      <span class="design-sequence-item">Assessment design</span>
+      <span class="design-sequence-arrow" aria-hidden="true">&rarr;</span>
+      <span class="design-sequence-item">Risk controls</span>
+    </div>
+  </div>
+
+  <p style="margin-top: 1.5rem;">SAGE operationalises this approach. Steps 1&ndash;5 structure critical and responsible human&ndash;AI collaboration. Step 6, Defend, provides direct verification where the intended capability requires assurance of individual understanding, judgement, or performance.</p>
+</section>
+
+<!-- §3 THE SAGE CYCLE -->
 <section class="doc-section" id="sage-cycle">
-  <h2>2. The SAGE Cycle</h2>
+  <h2>3. The SAGE Cycle</h2>
   <p>At the core of SAGE is a six-step cycle that moves students from passive AI consumption to critical AI orchestration, culminating in supervised demonstration of the competency developed through the preceding five steps. The cycle is designed to produce graduates who can deploy generative AI as a professional tool within the constraints of their discipline. They will be taught skills to evaluate AI outputs against industry standards, regulatory requirements, and domain-specific evidence rather than accepting them uncritically. This is the competency that employers now expect. It is not the ability to prompt an AI tool, but rather the ability to judge, correct, and take professional responsibility for what AI produces.</p>
 
   <div class="cycle-container">
@@ -1147,9 +1454,9 @@
   </div>
 </section>
 
-<!-- §3 TWO-STAGE PROGRESSION -->
+<!-- §4 TWO-STAGE PROGRESSION -->
 <section class="doc-section" id="two-stage">
-  <h2>3. Two-Stage Progression</h2>
+  <h2>4. Two-Stage Progression</h2>
   <p>SAGE operates through two stages that move students from guided practice to independent application with supervised assurance. This progression mirrors the cognitive trajectory defined by Bloom's revised taxonomy: Stage 1 scaffolds the lower-order operations of Apply and Analyse under instructor guidance, while Stage 2 requires students to operate independently at the Evaluate and Create levels before demonstrating competency under supervised conditions.
     The two-stage design ensures that open and assurance tasks are both addressed within a single integrated teaching sequence rather than treated as separate assessment instruments.</p>
 
@@ -1191,9 +1498,9 @@
   </div>
 </section>
 
-<!-- §4 WHAT STUDENTS DO -->
+<!-- §5 WHAT STUDENTS DO -->
 <section class="doc-section" id="student-actions">
-  <h2>4. What Students Do in Each Step</h2>
+  <h2>5. What Students Do in Each Step</h2>
 
   <div class="step-detail">
     <div class="detail-header">
@@ -1241,7 +1548,7 @@
       <span class="detail-num">Step 6</span>
       <span class="detail-name">Defend</span>
     </div>
-    <p>Students demonstrate, under supervised conditions, that they can reproduce or explain the reasoning documented in their open assessment without reliance on the artefacts that produced it. The format is determined by disciplinary context (see Section 5). The defining criterion is that the student shows they own the competency &mdash; they can identify risks, explain trade-offs, justify decisions, and respond to challenge questions &mdash; not merely that they submitted a document containing these elements. This step carries the institutional assurance function: it is the evidence that the intended learning outcomes have been individually achieved.</p>
+    <p>Students demonstrate, under supervised conditions, that they can reproduce or explain the reasoning documented in their open assessment without reliance on the artefacts that produced it. The format is determined by disciplinary context (see Section 6). The defining criterion is that the student shows they own the competency &mdash; they can identify risks, explain trade-offs, justify decisions, and respond to challenge questions &mdash; not merely that they submitted a document containing these elements. This step carries the institutional assurance function: it is the evidence that the intended learning outcomes have been individually achieved.</p>
   </div>
 </section>
 
@@ -1348,9 +1655,9 @@
   <p class="orchestration-relationship">Steps 1&ndash;5 provide the process through which stronger orchestration capability can develop. Generate creates material for examination; Evaluate introduces authoritative anchors; Refine makes human contribution visible; AI Critic tests the developing work; and Reflect requires students to account for their decisions. Step 6, Defend, verifies whether the student has personally internalised the reasoning represented in the final work.</p>
 </section>
 
-<!-- §5 DEFEND ACROSS DISCIPLINES -->
+<!-- §6 DEFEND ACROSS DISCIPLINES -->
 <section class="doc-section" id="defend-examples">
-  <h2>5. Defend &mdash; Discipline Implementation Examples</h2>
+  <h2>6. Defend &mdash; Discipline Implementation Examples</h2>
   <p>The Defend step is format-agnostic. The principle remains constant: the student demonstrates competency under conditions where the process cannot be simulated. The following table illustrates how Defend may be implemented across representative disciplines.</p>
 
   <table class="defend-table">
@@ -1406,9 +1713,9 @@
   </div>
 </section>
 
-<!-- §6 WHY DEFEND -->
+<!-- §7 WHY DEFEND -->
 <section class="doc-section" id="why-defend">
-  <h2>6. Why Defend</h2>
+  <h2>7. Why Defend</h2>
   <p>The inclusion of a supervised assurance step is not a theoretical preference. It is an empirically grounded response to a documented structural limitation of unsupervised assessment under GenAI-rich conditions.</p>
   <p>In a structured audit of 25 group submissions across two cybersecurity management cohorts, assessments designed using the full SAGE protocol, incorporating base prompts, structured decision tables, mandatory AI interaction logs, and reflective commentary, were examined for process fidelity using a five-check protocol. Full traceability between documented AI outputs and human evaluation claims was not achieved in most student submissions. Only 3 of 25 submissions (12%) produced evidence chains that were substantially auditable. The remaining submissions exhibited logical inconsistencies between reported AI positions and appended outputs, compliance-pattern text in evaluation cells, and structural indicators consistent with audit trail simulation (Elkhodr &amp; Gide, 2026, <em>STEM Education</em>).</p>
   <p>These findings are consistent with sector-wide guidance. TEQSA's 2025 resource <em>Enacting Assessment Reform in a Time of Artificial Intelligence</em> identifies structural assessment redesign, not detection, as the sustainable response. SAGE with Defend responds by embedding AI-supported learning and supervised assurance within one continuous six-step pedagogical process.</p>
@@ -1477,9 +1784,11 @@
       <!-- FOOTER NAV: keep identical across all pages -->
       <div class="footer-links">
         <a href="sage.html">The Framework</a>
-        <a href="student_resources.html">Student Resources</a>
+        <a href="student_resources.html">Resources</a>
         <a href="policy.html">Assessment Policy</a>
         <a href="downloads.html">Downloads</a>
+        <a href="cqu-guided-assured.html">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+        <span style="font-size:0.78rem;color:rgba(255,255,255,0.35);">CDUT&ndash;Oxford Brookes College (Coming soon)</span>
         <a href="publications.html">Evidence</a>
         <a href="community.html">Community of Practice</a>
         <a href="about.html">About</a>

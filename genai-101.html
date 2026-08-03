@@ -131,13 +131,36 @@ details.accordion > summary::-webkit-details-marker { display: none; }
 
     .nav-dropdown { position: relative; }
     .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); padding-top:0.4rem; z-index:110; }
-    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
     .nav-dropdown-panel { background:#fff; border:1px solid #dde5e0; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.09),0 8px 32px rgba(0,0,0,0.07); padding:0.5rem; min-width:220px; }
     .nav-dropdown-panel a { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.75rem; border-radius:7px; font-size:0.8rem; font-weight:500; color:#374151; text-decoration:none; transition:background 0.12s; }
     .nav-dropdown-panel a:hover { background:#eef6f1; color:#1b4332; }
     .nav-dropdown-panel .dd-icon { font-size:0.9rem; flex-shrink:0; width:1.2rem; text-align:center; }
     .nav-dropdown-panel .dd-label { font-weight:600; color:#0d1f16; font-size:0.78rem; }
     .nav-dropdown-panel .dd-desc { font-size:0.68rem; color:#6b7a72; margin-top:0.1rem; }
+
+    .site-nav-hamburger {
+      display:none; align-items:center; justify-content:center; width:40px; height:40px;
+      border:1px solid #dde5e0; border-radius:6px; background:#fff; color:#1b4332;
+      font:600 0.78rem 'Instrument Sans',sans-serif; cursor:pointer;
+    }
+    .site-mobile-nav {
+      display:none; position:fixed; inset:0; z-index:2000; overflow-y:auto;
+      flex-direction:column; gap:0; padding:4.5rem 1.5rem 2rem; background:#f8f6f1;
+    }
+    .site-mobile-nav.open { display:flex; }
+    .site-mobile-nav a {
+      padding:0.8rem 0; border-bottom:1px solid #dde5e0; color:#374151;
+      font:500 0.95rem 'Instrument Sans',sans-serif; text-decoration:none;
+    }
+    .site-mobile-nav .sub-link { padding-left:1.1rem; font-size:0.84rem; color:#6b7a72; }
+    .site-mobile-nav a[aria-disabled="true"] { cursor:default; opacity:0.62; }
+    .site-mobile-nav-close {
+      position:absolute; top:1rem; right:1.25rem; width:40px; height:40px;
+      border:1px solid #dde5e0; border-radius:6px; background:#fff; color:#1b4332;
+      font-size:1.1rem; cursor:pointer;
+    }
 
     /* ===== RESOURCE TAB BAR ===== */
     .resource-tabs { background:#fff; border-bottom:1px solid #dde5e0; }
@@ -582,6 +605,8 @@ details.accordion > summary::-webkit-details-marker { display: none; }
 
     /* Responsive */
     @media (max-width: 1024px) {
+      .site-nav-links { display:none; }
+      .site-nav-hamburger { display:flex; }
       .layout { grid-template-columns: 1fr; }
       .main { order: -1; }
       .sidebar { position: static; order: 0; }
@@ -597,11 +622,12 @@ details.accordion > summary::-webkit-details-marker { display: none; }
       <ul class="site-nav-links">
         <li><a href="sage.html">The Framework</a></li>
         <li class="nav-dropdown">
-          <a href="student_resources.html" class="active">Student Resources</a>
+          <a href="student_resources.html" class="active">Resources</a>
           <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
-            <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
-            <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">Expanded AI literacy module</div></div></a>
-            <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design your assurance checkpoint</div></div></a>
+            <a href="student-guide.html"><span class="dd-icon">&#x1F4C4;</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
+            <a href="genai-101.html"><span class="dd-icon">&#x1F4D6;</span><div><div class="dd-label">GenAI-101</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+            <a href="defend_tool.html"><span class="dd-icon">&#x1F6E1;</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design an assurance checkpoint</div></div></a>
+            <a href="downloads.html"><span class="dd-icon">&#x2B07;</span><div><div class="dd-label">Downloads</div><div class="dd-desc">Guides, templates and implementation resources</div></div></a>
           </div></div>
         </li>
         <li class="nav-dropdown">
@@ -611,13 +637,39 @@ details.accordion > summary::-webkit-details-marker { display: none; }
             <a href="policy-guide.html"><div><div class="dd-label">Educator Guidance</div><div class="dd-desc">Implementation and adaptation guidance</div></div></a>
           </div></div>
         </li>
-        <li><a href="downloads.html">Downloads</a></li>
+        <li class="nav-dropdown">
+          <a href="cqu-guided-assured.html">Implementations</a>
+          <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+            <a href="cqu-guided-assured.html"><div><div class="dd-label">CQUniversity &mdash; Guided&ndash;Assured Assessment</div><div class="dd-desc">Practical unit-level implementation mapping</div></div></a>
+            <a aria-disabled="true" style="cursor:default;opacity:0.62;"><div><div class="dd-label">CDUT&ndash;Oxford Brookes College (Coming soon)</div><div class="dd-desc">Institutional implementation and collaboration</div></div></a>
+          </div></div>
+        </li>
         <li><a href="publications.html">Evidence</a></li>
         <li><a href="community.html">Community</a></li>
         <li><a href="about.html" class="nav-cta">About</a></li>
       </ul>
+      <button class="site-nav-hamburger" type="button" aria-label="Open navigation" aria-controls="site-mobile-nav" aria-expanded="false" onclick="document.querySelector('.site-mobile-nav').classList.add('open');this.setAttribute('aria-expanded','true')">Menu</button>
     </div>
   </nav>
+
+  <div class="site-mobile-nav" id="site-mobile-nav">
+    <button class="site-mobile-nav-close" type="button" aria-label="Close navigation" onclick="document.querySelector('.site-mobile-nav').classList.remove('open');document.querySelector('.site-nav-hamburger').setAttribute('aria-expanded','false')">&#x2715;</button>
+    <a href="sage.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">The Framework</a>
+    <a href="student_resources.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Resources</a>
+    <a class="sub-link" href="student-guide.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Student Guide</a>
+    <a class="sub-link" href="genai-101.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">GenAI-101</a>
+    <a class="sub-link" href="defend_tool.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Defend Tool</a>
+    <a class="sub-link" href="downloads.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Downloads</a>
+    <a href="policy.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Assessment Policy</a>
+    <a class="sub-link" href="policy.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Student-Facing Policy</a>
+    <a class="sub-link" href="policy-guide.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Educator Guidance</a>
+    <a href="cqu-guided-assured.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Implementations</a>
+    <a class="sub-link" href="cqu-guided-assured.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+    <a class="sub-link" aria-disabled="true">CDUT&ndash;Oxford Brookes College (Coming soon)</a>
+    <a href="publications.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Evidence</a>
+    <a href="community.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">Community</a>
+    <a href="about.html" onclick="this.closest('.site-mobile-nav').classList.remove('open')">About</a>
+  </div>
 
   <!-- RESOURCE TAB BAR -->
   <div class="resource-tabs">
@@ -3943,9 +3995,11 @@ details.accordion > summary::-webkit-details-marker { display: none; }
       <!-- FOOTER NAV: keep identical across all pages -->
       <div style="display:flex; flex-direction:column; gap:0.35rem;">
         <a href="sage.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">The Framework</a>
-        <a href="student_resources.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">Student Resources</a>
+        <a href="student_resources.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">Resources</a>
         <a href="policy.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">Assessment Policy</a>
         <a href="downloads.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">Downloads</a>
+        <a href="cqu-guided-assured.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+        <span style="font-size:0.78rem; color:rgba(255,255,255,0.35);">CDUT&ndash;Oxford Brookes College (Coming soon)</span>
         <a href="publications.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">Evidence</a>
         <a href="community.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">Community of Practice</a>
         <a href="about.html" style="font-size:0.78rem; color:rgba(255,255,255,0.45); text-decoration:none;">About</a>

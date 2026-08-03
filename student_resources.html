@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Resources — SAGE Framework | Student Guide, GenAI-101 &amp; Defend Tool</title>
-  <meta name="description" content="Ready-to-deploy student resources from the SAGE framework: the five-step student guide for responsible AI use, the GenAI-101 AI literacy module (10 structured lessons), and the interactive Assurance Guidance Tool. By Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity. TEQSA-recognised." />
+  <title>Resources — SAGE Framework</title>
+  <meta name="description" content="SAGE resources for students and educators, including the Student Guide, GenAI-101 AI literacy course, Defend Tool, downloads, and implementation guidance." />
   <meta name="keywords" content="SAGE student guide, GenAI-101, AI literacy module, student AI resources, Defend checkpoint tool, assurance guidance tool, responsible AI students, AI assessment preparation, SAGE student guide, generative AI literacy, ChatGPT student training, AI academic integrity students, Mahmoud Elkhodr, Ergun Gide, CQUniversity, TEQSA student resources, AI numeracy, prompt engineering education, first year AI module, SAGE framework resources, AI critical thinking students, accept modify reject log, AI decision log, student AI process" />
   <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://sage-framework.com/student_resources.html" />
-  <meta property="og:title" content="Student Resources — SAGE Framework" />
-  <meta property="og:description" content="Student guide, GenAI-101 literacy module, and Assurance Guidance Tool. Ready-to-deploy resources for responsible AI use in higher education." />
+  <meta property="og:title" content="Resources — SAGE Framework" />
+  <meta property="og:description" content="Resources for students and educators supporting responsible AI use, assessment design, and assurance in higher education." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sage-framework.com/student_resources.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="SAGE Student Resources — Guide, GenAI-101 &amp; Defend Tool" />
-  <meta name="twitter:description" content="Ready-to-deploy AI literacy module, student guide, and assessment assurance tool for higher education." />
+  <meta name="twitter:title" content="Resources — SAGE Framework" />
+  <meta name="twitter:description" content="SAGE resources for students and educators, including guides, AI literacy learning, assurance tools, and implementation materials." />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -113,7 +113,8 @@
 
     .nav-dropdown { position: relative; }
     .nav-dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); padding-top:0.4rem; z-index:110; }
-    .nav-dropdown:hover .nav-dropdown-menu { display:block; }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
     .nav-dropdown-panel { background:var(--white); border:1px solid var(--rule); border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.09),0 8px 32px rgba(0,0,0,0.07); padding:0.5rem; min-width:220px; }
     .nav-dropdown-panel a { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.75rem; border-radius:7px; font-size:0.8rem; font-weight:500; color:var(--slate); text-decoration:none; transition:background 0.12s; }
     .nav-dropdown-panel a:hover { background:var(--sage-pale); color:var(--forest); }
@@ -599,11 +600,12 @@
     <ul class="nav-links">
       <li><a href="sage.html">The Framework</a></li>
       <li class="nav-dropdown">
-        <a href="student_resources.html" class="active">Student Resources</a>
+        <a href="student_resources.html" class="active">Resources</a>
         <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
           <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Five-step process for responsible AI use</div></div></a>
-          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
-          <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design your assurance checkpoint</div></div></a>
+          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+          <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design an assurance checkpoint</div></div></a>
+          <a href="downloads.html"><span class="dd-icon">&#x2B07;</span><div><div class="dd-label">Downloads</div><div class="dd-desc">Guides, templates and implementation resources</div></div></a>
         </div></div>
       </li>
       <li class="nav-dropdown">
@@ -613,7 +615,13 @@
           <a href="policy-guide.html"><div><div class="dd-label">Educator Guidance</div><div class="dd-desc">Implementation and adaptation guidance</div></div></a>
         </div></div>
       </li>
-      <li><a href="downloads.html">Downloads</a></li>
+      <li class="nav-dropdown">
+        <a href="cqu-guided-assured.html">Implementations</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="cqu-guided-assured.html"><div><div class="dd-label">CQUniversity &mdash; Guided&ndash;Assured Assessment</div><div class="dd-desc">Practical unit-level implementation mapping</div></div></a>
+          <a aria-disabled="true" style="cursor:default;opacity:0.72;"><div><div class="dd-label">CDUT&ndash;Oxford Brookes College (Coming soon)</div><div class="dd-desc">Institutional implementation and collaboration</div></div></a>
+        </div></div>
+      </li>
       <li><a href="publications.html">Evidence</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="about.html" class="nav-cta">About</a></li>
@@ -627,14 +635,17 @@
 <div class="mobile-nav">
   <button class="mobile-nav-close" onclick="document.querySelector('.mobile-nav').classList.remove('open')">&#x2715;</button>
   <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">The Framework</a>
-  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Student Resources</a>
+  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Resources</a>
   <a href="student-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student Guide</a>
-  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101 Module</a>
+  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101</a>
   <a href="defend_tool.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Defend Tool</a>
+  <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Downloads</a>
   <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Assessment Policy</a>
   <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student-Facing Policy</a>
   <a href="policy-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Educator Guidance</a>
-  <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Downloads</a>
+  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Implementations</a>
+  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+  <a aria-disabled="true" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;cursor:default;opacity:0.72;">CDUT&ndash;Oxford Brookes College (Coming soon)</a>
   <a href="publications.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Evidence</a>
   <a href="community.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
   <a href="about.html" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
@@ -643,8 +654,8 @@
 <!-- ─── PAGE HEADER ─── -->
 <div class="page-header">
   <div class="page-header-inner">
-    <h1>Resources for Your Students</h1>
-    <p class="subtitle">Ready-to-deploy teaching resources designed for educators to download, adapt, and hand directly to students. All resources are openly licensed under CC BY 4.0.</p>
+    <h1>Resources</h1>
+    <p class="subtitle">Practical resources for students and educators, including guides, AI literacy learning, assurance tools, downloads, and implementation materials. All resources are openly licensed under CC BY 4.0.</p>
   </div>
 </div>
 
@@ -697,11 +708,11 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           View the guide
         </a>
-        <a href="SAGE_Student_Guide.docx" download class="btn btn-secondary">
+        <a href="files/SAGE_Student_Guide.docx" download class="btn btn-secondary">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
           Download Word
         </a>
-        <a href="SAGE_Student_Guide.pdf" download class="btn btn-ghost">
+        <a href="files/SAGE_Student_Guide.pdf" download class="btn btn-ghost">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
           Download PDF
         </a>
@@ -772,9 +783,11 @@
       <!-- FOOTER NAV: keep identical across all pages -->
       <div class="footer-links">
         <a href="sage.html">The Framework</a>
-        <a href="student_resources.html">Student Resources</a>
+        <a href="student_resources.html">Resources</a>
         <a href="policy.html">Assessment Policy</a>
         <a href="downloads.html">Downloads</a>
+        <a href="cqu-guided-assured.html">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+        <span style="font-size:0.78rem;color:rgba(255,255,255,0.35);">CDUT&ndash;Oxford Brookes College (Coming soon)</span>
         <a href="publications.html">Evidence</a>
         <a href="community.html">Community of Practice</a>
         <a href="about.html">About</a>

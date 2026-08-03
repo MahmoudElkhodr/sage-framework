@@ -40,44 +40,69 @@
       line-height:1.62;
     }
     a{color:var(--forest-2)}
-    .topbar{
-      background:#0d1f16;
-      color:#fff;
-      padding:.55rem 1.4rem;
+    .global-nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      height:64px;
+      background:rgba(248,246,241,.97);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
     }
-    .topbar-inner{
+    .global-nav-inner{
       max-width:1180px;
+      height:64px;
       margin:0 auto;
+      padding:0 1.25rem;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:1rem;
     }
-    .wordmark{
-      color:#fff;
+    .global-wordmark{
+      color:var(--forest);
       text-decoration:none;
       font-family:"Fraunces",Georgia,serif;
-      font-size:1.05rem;
+      font-size:1.25rem;
       font-weight:700;
-      letter-spacing:.01em;
+      white-space:nowrap;
     }
-    .wordmark span{
+    .global-wordmark span{
       margin-left:.35rem;
-      color:rgba(255,255,255,.55);
+      color:var(--muted);
       font-family:"Instrument Sans",sans-serif;
-      font-size:.65rem;
+      font-size:.62rem;
       font-weight:600;
       letter-spacing:.11em;
       text-transform:uppercase;
     }
-    .toplink{
-      color:rgba(255,255,255,.76);
-      font-size:.82rem;
-      text-decoration:none;
+    .global-nav-links{display:flex;align-items:center;gap:.1rem;margin:0;padding:0;list-style:none}
+    .global-nav-links a{
+      display:block;padding:.4rem .65rem;border-radius:6px;color:#374151;
+      font-size:.78rem;font-weight:500;text-decoration:none;white-space:nowrap;
     }
+    .global-nav-links a:hover,.global-nav-links a.active{background:#e8f1eb;color:var(--forest)}
+    .global-nav-links .nav-cta{background:var(--forest);color:#fff}
+    .global-nav-links .nav-cta:hover{background:var(--forest-2);color:#fff}
+    .global-dropdown{position:relative}
+    .global-dropdown-menu{display:none;position:absolute;top:100%;left:50%;z-index:1100;transform:translateX(-50%);padding-top:.45rem}
+    .global-dropdown:hover .global-dropdown-menu,
+    .global-dropdown:focus-within .global-dropdown-menu{display:block}
+    .global-dropdown-panel{min-width:245px;padding:.5rem;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 28px rgba(13,31,22,.13)}
+    .global-dropdown-panel a{padding:.55rem .7rem;white-space:normal}
+    .global-dropdown-panel .dd-label{display:block;color:var(--ink);font-size:.78rem;font-weight:600}
+    .global-dropdown-panel .dd-desc{display:block;margin-top:.1rem;color:var(--muted);font-size:.68rem;line-height:1.35}
+    .global-dropdown-panel a[aria-disabled="true"]{cursor:default;opacity:.62}
+    .global-nav-hamburger{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--forest);font-weight:700;cursor:pointer}
+    .global-nav-mobile{display:none;position:fixed;inset:0;z-index:2000;overflow-y:auto;flex-direction:column;padding:4.5rem 1.5rem 2rem;background:var(--paper)}
+    .global-nav-mobile.open{display:flex}
+    .global-nav-mobile a{padding:.8rem 0;border-bottom:1px solid var(--line);color:#374151;font-size:.95rem;font-weight:500;text-decoration:none}
+    .global-nav-mobile .sub-link{padding-left:1.1rem;color:var(--muted);font-size:.84rem}
+    .global-nav-mobile a[aria-disabled="true"]{cursor:default;opacity:.62}
+    .global-nav-close{position:absolute;top:1rem;right:1.25rem;width:40px;height:40px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--forest);font-size:1.1rem;cursor:pointer}
     .page-tabs{
       position:sticky;
-      top:0;
+      top:64px;
       z-index:20;
       background:rgba(255,255,255,.96);
       backdrop-filter:blur(10px);
@@ -508,8 +533,13 @@
     .footer-inner{max-width:1180px;margin:0 auto}
     .footer strong{color:#fff}
     .footer a{color:#d8e9a5}
+    .footer-nav{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin:1rem 0}
+    .footer-nav a,.footer-nav span{font-size:.78rem}
+    .footer-nav span{color:rgba(255,255,255,.48)}
     .small{font-size:.8rem;color:var(--muted)}
     @media(max-width:900px){
+      .global-nav-links{display:none}
+      .global-nav-hamburger{display:block}
       .hero-inner,.grid-3,.grid-4,.workflow,.compare,.implementation-grid,.cta-row,
       .design-questions,.capability-examples{grid-template-columns:1fr}
       .mindset-shift{grid-template-columns:1fr}
@@ -522,12 +552,59 @@
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <a class="wordmark" href="sage.html">SAGE <span>Framework</span></a>
-      <a class="toplink" href="sage.html">← Back to the framework</a>
+  <nav class="global-nav" aria-label="Main navigation">
+    <div class="global-nav-inner">
+      <a class="global-wordmark" href="index.html">SAGE <span>Framework</span></a>
+      <ul class="global-nav-links">
+        <li><a href="sage.html">The Framework</a></li>
+        <li class="global-dropdown">
+          <a href="student_resources.html">Resources</a>
+          <div class="global-dropdown-menu"><div class="global-dropdown-panel">
+            <a href="student-guide.html"><span class="dd-label">Student Guide</span><span class="dd-desc">Five-step process for responsible AI use</span></a>
+            <a href="genai-101.html"><span class="dd-label">GenAI-101</span><span class="dd-desc">10-lesson AI literacy course</span></a>
+            <a href="defend_tool.html"><span class="dd-label">Defend Tool</span><span class="dd-desc">Design an assurance checkpoint</span></a>
+            <a href="downloads.html"><span class="dd-label">Downloads</span><span class="dd-desc">Guides, templates and implementation resources</span></a>
+          </div></div>
+        </li>
+        <li class="global-dropdown">
+          <a href="policy.html">Assessment Policy</a>
+          <div class="global-dropdown-menu"><div class="global-dropdown-panel">
+            <a href="policy.html"><span class="dd-label">Student-Facing Policy</span><span class="dd-desc">Policy text, declarations, examples, and FAQ</span></a>
+            <a href="policy-guide.html"><span class="dd-label">Educator Guidance</span><span class="dd-desc">Implementation and adaptation guidance</span></a>
+          </div></div>
+        </li>
+        <li class="global-dropdown">
+          <a class="active" href="cqu-guided-assured.html">Implementations</a>
+          <div class="global-dropdown-menu"><div class="global-dropdown-panel">
+            <a href="cqu-guided-assured.html"><span class="dd-label">CQUniversity &mdash; Guided&ndash;Assured Assessment</span><span class="dd-desc">Practical unit-level implementation mapping</span></a>
+            <a aria-disabled="true"><span class="dd-label">CDUT&ndash;Oxford Brookes College (Coming soon)</span><span class="dd-desc">Institutional implementation and collaboration</span></a>
+          </div></div>
+        </li>
+        <li><a href="publications.html">Evidence</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a class="nav-cta" href="about.html">About</a></li>
+      </ul>
+      <button class="global-nav-hamburger" type="button" aria-label="Open navigation" aria-controls="global-nav-mobile" aria-expanded="false" onclick="document.querySelector('.global-nav-mobile').classList.add('open');this.setAttribute('aria-expanded','true')">Menu</button>
     </div>
-  </div>
+    <div class="global-nav-mobile" id="global-nav-mobile">
+      <button class="global-nav-close" type="button" aria-label="Close navigation" onclick="document.querySelector('.global-nav-mobile').classList.remove('open');document.querySelector('.global-nav-hamburger').setAttribute('aria-expanded','false')">&#x2715;</button>
+      <a href="sage.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">The Framework</a>
+      <a href="student_resources.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Resources</a>
+      <a class="sub-link" href="student-guide.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Student Guide</a>
+      <a class="sub-link" href="genai-101.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">GenAI-101</a>
+      <a class="sub-link" href="defend_tool.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Defend Tool</a>
+      <a class="sub-link" href="downloads.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Downloads</a>
+      <a href="policy.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Assessment Policy</a>
+      <a class="sub-link" href="policy.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Student-Facing Policy</a>
+      <a class="sub-link" href="policy-guide.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Educator Guidance</a>
+      <a href="cqu-guided-assured.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Implementations</a>
+      <a class="sub-link" href="cqu-guided-assured.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+      <a class="sub-link" aria-disabled="true">CDUT&ndash;Oxford Brookes College (Coming soon)</a>
+      <a href="publications.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Evidence</a>
+      <a href="community.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">Community</a>
+      <a href="about.html" onclick="this.closest('.global-nav-mobile').classList.remove('open')">About</a>
+    </div>
+  </nav>
 
   <nav class="page-tabs" aria-label="Page sections">
     <div class="page-tabs-inner">
@@ -964,6 +1041,17 @@
     <div class="footer-inner">
       <strong>SAGE Framework</strong><br>
       Structured AI-Guided Education — independent scholarly resources for responsible GenAI use and assessment assurance.<br><br>
+      <div class="footer-nav">
+        <a href="sage.html">The Framework</a>
+        <a href="student_resources.html">Resources</a>
+        <a href="policy.html">Assessment Policy</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="cqu-guided-assured.html">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+        <span>CDUT&ndash;Oxford Brookes College (Coming soon)</span>
+        <a href="publications.html">Evidence</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+      </div>
       CC BY 4.0 · <a href="https://sage-framework.com">sage-framework.com</a>
     </div>
   </footer>

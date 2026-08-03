@@ -105,6 +105,24 @@
     .nav-links .nav-cta { background: var(--forest); color: var(--white); }
     .nav-links .nav-cta:hover { background: var(--sage); color: var(--white); }
 
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+      z-index:110; padding-top:.45rem;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
+    .nav-dropdown-panel {
+      min-width:245px; padding:.5rem; background:#fff; border:1px solid var(--rule);
+      border-radius:8px; box-shadow:0 8px 28px rgba(13,31,22,.12);
+    }
+    .nav-dropdown-panel a {
+      display:block; padding:.55rem .7rem; border-radius:6px; white-space:normal;
+    }
+    .nav-dropdown-panel .dd-label { display:block; color:var(--ink); font-size:.78rem; font-weight:600; }
+    .nav-dropdown-panel .dd-desc { display:block; margin-top:.1rem; color:var(--muted); font-size:.68rem; line-height:1.35; }
+    .nav-dropdown-panel a[aria-disabled="true"] { cursor:default; opacity:.62; }
+
     .hamburger {
       display: none;
       flex-direction: column;
@@ -143,6 +161,9 @@
       padding: 0.9rem 0;
       border-bottom: 1px solid var(--rule);
     }
+
+    .mobile-nav .sub-link { padding-left:1.1rem; font-size:.88rem; color:var(--muted); }
+    .mobile-nav a[aria-disabled="true"] { cursor:default; opacity:.62; }
 
     .mobile-nav-close {
       position: absolute;
@@ -577,9 +598,31 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-wordmark">SAGE <small>Framework</small></a>
     <ul class="nav-links">
-      <li><a href="sage.html">Educator Resources</a></li>
-      <li><a href="student_resources.html" class="active">Resources for Your Students</a></li>
-      <li><a href="publications.html">Publications</a></li>
+      <li><a href="sage.html">The Framework</a></li>
+      <li class="nav-dropdown">
+        <a href="student_resources.html" class="active">Resources</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="student-guide.html"><span class="dd-label">Student Guide</span><span class="dd-desc">Five-step process for responsible AI use</span></a>
+          <a href="genai-101.html"><span class="dd-label">GenAI-101</span><span class="dd-desc">10-lesson AI literacy course</span></a>
+          <a href="defend_tool.html"><span class="dd-label">Defend Tool</span><span class="dd-desc">Design an assurance checkpoint</span></a>
+          <a href="downloads.html"><span class="dd-label">Downloads</span><span class="dd-desc">Guides, templates and implementation resources</span></a>
+        </div></div>
+      </li>
+      <li class="nav-dropdown">
+        <a href="policy.html">Assessment Policy</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="policy.html"><span class="dd-label">Student-Facing Policy</span><span class="dd-desc">Policy text, declarations, examples, and FAQ</span></a>
+          <a href="policy-guide.html"><span class="dd-label">Educator Guidance</span><span class="dd-desc">Implementation and adaptation guidance</span></a>
+        </div></div>
+      </li>
+      <li class="nav-dropdown">
+        <a href="cqu-guided-assured.html">Implementations</a>
+        <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+          <a href="cqu-guided-assured.html"><span class="dd-label">CQUniversity &mdash; Guided&ndash;Assured Assessment</span><span class="dd-desc">Practical unit-level implementation mapping</span></a>
+          <a aria-disabled="true"><span class="dd-label">CDUT&ndash;Oxford Brookes College (Coming soon)</span><span class="dd-desc">Institutional implementation and collaboration</span></a>
+        </div></div>
+      </li>
+      <li><a href="publications.html">Evidence</a></li>
       <li><a href="community.html">Community</a></li>
       <li><a href="about.html" class="nav-cta">About</a></li>
     </ul>
@@ -591,9 +634,19 @@
 
 <div class="mobile-nav">
   <button class="mobile-nav-close" onclick="document.querySelector('.mobile-nav').classList.remove('open')">&#x2715;</button>
-  <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Educator Resources</a>
-  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Resources for Your Students</a>
-  <a href="publications.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Publications</a>
+  <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">The Framework</a>
+  <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Resources</a>
+  <a class="sub-link" href="student-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Student Guide</a>
+  <a class="sub-link" href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')">GenAI-101</a>
+  <a class="sub-link" href="defend_tool.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Defend Tool</a>
+  <a class="sub-link" href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Downloads</a>
+  <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Assessment Policy</a>
+  <a class="sub-link" href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Student-Facing Policy</a>
+  <a class="sub-link" href="policy-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Educator Guidance</a>
+  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Implementations</a>
+  <a class="sub-link" href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+  <a class="sub-link" aria-disabled="true">CDUT&ndash;Oxford Brookes College (Coming soon)</a>
+  <a href="publications.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Evidence</a>
   <a href="community.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
   <a href="about.html" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
 </div>
@@ -636,11 +689,11 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           View the guide
         </a>
-        <a href="SAGE_Student_Guide.docx" download class="btn btn-secondary">
+        <a href="files/SAGE_Student_Guide.docx" download class="btn btn-secondary">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
           Download Word
         </a>
-        <a href="SAGE_Student_Guide.pdf" download class="btn btn-ghost">
+        <a href="files/SAGE_Student_Guide.pdf" download class="btn btn-ghost">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v8M5 7l3 3 3-3M3 13h10"/></svg>
           Download PDF
         </a>
@@ -708,9 +761,13 @@
         <div class="footer-tagline">Structured AI-Guided Education — a validated pedagogical framework for higher education. Licensed CC BY 4.0.</div>
       </div>
       <div class="footer-links">
-        <a href="sage.html">Educator Resources</a>
-        <a href="student_resources.html">Resources for Your Students</a>
-        <a href="publications.html">Publications</a>
+        <a href="sage.html">The Framework</a>
+        <a href="student_resources.html">Resources</a>
+        <a href="policy.html">Assessment Policy</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="cqu-guided-assured.html">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
+        <span style="font-size:.78rem;color:rgba(255,255,255,.35);">CDUT&ndash;Oxford Brookes College (Coming soon)</span>
+        <a href="publications.html">Evidence</a>
         <a href="community.html">Community of Practice</a>
         <a href="about.html">About</a>
       </div>
