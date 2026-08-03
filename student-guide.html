@@ -1048,6 +1048,23 @@
     }
 
     @media (max-width: 640px) {
+      .resource-tabs { overflow: hidden; }
+      .resource-tabs-inner {
+        width: 100%;
+        min-width: 0;
+        padding: 0 0.25rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .resource-tab {
+        min-width: 0;
+        justify-content: center;
+        padding: 0.65rem 0.25rem;
+        font-size: 0.7rem;
+        text-align: center;
+        white-space: normal;
+      }
+      .resource-tab .tab-icon { display: none; }
       .content { padding: 2rem 1.25rem 3.5rem; }
       .page-header { padding: 2rem 1.25rem 1.75rem; }
       footer { padding: 2.5rem 1.25rem 1.5rem; }
@@ -1069,6 +1086,33 @@
       .practice-block { grid-template-columns: 1fr; }
       .practice-link { width: 100%; }
       .step-header-aside { width: 100%; margin-left: 2.4rem; align-items: flex-start; }
+      .guide-divider-label {
+        min-width: 0;
+        text-align: center;
+        line-height: 1.45;
+        white-space: normal;
+      }
+      .log-table,
+      .log-table tbody,
+      .log-table tr,
+      .log-table td { display: block; width: 100%; }
+      .log-table thead { display: none; }
+      .log-table tr { padding: 0.8rem 0.9rem; border-bottom: 1px solid var(--rule); }
+      .log-table tr:last-child { border-bottom: none; }
+      .log-table td { padding: 0.25rem 0; border: 0; }
+      .log-table td::before {
+        display: block;
+        margin-top: 0.3rem;
+        color: var(--sage);
+        font-size: 0.62rem;
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .log-table td:nth-child(1)::before { content: "AI output"; }
+      .log-table td:nth-child(2)::before { content: "Decision"; }
+      .log-table td:nth-child(3)::before { content: "Justification"; }
     }
 
     @media print {
@@ -1095,8 +1139,8 @@
       <li class="nav-dropdown">
         <a href="student_resources.html" class="active">Resources</a>
         <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
-          <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Six-step process for responsible AI use</div></div></a>
-          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101</div><div class="dd-desc">10-lesson AI literacy course</div></div></a>
+          <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Six-step guide for responsible AI use and Defend preparation</div></div></a>
+          <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">11-lesson AI literacy course</div></div></a>
           <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design an assurance checkpoint</div></div></a>
           <a href="downloads.html"><span class="dd-icon">&#x2B07;</span><div><div class="dd-label">Downloads</div><div class="dd-desc">Guides, templates and implementation resources</div></div></a>
         </div></div>
@@ -1109,10 +1153,9 @@
         </div></div>
       </li>
       <li class="nav-dropdown">
-        <a href="cqu-guided-assured.html">Implementations</a>
+        <a href="cqu-guided-assured.html">SAGE in Practice</a>
         <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
-          <a href="cqu-guided-assured.html"><div><div class="dd-label">CQUniversity &mdash; Guided&ndash;Assured Assessment</div><div class="dd-desc">Practical unit-level implementation mapping</div></div></a>
-          <a aria-disabled="true" style="cursor:default;opacity:0.72;"><div><div class="dd-label">CDUT&ndash;Oxford Brookes College (Coming soon)</div><div class="dd-desc">Institutional implementation and collaboration</div></div></a>
+          <a href="cqu-guided-assured.html"><div><div class="dd-label">CQUniversity &mdash; Independent GAM Mapping</div><div class="dd-desc">Independent mapping to the Guided&ndash;Assured Assessment Model</div></div></a>
         </div></div>
       </li>
       <li><a href="publications.html">Evidence</a></li>
@@ -1130,15 +1173,14 @@
   <a href="sage.html" onclick="this.closest('.mobile-nav').classList.remove('open')">The Framework</a>
   <a href="student_resources.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Resources</a>
   <a href="student-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student Guide</a>
-  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101</a>
+  <a href="genai-101.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">GenAI-101 Module</a>
   <a href="defend_tool.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Defend Tool</a>
   <a href="downloads.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Downloads</a>
   <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Assessment Policy</a>
   <a href="policy.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Student-Facing Policy</a>
   <a href="policy-guide.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">Educator Guidance</a>
-  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">Implementations</a>
-  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
-  <a aria-disabled="true" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;cursor:default;opacity:0.72;">CDUT&ndash;Oxford Brookes College (Coming soon)</a>
+  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="font-weight:600;">SAGE in Practice</a>
+  <a href="cqu-guided-assured.html" onclick="this.closest('.mobile-nav').classList.remove('open')" style="padding-left:2rem;font-size:0.95rem;color:#6b7a72;">CQUniversity &mdash; Independent GAM Mapping</a>
   <a href="publications.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Evidence</a>
   <a href="community.html" onclick="this.closest('.mobile-nav').classList.remove('open')">Community</a>
   <a href="about.html" onclick="this.closest('.mobile-nav').classList.remove('open')">About</a>
@@ -1158,7 +1200,7 @@
   <div class="page-header-inner">
     <div class="page-header-badge">For Educators</div>
     <h1>The SAGE Student Guide</h1>
-    <p class="subtitle">A six-step guide for responsible AI use and defensible learning. Download, adapt for your unit context, and hand directly to your students.</p>
+    <p class="subtitle">A six-step guide for responsible AI use and defensible learning</p>
   </div>
 </div>
 
@@ -1169,9 +1211,9 @@
   <div class="educator-intro">
     <div class="educator-intro-label">Note for educators</div>
     <h2>What this guide is and how to use it</h2>
-    <p>This is the student-facing component of the SAGE framework. It does not tell students whether they may use AI — that is determined by your unit policy and the AI Assessment Scale level you have set. It tells them <em>how</em> to use AI in a way that develops genuine learning and maintains academic integrity.</p>
+    <p>This guide does not determine whether you may use GenAI. That is established by your assessment instructions and the applicable institutional assessment classification, GenAI Guidance Level or policy. This guide explains how to use GenAI in a way that supports genuine learning and responsible professional practice.</p>
     <p>The guide is designed to be handed to students at the start of a unit or before a SAGE-integrated assessment task. You can use it verbatim, adapt the step names for your discipline, or reframe the examples to match your context. The log template in Step 3 can be provided as a separate document or embedded in your assessment instructions.</p>
-    <p>Steps 1–5 describe the student-led SAGE learning process. Step 6 explains how students may be asked to demonstrate the capability developed through that process. Educators should adapt the Defend section to match the assessment format, weighting, learning outcomes and institutional requirements without disclosing the exact challenge questions in advance.</p>
+    <p>Steps 1–5 describe the student-led learning process. Step 6 explains how students may be asked to demonstrate the capability developed through that process. Educators should adapt the Defend section to the assessment format, learning outcomes, weighting and institutional requirements. Students should know what capability they must demonstrate and how the activity will operate, but the exact challenge questions do not need to be disclosed in advance.</p>
 
     <div class="adapt-note">
       <div class="adapt-note-icon">✏️</div>
@@ -1202,18 +1244,18 @@
       <div class="responsibility-map" aria-label="Responsibility across the six SAGE steps">
         <div class="responsibility-phase student-led">
           <span class="responsibility-kicker">Steps 1–5</span>
-          <strong>You lead the learning process</strong>
+          <strong>Build and document the capability</strong>
           <p>Generate, evaluate, refine, test and reflect while keeping your decisions visible.</p>
           <div class="step-sequence" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
         </div>
         <div class="responsibility-phase educator-led">
           <span class="responsibility-kicker">Step 6</span>
-          <strong>Your educator verifies your capability</strong>
+          <strong>Demonstrate that the learning is yours</strong>
           <p>Defend may be included to confirm that you can explain, apply and adapt the learning.</p>
         </div>
       </div>
 
-      <div class="phase-heading">Steps 1–5 &middot; You lead the learning process</div>
+      <div class="phase-heading">Steps 1–5 &middot; Build and document the capability</div>
 
       <!-- ─── STEP 1 ─── -->
       <div class="step-card">
@@ -1327,7 +1369,7 @@
             <div class="step-label">Step 4</div>
             <div class="step-name">AI Critic</div>
           </div>
-          <div class="step-imperative">Audit the critic — do not accept its judgement automatically.</div>
+          <div class="step-imperative">Audit the critic</div>
         </div>
         <div class="step-card-body">
           <p>You have now built a log of documented decisions. In this step, you feed that log back into the AI — but this time you change the AI's role.</p>
@@ -1351,7 +1393,7 @@
             </div>
           </div>
 
-          <p>This adjudication is the final act of this step. AI Critic is a single bounded pass — you do not loop back and forth with the AI indefinitely. One critique, one adjudication, documented. You cannot construct a meaningful critique prompt without a genuine log from Step 3. No log, no meaningful critique. The steps are designed to build on each other.</p>
+          <p>This adjudication is the final act of this step. The AI Critic activity is a single bounded pass — you do not loop back and forth with the AI indefinitely. One critique, one adjudication, documented. You cannot construct a meaningful critique prompt without a genuine log from Step 3. No log, no meaningful critique. The steps are designed to build on each other.</p>
         </div>
       </div>
 
@@ -1383,7 +1425,7 @@
         </div>
       </div>
 
-      <div class="phase-heading defend-phase">Step 6 &middot; Your educator verifies your capability</div>
+      <div class="phase-heading defend-phase">Step 6 &middot; Demonstrate that the learning is yours</div>
 
       <!-- STEP 6 -->
       <div class="step-card step-card-defend" id="step-6-defend">
@@ -1403,9 +1445,9 @@
           <section class="defend-section">
             <span class="defend-section-intro">Capability, not suspicion</span>
             <h3>Show that the learning is yours</h3>
-            <p>In some assessments, your submitted work may be followed by a supervised activity in which you explain, apply, modify or reproduce part of what you learned. SAGE calls this <strong>Defend</strong>.</p>
-            <p>Defend is not a test of whether you can memorise your submission word for word. It is an opportunity to demonstrate that you understand the work, can explain the decisions represented in it, and can apply the same capability when the question, context or requirements change.</p>
-            <p>Your educator will tell you whether Defend forms part of your assessment, what format will be used, and how it will be marked.</p>
+            <p>In some assessments, your submitted work will be followed by a supervised activity in which you explain, apply, modify or reproduce the capability you developed. SAGE calls this <strong>Defend</strong>.</p>
+            <p>Defend is not a test of whether you can memorise your submission word for word. It is an opportunity to demonstrate that you understand the work, can explain the decisions represented in it, and can apply the same capability when the question, context, data or requirements change.</p>
+            <p>Your educator will tell you whether Defend forms part of your assessment, what format will be used, how long it will take and how it will be marked.</p>
             <div class="defend-principle">
               <strong>The purpose of Defend</strong>
               You used GenAI as part of the learning process. Now demonstrate that you understand, can apply and can take responsibility for the work.
@@ -1417,19 +1459,20 @@
             <h3>What might Defend involve?</h3>
             <p>Depending on your discipline and assessment, you may be asked to:</p>
             <div class="defend-format-list">
-              <div class="defend-format-item"><span class="defend-format-icon">01</span><span>Participate in an interactive oral assessment or viva.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">02</span><span>Explain and justify decisions during a presentation or demonstration.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">03</span><span>Walk through code, formulas, data analysis, a design or a technical process.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">04</span><span>Debug or modify part of your solution under observation.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">05</span><span>Complete a short related practical task.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">06</span><span>Respond to an unseen scenario or changed requirement.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">07</span><span>Explain the evidence, standards or sources supporting your decisions.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">08</span><span>Identify limitations, errors or alternative approaches.</span></div>
-              <div class="defend-format-item"><span class="defend-format-icon">09</span><span>Distinguish what you contributed from what GenAI contributed.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">01</span><span>An interactive oral assessment or viva.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">02</span><span>Structured individual questioning after a presentation.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">03</span><span>A code walkthrough or live debugging task.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">04</span><span>Applying a statistical method to an unseen dataset.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">05</span><span>Explaining a design, calculation, model or technical process.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">06</span><span>Modifying an artefact when a requirement or constraint changes.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">07</span><span>Responding to an unseen professional scenario.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">08</span><span>Completing a short supervised practical task.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">09</span><span>Explaining which contributions came from GenAI and which decisions were yours.</span></div>
+              <div class="defend-format-item"><span class="defend-format-icon">10</span><span>Identifying errors, assumptions, limitations or alternative approaches.</span></div>
             </div>
             <div class="institution-note">
-              <div class="institution-note-label">CQUniversity context</div>
-              <p>At CQUniversity, a Tier 2 guided-assured assessment normally combines a lower-weighted GenAI-supported submission with a higher-weighted interactive oral assessment in which students explain, defend and extend their work in real time.</p>
+              <div class="institution-note-label">CQUniversity example</div>
+              <p>At CQUniversity, a <a href="cqu-guided-assured.html#tier2">Tier 2 medium-security guided-assured assessment</a> combines a lower-weighted GenAI-supported preparatory component with a higher-weighted mandatory interactive component. Every student must explain, justify, critique and extend the work in real time.</p>
             </div>
             <div class="institution-note">
               <div class="institution-note-label">Other contexts</div>
@@ -1439,33 +1482,33 @@
 
           <section class="defend-section">
             <span class="defend-section-intro">Your responsibility</span>
-            <h3>What does this mean for you?</h3>
+            <h3>What must you be able to do?</h3>
             <p>When GenAI is permitted, do not submit work simply because it looks polished or correct. Before submitting, make sure you can:</p>
             <div class="capability-list">
               <div class="capability-item"><span class="capability-number">1</span><div><strong>Explain it</strong><p>Describe the purpose, reasoning and meaning of every major part in your own words.</p></div></div>
-              <div class="capability-item"><span class="capability-number">2</span><div><strong>Trace it</strong><p>Identify which ideas, wording, code, calculations or recommendations came from GenAI and which decisions were yours.</p></div></div>
+              <div class="capability-item"><span class="capability-number">2</span><div><strong>Trace it</strong><p>Identify what GenAI contributed, what you contributed and where your judgement changed the work.</p></div></div>
               <div class="capability-item"><span class="capability-number">3</span><div><strong>Justify it</strong><p>Explain why you accepted, modified or rejected important AI suggestions using evidence, standards, sources or disciplinary reasoning.</p></div></div>
-              <div class="capability-item"><span class="capability-number">4</span><div><strong>Test it</strong><p>Check claims, calculations, references, code, assumptions, edge cases and limitations.</p></div></div>
-              <div class="capability-item"><span class="capability-number">5</span><div><strong>Adapt it</strong><p>Change the work when the requirements, data, audience, scenario or constraints change.</p></div></div>
-              <div class="capability-item"><span class="capability-number">6</span><div><strong>Reproduce the capability</strong><p>Complete a similar task, or part of it, without relying on the original AI conversation.</p></div></div>
-              <div class="capability-item"><span class="capability-number">7</span><div><strong>Acknowledge limitations honestly</strong><p>If you do not know an answer, explain what you would check or how you would approach the problem rather than guessing or bluffing.</p></div></div>
+              <div class="capability-item"><span class="capability-number">4</span><div><strong>Test it</strong><p>Check claims, calculations, references, code, data, assumptions, edge cases and limitations.</p></div></div>
+              <div class="capability-item"><span class="capability-number">5</span><div><strong>Adapt it</strong><p>Change the work when the requirements, audience, scenario, data or constraints change.</p></div></div>
+              <div class="capability-item"><span class="capability-number">6</span><div><strong>Reproduce the capability</strong><p>Complete a similar task, or part of it, without asking GenAI to reproduce the original answer.</p></div></div>
+              <div class="capability-item"><span class="capability-number">7</span><div><strong>Be honest about limits</strong><p>If you do not know an answer, explain what you would check or how you would approach the problem rather than guessing or bluffing.</p></div></div>
             </div>
           </section>
 
           <section class="defend-section">
             <span class="defend-section-intro">Process evidence</span>
-            <h3>Preserve an authentic AI-use record</h3>
+            <h3>Preserve an authentic GenAI record</h3>
             <p>Where your assessment requires an AI log, decision log, chat export or declaration:</p>
             <ul class="record-list">
-              <li>Preserve the complete and authentic record required by the assessment.</li>
+              <li>Preserve the complete and authentic evidence required by the assessment.</li>
               <li>Do not fabricate, selectively alter or misrepresent AI interactions.</li>
-              <li>Do not delete relevant conversations after submission.</li>
+              <li>Retain the required records until the assessment and any review period are complete.</li>
               <li>Record meaningful accept, modify and reject decisions.</li>
               <li>Retain the sources, standards and evidence used to check AI output.</li>
-              <li>Protect personal, confidential and restricted information.</li>
-              <li>Follow the storage and submission instructions supplied by your educator.</li>
+              <li>Protect personal, confidential and restricted information; and</li>
+              <li>Follow your educator’s storage and submission instructions.</li>
             </ul>
-            <p style="margin-top:0.85rem;">Your log helps demonstrate your process, but the log alone is not proof that you developed the capability. You must also be able to explain and apply the learning represented in the final work.</p>
+            <p style="margin-top:0.85rem;">Your log supports transparency and helps you prepare, but the log alone does not prove that you developed the capability. You must also be able to explain, apply and adapt the learning represented in the final work.</p>
           </section>
 
           <section class="defend-section">
@@ -1478,9 +1521,10 @@
                 <label><input type="checkbox" /> <span>Can I explain every major part without reading from the AI output?</span></label>
                 <label><input type="checkbox" /> <span>Can I identify an important error, limitation or assumption?</span></label>
                 <label><input type="checkbox" /> <span>Can I justify my choices using an authoritative anchor?</span></label>
-                <label><input type="checkbox" /> <span>Can I modify the work for a different requirement?</span></label>
-                <label><input type="checkbox" /> <span>Can I complete a similar task without asking AI to reproduce the same answer?</span></label>
-                <label><input type="checkbox" /> <span>Can I answer questions about my reasoning, contribution and learning?</span></label>
+                <label><input type="checkbox" /> <span>Can I explain the trade-offs behind my decisions?</span></label>
+                <label><input type="checkbox" /> <span>Can I modify the work for a changed requirement?</span></label>
+                <label><input type="checkbox" /> <span>Can I complete a similar task without reproducing the same AI conversation?</span></label>
+                <label><input type="checkbox" /> <span>Can I distinguish my contribution from the AI contribution?</span></label>
               </div>
               <p class="readiness-result"><strong>If the answer to any of these questions is no, your learning process is not yet complete.</strong></p>
             </fieldset>
@@ -1490,8 +1534,8 @@
             <div class="practice-block">
               <div>
                 <span class="defend-section-intro" style="color:var(--sage-light);">Practise before you Defend</span>
-                <h3>Build confidence before the supervised activity</h3>
-                <p>Complete the GenAI-101 module, particularly <strong>Lesson 7: Use AI as a Critical Coach</strong>, and the <strong>Transfer Test activities in Lessons 10 and 11</strong>. These lessons show you how to use GenAI to practise answering questions, explain your reasoning, identify weaknesses and prepare to adapt your work under changed conditions.</p>
+                <h3>Practise before you Defend</h3>
+                <p>Complete <a href="genai-101.html">GenAI-101</a>, particularly <a href="genai-101.html#lesson-critical-coach">Lesson 7, “Use AI as a Critical Coach”</a>, and the Transfer Test activities in the later lessons: <a href="genai-101.html#lesson-own-materials">Lesson 10</a> and <a href="genai-101.html#lesson-ai-inside-apps">Lesson 11, “Using AI to Create, Code, and Work Inside Apps”</a>. These activities help you practise explaining, checking, changing and reproducing AI-assisted work under different conditions.</p>
               </div>
               <a class="practice-link" href="genai-101.html">Open GenAI-101&nbsp;&rarr;</a>
             </div>
@@ -1542,8 +1586,8 @@
         <a href="student_resources.html">Resources</a>
         <a href="policy.html">Assessment Policy</a>
         <a href="downloads.html">Downloads</a>
-        <a href="cqu-guided-assured.html">CQUniversity &mdash; Guided&ndash;Assured Assessment</a>
-        <span style="font-size:0.78rem;color:rgba(255,255,255,0.35);">CDUT&ndash;Oxford Brookes College (Coming soon)</span>
+        <span style="font-size:0.78rem;color:rgba(255,255,255,0.45);">SAGE in Practice</span>
+        <a href="cqu-guided-assured.html">CQUniversity &mdash; Independent GAM Mapping</a>
         <a href="publications.html">Evidence</a>
         <a href="community.html">Community of Practice</a>
         <a href="about.html">About</a>
