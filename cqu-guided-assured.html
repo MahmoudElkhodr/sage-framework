@@ -1,133 +1,1259 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SAGE in Practice — In revision | SAGE Framework</title>
-<meta name="description" content="This SAGE implementation resource is currently being revised. The SAGE Framework, Student Guide, Defend Tool, and Assessment Policy resources remain available.">
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://sage-framework.com/cqu-guided-assured.html">
-<style>
-  :root{
-    --ink:#12212b;
-    --ink-soft:#4d5f6b;
-    --line:#d9e0e3;
-    --paper:#f7f8f7;
-    --accent:#2f6b5f;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  header{
-    border-bottom:1px solid var(--line);
-    padding:1.25rem 1.5rem;
-  }
-  .brand{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-weight:700;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    font-size:.82rem;
-    color:var(--ink);
-    text-decoration:none;
-  }
-  nav{
-    margin-top:.85rem;
-    display:flex;
-    flex-wrap:wrap;
-    gap:.35rem 1.25rem;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size:.86rem;
-  }
-  nav a{color:var(--ink-soft);text-decoration:none;}
-  nav a:hover,nav a:focus{color:var(--accent);text-decoration:underline;}
-  main{
-    max-width:34rem;
-    margin:0 auto;
-    padding:4.5rem 1.5rem 5rem;
-  }
-  .eyebrow{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    text-transform:uppercase;
-    letter-spacing:.12em;
-    font-size:.72rem;
-    color:var(--accent);
-    margin:0 0 .9rem;
-  }
-  h1{
-    font-size:1.9rem;
-    line-height:1.25;
-    font-weight:400;
-    margin:0 0 1.1rem;
-  }
-  p{color:var(--ink-soft);margin:0 0 1rem;}
-  .links{
-    margin-top:2.5rem;
-    padding-top:1.5rem;
-    border-top:1px solid var(--line);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size:.92rem;
-  }
-  .links a{
-    display:block;
-    color:var(--ink);
-    text-decoration:none;
-    padding:.55rem 0;
-    border-bottom:1px solid var(--line);
-  }
-  .links a:hover,.links a:focus{color:var(--accent);}
-  footer{
-    max-width:34rem;
-    margin:0 auto;
-    padding:0 1.5rem 3rem;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    font-size:.78rem;
-    color:var(--ink-soft);
-  }
-  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAGE within CQUniversity&rsquo;s Guided&ndash;Assured Assessment Model | SAGE Framework</title>
+  <meta name="description" content="A source-based overview of where SAGE is referenced in CQUniversity&rsquo;s Guided&ndash;Assured Assessment Model Educator Guide, followed by independent SAGE educator resources.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide">
+  <link rel="canonical" href="https://sage-framework.com/cqu-guided-assured.html">
+  <meta property="og:title" content="SAGE within CQUniversity&rsquo;s Guided&ndash;Assured Assessment Model">
+  <meta property="og:description" content="A source-based overview of where SAGE is referenced in CQUniversity&rsquo;s Guided&ndash;Assured Assessment Model Educator Guide, followed by independent SAGE educator resources.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sage-framework.com/cqu-guided-assured.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SAGE within CQUniversity&rsquo;s Guided&ndash;Assured Assessment Model">
+  <meta name="twitter:description" content="Official-guide references to SAGE, followed by independent SAGE resources for educators.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #123c2d;
+      --forest-2: #1d5941;
+      --sage: #2f7659;
+      --sage-soft: #e9f2ed;
+      --lime: #b7cf4a;
+      --ink: #17231d;
+      --muted: #5d6b63;
+      --paper: #f7f6f1;
+      --white: #ffffff;
+      --line: #d9e0db;
+      --source: #eef3f5;
+      --source-line: #b9cbd2;
+      --amber: #b9652b;
+      --amber-soft: #fbf0e8;
+      --shadow: 0 14px 34px rgba(18, 60, 45, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Instrument Sans", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--forest-2); text-underline-offset: 0.18em; }
+    a:hover { color: var(--sage); }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 3px;
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      color: var(--forest);
+      font-family: "Fraunces", Georgia, serif;
+      letter-spacing: 0;
+      line-height: 1.16;
+    }
+
+    h1 { max-width: 1120px; margin-bottom: 0.65rem; font-size: clamp(2rem, 3.8vw, 3.25rem); }
+    h2 { margin-bottom: 1rem; font-size: clamp(1.7rem, 3vw, 2.55rem); }
+    h3 { margin-bottom: 0.55rem; font-size: 1.28rem; }
+    p { margin: 0 0 1rem; }
+    ul { margin: 0.8rem 0 1rem; padding-left: 1.25rem; }
+    li { margin: 0.42rem 0; }
+
+    .skip-link {
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 3000;
+      padding: 0.65rem 0.9rem;
+      border-radius: 4px;
+      background: var(--white);
+      color: var(--forest);
+      font-weight: 700;
+      transform: translateY(-150%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .global-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 64px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 246, 241, 0.97);
+      backdrop-filter: blur(12px);
+    }
+
+    .global-nav-inner {
+      display: flex;
+      width: min(1180px, calc(100% - 2rem));
+      height: 100%;
+      margin: 0 auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .global-wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      color: var(--forest);
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .global-wordmark small {
+      color: var(--muted);
+      font-family: "Instrument Sans", Arial, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .global-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.08rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .global-nav-links > li { position: relative; margin: 0; }
+    .global-nav-links > li > a {
+      display: block;
+      padding: 0.55rem 0.7rem;
+      border-radius: 5px;
+      color: #34443b;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .global-nav-links > li > a:hover,
+    .global-nav-links > li:focus-within > a { background: var(--sage-soft); color: var(--forest); }
+    .global-nav-links .nav-cta { background: var(--forest); color: var(--white); }
+    .global-nav-links .nav-cta:hover { background: var(--forest-2); color: var(--white); }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      left: 0;
+      z-index: 1100;
+      width: 310px;
+      padding-top: 0.35rem;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    }
+    .nav-dropdown:nth-last-child(-n+4) .nav-dropdown-menu { right: 0; left: auto; }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav-dropdown-panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .nav-dropdown-panel a {
+      display: block;
+      padding: 0.78rem 0.9rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-dropdown-panel a:last-child { border-bottom: 0; }
+    .nav-dropdown-panel a:hover, .nav-dropdown-panel a:focus { background: var(--sage-soft); }
+    .dd-label { font-size: 0.81rem; font-weight: 700; }
+    .dd-desc { margin-top: 0.12rem; color: var(--muted); font-size: 0.7rem; line-height: 1.38; }
+
+    .global-nav-hamburger {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--white);
+      color: var(--forest);
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .global-nav-mobile {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      overflow-y: auto;
+      flex-direction: column;
+      padding: 4.75rem 1.5rem 2rem;
+      background: var(--paper);
+    }
+    .global-nav-mobile.open { display: flex; }
+    .global-nav-mobile a {
+      padding: 0.78rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .global-nav-mobile .sub-link { padding-left: 1rem; color: var(--muted); font-size: 0.84rem; }
+    .global-nav-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--white);
+      color: var(--forest);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .container { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; }
+
+    .hero {
+      padding: 2.25rem 0 1.75rem;
+      border-bottom: 5px solid var(--lime);
+      background: var(--forest);
+    }
+    .eyebrow, .section-kicker {
+      display: block;
+      margin-bottom: 0.75rem;
+      color: var(--sage);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .hero-subtitle {
+      max-width: 850px;
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.78);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      line-height: 1.55;
+    }
+    .hero h1 { color: var(--white); }
+    .hero .eyebrow { color: var(--lime); }
+    .independent-notice {
+      display: grid;
+      max-width: 1040px;
+      grid-template-columns: 1fr auto;
+      gap: 1.25rem;
+      align-items: center;
+      padding: 0.72rem 0.9rem;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-left: 5px solid var(--lime);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+    }
+    .notice-title { display: inline; margin-right: 0.2rem; color: var(--lime); font-weight: 700; }
+    .independent-notice p { color: rgba(255,255,255,0.84); font-size: 0.91rem; line-height: 1.55; }
+    .independent-notice p:last-child { margin-bottom: 0; }
+    .independent-notice .btn { border-color: var(--lime); background: var(--lime); color: var(--forest); }
+    .independent-notice .btn:hover { border-color: var(--white); background: var(--white); color: var(--forest); }
+
+    .button-row { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }
+    .btn {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      padding: 0.68rem 1rem;
+      border: 1px solid var(--forest);
+      border-radius: 5px;
+      background: var(--forest);
+      color: var(--white);
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.25;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn:hover { background: var(--forest-2); color: var(--white); }
+    .btn.secondary { background: transparent; color: var(--forest); }
+    .btn.secondary:hover { background: var(--sage-soft); color: var(--forest); }
+    .btn.on-dark { border-color: var(--white); background: var(--white); color: var(--forest); }
+    .btn.on-dark:hover { background: var(--lime); color: var(--forest); }
+
+    .doc-section { padding: 5rem 0; }
+    .doc-section + .doc-section { border-top: 1px solid var(--line); }
+    .source-zone { background: var(--source); }
+    .source-zone .doc-section + .doc-section { border-color: var(--source-line); }
+    .section-intro { max-width: 840px; color: var(--muted); font-size: 1.03rem; }
+    .section-intro em { color: var(--ink); }
+
+    .tier-strip {
+      display: grid;
+      margin: 2rem 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+    .tier-name {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--source-line);
+      border-top: 4px solid #537b8c;
+      border-radius: 6px;
+      background: var(--white);
+      color: var(--forest);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .source-evidence-grid {
+      display: grid;
+      margin-top: 2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .source-evidence-card {
+      min-width: 0;
+      border: 1px solid var(--source-line);
+      border-radius: 6px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .source-evidence-card summary {
+      display: block;
+      cursor: pointer;
+      list-style: none;
+    }
+    .source-evidence-card summary::-webkit-details-marker { display: none; }
+    .source-preview-frame {
+      display: block;
+      max-height: 300px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--source-line);
+      background: var(--white);
+    }
+    .source-preview-frame img {
+      display: block;
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: top;
+    }
+    .source-evidence-card[open] .source-preview-frame { max-height: none; }
+    .source-evidence-card[open] .source-preview-frame img { height: auto; object-fit: contain; }
+    .source-preview-copy { display: block; padding: 1.15rem 1.2rem; }
+    .source-preview-copy h3 { margin-bottom: 0.45rem; }
+    .source-preview-copy p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+    .source-page {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: #52676f;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .expand-cue { display: inline-block; margin-top: 0.85rem; color: var(--forest-2); font-size: 0.78rem; font-weight: 700; }
+    .source-evidence-card[open] .expand-cue { display: none; }
+    .source-evidence-actions { padding: 0 1.2rem 1.2rem; }
+
+    .territory-boundary {
+      padding: 2.4rem 0;
+      border-top: 5px solid var(--lime);
+      background: var(--forest);
+      color: var(--white);
+    }
+    .territory-boundary h2 { margin: 0; color: var(--white); font-size: clamp(1.6rem, 3vw, 2.3rem); }
+
+    .independent-zone { background: var(--paper); }
+    .independent-zone .doc-section:nth-of-type(even) { background: var(--white); }
+
+    .cycle-grid {
+      display: grid;
+      margin-top: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .cycle-card {
+      min-width: 0;
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--sage);
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .cycle-card:nth-child(4), .cycle-card:nth-child(6) { border-top-color: var(--amber); }
+    .step-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.8rem; }
+    .step-number {
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .cycle-card h3 { margin: 0; font-size: 1.2rem; }
+    .cycle-card p { margin: 0; color: var(--muted); font-size: 0.91rem; }
+
+    .orchestration-summary-grid {
+      display: grid;
+      margin-top: 2rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+    .orchestration-summary-card {
+      min-width: 0;
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--sage);
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .orchestration-summary-card.baseline { border-top-color: var(--amber); }
+    .orchestration-summary-card h3 { margin-bottom: 0.45rem; font-size: 1.08rem; }
+    .orchestration-summary-card p { margin: 0; color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+    .level-status {
+      display: inline-block;
+      margin-bottom: 0.55rem;
+      color: var(--amber);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .anchor-layout {
+      display: grid;
+      margin-top: 2rem;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .anchor-list, .evidence-list {
+      padding: 1.25rem 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .anchor-list ul, .evidence-list ul { columns: 2; column-gap: 2rem; }
+    .anchor-principle {
+      margin-top: 1.5rem;
+      padding: 1.15rem 1.3rem;
+      border-left: 5px solid var(--lime);
+      background: var(--forest);
+      color: var(--white);
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.28rem;
+      font-weight: 600;
+    }
+
+    .assurance-copy { max-width: 930px; }
+    .assurance-map {
+      margin: 2rem 0;
+      padding: 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .assurance-map h3 { margin-bottom: 0.35rem; }
+    .assurance-map-intro { margin-bottom: 1rem; color: var(--muted); font-size: 0.88rem; }
+    .assurance-matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+    }
+    .assurance-matrix {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 0.82rem;
+    }
+    .assurance-matrix th,
+    .assurance-matrix td {
+      min-width: 0;
+      height: 58px;
+      padding: 0.6rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      line-height: 1.3;
+    }
+    .assurance-matrix tr:last-child th,
+    .assurance-matrix tr:last-child td { border-bottom: 0; }
+    .assurance-matrix th:last-child,
+    .assurance-matrix td:last-child { border-right: 0; }
+    .assurance-matrix thead th { background: var(--forest); color: var(--white); font-weight: 700; }
+    .assurance-matrix thead th:first-child { width: 18%; }
+    .assurance-matrix tbody th { background: var(--source); color: var(--forest); text-align: left; }
+    .assurance-matrix td { background: #f7f7f4; color: var(--muted); }
+    .assurance-matrix td.corroborative { background: #d9ddda; color: #26342d; font-weight: 700; }
+    .assurance-matrix td.controlled { background: #2f9490; color: var(--white); font-weight: 700; }
+    .assurance-matrix td.direct { background: #174a76; color: var(--white); font-weight: 700; }
+    .assurance-legend {
+      display: grid;
+      margin-top: 1rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .assurance-legend-item { display: flex; gap: 0.55rem; align-items: flex-start; color: var(--muted); font-size: 0.78rem; line-height: 1.45; }
+    .assurance-legend-item strong { display: block; color: var(--ink); }
+    .assurance-swatch { flex: 0 0 16px; width: 16px; height: 16px; margin-top: 0.15rem; border: 1px solid rgba(23,35,29,0.18); }
+    .assurance-swatch.corroborative { background: #d9ddda; }
+    .assurance-swatch.controlled { background: #2f9490; }
+    .assurance-swatch.direct { background: #174a76; }
+    .assurance-design-note {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-left: 4px solid var(--sage);
+      background: var(--sage-soft);
+      color: var(--forest);
+      font-size: 0.86rem;
+    }
+    .assurance-format-example { margin: 0.8rem 0 0; color: var(--muted); font-size: 0.84rem; }
+    .assurance-functions {
+      display: grid;
+      margin: 1.5rem 0;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+    .assurance-function {
+      min-width: 0;
+      padding: 1.1rem;
+      border: 1px solid var(--line);
+      border-top: 5px solid #d9ddda;
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .assurance-function.controlled { border-top-color: #2f9490; }
+    .assurance-function.direct { border-top-color: #174a76; }
+    .assurance-function h4 { margin: 0 0 0.5rem; color: var(--forest); font-family: "Fraunces", Georgia, serif; font-size: 1.05rem; line-height: 1.3; }
+    .assurance-function p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+    .assurance-flow {
+      display: grid;
+      margin: 1rem 0 1.2rem;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      gap: 0.45rem;
+      align-items: center;
+    }
+    .assurance-flow span:not(.flow-arrow) {
+      padding: 0.7rem 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--white);
+      color: var(--forest);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .flow-arrow { color: var(--sage); font-weight: 700; }
+    .assurance-principle {
+      margin-top: 1.5rem;
+      padding: 1.15rem 1.3rem;
+      border-left: 5px solid var(--lime);
+      background: var(--forest);
+      color: var(--white);
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.12rem;
+      font-weight: 600;
+    }
+
+    .resource-grid {
+      display: grid;
+      margin-top: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .resource-card {
+      display: flex;
+      min-width: 0;
+      min-height: 315px;
+      flex-direction: column;
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .resource-card p { color: var(--muted); font-size: 0.91rem; }
+    .resource-card .btn { align-self: flex-start; margin-top: auto; }
+    .resource-badge {
+      align-self: flex-start;
+      margin-bottom: 0.8rem;
+      padding: 0.28rem 0.48rem;
+      border: 1px solid rgba(47,118,89,0.25);
+      border-radius: 4px;
+      background: var(--sage-soft);
+      color: var(--forest-2);
+      font-size: 0.67rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .additional-grid {
+      display: grid;
+      margin-top: 2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .additional-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .additional-card p { color: var(--muted); font-size: 0.9rem; }
+    .additional-card .btn { align-self: flex-start; margin-top: auto; }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .author-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .author-entry {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--white);
+    }
+    .author-entry strong { display: block; color: var(--forest); }
+    .author-entry span { color: var(--muted); font-size: 0.86rem; }
+    .author-entry a { display: inline-block; margin-top: 0.35rem; font-size: 0.82rem; }
+
+    .sources-area {
+      padding: 4rem 0;
+      border-top: 1px solid var(--source-line);
+      background: var(--source);
+    }
+    .sources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .sources-grid article { min-width: 0; }
+    .sources-grid h2 { font-size: 1.55rem; }
+    .sources-grid p { font-size: 0.92rem; }
+
+    .footer {
+      padding: 3rem 0 2rem;
+      background: #0d2b20;
+      color: rgba(255,255,255,0.72);
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr repeat(3, 1fr); gap: 2rem; }
+    .footer-brand { color: var(--white); font-family: "Fraunces", Georgia, serif; font-size: 1.55rem; }
+    .footer p { font-size: 0.8rem; }
+    .footer h2 {
+      margin-bottom: 0.65rem;
+      color: var(--white);
+      font-family: "Instrument Sans", Arial, sans-serif;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .footer a { display: block; margin: 0.34rem 0; color: rgba(255,255,255,0.72); font-size: 0.8rem; text-decoration: none; }
+    .footer a:hover { color: var(--lime); }
+    .footer-bottom {
+      display: flex;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      justify-content: space-between;
+      gap: 1rem;
+      color: rgba(255,255,255,0.52);
+      font-size: 0.72rem;
+    }
+
+    @media (max-width: 980px) {
+      .global-nav-links { display: none; }
+      .global-nav-hamburger { display: block; }
+      .source-evidence-grid, .cycle-grid, .resource-grid, .orchestration-summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .independent-notice { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding: 2rem 0 1.5rem; }
+      .doc-section { padding: 3.5rem 0; }
+      .tier-strip, .source-evidence-grid, .cycle-grid, .resource-grid,
+      .orchestration-summary-grid, .anchor-layout, .assurance-functions, .assurance-legend, .additional-grid, .contact-layout,
+      .sources-grid { grid-template-columns: 1fr; }
+      .assurance-flow { grid-template-columns: 1fr; justify-items: stretch; }
+      .flow-arrow { text-align: center; transform: rotate(90deg); }
+      .resource-card { min-height: 0; }
+      .resource-card .btn { margin-top: 0.5rem; }
+      .anchor-list ul, .evidence-list ul { columns: 1; }
+      .author-list { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @media (max-width: 420px) {
+      .container { width: min(100% - 1.5rem, 1120px); }
+      .global-nav-inner { width: calc(100% - 1.5rem); }
+      .independent-notice, .cycle-card, .resource-card, .orchestration-summary-card { padding: 1rem; }
+      .assurance-map { padding: 0.75rem; }
+      .btn { width: 100%; }
+    }
+
+    @media print {
+      .global-nav, .global-nav-mobile, .button-row, .footer { display: none !important; }
+      body { background: var(--white); }
+      .hero, .doc-section, .territory-boundary, .sources-area { padding: 1.25rem 0; }
+      .cycle-card, .resource-card, .source-evidence-card, .orchestration-summary-card { break-inside: avoid; box-shadow: none; }
+      a { color: var(--ink); text-decoration: none; }
+    }
+  </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<header>
-  <a class="brand" href="https://sage-framework.com/index.html">SAGE Framework</a>
-  <nav aria-label="Primary">
-    <a href="https://sage-framework.com/sage.html">The Framework</a>
-    <a href="https://sage-framework.com/student_resources.html">Resources</a>
-    <a href="https://sage-framework.com/student-guide.html">Student Guide</a>
-    <a href="https://sage-framework.com/genai-101.html">GenAI-101</a>
-    <a href="https://sage-framework.com/defend_tool.html">Defend Tool</a>
-    <a href="https://sage-framework.com/policy.html">Assessment Policy</a>
-    <a href="https://sage-framework.com/publications.html">Evidence</a>
-    <a href="https://sage-framework.com/community.html">Community</a>
-    <a href="https://sage-framework.com/about.html">About</a>
+  <nav class="global-nav" aria-label="Main navigation">
+    <div class="global-nav-inner">
+      <a class="global-wordmark" href="index.html">SAGE <small>Framework</small></a>
+      <ul class="global-nav-links">
+        <li><a href="sage.html">The Framework</a></li>
+        <li class="nav-dropdown">
+          <a href="student_resources.html">Resources</a>
+          <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+            <a href="student-guide.html"><span class="dd-label">Student Guide</span><span class="dd-desc">Six-step guide for responsible AI use and Defend preparation</span></a>
+            <a href="genai-101.html"><span class="dd-label">GenAI-101 Module</span><span class="dd-desc">Eleven-lesson AI literacy course</span></a>
+            <a href="defend_tool.html"><span class="dd-label">Defend Tool</span><span class="dd-desc">Design an assurance checkpoint</span></a>
+            <a href="downloads.html"><span class="dd-label">Downloads</span><span class="dd-desc">Guides, templates and educator resources</span></a>
+          </div></div>
+        </li>
+        <li class="nav-dropdown">
+          <a href="policy.html">Assessment Policy</a>
+          <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+            <a href="policy.html"><span class="dd-label">Student-Facing Policy</span><span class="dd-desc">Policy text, declarations, examples and FAQ</span></a>
+            <a href="policy-guide.html"><span class="dd-label">Educator Guidance</span><span class="dd-desc">Implementation and adaptation guidance</span></a>
+          </div></div>
+        </li>
+        <li><a href="cqu-guided-assured.html">SAGE in Practice</a></li>
+        <li><a href="publications.html">Evidence</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a class="nav-cta" href="about.html">About</a></li>
+      </ul>
+      <button class="global-nav-hamburger" type="button" aria-label="Open navigation" aria-controls="global-nav-mobile" aria-expanded="false">Menu</button>
+    </div>
   </nav>
-</header>
 
-<main>
-  <p class="eyebrow">SAGE in Practice</p>
-  <h1>This page is being revised</h1>
-  <p>An updated version of this implementation resource is in preparation and will be published here.</p>
-  <p>The core SAGE resources remain available in the meantime.</p>
-
-  <div class="links">
-    <a href="https://sage-framework.com/sage.html">The SAGE Framework →</a>
-    <a href="https://sage-framework.com/student-guide.html">Student Guide →</a>
-    <a href="https://sage-framework.com/defend_tool.html">Defend Tool →</a>
-    <a href="https://sage-framework.com/genai-101.html">GenAI-101 Module →</a>
-    <a href="https://sage-framework.com/downloads.html">Downloads →</a>
+  <div class="global-nav-mobile" id="global-nav-mobile" aria-hidden="true">
+    <button class="global-nav-close" type="button" aria-label="Close navigation">&#x2715;</button>
+    <a href="sage.html">The Framework</a>
+    <a href="student_resources.html">Resources</a>
+    <a class="sub-link" href="student-guide.html">Student Guide</a>
+    <a class="sub-link" href="genai-101.html">GenAI-101 Module</a>
+    <a class="sub-link" href="defend_tool.html">Defend Tool</a>
+    <a class="sub-link" href="downloads.html">Downloads</a>
+    <a href="policy.html">Assessment Policy</a>
+    <a class="sub-link" href="policy.html">Student-Facing Policy</a>
+    <a class="sub-link" href="policy-guide.html">Educator Guidance</a>
+    <a href="cqu-guided-assured.html">SAGE in Practice</a>
+    <a href="publications.html">Evidence</a>
+    <a href="community.html">Community</a>
+    <a href="about.html">About</a>
   </div>
-</main>
 
-<footer>
-  CC BY 4.0 · sage-framework.com
-</footer>
+  <header class="hero">
+    <div class="container">
+      <span class="eyebrow">Source-based overview</span>
+      <h1>SAGE within CQUniversity&rsquo;s Guided&ndash;Assured Assessment Model</h1>
+      <p class="hero-subtitle">A source-based overview of how SAGE is referenced in the official Educator Guide, followed by independent SAGE resources for educators.</p>
 
+      <aside class="independent-notice" aria-label="Independent resource notice">
+        <div>
+          <p><strong class="notice-title">Independent SAGE page.</strong> Not an official CQUniversity publication. The CQUniversity Guided&ndash;Assured Assessment Model Educator Guide is available here.</p>
+        </div>
+        <a class="btn" href="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-guided-assured-assessment-model-educator-guide-1287875.pdf" target="_blank" rel="noopener">Open the official Educator Guide</a>
+      </aside>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="source-zone">
+      <section class="doc-section" aria-labelledby="about-model">
+        <div class="container">
+          <span class="section-kicker">Official institutional source</span>
+          <h2 id="about-model">About the Guided&ndash;Assured Assessment Model</h2>
+          <div class="section-intro">
+            <p>CQUniversity&rsquo;s <em>Guided&ndash;Assured Assessment Model Educator Guide</em> presents a practice-oriented framework for assessment in the context of generative artificial intelligence.</p>
+            <p>The guide describes three assessment-security tiers:</p>
+          </div>
+
+          <div class="tier-strip" aria-label="Assessment-security tiers named in the Educator Guide">
+            <div class="tier-name">Tier 1: high-security (assured)</div>
+            <div class="tier-name">Tier 2: medium-security (guided assured)</div>
+            <div class="tier-name">Tier 3: low-security (guided)</div>
+          </div>
+
+          <div class="section-intro">
+            <p>The Educator Guide also includes GenAI Guidance Levels, an assessment-design decision framework, course-level planning considerations, and guidance concerning accessibility, equity and academic integrity.</p>
+          </div>
+          <div class="button-row">
+            <a class="btn" href="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-guided-assured-assessment-model-educator-guide-1287875.pdf" target="_blank" rel="noopener">Open the official CQUniversity Educator Guide</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="sage-in-guide">
+        <div class="container">
+          <span class="section-kicker">Documented references</span>
+          <h2 id="sage-in-guide">SAGE within the Educator Guide</h2>
+          <p class="section-intro">The Educator Guide incorporates SAGE within its assessment-design material. Page 12 aligns the GenAI Guidance Levels with SAGE Student Orchestration Levels, while page 17 presents the six-step SAGE cycle.</p>
+
+          <div class="source-evidence-grid">
+            <details class="source-evidence-card">
+              <summary>
+                <span class="source-preview-frame">
+                  <img src="assets/images/cqu-guided-assured-orchestration-levels-p12.png" width="1754" height="1240" alt="Preview of the GenAI Guidance Levels table on page 12 of the CQUniversity Educator Guide">
+                </span>
+                <span class="source-preview-copy">
+                  <span class="source-page">Official Educator Guide &middot; page 12</span>
+                  <h3>SAGE Student Orchestration Levels</h3>
+                  <p>The GenAI Guidance Levels table includes a SAGE Student Orchestration Level column and identifies the table as adapted from Elkhodr and Gide.</p>
+                  <span class="expand-cue">Expand page image</span>
+                </span>
+              </summary>
+              <div class="source-evidence-actions button-row">
+                <a class="btn secondary" href="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-guided-assured-assessment-model-educator-guide-1287875.pdf#page=12" target="_blank" rel="noopener">Open page 12 in the official guide</a>
+              </div>
+            </details>
+
+            <details class="source-evidence-card">
+              <summary>
+                <span class="source-preview-frame">
+                  <img src="assets/images/cqu-guided-assured-sage-cycle-p17.png" width="1240" height="1754" alt="Preview of the six-step SAGE cycle on page 17 of the CQUniversity Educator Guide">
+                </span>
+                <span class="source-preview-copy">
+                  <span class="source-page">Official Educator Guide &middot; page 17</span>
+                  <h3>The six-step SAGE cycle</h3>
+                  <p>The Educator Guide presents Generate, Evaluate, Refine, AI Critic, Reflect and Defend as the six steps of SAGE.</p>
+                  <span class="expand-cue">Expand page image</span>
+                </span>
+              </summary>
+              <div class="source-evidence-actions button-row">
+                <a class="btn secondary" href="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-guided-assured-assessment-model-educator-guide-1287875.pdf#page=17" target="_blank" rel="noopener">Open page 17 in the official guide</a>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="territory-boundary" aria-labelledby="independent-resources-heading">
+      <div class="container">
+        <h2 id="independent-resources-heading">Independent SAGE educator resources</h2>
+      </div>
+    </section>
+
+    <div class="independent-zone">
+      <section class="doc-section" aria-labelledby="independent-guide">
+        <div class="container">
+          <span class="section-kicker">Independent framework</span>
+          <h2 id="independent-guide">SAGE: an independent educator guide</h2>
+          <div class="section-intro">
+            <p>Structured AI-Guided Education (SAGE) is an evidence-informed pedagogical framework designed to develop students&rsquo; capacity to use generative AI critically, transparently and accountably.</p>
+            <p>SAGE does not determine whether GenAI is permitted in an assessment. Permission remains governed by the relevant institution, course, unit and assessment instructions.</p>
+            <p>Where GenAI use is permitted, SAGE provides a structured process through which students generate, evaluate, refine, critique, reflect on and defend AI-supported work.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="sage-cycle">
+        <div class="container">
+          <span class="section-kicker">Pedagogical process</span>
+          <h2 id="sage-cycle">The six-step SAGE cycle</h2>
+
+          <div class="cycle-grid">
+            <article class="cycle-card">
+              <div class="step-header"><span class="step-number">1</span><h3>Generate</h3></div>
+              <p>Students begin from an informed human starting point and use GenAI to generate material, possibilities or perspectives for examination. The purpose is not to accept the first output as an answer, but to create material that can be interrogated through the subsequent stages.</p>
+            </article>
+            <article class="cycle-card">
+              <div class="step-header"><span class="step-number">2</span><h3>Evaluate</h3></div>
+              <p>Students evaluate AI-generated material against authoritative disciplinary evidence. They identify inaccuracies, unsupported claims, omissions, bias, inappropriate recommendations and areas requiring further investigation.</p>
+            </article>
+            <article class="cycle-card">
+              <div class="step-header"><span class="step-number">3</span><h3>Refine</h3></div>
+              <p>Students decide what to <strong>accept, modify or reject</strong>. Refinement is based on disciplinary evidence and human judgement rather than simply asking the AI to improve its own output.</p>
+            </article>
+            <article class="cycle-card">
+              <div class="step-header"><span class="step-number">4</span><h3>AI Critic</h3></div>
+              <p>Students deliberately use GenAI as a critic or challenger of the developing work. The student then evaluates the validity of that criticism rather than assuming that the AI-generated critique is itself correct.</p>
+            </article>
+            <article class="cycle-card">
+              <div class="step-header"><span class="step-number">5</span><h3>Reflect</h3></div>
+              <p>Students consider how GenAI influenced the work and their learning. Reflection should identify where AI was useful, where it was unreliable or limited, what human decisions were required, and what the student learned through the process.</p>
+            </article>
+            <article class="cycle-card">
+              <div class="step-header"><span class="step-number">6</span><h3>Defend</h3></div>
+              <p>Students demonstrate that they understand, can justify and can apply the reasoning represented in their work. Defend provides an opportunity for personally attributable demonstration of understanding rather than relying solely on the submitted artefact.</p>
+            </article>
+          </div>
+
+          <div class="button-row" style="margin-top:1.5rem">
+            <a class="btn" href="https://sage-framework.com/sage.html">Explore the full SAGE Framework</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="orchestration-summary">
+        <div class="container">
+          <span class="section-kicker">Developmental capability</span>
+          <h2 id="orchestration-summary">SAGE Student Orchestration Levels</h2>
+          <p class="section-intro">The SAGE Student Orchestration Levels describe the observable quality of a student&rsquo;s collaboration with generative AI. They are developmental capability levels, distinct from guidance or permission levels.</p>
+
+          <div class="orchestration-summary-grid">
+            <article class="orchestration-summary-card baseline">
+              <span class="level-status">Baseline &mdash; not a target</span>
+              <h3>Passive Acceptor</h3>
+              <p>Accepts AI output with minimal critical evaluation, disciplinary verification or justification.</p>
+            </article>
+            <article class="orchestration-summary-card">
+              <h3>Selective Adapter</h3>
+              <p>Filters AI output using disciplinary knowledge and evidence, accepting, modifying or rejecting selected elements.</p>
+            </article>
+            <article class="orchestration-summary-card">
+              <h3>Balanced Integrator</h3>
+              <p>Systematically combines human and AI contributions through explicit trade-off reasoning, contextual judgement and iterative refinement.</p>
+            </article>
+            <article class="orchestration-summary-card">
+              <h3>Critical Synthesiser</h3>
+              <p>Proactively identifies gaps, assumptions and bias, then develops a traceable synthesis or contextual adaptation that extends beyond both the original human position and the AI output.</p>
+            </article>
+          </div>
+
+          <div class="button-row" style="margin-top:1.5rem">
+            <a class="btn secondary" href="https://sage-framework.com/sage.html#orchestration-levels">Explore the full orchestration-level definitions</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="anchor-principle">
+        <div class="container">
+          <span class="section-kicker">Evidence before acceptance</span>
+          <h2 id="anchor-principle">The Anchor principle</h2>
+          <div class="anchor-layout">
+            <div>
+              <p>SAGE does not treat GenAI output as evidence.</p>
+              <p>AI-assisted work should be evaluated against an <strong>authoritative anchor</strong> appropriate to the discipline and task.</p>
+              <p>The anchor provides students with an external basis for testing AI-generated claims rather than asking the AI to verify itself.</p>
+              <p>This supports one of the central SAGE principles:</p>
+            </div>
+            <div class="anchor-list">
+              <p><strong>An anchor may include:</strong></p>
+              <ul>
+                <li>a peer-reviewed research source;</li>
+                <li>technical or professional standards;</li>
+                <li>legislation or policy;</li>
+                <li>an authoritative dataset;</li>
+                <li>clinical or professional guidelines;</li>
+                <li>a supplied case;</li>
+                <li>a marking rubric;</li>
+                <li>prescribed course material; or</li>
+                <li>another recognised disciplinary source.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="anchor-principle">AI output is an object of evaluation, not an authority.</div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="distributed-assurance">
+        <div class="container">
+          <span class="section-kicker">Evidence across the process</span>
+          <h2 id="distributed-assurance">Distributed assurance</h2>
+          <div class="assurance-copy">
+            <p class="section-intro">SAGE treats assurance as something that can be <strong>distributed across selected points in the learning process and mapped to the learning outcomes that require confirmation</strong>.</p>
+            <p>Rather than assuming that every activity requires the same level or form of verification, distributed assurance asks where meaningful evidence of a particular capability can be gathered as learning develops.</p>
+          </div>
+
+          <div class="assurance-map">
+            <h3>Example: outcome-mapped assurance points</h3>
+            <p class="assurance-map-intro">The columns represent selected points in a learning sequence, not a weekly assessment schedule.</p>
+
+            <div class="assurance-matrix-wrap" tabindex="0" aria-label="Scrollable distributed assurance example">
+              <table class="assurance-matrix" aria-label="Example showing assurance functions distributed across three learning outcomes and four stages">
+                <thead>
+                  <tr>
+                    <th scope="col">Learning outcome</th>
+                    <th scope="col">Early learning</th>
+                    <th scope="col">Developing</th>
+                    <th scope="col">Later learning</th>
+                    <th scope="col">Confirmation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Outcome A</th>
+                    <td class="corroborative">Corroborative</td>
+                    <td class="controlled">Controlled</td>
+                    <td class="direct">Direct</td>
+                    <td aria-label="Not targeted for assurance at this point"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Outcome B</th>
+                    <td aria-label="Not targeted for assurance at this point"></td>
+                    <td class="corroborative">Corroborative</td>
+                    <td aria-label="Not targeted for assurance at this point"></td>
+                    <td class="direct">Direct</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Outcome C</th>
+                    <td aria-label="Not targeted for assurance at this point"></td>
+                    <td aria-label="Not targeted for assurance at this point"></td>
+                    <td class="controlled">Controlled</td>
+                    <td class="direct">Direct</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="assurance-legend" aria-label="Assurance-function legend">
+              <div class="assurance-legend-item"><span class="assurance-swatch corroborative" aria-hidden="true"></span><span><strong>Corroborative evidence</strong> Supports the evidentiary picture</span></div>
+              <div class="assurance-legend-item"><span class="assurance-swatch controlled" aria-hidden="true"></span><span><strong>Controlled condition</strong> Strengthens attribution</span></div>
+              <div class="assurance-legend-item"><span class="assurance-swatch direct" aria-hidden="true"></span><span><strong>Direct assurance task</strong> Directly elicits capability</span></div>
+            </div>
+
+            <div class="assurance-design-note"><strong>The assurance class describes the function contributed by an activity, not a fixed property of its format.</strong> The same format may provide corroborative evidence, strengthen controlled conditions, or directly elicit observable reasoning depending on how it is designed.</div>
+            <p class="assurance-format-example">For example, a presentation may provide process evidence, operate under controlled conditions, or become a direct assurance task through individual learning-outcome-mapped questioning.</p>
+          </div>
+
+          <h3>Three assurance functions</h3>
+          <div class="assurance-functions">
+            <article class="assurance-function">
+              <h4>Corroborative evidence</h4>
+              <p>SAGE AI records, source trails, accept&ndash;modify&ndash;reject decisions, portfolio or version histories and reflections make judgement more visible. They strengthen the evidentiary picture but do not alone confirm independent capability.</p>
+            </article>
+            <article class="assurance-function controlled">
+              <h4>Controlled assurance conditions</h4>
+              <p>Supervision, restricted computing environments, identity verification, controlled windows, personalised variants or supervised partial completion strengthen attribution. The condition is not the capability; the evidence produced remains what matters.</p>
+            </article>
+            <article class="assurance-function direct">
+              <h4>Direct assurance tasks</h4>
+              <p>Interactive oral assessment, outcome-mapped questioning, practical demonstration, supervised challenge, scenario defence or live walkthrough and debugging can directly elicit capability. <strong>Defend is the SAGE design principle for this function, not a prescribed format.</strong></p>
+            </article>
+          </div>
+
+          <h3>Assurance is mapped, not repeated everywhere</h3>
+          <p class="assurance-copy">Selected assurance points can be positioned across an assessment sequence, unit or course. A learning outcome may accumulate corroborative evidence at one point, encounter controlled conditions at another, and be directly demonstrated where stronger confirmation is warranted.</p>
+
+          <div class="assurance-flow" aria-label="Distributed assurance design sequence">
+            <span>Learning outcome</span><span class="flow-arrow" aria-hidden="true">&rarr;</span>
+            <span>Selected assurance points</span><span class="flow-arrow" aria-hidden="true">&rarr;</span>
+            <span>Appropriate assurance function</span><span class="flow-arrow" aria-hidden="true">&rarr;</span>
+            <span>Sufficient evidence of capability</span>
+          </div>
+
+          <p class="assurance-copy">A blank assurance point simply means that the learning outcome is not being targeted for assurance at that point. It does not imply that the learning activity has no pedagogical value.</p>
+
+          <h3>Why distribute assurance?</h3>
+          <p class="assurance-copy">When assurance is concentrated in a small number of high-weight events, evidence of capability is correspondingly concentrated. Distributed assurance provides an alternative architecture in which appropriate evidence is gathered at selected points as learning develops.</p>
+          <p class="assurance-copy">The objective is not to maximise surveillance or assessment events. It is to build <strong>sufficient, proportionate and learning-outcome-aligned evidence of capability across the learning process</strong>.</p>
+
+          <div class="assurance-principle"><strong>SAGE principle:</strong> <em>distribute assurance according to the learning outcomes, distinguish the function of different evidence, and directly elicit capability where stronger confirmation is required.</em></div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="explore-resources">
+        <div class="container">
+          <span class="section-kicker">Independent resource library</span>
+          <h2 id="explore-resources">Explore SAGE resources</h2>
+          <div class="resource-grid">
+            <article class="resource-card">
+              <a class="resource-badge" href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-academic-integrity-and-assessment-reform" target="_blank" rel="noopener">TEQSA-listed resource</a>
+              <h3>The SAGE Framework</h3>
+              <p>A detailed overview of the framework, its six-step cycle, pedagogical rationale, implementation principles and supporting evidence.</p>
+              <a class="btn secondary" href="https://sage-framework.com/sage.html">Explore the framework</a>
+            </article>
+            <article class="resource-card">
+              <h3>SAGE Student Guide</h3>
+              <p>A student-facing guide to beginning from personal understanding, evaluating AI output, using authoritative anchors, documenting decisions, reflecting on AI use and preparing to Defend the work.</p>
+              <a class="btn secondary" href="https://sage-framework.com/student-guide.html">Open the Student Guide</a>
+            </article>
+            <article class="resource-card">
+              <h3>SAGE Defend Tool</h3>
+              <p>An educator-facing interactive resource supporting the design of a proportionate Defend checkpoint based on the capability, cohort and teaching context.</p>
+              <p>The tool supports pedagogical planning. It does not determine or override institutional assessment requirements.</p>
+              <a class="btn secondary" href="https://sage-framework.com/defend_tool.html">Open the Defend Tool</a>
+            </article>
+            <article class="resource-card">
+              <a class="resource-badge" href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-student-resources-and-support" target="_blank" rel="noopener">TEQSA-listed resource</a>
+              <h3>GenAI-101</h3>
+              <p>An eleven-lesson interactive module introducing higher education students to responsible generative AI use, critical evaluation and AI-supported learning strategies.</p>
+              <p>Two lessons, <strong>Cognitive Learning Strategies</strong> and <strong>GenAI Mirroring</strong>, were contributed by CQUniversity&rsquo;s Academic Learning Centre.</p>
+              <a class="btn secondary" href="https://sage-framework.com/genai-101.html">Explore GenAI-101</a>
+            </article>
+            <article class="resource-card">
+              <h3>SAGE Assessment Policy &mdash; SAGE-AP</h3>
+              <p>A permission-to-pedagogy companion that sets clear expectations for responsible AI-supported authorship, verification, disclosure, reflection and defensible understanding.</p>
+              <a class="btn secondary" href="https://sage-framework.com/policy.html">Explore SAGE-AP</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="additional-resources">
+        <div class="container">
+          <span class="section-kicker">Related materials</span>
+          <h2 id="additional-resources">Additional resources</h2>
+          <p class="section-intro">This section introduces related SAGE resources that educators may find useful.</p>
+
+          <div class="additional-grid">
+            <article class="additional-card">
+              <h3>Downloads and educator resources</h3>
+              <p>Editable guides, planning resources, student materials and other SAGE resources available for educators to adapt within the applicable licence and institutional context.</p>
+              <a class="btn secondary" href="https://sage-framework.com/downloads.html">Browse downloads</a>
+            </article>
+            <article class="additional-card">
+              <h3>Evidence and publications</h3>
+              <p>Research, publications, sector engagement and evidence associated with the development and evaluation of SAGE and related approaches to responsible GenAI-supported learning.</p>
+              <a class="btn secondary" href="https://sage-framework.com/publications.html">View evidence and publications</a>
+            </article>
+            <article class="additional-card">
+              <h3>SAGE Community of Practice</h3>
+              <p>A developing community for educators, researchers and learning designers interested in responsible, evidence-informed approaches to GenAI-supported learning and assessment.</p>
+              <a class="btn secondary" href="https://sage-framework.com/community.html">Explore the community</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="contact-heading">
+        <div class="container contact-layout">
+          <div>
+            <span class="section-kicker">Contribute to the conversation</span>
+            <h2 id="contact-heading">Have an idea, suggestion or reflection?</h2>
+            <p>SAGE continues to develop through research, classroom implementation and dialogue with educators, students and learning designers.</p>
+            <p>If you have an idea, suggestion, implementation experience or reflection that may contribute to the development of these resources, we would be pleased to hear from you.</p>
+            <p>Educators and researchers interested in ongoing discussion and collaboration are also invited to consider joining the <strong>SAGE Community of Practice</strong>.</p>
+            <div class="button-row">
+              <a class="btn" href="mailto:m.elkhodr@cqu.edu.au?cc=e.gide1@cqu.edu.au">Contact the SAGE authors</a>
+              <a class="btn secondary" href="https://sage-framework.com/community.html">Explore the Community of Practice</a>
+            </div>
+          </div>
+          <div class="author-list" aria-label="SAGE framework authors">
+            <div class="author-entry">
+              <strong>Dr Mahmoud Elkhodr</strong>
+              <span>CQUniversity Australia</span>
+              <a href="mailto:m.elkhodr@cqu.edu.au">m.elkhodr@cqu.edu.au</a>
+            </div>
+            <div class="author-entry">
+              <strong>Professor Ergun Gide</strong>
+              <span>CQUniversity Australia</span>
+              <a href="mailto:e.gide1@cqu.edu.au">e.gide1@cqu.edu.au</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section class="sources-area" aria-label="Sources and page status">
+    <div class="container sources-grid">
+      <article>
+        <h2>Institutional source</h2>
+        <p><strong>CQUniversity. (2026). <em>Guided&ndash;assured assessment model educator guide</em>. Learning and Teaching Futures, CQUniversity Australia.</strong></p>
+        <div class="button-row">
+          <a class="btn secondary" href="https://delivery-cqucontenthub.stylelabs.cloud/api/public/content/cquniversity-guided-assured-assessment-model-educator-guide-1287875.pdf" target="_blank" rel="noopener">Open the official guide</a>
+        </div>
+      </article>
+      <article>
+        <h2>About this page</h2>
+        <p>This independent page is maintained by the authors of the SAGE framework. It brings together the places where the CQUniversity Educator Guide references SAGE and connects readers with the wider SAGE framework and educator resources.</p>
+        <p>The CQUniversity Educator Guide is the source for the Guided&ndash;Assured Assessment Model; the SAGE website provides the independent framework, guidance and resources.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">SAGE Framework</div>
+          <p>Structured AI-Guided Education: an evidence-informed framework for critical, transparent and accountable GenAI-supported learning.</p>
+        </div>
+        <div>
+          <h2>Resources</h2>
+          <a href="student_resources.html">Resource overview</a>
+          <a href="student-guide.html">Student Guide</a>
+          <a href="genai-101.html">GenAI-101 Module</a>
+          <a href="defend_tool.html">Defend Tool</a>
+          <a href="downloads.html">Downloads</a>
+        </div>
+        <div>
+          <h2>Assessment</h2>
+          <a href="policy.html">Student-Facing Policy</a>
+          <a href="policy-guide.html">Educator Guidance</a>
+          <a href="cqu-guided-assured.html">SAGE in Practice</a>
+        </div>
+        <div>
+          <h2>Research</h2>
+          <a href="publications.html">Evidence and publications</a>
+          <a href="community.html">Community</a>
+          <a href="about.html">About the authors</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Dr Mahmoud Elkhodr and Professor Ergun Gide</span>
+        <span>Independent SAGE scholarly resource</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menu = document.getElementById('global-nav-mobile');
+    const openButton = document.querySelector('.global-nav-hamburger');
+    const closeButton = document.querySelector('.global-nav-close');
+
+    function setMenu(open) {
+      menu.classList.toggle('open', open);
+      menu.setAttribute('aria-hidden', String(!open));
+      openButton.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (open) closeButton.focus();
+    }
+
+    openButton.addEventListener('click', () => setMenu(true));
+    closeButton.addEventListener('click', () => setMenu(false));
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.classList.contains('open')) {
+        setMenu(false);
+        openButton.focus();
+      }
+    });
+  </script>
 </body>
 </html>
