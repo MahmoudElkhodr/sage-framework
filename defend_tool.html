@@ -166,7 +166,7 @@ const SAGE_HIGH_ASSURANCE_OPTIONS = [
   {
     format: "Oral exams / viva voce",
     assuranceExplanation: "Real-time interaction with assessors makes impersonation very difficult and avoids LMS-based threats.",
-    sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true,
+    sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true, isOral: true,
     outcomes: ["Explanation / defence", "Explanation / judgement", "AI-integrated process", "Transparency / process"],
     rationale: "Direct questioning makes reasoning, conceptual ownership, and claim defence observable in real time.",
     constraints: "SAGE advice: plan explicitly for workload, assessor calibration, consistency, and equity.",
@@ -193,7 +193,7 @@ const SAGE_HIGH_ASSURANCE_OPTIONS = [
   {
     format: "Viva voces",
     assuranceExplanation: "Live questioning reduces collusion and prevents all content or answers from being prepared in advance.",
-    sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true,
+    sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true, isOral: true,
     outcomes: ["Explanation / defence", "Explanation / judgement", "AI-integrated process", "Transparency / process"],
     rationale: "A sustained defence is particularly strong for conceptual ownership, methodological justification, and the defence of claims represented in submitted work.",
     constraints: "SAGE advice: viva voces are resource-intensive and require calibrated questioning, transparent criteria, moderation, and reasonable adjustments.",
@@ -201,18 +201,30 @@ const SAGE_HIGH_ASSURANCE_OPTIONS = [
   },
 ];
 
-function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType }) {
-  const context = [cohortSize || "Any cohort", deliveryMode || "Any delivery", "High stakes"].join(", ");
+function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType, hybridOnlinePortion }) {
+  const isHybrid = deliveryMode === "Hybrid";
+  const hasVerySmallOnlinePortion = isHybrid && hybridOnlinePortion === "Very small";
+  const treatHybridAsOnline = isHybrid && !hasVerySmallOnlinePortion;
+  const isSmallHybridCohort = isHybrid && cohortSize === "Small (<30)";
+  const effectiveDelivery = treatHybridAsOnline ? "Online" : deliveryMode;
+  const contextDelivery = treatHybridAsOnline
+    ? "Hybrid (treated as online)"
+    : hasVerySmallOnlinePortion
+      ? "Hybrid (very small online portion)"
+      : deliveryMode || "Any delivery";
+  const context = [cohortSize || "Any cohort", contextDelivery, "High stakes"].join(", ");
 
   return SAGE_HIGH_ASSURANCE_OPTIONS.map((option, sourceOrder) => {
     let score = 75;
     if (cohortSize === "Large (>100)") score += option.scalability === "High" ? 18 : option.scalability === "Moderate" ? 4 : -16;
     if (cohortSize === "Medium (30–100)") score += option.scalability === "High" ? 12 : option.scalability === "Moderate" ? 14 : -4;
     if (cohortSize === "Small (<30)") score += option.scalability === "High" ? 6 : option.scalability === "Moderate" ? 10 : 16;
-    if (deliveryMode === "In-person") score += 12;
-    if (deliveryMode === "Hybrid") score += option.supportsOnline ? 8 : 4;
-    if (deliveryMode === "Online") score += option.supportsOnline ? 8 : -12;
+    if (effectiveDelivery === "In-person") score += 12;
+    if (effectiveDelivery === "Hybrid") score += option.supportsOnline ? 8 : 4;
+    if (effectiveDelivery === "Online") score += option.supportsOnline ? 8 : -12;
     if (outcomeType) score += option.outcomes.includes(outcomeType) ? 24 : -2;
+    if (isSmallHybridCohort) score += option.isOral ? 30 : -6;
+    if (hasVerySmallOnlinePortion && !isSmallHybridCohort && (option.isOral || option.format === "In-person supervised written exams")) score += 12;
 
     const cautions = [option.constraints];
     if (cohortSize === "Large (>100)" && option.scalability === "Low") {
@@ -220,12 +232,22 @@ function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType 
     } else if (cohortSize === "Large (>100)" && option.scalability === "Moderate") {
       cautions.push("For a large cohort, plan rooms, staffing, parallel sessions, and consistent marking before selecting this format.");
     }
-    if (deliveryMode === "Online" && option.supportsOnline) {
+    if (isSmallHybridCohort && option.isOral) {
+      cautions.push("For a small hybrid cohort, use the same structured oral or viva pathway for all students, with equivalent in-person and synchronous conditions, to support equity.");
+    } else if (isSmallHybridCohort) {
+      cautions.push("For a small hybrid cohort, SAGE prioritises one structured oral or viva pathway for all students. Use this alternative only if equivalent conditions, standards, and student burden can be demonstrated.");
+    } else if (treatHybridAsOnline && option.supportsOnline) {
+      cautions.push("Treat the hybrid cohort as online for high-stakes assurance. Use synchronous questioning with proportionate identity, recording, randomisation, privacy, accessibility, and contingency arrangements.");
+    } else if (treatHybridAsOnline) {
+      cautions.push("Because the online portion is significant or unknown, do not rely on this in-person-only format as the sole common pathway. Provide an equivalent online high-assurance pathway or use an online-capable format for the whole cohort.");
+    } else if (hasVerySmallOnlinePortion && option.isOral) {
+      cautions.push("A mixed pathway may be considered: use a structured synchronous oral or viva for the small online group and an equivalent supervised task for in-person students. Both pathways must assess the same outcomes to comparable standards and burden.");
+    } else if (hasVerySmallOnlinePortion) {
+      cautions.push("A mixed pathway may be considered: use this supervised option for in-person students and a structured synchronous oral or viva for the small online group. Both pathways must assess the same outcomes to comparable standards and burden.");
+    } else if (deliveryMode === "Online" && option.supportsOnline) {
       cautions.push("For online delivery, use synchronous questioning with proportionate identity, recording, randomisation, privacy, accessibility, and contingency arrangements.");
     } else if (deliveryMode === "Online") {
       cautions.push("For an online cohort, this option requires access to an approved supervised venue or an equivalent accessible controlled arrangement; do not treat an unsupervised online version as high assurance.");
-    } else if (deliveryMode === "Hybrid" && !option.supportsOnline) {
-      cautions.push("Schedule the high-security component in person and provide an equivalent accessible arrangement for students who cannot attend that setting.");
     }
     if (option.equityRisk === "Moderate") {
       cautions.push("Publish criteria in advance and provide reasonable adjustments or equivalent pathways where the format may create disability, anxiety, language, cultural, or access barriers.");
@@ -238,7 +260,7 @@ function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType 
         : `For ${outcomeType.toLowerCase()}, adapt the task so the relevant reasoning, judgement, or performance is directly elicited rather than inferred from the secure conditions alone.`;
 
     return {
-      context, cohort: cohortSize || "Any", delivery: deliveryMode || "Any", stakes: "High", outcomeType: outcomeType || "Any",
+      context, cohort: cohortSize || "Any", delivery: contextDelivery, stakes: "High", outcomeType: outcomeType || "Any",
       format: option.format, rationale: `${option.rationale} ${outcomeFit}`, constraints: cautions.join(" "), example: option.example,
       assuranceExplanation: option.assuranceExplanation, sageVerification: option.sageVerification, scalability: option.scalability, equityRisk: option.equityRisk,
       score, sourceOrder, isSageHighAssurance: true,
@@ -638,6 +660,7 @@ function SAGEDefendDashboard() {
   const [cohortSize, setCohortSize] = useState("");
   const [deliveryMode, setDeliveryMode] = useState("");
   const [assessmentStakes, setAssessmentStakes] = useState("");
+  const [hybridOnlinePortion, setHybridOnlinePortion] = useState("Significant or unknown");
   const [outcomeType, setOutcomeType] = useState("");
   const [recommendations, setRecommendations] = useState([]);
   const [corroborativeSignals, setCorroborativeSignals] = useState([]);
@@ -656,7 +679,7 @@ function SAGEDefendDashboard() {
       return cm && dm && sm && om;
     };
     if (assessmentStakes === "High") {
-      setRecommendations(buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType }));
+      setRecommendations(buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType, hybridOnlinePortion }));
     } else {
       const exactRecommendations = DECISION_MATRIX.filter(row => row.evidenceRole !== "corroborative" && matchesSelection(row));
       setRecommendations(exactRecommendations.length > 0
@@ -665,7 +688,7 @@ function SAGEDefendDashboard() {
     }
     setCorroborativeSignals(DECISION_MATRIX.filter(row => row.evidenceRole === "corroborative" && matchesSelection(row)));
   };
-  const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setOutcomeType(""); setRecommendations([]); setCorroborativeSignals([]); setHasSearched(false); };
+  const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setHybridOnlinePortion("Significant or unknown"); setOutcomeType(""); setRecommendations([]); setCorroborativeSignals([]); setHasSearched(false); };
 
   const filteredTypology = typologyFilter === "All" ? TYPOLOGY_FULL : TYPOLOGY_FULL.filter(t => t.category === typologyFilter);
 
@@ -1037,6 +1060,16 @@ function SAGEDefendDashboard() {
                       <option value="Transparency / process">Transparency / process</option>
                     </select>
                   </div>
+                  {deliveryMode === "Hybrid" && assessmentStakes === "High" && (
+                    <div>
+                      <label style={labelStyle}>Online Portion of Hybrid Cohort</label>
+                      <select value={hybridOnlinePortion} onChange={e => setHybridOnlinePortion(e.target.value)} style={selectStyle}>
+                        <option value="Significant or unknown">Significant or unknown — treat as online</option>
+                        <option value="Very small">Very small — mixed pathways may be considered</option>
+                      </select>
+                      <p style={{ color: "#64748b", fontSize: "11px", lineHeight: 1.45, margin: "6px 0 0" }}>This changes ranking and implementation advice; all five options remain visible.</p>
+                    </div>
+                  )}
                 </div>
                 <div style={{ display: "flex", gap: "10px", marginTop: "18px" }}>
                   <button onClick={runRecommender} style={{ ...btnStyle, background: "#2d6a4f", color: "white" }}>Find Recommended Formats</button>
@@ -1052,6 +1085,17 @@ function SAGEDefendDashboard() {
                       <p style={{ color: "#166534", fontSize: "12px", lineHeight: 1.55, margin: 0 }}>
                         SAGE presents five high-assurance assessment options for high-stakes contexts. Cohort, delivery mode and outcome selections change their order, fit colour and implementation cautions; they do not remove an option. The ranking considers how directly each format can evidence capability, together with scalability, equity and learning-outcome fit. <a href={DEFEND_PAPER_URL} target="_blank" rel="noopener" style={{ color: "#14532d", fontWeight: 800 }}>View the SAGE evidence base</a>.
                       </p>
+                      {deliveryMode === "Hybrid" && (
+                        <p style={{ color: "#14532d", fontSize: "12px", lineHeight: 1.55, margin: "10px 0 0", paddingTop: "10px", borderTop: "1px solid #bbf7d0" }}>
+                          {cohortSize === "Small (<30)" ? (
+                            <><strong>Small hybrid cohort:</strong> SAGE prioritises one structured oral or viva pathway for all students, delivered through equivalent in-person and synchronous conditions, to support equity.</>
+                          ) : hybridOnlinePortion === "Very small" ? (
+                            <><strong>Very small online portion:</strong> equivalent mixed pathways may be considered, such as a supervised written exam for in-person students and a structured synchronous oral or viva for online students. Both pathways must assess the same outcomes to comparable standards and burden.</>
+                          ) : (
+                            <><strong>Hybrid high-stakes rule:</strong> because the online portion is significant or unknown, the whole cohort is treated as online for ranking and assurance advice.</>
+                          )}
+                        </p>
+                      )}
                     </div>
                   )}
                   <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{assessmentStakes === "High" ? `${recommendations.length} SAGE high-assurance options, ranked for your context` : `${recommendations.length} Defend recommendation${recommendations.length !== 1 ? "s" : ""} found`}</p>
