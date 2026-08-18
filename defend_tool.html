@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SAGE Assurance Guidance Tool — Defend Step Design Tool</title>
-<meta name="description" content="Interactive tool for designing the SAGE Defend checkpoint (Step 6). Select your cohort, delivery mode, and assessment type to receive a recommended assurance format, rubric, sample challenge prompts, and printable implementation brief. Based on 30+ studies with more than 1,500 students. By Dr Mahmoud Elkhodr and Professor Ergun Gide, CQUniversity." />
+<meta name="description" content="Interactive tool for designing the SAGE Defend checkpoint (Step 6). Match cohort size, delivery mode, assessment stakes, intended outcome and assessment type to a fit-for-context assurance design, rubric, challenge prompts and printable implementation brief." />
 <meta name="keywords" content="SAGE Defend tool, AI assessment assurance, Defend checkpoint design, viva voce AI, oral assessment GenAI, assessment verification higher education, supervised checkpoint AI, epistemic matching, AI-integrated assessment, assurance format recommender, SAGE design principles, assessment rubric AI, challenge questions AI, Mahmoud Elkhodr, Ergun Gide, CQUniversity, TEQSA assessment assurance, academic integrity verification, Defend planner, interactive oral assessment, structured role-play assessment, cybersecurity assessment AI, programming viva, clinical reasoning AI" />
 <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
 <meta name="robots" content="index, follow" />
@@ -32,9 +32,13 @@
 .resource-tab .tab-icon{font-size:0.82rem;}
 .recommendation-detail-grid{display:grid;grid-template-columns:1fr 1fr;}
 .recommendation-primary-copy{border-right:1px solid #f1f5f9;}
+.epistemic-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;}
+.epistemic-operation{border-left:1px solid #ede9fe;border-right:1px solid #ede9fe;min-width:150px;}
 @media(max-width:700px){
   .recommendation-detail-grid{grid-template-columns:1fr;}
   .recommendation-primary-copy{border-right:0;border-bottom:1px solid #f1f5f9;}
+  .epistemic-row{grid-template-columns:1fr;}
+  .epistemic-operation{border-left:0;border-right:0;border-top:1px solid #ede9fe;border-bottom:1px solid #ede9fe;min-width:0;}
 }
 </style>
 </head>
@@ -52,6 +56,7 @@
 <div id="root"></div>
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
+const DEFEND_PAPER_URL = "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1872630/full";
 
 
 // ─── DATA ───
@@ -62,7 +67,7 @@ const SAGE_STEPS = [
   { step: 3, name: "Refine", focus: "Iterative Improvement", desc: "Students revise and improve the content based on their evaluation, incorporating their own knowledge, research, and professional judgement to produce a higher-quality output.", tip: "This is where students add genuine intellectual value. Track changes or use a comparison document so the difference between AI output and student contribution is visible.", color: "#06b6d4" },
   { step: 4, name: "AI Critic", focus: "Adversarial AI Analysis", desc: "Students submit their refined work back to an AI tool, this time asking it to critique, challenge, or find weaknesses. The AI acts as a devil's advocate.", tip: "Frame this as a stress-test. Prompt the AI to act as an examiner, industry auditor, or peer reviewer. Students must then decide which criticisms to accept, partially accept, or reject — with reasons.", color: "#f59e0b" },
   { step: 5, name: "Reflect", focus: "Metacognitive Synthesis", desc: "Students reflect on the entire process: what they learned, how AI helped or hindered, where their own thinking changed, and what they would do differently.", tip: "Reflection should be structured, not open-ended. Ask students to identify one specific moment where they disagreed with the AI and explain why their judgement was better (or worse).", color: "#10b981" },
-  { step: 6, name: "Defend", focus: "Competency Verification", desc: "Students demonstrate, under supervised conditions, that the reasoning documented in their submission has been individually internalised. This is the assurance checkpoint that closes the verification gap.", tip: "The Defend step is not a separate assessment — it is the final checkpoint within the same assessment sequence. Students should expect to explain, justify, or demonstrate any part of their submitted work.", color: "#ef4444", isDefend: true },
+  { step: 6, name: "Defend", focus: "Competency Verification", desc: "Students demonstrate, under appropriate assurance conditions, that they can personally explain, justify, or apply the capability represented in their work.", tip: "Defend is a design principle, not one prescribed terminal event. Place task-matched checkpoints at selected points where learning outcomes require direct confirmation.", color: "#ef4444", isDefend: true },
 ];
 
 const DESIGN_PRINCIPLES = [
@@ -105,47 +110,47 @@ const DESIGN_PRINCIPLES = [
 ];
 
 const TYPOLOGY_FULL = [
-  { name: "Interactive oral assessment (IOA)", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Moderate", support: "Multi-cohort", evidence: "Davey et al. (2025)", function: "Students explain and justify their work in real time through unscripted dialogue with an assessor.", advantages: "Strongest empirical evidence of GenAI-resilience; very difficult to outsource or fake.", limitations: "Time-intensive; difficult to scale beyond small cohorts; requires trained assessors for consistency." },
-  { name: "Viva voce examination", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Moderate", support: "Multi-cohort", evidence: "Brogan et al. (2024)", function: "Students defend their submitted work verbally under direct questioning by an examiner.", advantages: "Strong for verifying conceptual understanding; well-established across many disciplines.", limitations: "Resource-heavy; examiner fatigue affects quality; online delivery introduces new vulnerabilities." },
-  { name: "Live practical demonstration", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Low", support: "Pilot", evidence: "Kofinas et al. (2025)", function: "Students perform an applied task or demonstrate a professional process live under observation.", advantages: "Strong evidence of applied competence; very difficult to outsource convincingly.", limitations: "Not universally applicable; may require specialist equipment or facilities." },
-  { name: "Structured role-play / scenario defence", category: "Primary", subcategory: "High direct verification", scalability: "Low", equityRisk: "Moderate", support: "Pilot", evidence: "Kofinas et al. (2025)", function: "Students respond in real time to a realistic professional scenario they have not seen in advance.", advantages: "Highly authentic for professional disciplines; removes possibility of pre-prepared scripted answers.", limitations: "Quality depends heavily on scenario design; not yet widely validated as a GenAI assurance mechanism." },
-  { name: "Oral presentation + examiner questioning", category: "Primary", subcategory: "Moderate direct verification", scalability: "Moderate", equityRisk: "Moderate", support: "Pilot", evidence: "Jonathan & Walsh (2025)", function: "Students present their work live and respond to targeted questions designed in advance by the assessor.", advantages: "More scalable than a full viva; effective when the examiner challenge is deliberate and outcome-mapped.", limitations: "Open Q&A without structured challenge questions is not sufficient; effectiveness depends entirely on examiner preparation." },
-  { name: "Supervised in-class task", category: "Primary", subcategory: "Moderate direct verification", scalability: "Moderate", equityRisk: "Low", support: "Pilot", evidence: "TEQSA (2025)", function: "Students complete work under direct physical supervision in a classroom, reducing opportunity for AI assistance.", advantages: "Reliable control over authorship conditions; scales well on campus.", limitations: "Not suitable for online cohorts; does not independently verify deep reasoning — best paired with an oral component." },
-  { name: "Timed invigilated exam", category: "Primary", subcategory: "Moderate direct verification", scalability: "High", equityRisk: "Moderate", support: "Multi-cohort", evidence: "Scarfe et al. (2024)", function: "Students demonstrate knowledge within a controlled, supervised time window with restricted access to tools.", advantages: "Familiar to institutions; can be deployed at large scale.", limitations: "May not reveal genuine reasoning depth; only effective if digital access is tightly controlled." },
-  { name: "Computer-lab exam (restricted access)", category: "Primary", subcategory: "Moderate direct verification", scalability: "High", equityRisk: "Low", support: "Pilot", evidence: "Susnjak & McIntosh (2024)", function: "Students complete digital tasks in a supervised lab with restricted software and network access.", advantages: "Well-suited to digital disciplines; physically controls access to AI tools.", limitations: "Significant technical setup required; students may find workarounds through browser extensions." },
-  { name: "Remote proctored exam", category: "Controlled delivery", subcategory: "Environment control (not standalone evidence)", scalability: "High", equityRisk: "High", support: "Multi-cohort", evidence: "Marano et al. (2024)", function: "Webcam monitoring, screen recording, and identity checks control the remote testing environment.", advantages: "Enables controlled conditions for fully remote cohorts; scalable.", limitations: "Significant concerns about student wellbeing, privacy, disability impacts, and digital inequity. Not evidence of learning by itself." },
-  { name: "Locked-down browser + synchronous task", category: "Controlled delivery", subcategory: "Environment control (not standalone evidence)", scalability: "High", equityRisk: "Moderate", support: "Pilot", evidence: "Jonathan & Walsh (2025)", function: "Browser access is restricted to the assessment platform while students work in real time.", advantages: "Adds a layer of control for online settings; reduces casual AI tool access.", limitations: "Not robust against second devices; technical failures can disrupt assessment; does not verify reasoning." },
-  { name: "Behaviour analytics monitoring", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Moderate", support: "Pilot", evidence: "Akcapinar (2025)", function: "Software analyses patterns like tab switching, focus loss, and text selection to flag anomalous behaviour.", advantages: "Can identify suspicious patterns as a supplementary signal to support other evidence.", limitations: "Probabilistic, not conclusive; cannot prove misconduct; must not be used as sole evidence." },
-  { name: "Authorship quiz", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Moderate", support: "Pilot", evidence: "Quesnel & Stoesz (2025)", function: "Students answer questions generated from their own submitted work to demonstrate familiarity with the content.", advantages: "Scalable; directly tied to the specific submission.", limitations: "Research found quiz performance correlated with working memory rather than actual authorship — use with caution." },
-  { name: "Process documentation + AI interaction log", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Low", support: "Pilot", evidence: "Elkhodr & Gide (2026)", function: "Students submit records showing how they interacted with AI tools throughout the assessment task.", advantages: "Encourages transparency; compatible with AI-integrated assessment design.", limitations: "Logs can be fabricated after the fact. At one institution, 74% of students failed to declare AI use even when required." },
-  { name: "Cloze-test / speaker verification", category: "Supporting signals", subcategory: "Corroborative evidence only", scalability: "High", equityRisk: "Moderate", support: "Design-based", evidence: "Foltynek et al. (2025)", function: "Students fill in blanks from their own text, or voice biometrics are matched to verify identity.", advantages: "Potentially scalable; structurally linked to the specific submission.", limitations: "Still at the methodological proposal stage; not yet validated at scale in educational settings." },
+  { name: "Interactive oral assessment (IOA)", category: "Direct assurance task", verificationValue: "High", scalability: "Low", equityRisk: "Moderate", function: "Students explain and justify their work in real time through dialogue with an assessor.", designImplication: "Best suited to real-time reasoning under challenge; requires calibrated assessors and planned workload.", limitations: "Time-intensive and difficult to scale beyond small cohorts without careful scheduling." },
+  { name: "Viva voce examination", category: "Direct assurance task", verificationValue: "High", scalability: "Low", equityRisk: "Moderate", function: "Students defend their submitted work under direct examiner questioning.", designImplication: "Strong for conceptual ownership and claim defence; online use requires layered controls.", limitations: "Resource-intensive, with consistency and assessor-fatigue risks." },
+  { name: "Live practical demonstration", category: "Direct assurance task", verificationValue: "High", scalability: "Low", equityRisk: "Low", function: "Students perform an applied task or professional process live under observation.", designImplication: "Best for applied skill and tool use; standardise conditions and equipment access.", limitations: "Not applicable to every discipline and may require specialist facilities." },
+  { name: "Structured role-play/scenario defence", category: "Direct assurance task", verificationValue: "High", scalability: "Low", equityRisk: "Moderate", function: "Students exercise professional judgement in a structured scenario under observation.", designImplication: "Useful for observable professional judgement; scenario quality and assessor consistency are decisive.", limitations: "Poorly designed scenarios can test performance style rather than the intended capability." },
+  { name: "Oral presentation + examiner questioning", category: "Direct assurance task", verificationValue: "Moderate", scalability: "Moderate", equityRisk: "Moderate", function: "Students present their work and answer planned, outcome-mapped examiner questions.", designImplication: "Scales when questioning is planned and outcome-mapped; incidental or rehearsable questioning is weak.", limitations: "The presentation alone is not sufficient, and open Q&A can produce inconsistent evidence." },
+  { name: "Supervised in-class task", category: "Direct assurance task", verificationValue: "Moderate", scalability: "Moderate", equityRisk: "Low", function: "Students complete a task under direct campus-based supervision.", designImplication: "Provides campus-scale authorship control; add explanation or transfer to verify reasoning depth.", limitations: "Not suitable for online-only cohorts and may evidence completion more clearly than reasoning." },
+  { name: "Timed invigilated exam", category: "Direct assurance task", verificationValue: "Moderate", scalability: "High", equityRisk: "Moderate", function: "Students complete a timed task under invigilated conditions.", designImplication: "Familiar and scalable, but design the task to elicit application rather than recall alone.", limitations: "May test constrained completion more readily than AI-supported reasoning." },
+  { name: "Computer-lab exam (restricted access)", category: "Direct assurance task", verificationValue: "Moderate", scalability: "High", equityRisk: "Low", function: "Students complete digital or technical tasks in a supervised restricted-access lab.", designImplication: "Fits digital skills under local control; plan technical setup and accessibility carefully.", limitations: "Requires reliable infrastructure and may need added explanation to evidence reasoning." },
+  { name: "Remote proctored exam", category: "Controlled assurance condition", verificationValue: "Condition only", scalability: "High", equityRisk: "High", function: "Identity and environmental controls constrain a remotely delivered task.", designImplication: "Controls identity and environment, not competency ownership; pair with direct evidence.", limitations: "Creates substantial privacy, disability, home-space, and technological risks." },
+  { name: "Locked-down browser + synchronous task", category: "Controlled assurance condition", verificationValue: "Condition only", scalability: "High", equityRisk: "Moderate", function: "Browser restrictions and synchronous timing constrain access during a task.", designImplication: "Adds friction to delegation but remains vulnerable to second devices; pair with direct evidence.", limitations: "Technical failures can disrupt assessment and the condition does not itself verify reasoning." },
+  { name: "Behaviour analytics monitoring", category: "Corroborative assurance signal", verificationValue: "Signal only", scalability: "High", equityRisk: "Moderate", function: "Behavioural patterns are analysed to identify cases that may warrant follow-up.", designImplication: "Useful for triage or formative review; never use probabilistic signals as stand-alone punitive evidence.", limitations: "Signals are probabilistic and cannot establish misconduct or competency ownership." },
+  { name: "Authorship quiz", category: "Corroborative assurance signal", verificationValue: "Signal only", scalability: "High", equityRisk: "Moderate", function: "Students answer questions derived from their submitted artefact.", designImplication: "May prompt targeted follow-up, but memory and authorship are confounded and corroboration is required.", limitations: "Performance may reflect working memory rather than authorship or understanding." },
+  { name: "Process documentation + AI interaction log", category: "Corroborative assurance signal", verificationValue: "Signal only", scalability: "High", equityRisk: "Low", function: "Students document how AI was used and how the work developed across the SAGE stages.", designImplication: "Supports transparency across the process; feed it into, rather than use it instead of, Defend.", limitations: "Logs can be incomplete or reconstructed and cannot independently verify ownership." },
+  { name: "Cloze-test/speaker verification", category: "Corroborative assurance signal", verificationValue: "Signal only", scalability: "High", equityRisk: "Moderate", function: "Text-completion or voice-matching methods compare a student with a submitted artefact.", designImplication: "Potentially scalable as a matching signal, but privacy, bias, and educational validity remain unresolved.", limitations: "The methods remain emergent and are not stand-alone evidence of capability." },
 ];
 
 const EPISTEMIC_MATCHING = [
-  { format: "Essay / Argument", operation: "Defend claim", task: "Oral examination of claims", detail: "The assessor probes each argument in real time. The student must justify their position, not just restate it.", plain: "If the assessment asked students to argue a position, the checkpoint should test whether they can defend that argument under questioning." },
-  { format: "Literature Review", operation: "Justify selection", task: "Source interrogation viva", detail: "Questions focus on why specific sources were chosen, how they connect, and what was deliberately excluded.", plain: "If students reviewed the literature, they should be able to explain why they chose those sources and how they fit together." },
-  { format: "Code / Programming", operation: "Transfer skill", task: "Live walkthrough + debug", detail: "The student explains their design logic and solves a seeded error introduced live by the assessor.", plain: "If students wrote code, they should be able to walk through it and fix a new problem on the spot — not just describe what it does." },
-  { format: "Data Analysis", operation: "Apply methods", task: "Unseen dataset interpretation", detail: "The student applies the same analytical methods to a new dataset while being observed.", plain: "If students analysed data, they should be able to apply the same techniques to fresh data they have not seen before." },
-  { format: "Industry Case Study", operation: "External witness", task: "Stakeholder presentation + Q&A", detail: "An industry partner challenges the findings and signs off on the engagement.", plain: "If students worked on a real-world case, an external stakeholder should be able to challenge their conclusions directly." },
-  { format: "Security / Risk Audit", operation: "Risk transfer", task: "Timed risk-scoring exercise", detail: "Live prioritisation of an unseen scenario using the same frameworks studied in the unit.", plain: "If students conducted a risk assessment, they should be able to score and prioritise risks in a new scenario under time pressure." },
-  { format: "Research Proposal", operation: "Justify design", task: "Methodology challenge viva", detail: "The student justifies their design choices against rival approaches proposed by the examiner.", plain: "If students designed a research study, they should be able to explain why their method is better than alternatives the examiner suggests." },
-  { format: "Creative Writing / Portfolio", operation: "Explain choices", task: "Reflective oral on craft decisions", detail: "The student explains specific creative choices — structure, voice, revision decisions — and why alternatives were rejected.", plain: "If students produced creative work, they should be able to explain why they made the artistic choices they did and what they changed from the AI draft." },
-  { format: "Clinical Placement / Practicum", operation: "Demonstrate reasoning", task: "Clinical reasoning viva", detail: "The student walks through their decision-making for a specific patient or client scenario encountered during placement.", plain: "If students completed a clinical placement, they should be able to explain the reasoning behind their clinical decisions for a specific case." },
-  { format: "Design Studio", operation: "Defend iteration", task: "Design crit + unseen constraint", detail: "The student presents their design rationale and adapts it live when the assessor introduces a new constraint.", plain: "If students produced a design, they should be able to explain their decisions and adapt when the assessor changes a requirement on the spot." },
-  { format: "Accounting / Financial Analysis", operation: "Apply judgement", task: "Unseen scenario with same standards", detail: "The student applies the same accounting standards or analytical framework to a new financial scenario while observed.", plain: "If students analysed financial data, they should be able to apply the same standards to a new scenario — not just reproduce the one they submitted." },
-  { format: "Music / Performance", operation: "Demonstrate mastery", task: "Live performance + technique questions", detail: "The student performs and then answers questions about interpretive and technical choices.", plain: "If students submitted a performance or composition, they should be able to perform it live and explain the artistic and technical decisions behind it." },
+  { format: "Essay or argument", operation: "Defend the claim", task: "Oral examination of claims", detail: "The assessor probes the argument in real time and the student justifies the position rather than restating it.", plain: "If the task asked students to argue a position, the checkpoint should make their defence of that argument observable." },
+  { format: "Literature review", operation: "Justify the selection", task: "Source interrogation viva", detail: "Questioning focuses on source choice, connections between sources, and deliberate exclusions.", plain: "Students should be able to explain why they selected particular sources and how those sources support the review." },
+  { format: "Code or programming", operation: "Transfer the skill", task: "Live walkthrough and debug", detail: "The student explains the design logic and resolves a seeded error introduced during the checkpoint.", plain: "Students should be able to explain their code and transfer the same skill to a new problem." },
+  { format: "Data analysis", operation: "Apply the method", task: "Unseen dataset interpretation", detail: "The student applies the same analytical method to a new dataset under observation.", plain: "Students should be able to use the method on fresh data rather than only describe the submitted analysis." },
+  { format: "Industry case study", operation: "Admit an external witness", task: "Stakeholder presentation and questioning", detail: "An industry stakeholder challenges the findings and confirms that the engagement occurred.", plain: "A relevant external stakeholder can test the student’s professional judgement against the case context." },
+  { format: "Security or risk audit", operation: "Transfer the risk judgement", task: "Timed risk-scoring exercise", detail: "The student prioritises an unseen scenario using the same risk frameworks under time constraints.", plain: "Students should be able to transfer their risk judgement to a new scenario." },
+  { format: "Research proposal", operation: "Justify the design", task: "Methodology challenge viva", detail: "The student defends design choices against credible rival approaches proposed by the examiner.", plain: "Students should be able to justify why their research design is suitable and preferable to alternatives." },
+  { format: "Creative writing or portfolio", operation: "Explain the choices", task: "Reflective oral on craft decisions", detail: "The student explains structural, voice, and revision choices and why alternatives were rejected.", plain: "Students should be able to account for the creative and revision decisions represented in the final work." },
+  { format: "Clinical placement or practicum", operation: "Demonstrate the reasoning", task: "Clinical reasoning viva", detail: "The student explains decision-making for a specific case encountered during placement.", plain: "Students should be able to make the reasoning behind a clinical or professional decision observable." },
+  { format: "Design studio", operation: "Defend the iteration", task: "Design critique with an unseen constraint", detail: "The student presents the design rationale and adapts it when a new constraint is introduced live.", plain: "Students should be able to explain and adapt the design, not merely present the finished artefact." },
+  { format: "Accounting or financial analysis", operation: "Apply the judgement", task: "Unseen scenario under the same standards", detail: "The student applies the same standards to a new financial scenario under observation.", plain: "Students should be able to exercise the same financial judgement in a new case." },
+  { format: "Music or performance", operation: "Demonstrate the mastery", task: "Live performance and technique questions", detail: "The student performs and answers questions about interpretive and technical choices.", plain: "Students should be able to demonstrate the performance capability and explain the decisions behind it." },
 ];
 
 const DECISION_MATRIX = [
-  { context: "Small cohort, in-person, high stakes", cohort: "Small (<30)", delivery: "In-person", stakes: "High", outcomeType: "Explanation / defence", format: "Viva voce / interactive oral assessment", rationale: "Strongest evidence of reasoning ownership. The assessor probes inconsistencies in real time, making it very difficult to mask gaps in understanding.", constraints: "Requires trained assessors; scheduling is time-intensive; assessor fatigue affects quality in back-to-back sessions. Ensure rubric consistency across multiple examiners.", example: "Nursing: student defends clinical reasoning for a patient care plan. Law: student defends case analysis under examiner questioning." },
-  { context: "Small cohort, in-person, applied discipline", cohort: "Small (<30)", delivery: "In-person", stakes: "High", outcomeType: "Applied performance", format: "Live practical demonstration or structured scenario defence", rationale: "Competence is verified through embodied performance. Real-time execution makes delegation immediately detectable.", constraints: "May require specialist equipment or facilities; not applicable to all assessment types. Scenario quality determines assurance value — invest in scenario design.", example: "Engineering: student walks through structural calculations and adjusts for a changed load. Music: student performs and explains interpretive choices." },
-  { context: "Medium cohort, in-person, moderate stakes", cohort: "Medium (30–100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Explanation / judgement", format: "Oral presentation + targeted examiner questioning", rationale: "Deliberate examiner challenge probes individual reasoning at moderate scale.", constraints: "Open Q&A without pre-designed challenge questions is insufficient (Case Study 1). Success depends on tutor preparation — peer questions were absent in practice. Use a structured question protocol.", example: "Business: each team member presents their strategic analysis contribution individually. Education: student teaches a micro-lesson demonstrating pedagogical reasoning." },
-  { context: "Medium cohort, in-person, procedural", cohort: "Medium (30–100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Procedural / applied", format: "Supervised in-class task or computer-lab exam", rationale: "Controls authorship conditions at medium scale and reduces live AI access.", constraints: "Does not independently verify reasoning depth — best paired with a sampled oral component. Not suitable for online-only students.", example: "Accounting: students apply the same standards to an unseen financial scenario under supervision. IT: students debug a seeded error in a restricted lab." },
-  { context: "Large cohort, in-person, moderate stakes", cohort: "Large (>100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Knowledge application", format: "Timed invigilated exam + sampled oral checkpoint", rationale: "Invigilated exam supplemented by sampled oral defence for flagged or randomly selected students.", constraints: "The exam alone may not reveal reasoning depth. Sampling strategy must be transparent to avoid perception of targeting. Resourcing the oral sample is the binding constraint.", example: "Health sciences: exam tests clinical knowledge; sampled students then explain reasoning for selected answers. Any discipline: random 15% oral sample after written exam." },
-  { context: "Any cohort, hybrid delivery, high stakes", cohort: "Any", delivery: "Hybrid", stakes: "High", outcomeType: "AI-integrated process", format: "AI-integrated submission + embedded face-to-face Defend checkpoint", rationale: "Students complete the full SAGE cycle with open AI use, then verify reasoning ownership at a single controlled face-to-face or synchronous checkpoint.", constraints: "Scheduling the face-to-face component for large or dispersed cohorts is the main logistical challenge. The checkpoint must carry sufficient assessment weight to incentivise preparation (Principle 5).", example: "Any discipline using SAGE: students submit AI-integrated work online, then attend one in-person session to defend their reasoning." },
-  { context: "Large cohort, online delivery, high stakes", cohort: "Large (>100)", delivery: "Online", stakes: "High", outcomeType: "Any", format: "Layered controls: synchronous oral + identity check + recording + randomised questions", rationale: "Online-only assurance is structurally weaker than in-person. A layered design with multi-factor identity verification is the minimum standard.", constraints: "Equity concerns are significant: remote proctoring disproportionately affects students with disabilities, limited internet, or shared living spaces. Provide alternative pathways where possible.", example: "Any online unit: 10-minute video viva with ID check, randomised question order, and session recorded for moderation." },
-  { context: "Any cohort, online, low–moderate stakes", cohort: "Any", delivery: "Online", stakes: "Low–Moderate", evidenceRole: "supplementary", outcomeType: "Transparency / process", format: "Mandatory AI interaction log + disclosure form (transparency only)", rationale: "A transparency mechanism that signals institutional expectations around AI use. Not stand-alone assurance.", constraints: "This is not a Defend checkpoint — it is a supporting signal only. Logs can be fabricated. At one institution, 74% of students failed to declare AI use even when required.", example: "Low-stakes formative tasks: students submit their AI chat log alongside the task. Sets expectations without adding assessment burden." },
-  { context: "Supplementary signal only — pair with a primary task", cohort: "Any", delivery: "Any", stakes: "Any", evidenceRole: "supplementary", outcomeType: "Any", format: "Behaviour analytics, authorship quiz, or AI interaction log", rationale: "These are monitoring and transparency mechanisms that flag potential concerns but cannot independently verify that a student owns their reasoning. They provide a supporting evidentiary signal when used alongside a primary assurance task such as a viva, oral presentation, or live practical.", constraints: "Never use as the sole basis for integrity decisions. Behaviour analytics are probabilistic and cannot prove misconduct. Authorship quizzes correlated with working memory, not authorship (Quesnel & Stoesz, 2025). AI interaction logs can be fabricated retrospectively. Remote proctoring raises significant equity and wellbeing concerns. All three must supplement — not replace — a primary Defend checkpoint.", example: "A cybersecurity unit pairs a viva (primary assurance) with mandatory AI interaction logs (transparency signal). A large online unit uses behaviour analytics to identify students for targeted follow-up oral questioning, not as evidence of misconduct." },
+  { context: "Small, in-person, high stakes", cohort: "Small (<30)", delivery: "In-person", stakes: "High", outcomeType: "Explanation / defence", format: "Viva voce / interactive oral assessment", rationale: "Real-time probing makes the student’s reasoning observable and difficult to delegate.", constraints: "Requires calibrated assessors, workload planning, consistent rubrics, and reasonable adjustments.", example: "Nursing: defend clinical reasoning for a care plan. Law: defend a case analysis under examiner questioning." },
+  { context: "Small, in-person, applied", cohort: "Small (<30)", delivery: "In-person", stakes: "High", outcomeType: "Applied performance", format: "Live demonstration or scenario defence", rationale: "Real-time execution makes delegation implausible and reveals applied capability.", constraints: "May require specialist facilities; scenario quality and standardised conditions determine the assurance value.", example: "Engineering: adjust calculations for a changed load. Music: perform and explain interpretive choices." },
+  { context: "Medium, in-person, moderate", cohort: "Medium (30–100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Explanation / judgement", format: "Oral presentation + targeted questioning", rationale: "Deliberate, outcome-mapped challenge probes the individual at medium scale.", constraints: "Incidental open Q&A is insufficient. Use a planned question protocol and calibrated marking.", example: "Business: each team member answers targeted questions about their strategic analysis contribution." },
+  { context: "Medium, in-person, moderate", cohort: "Medium (30–100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Procedural / applied", format: "Supervised in-class or computer-lab task", rationale: "Controlled conditions support medium-scale assurance; explanation should be added to reveal reasoning.", constraints: "The condition alone may evidence completion more clearly than reasoning and is unsuitable for online-only cohorts.", example: "Accounting: apply standards to an unseen scenario. IT: debug a seeded error in a restricted lab." },
+  { context: "Large, in-person, moderate", cohort: "Large (>100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Knowledge application", format: "Invigilated exam + sampled oral checkpoint", rationale: "An oral defence for flagged or randomly selected submissions supplements the scalable invigilated task.", constraints: "Define and communicate the sampling strategy in advance; resource and moderate the oral component consistently.", example: "Health sciences: an application exam followed by structured oral questioning for a transparent sample." },
+  { context: "Any, hybrid, high stakes", cohort: "Any", delivery: "Hybrid", stakes: "High", outcomeType: "AI-integrated process", format: "Process documentation + embedded Defend checkpoint", rationale: "Open AI-integrated stages are followed by one verification point within the assessment sequence.", constraints: "The embedded checkpoint must directly elicit the relevant capability; process documentation remains corroborative evidence.", example: "Students submit their SAGE process record and complete a matched in-person or synchronous Defend task." },
+  { context: "Large, online, high stakes", cohort: "Large (>100)", delivery: "Online", stakes: "High", outcomeType: "Any", format: "Layered: synchronous oral + identity + recording + randomised questioning", rationale: "No single online control is sufficient; direct questioning and controlled conditions must be layered.", constraints: "Provide equitable alternatives and reasonable adjustments for privacy, disability, connectivity, and home-space constraints.", example: "A short video oral uses identity verification, a randomised question pool, and recording for moderation." },
+  { context: "Any, online, low–moderate", cohort: "Any", delivery: "Online", stakes: "Low–Moderate", evidenceRole: "corroborative", outcomeType: "Transparency / process", format: "AI interaction log + disclosure (supplementary)", rationale: "Declarations and logs support formative transparency but are unreliable as stand-alone assurance.", constraints: "This is a corroborative signal, not a Defend checkpoint. Logs can be incomplete or reconstructed.", example: "Students submit an AI interaction record alongside a low-stakes task to support transparency." },
+  { context: "Any — corroborative only", cohort: "Any", delivery: "Any", stakes: "Any", evidenceRole: "corroborative", outcomeType: "Any", format: "Behaviour analytics, authorship quiz, or interaction log", rationale: "These mechanisms provide supporting signals only and never substitute for direct demonstration.", constraints: "Do not use probabilistic or reconstructable signals as sole evidence of misconduct or competency ownership.", example: "Use a signal to trigger proportionate follow-up through a direct, outcome-matched Defend task." },
 ];
 
 const CASE_STUDIES = [
@@ -159,7 +164,7 @@ const ADDITIONAL_IMPLEMENTATIONS = [
   { unit: "Systems Analysis and Design", discipline: "Information Systems", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2026), Zenodo Implementation Guide" },
   { unit: "Data Analytics", discipline: "Data Science", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2026), Zenodo Implementation Guide" },
   { unit: "First-Year ICT Foundations", discipline: "Information Technology", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2025), SAGE GenAI-101 Student Module" },
-  { unit: "Professional Communication (extended cohort)", discipline: "Communication", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2026), JUTLP submission" },
+  { unit: "Professional Communication (extended cohort)", discipline: "Communication", level: "Undergraduate", campuses: "Multiple Australian campuses", reference: "Elkhodr & Gide (2026), Frontiers in Education" },
 ];
 
 const PLANNING_FIELDS_CONTEXT = [
@@ -173,28 +178,31 @@ const PLANNING_FIELDS_CONTEXT = [
 const ASSESSMENT_OPTIONS = [
   "Essay / Written Argument", "Literature Review", "Code / Programming Assignment", "Data Analysis Report",
   "Industry Case Study", "Security / Risk Audit", "Research Proposal", "Creative Writing / Portfolio",
-  "Clinical Placement Report", "Design Project", "Group Report with Individual Contribution", "Oral Presentation", "Other"
+  "Clinical Placement Report", "Design Project", "Accounting / Financial Analysis", "Music / Performance",
+  "Group Report with Individual Contribution", "Oral Presentation", "Other"
 ];
 
-// Assessment task → recommended format + rationale (from epistemic matching matrix)
+// Assessment task → observable checkpoint + implementation format (Table 5 plus labelled tool extensions)
 const ASSESSMENT_FORMAT_MAP = {
-  "Essay / Written Argument": { recommended: "Viva voce examination", operation: "Defend claim", why: "The student must justify each argument under direct questioning — restating the essay is not sufficient.", alternates: ["Interactive oral assessment (IOA)", "Oral presentation + targeted examiner questioning"] },
-  "Literature Review": { recommended: "Viva voce examination", operation: "Justify selection", why: "The student must explain why specific sources were chosen, how they connect, and what was deliberately excluded.", alternates: ["Interactive oral assessment (IOA)"] },
-  "Code / Programming Assignment": { recommended: "Live practical demonstration", operation: "Transfer skill", why: "The student walks through their code logic and solves a seeded error introduced live — describing code in writing is not equivalent.", alternates: ["Computer-lab exam (restricted access)", "Structured role-play / scenario defence"] },
-  "Data Analysis Report": { recommended: "Live practical demonstration", operation: "Apply methods", why: "The student applies the same analytical methods to an unseen dataset while being observed.", alternates: ["Supervised in-class task", "Oral presentation + targeted examiner questioning"] },
-  "Industry Case Study": { recommended: "Structured role-play / scenario defence", operation: "External witness", why: "An industry partner or examiner challenges the findings directly. The student defends their professional judgement.", alternates: ["Oral presentation + targeted examiner questioning", "Viva voce examination"] },
-  "Security / Risk Audit": { recommended: "Live practical demonstration", operation: "Risk transfer", why: "The student prioritises risks in an unseen scenario using the same frameworks, under time pressure.", alternates: ["Structured role-play / scenario defence", "Supervised in-class task"] },
-  "Research Proposal": { recommended: "Viva voce examination", operation: "Justify design", why: "The student justifies their design choices against rival approaches proposed by the examiner.", alternates: ["Interactive oral assessment (IOA)"] },
-  "Creative Writing / Portfolio": { recommended: "Interactive oral assessment (IOA)", operation: "Explain choices", why: "The student explains specific creative choices — structure, voice, revision decisions — and why alternatives were rejected.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
-  "Clinical Placement Report": { recommended: "Viva voce examination", operation: "Demonstrate reasoning", why: "The student walks through clinical decision-making for a specific patient or client scenario.", alternates: ["Structured role-play / scenario defence", "Interactive oral assessment (IOA)"] },
-  "Design Project": { recommended: "Live practical demonstration", operation: "Defend iteration", why: "The student presents their design rationale and adapts it live when the assessor introduces a new constraint.", alternates: ["Oral presentation + targeted examiner questioning", "Structured role-play / scenario defence"] },
-  "Group Report with Individual Contribution": { recommended: "Oral presentation + targeted examiner questioning", operation: "Separate individual reasoning", why: "Each group member must demonstrate ownership of their specific contribution under targeted questioning.", alternates: ["Interactive oral assessment (IOA)", "Viva voce examination"] },
-  "Oral Presentation": { recommended: "Oral presentation + targeted examiner questioning", operation: "Defend claims under challenge", why: "The presentation itself is not the Defend — the targeted examiner questioning that follows is. Open Q&A alone is insufficient.", alternates: ["Viva voce examination"] },
+  "Essay / Written Argument": { source: "Published Table 5", checkpoint: "Oral examination of claims", recommended: "Interactive oral assessment (IOA)", operation: "Defend the claim", why: "Probe the argument in real time so the student must justify the position rather than restate it.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
+  "Literature Review": { source: "Published Table 5", checkpoint: "Source interrogation viva", recommended: "Viva voce examination", operation: "Justify the selection", why: "Question why sources were chosen, how they connect, and what was deliberately excluded.", alternates: ["Interactive oral assessment (IOA)"] },
+  "Code / Programming Assignment": { source: "Published Table 5", checkpoint: "Live walkthrough and debug", recommended: "Live practical demonstration", operation: "Transfer the skill", why: "Require the student to explain the design logic and resolve a seeded error introduced live.", alternates: ["Computer-lab exam (restricted access)", "Structured role-play/scenario defence"] },
+  "Data Analysis Report": { source: "Published Table 5", checkpoint: "Unseen dataset interpretation", recommended: "Live practical demonstration", operation: "Apply the method", why: "Require the student to apply the same analytical method to a new dataset under observation.", alternates: ["Supervised in-class task", "Oral presentation + targeted examiner questioning"] },
+  "Industry Case Study": { source: "Published Table 5", checkpoint: "Stakeholder presentation and questioning", recommended: "Oral presentation + targeted examiner questioning", operation: "Admit an external witness", why: "A relevant stakeholder challenges the findings and confirms that the engagement occurred.", alternates: ["Structured role-play/scenario defence", "Viva voce examination"] },
+  "Security / Risk Audit": { source: "Published Table 5", checkpoint: "Timed risk-scoring exercise", recommended: "Supervised in-class task", operation: "Transfer the risk judgement", why: "Require live prioritisation of an unseen scenario using the same frameworks studied in the unit.", alternates: ["Live practical demonstration", "Structured role-play/scenario defence"] },
+  "Research Proposal": { source: "Published Table 5", checkpoint: "Methodology challenge viva", recommended: "Viva voce examination", operation: "Justify the design", why: "Ask the student to defend design choices against credible rival approaches.", alternates: ["Interactive oral assessment (IOA)"] },
+  "Creative Writing / Portfolio": { source: "Published Table 5", checkpoint: "Reflective oral on craft decisions", recommended: "Interactive oral assessment (IOA)", operation: "Explain the choices", why: "Require explanation of structural, voice, and revision choices and why alternatives were rejected.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
+  "Clinical Placement Report": { source: "Published Table 5", checkpoint: "Clinical reasoning viva", recommended: "Viva voce examination", operation: "Demonstrate the reasoning", why: "Ask the student to account for decision-making in a specific case encountered during placement.", alternates: ["Structured role-play/scenario defence", "Interactive oral assessment (IOA)"] },
+  "Design Project": { source: "Published Table 5", checkpoint: "Design critique with an unseen constraint", recommended: "Live practical demonstration", operation: "Defend the iteration", why: "Require the student to explain the design rationale and adapt it when a new constraint is introduced live.", alternates: ["Oral presentation + targeted examiner questioning", "Structured role-play/scenario defence"] },
+  "Accounting / Financial Analysis": { source: "Published Table 5", checkpoint: "Unseen scenario under the same standards", recommended: "Supervised in-class task", operation: "Apply the judgement", why: "Require the student to apply the same standards to a new financial scenario under observation.", alternates: ["Live practical demonstration", "Computer-lab exam (restricted access)"] },
+  "Music / Performance": { source: "Published Table 5", checkpoint: "Live performance and technique questions", recommended: "Live practical demonstration", operation: "Demonstrate the mastery", why: "Require live performance followed by questions about interpretive and technical choices.", alternates: ["Interactive oral assessment (IOA)", "Oral presentation + targeted examiner questioning"] },
+  "Group Report with Individual Contribution": { source: "Tool extension based on SAGE design principles", checkpoint: "Individual contribution defence", recommended: "Oral presentation + targeted examiner questioning", operation: "Separate individual reasoning", why: "Each group member demonstrates ownership of their contribution through targeted questioning.", alternates: ["Interactive oral assessment (IOA)", "Viva voce examination"] },
+  "Oral Presentation": { source: "Tool extension based on SAGE design principles", checkpoint: "Targeted examiner challenge", recommended: "Oral presentation + targeted examiner questioning", operation: "Defend claims under challenge", why: "The presentation itself is not the Defend; planned examiner questioning makes the reasoning observable.", alternates: ["Viva voce examination"] },
 };
 
 const ALL_FORMAT_OPTIONS = [
   "Interactive oral assessment (IOA)", "Viva voce examination", "Live practical demonstration",
-  "Structured role-play / scenario defence", "Oral presentation + targeted examiner questioning",
+  "Structured role-play/scenario defence", "Oral presentation + targeted examiner questioning",
   "Supervised in-class task", "Timed invigilated exam + sampled oral", "Computer-lab exam (restricted access)",
   "AI-integrated submission + face-to-face Defend checkpoint",
   "Layered online controls (synchronous oral + identity + recording)",
@@ -217,7 +225,7 @@ const FORMAT_QUESTION_MAP = {
     compatible: ["Unseen extension task (new dataset / scenario / constraint)", "Combination of structured questions + unseen extension"],
     incompatible: { "Pre-designed question bank mapped to learning outcomes": "Question banks test verbal explanation, not applied skill. Live practicals require an unseen extension — a seeded error, new constraint, or novel dataset — to verify transfer.", "Examiner-led unstructured probing": "Unstructured probing does not test applied competence. Use an unseen task that requires the student to demonstrate the same skills in a new context." }
   },
-  "Structured role-play / scenario defence": {
+  "Structured role-play/scenario defence": {
     recommended: "Unseen extension task (new dataset / scenario / constraint)",
     compatible: ["Unseen extension task (new dataset / scenario / constraint)", "Combination of structured questions + unseen extension"],
     incompatible: { "Examiner-led unstructured probing": "Role-play scenarios must be designed in advance with specific challenge points. Unstructured probing undermines the controlled scenario design." }
@@ -245,7 +253,7 @@ const FORMAT_QUESTION_MAP = {
   "AI-integrated submission + face-to-face Defend checkpoint": {
     recommended: "Combination of structured questions + unseen extension",
     compatible: ["Pre-designed question bank mapped to learning outcomes", "Structured rubric with mandatory probing questions", "Unseen extension task (new dataset / scenario / constraint)", "Combination of structured questions + unseen extension"],
-    incompatible: { "Examiner-led unstructured probing": "The Defend checkpoint is the single controlled moment in the SAGE sequence. It must be structured to ensure reliable evidence (Principle 3)." }
+    incompatible: { "Examiner-led unstructured probing": "Each selected Defend checkpoint must be structured to produce consistent, outcome-matched evidence (Principle 3)." }
   },
   "Layered online controls (synchronous oral + identity + recording)": {
     recommended: "Randomised question pool (for online delivery)",
@@ -296,7 +304,7 @@ const RUBRIC_TEMPLATES = {
       { name: "Connection to Submitted Work", demonstrates: "Demonstrates the same skills and reasoning evident in submission; live performance is consistent with documented capability.", partial: "Some consistency but performance suggests gaps between submitted quality and live ability.", insufficient: "Live performance is markedly below the quality of submission; suggests delegation of submitted work." },
     ]
   },
-  "Structured role-play / scenario defence": {
+  "Structured role-play/scenario defence": {
     criteria: [
       { name: "Contextual Responsiveness", demonstrates: "Responds to the scenario with contextually appropriate professional reasoning; adapts to new information during the role-play.", partial: "Provides reasonable initial response but struggles when scenario evolves or new constraints are introduced.", insufficient: "Response is generic or inappropriate for the scenario context; does not adapt to new information." },
       { name: "Application of Frameworks", demonstrates: "Applies relevant disciplinary frameworks correctly and explains why they apply to this specific scenario.", partial: "References frameworks but application is imprecise or formulaic.", insufficient: "Cannot apply relevant frameworks to the scenario; responses lack disciplinary grounding." },
@@ -386,6 +394,20 @@ const SAMPLE_CHALLENGES = {
     "Which iteration of your design was most influenced by AI tools, and what did you change during refinement?",
     "Show me one design decision that the AI suggested which you rejected, and explain why.",
   ],
+  "Accounting / Financial Analysis": [
+    "[Examiner provides an unseen financial scenario] Apply the same standards used in your submission and explain each judgement as you proceed.",
+    "Which accounting treatment was least clear-cut in your analysis? Explain the alternatives and why you selected this treatment.",
+    "If [key assumption] changed, which figures and conclusions would need to be revised? Walk me through the effect.",
+    "Identify one area where professional judgement matters more than mechanical calculation in this case.",
+    "Which AI-generated recommendation did you verify most carefully, and what authoritative standard did you use?",
+  ],
+  "Music / Performance": [
+    "Perform [selected passage] and then explain the interpretive and technical choices you made.",
+    "Repeat the passage using [new tempo/dynamic/articulation constraint]. What did you change and why?",
+    "Which aspect of the performance required the most deliberate refinement, and how did you evaluate improvement?",
+    "Explain one alternative interpretation you considered and why you rejected it.",
+    "Where did AI-generated feedback influence your preparation, and which recommendations did you modify or reject?",
+  ],
   "Group Report with Individual Contribution": [
     "Describe your specific contribution to the group submission. What decisions did you make independently?",
     "If your section were removed from the group report, what would be lost? Why is your contribution essential?",
@@ -407,7 +429,7 @@ const TIMING_GUIDANCE = {
   "Interactive oral assessment (IOA)": { perStudent: "15–20 minutes", sessionsPerDay: "12–15 students per full day", prepTime: "2–3 hours to prepare question bank and calibrate with co-examiners", contingency: "Offer a reschedule within the same assessment period. Record all sessions for moderation and equity." },
   "Viva voce examination": { perStudent: "10–15 minutes", sessionsPerDay: "15–20 students per full day", prepTime: "2–3 hours to design questions mapped to learning outcomes; 1 hour for examiner calibration", contingency: "Online synchronous viva as fallback. Ensure identity verification and session recording." },
   "Live practical demonstration": { perStudent: "15–25 minutes (depending on task complexity)", sessionsPerDay: "10–15 students per full day", prepTime: "3–4 hours to prepare unseen tasks/seeded errors and test them; ensure equipment/lab availability", contingency: "If specialist equipment is required, book backup sessions. Unseen tasks must have verified solutions." },
-  "Structured role-play / scenario defence": { perStudent: "10–15 minutes", sessionsPerDay: "15–20 students per full day", prepTime: "3–4 hours to design 2–3 scenario variants with specific challenge points and expected professional responses", contingency: "Prepare written scenario variants for online delivery. Record for moderation." },
+  "Structured role-play/scenario defence": { perStudent: "10–15 minutes", sessionsPerDay: "15–20 students per full day", prepTime: "3–4 hours to design 2–3 scenario variants with specific challenge points and expected professional responses", contingency: "Prepare written scenario variants for online delivery. Record for moderation." },
   "Oral presentation + targeted examiner questioning": { perStudent: "8–12 minutes (5 min presentation + 3–7 min questioning)", sessionsPerDay: "20–30 students per full day", prepTime: "1–2 hours to design targeted questions for each learning outcome; prepare question allocation matrix", contingency: "Online presentations with shared screen. Ensure randomised question order if running parallel sessions." },
   "Supervised in-class task": { perStudent: "30–60 minutes (whole class simultaneously)", sessionsPerDay: "1–2 classes per day", prepTime: "2 hours to prepare task, ensure room booking, and brief invigilators", contingency: "Online proctored alternative with locked-down browser as fallback. Pair with sampled oral." },
   "Timed invigilated exam + sampled oral": { perStudent: "60–90 min exam + 5–10 min oral for sampled students", sessionsPerDay: "Standard exam schedule + 10–15 oral samples per half day", prepTime: "Standard exam preparation + 1 hour to define sampling strategy and oral question bank", contingency: "Communicate sampling strategy in advance to avoid perception of targeting. Random selection is most defensible." },
@@ -421,7 +443,7 @@ const PREP_CHECKLIST = {
   "Interactive oral assessment (IOA)": ["Question bank designed and mapped to learning outcomes", "Rubric printed/shared with all examiners", "Examiner calibration session completed (mark 2–3 sample responses together)", "Schedule published to students with individual time slots", "Recording equipment tested (if sessions are recorded for moderation)", "Quiet, private room booked for each examiner"],
   "Viva voce examination": ["Question bank with 3–5 core questions per learning outcome", "2–3 follow-up probes per core question for deeper challenge", "Rubric aligned to the 4 criteria above", "Examiner pairs assigned (if double-marking)", "Student submissions reviewed — flag sections for targeted probing", "Recording consent forms distributed (if applicable)"],
   "Live practical demonstration": ["Unseen tasks designed and solution-verified (2–3 variants)", "Seeded errors tested to confirm they are detectable and fixable within time limit", "Equipment/software/lab environment confirmed and tested", "Technical support on standby", "Rubric with clear performance descriptors for the practical context", "Student instructions published — what to bring, what to expect"],
-  "Structured role-play / scenario defence": ["2–3 scenario variants designed with specific challenge injection points", "Expected professional responses documented for examiner reference", "Assessor briefing completed — when to introduce new information, how far to push", "Rubric with context-specific criteria", "Room setup supports the scenario format (e.g. interview-style seating)"],
+  "Structured role-play/scenario defence": ["2–3 scenario variants designed with specific challenge injection points", "Expected professional responses documented for examiner reference", "Assessor briefing completed — when to introduce new information, how far to push", "Rubric with context-specific criteria", "Room setup supports the scenario format (e.g. interview-style seating)"],
   "Oral presentation + targeted examiner questioning": ["Targeted questions mapped to each learning outcome — minimum 2 per outcome", "Question allocation matrix ensures each student receives comparable challenge", "Rubric distinguishes presentation quality from response-to-challenge quality", "Timer/bell for presentation time limit", "For group work: questions target individual contribution specifically"],
   "Supervised in-class task": ["Task designed and tested under the same time constraints", "Room booked with appropriate seating and invigilation coverage", "Network/device restrictions configured and tested (if computer-based)", "Invigilators briefed on permitted and prohibited materials", "Contingency plan for students with accessibility requirements"],
   "Timed invigilated exam + sampled oral": ["Exam paper reviewed and tested under time conditions", "Sampling strategy documented — random selection recommended; criteria-based selection must be pre-declared", "Oral question bank ready for sampled students", "Communication to students about sampling — include in assessment brief before the exam", "Moderation plan for oral sample consistency"],
@@ -442,12 +464,13 @@ const PRINCIPLE_CHECKLIST = [
 // ─── UTILITY ───
 
 const catColors = {
-  "Primary": { bg: "#eff6ff", border: "#3b82f6", text: "#1e40af" },
-  "Controlled delivery": { bg: "#fefce8", border: "#eab308", text: "#854d0e" },
-  "Supporting signals": { bg: "#fdf2f8", border: "#ec4899", text: "#9d174d" },
+  "Direct assurance task": { bg: "#eff6ff", border: "#3b82f6", text: "#1e40af" },
+  "Controlled assurance condition": { bg: "#fefce8", border: "#eab308", text: "#854d0e" },
+  "Corroborative assurance signal": { bg: "#fff7ed", border: "#f97316", text: "#9a3412" },
 };
 const scaleBadge = (v) => v === "Low" ? { bg: "#fee2e2", text: "#991b1b" } : v === "Moderate" ? { bg: "#fef3c7", text: "#92400e" } : { bg: "#dcfce7", text: "#166534" };
 const riskBadge = (v) => v === "Low" ? { bg: "#dcfce7", text: "#166534" } : v === "Moderate" ? { bg: "#fef3c7", text: "#92400e" } : { bg: "#fee2e2", text: "#991b1b" };
+const verificationBadge = (v) => v === "High" ? { bg: "#dcfce7", text: "#166534" } : v === "Moderate" ? { bg: "#dbeafe", text: "#1e40af" } : v === "Condition only" ? { bg: "#fef3c7", text: "#92400e" } : { bg: "#ffedd5", text: "#9a3412" };
 function Badge({ label, colors }) { return <span style={{ background: colors.bg, color: colors.text, padding: "2px 10px", borderRadius: "9999px", fontSize: "11px", fontWeight: 600, whiteSpace: "nowrap" }}>{label}</span>; }
 
 function SectionHeader({ children, accent = "#1e293b", subtitle }) {
@@ -475,8 +498,9 @@ function SAGEDefendDashboard() {
   const [cohortSize, setCohortSize] = useState("");
   const [deliveryMode, setDeliveryMode] = useState("");
   const [assessmentStakes, setAssessmentStakes] = useState("");
+  const [outcomeType, setOutcomeType] = useState("");
   const [recommendations, setRecommendations] = useState([]);
-  const [supportingSignals, setSupportingSignals] = useState([]);
+  const [corroborativeSignals, setCorroborativeSignals] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [planValues, setPlanValues] = useState({});
   const [checklistValues, setChecklistValues] = useState({});
@@ -488,12 +512,13 @@ function SAGEDefendDashboard() {
       const cm = !cohortSize || row.cohort === "Any" || row.cohort === cohortSize;
       const dm = !deliveryMode || row.delivery === "Any" || row.delivery === deliveryMode;
       const sm = !assessmentStakes || row.stakes === "Any" || row.stakes === assessmentStakes;
-      return cm && dm && sm;
+      const om = !outcomeType || row.outcomeType === "Any" || row.outcomeType === outcomeType;
+      return cm && dm && sm && om;
     };
-    setRecommendations(DECISION_MATRIX.filter(row => row.evidenceRole !== "supplementary" && matchesSelection(row)));
-    setSupportingSignals(DECISION_MATRIX.filter(row => row.evidenceRole === "supplementary" && matchesSelection(row)));
+    setRecommendations(DECISION_MATRIX.filter(row => row.evidenceRole !== "corroborative" && matchesSelection(row)));
+    setCorroborativeSignals(DECISION_MATRIX.filter(row => row.evidenceRole === "corroborative" && matchesSelection(row)));
   };
-  const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setRecommendations([]); setSupportingSignals([]); setHasSearched(false); };
+  const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setOutcomeType(""); setRecommendations([]); setCorroborativeSignals([]); setHasSearched(false); };
 
   const filteredTypology = typologyFilter === "All" ? TYPOLOGY_FULL : TYPOLOGY_FULL.filter(t => t.category === typologyFilter);
 
@@ -567,7 +592,7 @@ function SAGEDefendDashboard() {
     // ── STEP 1: What you are verifying ──
     w.document.write(`<h2>Step 1: What You Are Verifying and Why</h2>`);
     if (assess && mapping) {
-      w.document.write(`<div class="step"><div class="step-body">Your assessment task (<strong>${assess}</strong>) requires the cognitive operation "<strong>${mapping.operation}</strong>." The Defend checkpoint verifies that each student can perform this operation individually — not just that they submitted work containing it.<br/><br/>${mapping.why}</div></div>`);
+      w.document.write(`<div class="step"><div class="step-body"><strong>${mapping.source} alignment:</strong> ${mapping.checkpoint}<br/><strong>Cognitive operation:</strong> ${mapping.operation}<br/><br/>The Defend checkpoint should make this operation observable for each student, rather than relying on the submitted artefact alone.<br/><br/>${mapping.why}</div></div>`);
     } else {
       w.document.write(`<div class="step"><div class="step-body">Select an assessment task in the planning template to generate specific guidance.</div></div>`);
     }
@@ -575,7 +600,7 @@ function SAGEDefendDashboard() {
     // ── STEP 2: Format setup + timing + rubric ──
     w.document.write(`<h2>Step 2: Setting Up the Defend Checkpoint</h2>`);
     if (fmt && typEntry) {
-      w.document.write(`<div class="step"><div class="step-body"><strong>Format:</strong> ${fmt}<br/><strong>How it works:</strong> ${typEntry.function}<br/><strong>Key strength:</strong> ${typEntry.advantages}</div></div>`);
+      w.document.write(`<div class="step"><div class="step-body"><strong>Format:</strong> ${fmt}<br/><strong>Evidence class:</strong> ${typEntry.category} (${typEntry.verificationValue})<br/><strong>How it works:</strong> ${typEntry.function}<br/><strong>SAGE Defend design implication:</strong> ${typEntry.designImplication}</div></div>`);
     }
     if (timing) {
       w.document.write(`<h3>Timing and Logistics</h3>`);
@@ -724,7 +749,7 @@ function SAGEDefendDashboard() {
                   Generative AI has fundamentally changed what students can produce without understanding. Banning AI ignores the professional reality graduates will face. Ignoring AI abandons assessment integrity. Institutions need a structured approach that lets students develop genuine competency <em>through</em> AI interaction — while providing assurance that the learning actually happened.
                 </p>
                 <p style={{ fontSize: "13px", color: "#4a4a4a", lineHeight: 1.6, margin: 0 }}>
-                  The <strong>Structured AI-Guided Education (SAGE)</strong> framework is a validated pedagogy that treats generative AI as a professional tool whose outputs must be critically evaluated, refined with evidence-based reasoning, and defended under supervision.
+                  The <strong>Structured AI-Guided Education (SAGE)</strong> framework is an evidence-informed pedagogy that treats generative AI as a professional tool whose outputs must be critically evaluated, refined through disciplinary reasoning, and defended through a task-matched assurance checkpoint.
                 </p>
               </div>
 
@@ -736,7 +761,7 @@ function SAGEDefendDashboard() {
                 </div>
                 <div>
                   <p style={{ fontSize: "12px", fontWeight: 700, color: "#c44d3f", margin: "0 0 4px 0" }}>Step 6: Defend — Supervised Verification</p>
-                  <p style={{ fontSize: "12px", color: "#4a4a4a", lineHeight: 1.55, margin: 0 }}>At one controlled moment, each student demonstrates — live, under supervision — that they can explain, justify, or apply the reasoning in their submission. This verifies that the competency developed through Steps 1–5 has been individually internalised, not merely documented.</p>
+                  <p style={{ fontSize: "12px", color: "#4a4a4a", lineHeight: 1.55, margin: 0 }}>At one or more selected assurance points, each student demonstrates that they can explain, justify, or apply the relevant capability. The form and intensity should match the learning outcome and its stakes.</p>
                 </div>
               </div>
             </div>
@@ -744,9 +769,9 @@ function SAGEDefendDashboard() {
            {/* RIGHT: Hybrid assurance + tool purpose with CTA */}
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div style={{ background: "#e8f5ee", border: "1px solid #b7d9c4", borderRadius: "14px", padding: "20px" }}>
-                <h3 style={{ fontSize: "12px", fontWeight: 700, color: "#1a3a2a", margin: "0 0 8px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>AI-Integrated Assessment with Built-In Assurance</h3>
+                <h3 style={{ fontSize: "12px", fontWeight: 700, color: "#1a3a2a", margin: "0 0 8px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>AI-Integrated Assessment with Distributed Assurance</h3>
                 <p style={{ fontSize: "12px", color: "#2d6a4f", lineHeight: 1.55, margin: 0 }}>
-                  Hybrid assessment models combine open, AI-integrated tasks for capability development with supervised checkpoints for individual verification. SAGE is structured to operationalise both functions within a single pedagogical sequence — Steps 1–5 constitute the open capability-development phase where students engage with AI in a structured and accountable way, and Step 6 constitutes the supervised assurance phase where each student demonstrates individual understanding under controlled conditions. This eliminates the need for separate assessment instruments to serve each function.
+                  SAGE distributes assurance across selected points in the learning sequence. Process records can provide corroborative evidence, controlled conditions can strengthen attribution, and task-matched Defend activities can directly elicit capability where a learning outcome requires stronger confirmation. The evidence function and intensity should be proportionate to the outcome and its stakes.
                 </p>
               </div>
 
@@ -755,10 +780,10 @@ function SAGEDefendDashboard() {
                 <div>
                   <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1b4332", margin: "0 0 10px 0" }}>What This Tool Does</h3>
                   <p style={{ fontSize: "13px", color: "#4a4a4a", lineHeight: 1.6, margin: "0 0 16px 0" }}>
-                    This interactive resource helps you design the Defend checkpoint for your specific teaching context. Select your cohort size, delivery mode, and assessment type — and receive a recommended assurance format, a suggested rubric, sample challenge prompts, and a printable implementation brief you can take to your course coordinator.
+                    This interactive resource helps you design the Defend checkpoint for your teaching context. Match cohort size, delivery mode, assessment stakes and intended outcome to a fit-for-context recommendation, then use the planner to align the assessment type with an observable cognitive or professional operation.
                   </p>
                   <p style={{ fontSize: "12px", color: "#4a4a4a", lineHeight: 1.55, margin: "0 0 18px 0" }}>
-                    The Defend step is embedded within the SAGE assessment sequence — it is not a standalone exam bolted onto existing assessment. This tool draws on eight empirical implementations and a systematic synthesis of the assurance task literature to recommend the most appropriate checkpoint format for your context.
+                    The Defend step is embedded within the SAGE assessment sequence — it is not a standalone exam bolted onto existing assessment. This tool operationalises the published three-class typology, fit-for-context decision matrix, epistemic matching framework, and practice-informed design principles.
                   </p>
                 </div>
                 <div style={{ textAlign: "center" }}>
@@ -815,10 +840,11 @@ function SAGEDefendDashboard() {
               <SectionHeader accent="#2d6a4f" subtitle="Select your teaching context below to find the most appropriate Defend checkpoint format. The Defend step sits within the SAGE assessment sequence — students complete their AI-integrated work first (Generate → Evaluate → Refine → AI Critic → Reflect), then demonstrate reasoning ownership at a supervised checkpoint.">
                 Defend Format Recommender
               </SectionHeader>
+              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 16px 16px" }}>Published basis: <a href={DEFEND_PAPER_URL + "#T4"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 4 — fit-for-context decision matrix</a>. The matrix is a design aid, not a claim that one format is universally optimal.</p>
               <div style={{ background: "#e8f5ee", border: "1px solid #b7d9c4", borderRadius: "10px", padding: "14px 18px", marginBottom: "20px", display: "flex", gap: "10px", alignItems: "flex-start" }}>
                 <span style={{ fontSize: "16px", flexShrink: 0 }}>💡</span>
                 <p style={{ fontSize: "12px", color: "#1a3a2a", lineHeight: 1.55, margin: 0 }}>
-                  <strong>The Defend step is a checkpoint within an AI-integrated assessment, not a replacement for it.</strong> The goal is to guide students through structured AI interaction using the SAGE cycle — and then verify, at one controlled moment, that they own the reasoning behind their submission. Simply replacing coursework with a proctored exam or quiz would undo 40 years of authentic assessment design and the learning developed through Steps 1–5. SAGE is built on the premise that students should learn <em>with</em> AI under structured guidance, not be tested <em>without</em> it.
+                  <strong>Defend is embedded within AI-integrated assessment, not a replacement for it.</strong> Students learn through the SAGE cycle, while selected, outcome-matched assurance points make their capability directly observable. The objective is proportionate evidence of learning, not a blanket return to proctored examinations or a verification event for every activity.
                 </p>
               </div>
 
@@ -851,6 +877,19 @@ function SAGEDefendDashboard() {
                       <option value="Low–Moderate">Low–Moderate stakes</option>
                     </select>
                   </div>
+                  <div>
+                    <label style={labelStyle}>Intended Outcome Type</label>
+                    <select value={outcomeType} onChange={e => setOutcomeType(e.target.value)} style={selectStyle}>
+                      <option value="">Any outcome type</option>
+                      <option value="Explanation / defence">Explanation / defence</option>
+                      <option value="Applied performance">Applied performance</option>
+                      <option value="Explanation / judgement">Explanation / judgement</option>
+                      <option value="Procedural / applied">Procedural / applied</option>
+                      <option value="Knowledge application">Knowledge application</option>
+                      <option value="AI-integrated process">AI-integrated process</option>
+                      <option value="Transparency / process">Transparency / process</option>
+                    </select>
+                  </div>
                 </div>
                 <div style={{ display: "flex", gap: "10px", marginTop: "18px" }}>
                   <button onClick={runRecommender} style={{ ...btnStyle, background: "#2d6a4f", color: "white" }}>Find Recommended Formats</button>
@@ -860,20 +899,21 @@ function SAGEDefendDashboard() {
 
               {hasSearched && (
                 <div>
-                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{recommendations.length} primary Defend recommendation{recommendations.length !== 1 ? "s" : ""} found</p>
-                  {recommendations.length === 0 && <div style={{ background: "#fefce8", border: "1px solid #fde68a", borderRadius: "10px", padding: "16px", fontSize: "13px", color: "#92400e" }}><strong>No primary Defend format exactly matches this combination.</strong> Try broadening your selection criteria. Any supplementary evidence shown below cannot replace a primary Defend task.</div>}
+                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{recommendations.length} Defend recommendation{recommendations.length !== 1 ? "s" : ""} found</p>
+                  {recommendations.length === 0 && <div style={{ background: "#fefce8", border: "1px solid #fde68a", borderRadius: "10px", padding: "16px", fontSize: "13px", color: "#92400e" }}><strong>No Defend design in the published matrix exactly matches this combination.</strong> Try broadening the criteria or use epistemic matching to design a context-specific checkpoint. Any corroborative signals shown below cannot replace direct demonstration.</div>}
                   <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                     {recommendations.map((rec, i) => (
                       <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
                         <div className="recommendation-detail-grid">
                           <div className="recommendation-primary-copy" style={{ padding: "20px" }}>
-                            <div style={{ display: "inline-flex", alignItems: "center", background: "#dcfce7", color: "#166534", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>Primary Defend recommendation</div>
+                            <div style={{ display: "inline-flex", alignItems: "center", background: "#dcfce7", color: "#166534", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>Recommended Defend design</div>
                             <div style={{ fontSize: "11px", color: "#94a3b8", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "4px" }}>{rec.context}</div>
                             <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 10px 0" }}>{rec.format}</h3>
                             <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
                               <Badge label={"Cohort: " + rec.cohort} colors={{ bg: "#eff6ff", text: "#1e40af" }} />
                               <Badge label={rec.delivery} colors={{ bg: "#f0fdf4", text: "#166534" }} />
                               <Badge label={"Stakes: " + rec.stakes} colors={{ bg: "#fef3c7", text: "#92400e" }} />
+                              <Badge label={"Outcome: " + rec.outcomeType} colors={{ bg: "#f5f3ff", text: "#6d28d9" }} />
                             </div>
                             <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: 0 }}>{rec.rationale}</p>
                             <p style={{ fontSize: "12px", color: "#6366f1", lineHeight: 1.5, margin: "10px 0 0 0", fontStyle: "italic" }}>Example: {rec.example}</p>
@@ -889,16 +929,16 @@ function SAGEDefendDashboard() {
                       </div>
                     ))}
                   </div>
-                  {supportingSignals.length > 0 && (
+                  {corroborativeSignals.length > 0 && (
                     <div style={{ marginTop: "26px" }}>
                       <div style={{ background: "#fff7ed", border: "1px solid #fdba74", borderRadius: "10px", padding: "14px 16px", marginBottom: "12px" }}>
-                        <div style={{ color: "#9a3412", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", marginBottom: "4px" }}>Supplementary evidence — not a Defend recommendation</div>
-                        <p style={{ color: "#7c2d12", fontSize: "12px", lineHeight: 1.55, margin: 0 }}>These signals may add context or corroboration, but they do not directly confirm capability and are not included in the recommendation count. {assessmentStakes === "High" ? "They do not satisfy high-stakes assurance and must be paired with a primary Defend task above." : "They must be paired with an appropriate primary Defend task."}</p>
+                        <div style={{ color: "#9a3412", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", marginBottom: "4px" }}>Corroborative assurance signals — not a Defend recommendation</div>
+                        <p style={{ color: "#7c2d12", fontSize: "12px", lineHeight: 1.55, margin: 0 }}>These signals may add context, but they cannot independently verify competency ownership and are not included in the recommendation count. {assessmentStakes === "High" ? "They do not satisfy high-stakes assurance and must be paired with direct, outcome-matched evidence." : "They must feed into, rather than replace, an appropriate Defend task."}</p>
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                        {supportingSignals.map((signal, i) => (
+                        {corroborativeSignals.map((signal, i) => (
                           <div key={i} style={{ background: "white", border: "1px solid #fed7aa", borderLeft: "5px solid #f97316", borderRadius: "10px", padding: "18px 20px" }}>
-                            <div style={{ display: "inline-flex", alignItems: "center", background: "#ffedd5", color: "#9a3412", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>Supplementary only</div>
+                            <div style={{ display: "inline-flex", alignItems: "center", background: "#ffedd5", color: "#9a3412", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>Corroborative signal only</div>
                             <div style={{ fontSize: "11px", color: "#9a3412", fontWeight: 700, textTransform: "uppercase", marginBottom: "4px" }}>{signal.context}</div>
                             <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 8px 0" }}>{signal.format}</h3>
                             {assessmentStakes === "High" && <p style={{ fontSize: "12px", color: "#b91c1c", fontWeight: 800, margin: "0 0 8px 0" }}>Does not satisfy high-stakes assurance.</p>}
@@ -957,24 +997,25 @@ function SAGEDefendDashboard() {
           {activeTab === "typology" && (
             <div>
               <SectionHeader accent="#40916c">Assurance Task Typology</SectionHeader>
-              <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "8px", maxWidth: "740px" }}>Not all verification methods are equal. The literature identifies 14 distinct formats, which fall into three categories based on what kind of evidence they provide.</p>
+              <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "8px", maxWidth: "780px" }}>The published typology identifies 14 formats and mechanisms across three evidence classes. The class describes what the activity contributes to assurance, not whether its surface format sounds controlled or formal.</p>
               <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "16px", maxWidth: "740px" }}>
-                <strong style={{ color: "#1e40af" }}>Primary assurance tasks</strong> require students to demonstrate their reasoning or skills in real time, under observation — these provide direct evidence that the student owns the work.{" "}
-                <strong style={{ color: "#854d0e" }}>Controlled delivery conditions</strong> restrict the testing environment (for example, proctoring or locked browsers) but do not by themselves prove the student learned anything — they control <em>where</em> the work happens, not <em>who</em> did the thinking.{" "}
-                <strong style={{ color: "#9d174d" }}>Supporting signals</strong> are supplementary indicators (analytics, quizzes, logs) that may flag concerns but cannot stand alone as evidence of authentic work.
+                <strong style={{ color: "#1e40af" }}>Direct assurance tasks</strong> require students to demonstrate reasoning, judgement, or performance under observation.{" "}
+                <strong style={{ color: "#854d0e" }}>Controlled assurance conditions</strong> restrict the environment but are not stand-alone evidence of competency.{" "}
+                <strong style={{ color: "#9a3412" }}>Corroborative assurance signals</strong> support an evidentiary picture or prompt follow-up but cannot independently verify ownership.
               </p>
-              <p style={{ color: "#94a3b8", fontSize: "12px", marginBottom: "20px", fontStyle: "italic" }}>Click any format to expand and see how it works, its strengths, and its limitations.</p>
+              <p style={{ color: "#64748b", fontSize: "12px", marginBottom: "14px" }}>Published basis: <a href={DEFEND_PAPER_URL + "#T3"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 3 — three-class assurance-task typology</a>. Verification value describes the directness of the evidence, not overall educational quality; scale and equity ratings are provisional design judgements.</p>
+              <p style={{ color: "#94a3b8", fontSize: "12px", marginBottom: "20px", fontStyle: "italic" }}>Click any format to expand its function, SAGE Defend design implication, and implementation caution.</p>
               <div style={{ display: "flex", gap: "8px", marginBottom: "20px", flexWrap: "wrap" }}>
-                {["All", "Primary", "Controlled delivery", "Supporting signals"].map(f => (
+                {["All", "Direct assurance task", "Controlled assurance condition", "Corroborative assurance signal"].map(f => (
                   <button key={f} onClick={() => { setTypologyFilter(f); setSelectedFormat(null); }} style={{ padding: "6px 14px", borderRadius: "8px", fontSize: "12px", fontWeight: 600, cursor: "pointer", background: typologyFilter === f ? "#1e293b" : "#f1f5f9", color: typologyFilter === f ? "white" : "#475569", border: "none" }}>
-                    {f === "All" ? "All Formats" : f === "Primary" ? "Primary Assurance Tasks" : f === "Controlled delivery" ? "Controlled Delivery Conditions" : "Supporting Signals"}
+                    {f === "All" ? "All formats" : f === "Direct assurance task" ? "Direct assurance tasks" : f === "Controlled assurance condition" ? "Controlled assurance conditions" : "Corroborative assurance signals"}
                     <span style={{ marginLeft: "6px", opacity: 0.7 }}>({f === "All" ? TYPOLOGY_FULL.length : TYPOLOGY_FULL.filter(t => t.category === f).length})</span>
                   </button>
                 ))}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 {filteredTypology.map((t) => {
-                  const cc = catColors[t.category] || catColors.Primary;
+                  const cc = catColors[t.category] || catColors["Direct assurance task"];
                   const gi = TYPOLOGY_FULL.indexOf(t);
                   const isExp = selectedFormat === gi;
                   return (
@@ -982,22 +1023,21 @@ function SAGEDefendDashboard() {
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
                         <div style={{ flex: 1, minWidth: "200px" }}>
                           <h4 style={{ fontSize: "14px", fontWeight: 600, color: "#0f172a", margin: 0 }}>{t.name}</h4>
-                          <span style={{ fontSize: "11px", color: cc.text, fontWeight: 600 }}>{t.subcategory}</span>
+                          <span style={{ fontSize: "11px", color: cc.text, fontWeight: 700 }}>{t.category}</span>
                         </div>
                         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                          <Badge label={"Verification: " + t.verificationValue} colors={verificationBadge(t.verificationValue)} />
                           <Badge label={"Scale: " + t.scalability} colors={scaleBadge(t.scalability)} />
                           <Badge label={"Equity risk: " + t.equityRisk} colors={riskBadge(t.equityRisk)} />
-                          <Badge label={t.support} colors={{ bg: "#f1f5f9", text: "#475569" }} />
                         </div>
                       </div>
                       {isExp && (
                         <div style={{ marginTop: "12px", paddingTop: "12px", borderTop: "1px solid #f1f5f9" }}>
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "12px" }}>
                             <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", margin: "0 0 4px 0" }}>How it works</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.function}</p></div>
-                            <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#16a34a", textTransform: "uppercase", margin: "0 0 4px 0" }}>Strengths</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.advantages}</p></div>
-                            <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#dc2626", textTransform: "uppercase", margin: "0 0 4px 0" }}>Limitations</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.limitations}</p></div>
+                            <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#16a34a", textTransform: "uppercase", margin: "0 0 4px 0" }}>SAGE Defend design implication</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.designImplication}</p></div>
+                            <div><p style={{ fontSize: "11px", fontWeight: 700, color: "#dc2626", textTransform: "uppercase", margin: "0 0 4px 0" }}>Implementation caution</p><p style={{ fontSize: "12px", color: "#475569", margin: 0, lineHeight: 1.5 }}>{t.limitations}</p></div>
                           </div>
-                          <p style={{ fontSize: "11px", color: "#94a3b8", marginTop: "10px", marginBottom: 0 }}>Key evidence: {t.evidence}</p>
                         </div>
                       )}
                     </div>
@@ -1013,12 +1053,13 @@ function SAGEDefendDashboard() {
               <SectionHeader accent="#1a3a2a">Epistemic Matching: Aligning the Checkpoint to the Task</SectionHeader>
               <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "8px", maxWidth: "740px" }}>The most common mistake in implementing a Defend step is appending a generic oral exam to every assessment. This does not work. The verification checkpoint must match the <em>type of thinking</em> the assessment originally required.</p>
               <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "20px", maxWidth: "740px" }}>If the assessment asked students to build an argument, the checkpoint should test whether they can defend it under questioning. If it asked them to write code, they should demonstrate they can walk through it and fix a new problem. The table below shows how different assessment types map to appropriate Defend checkpoints, with the cognitive operation that connects them.</p>
+              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 18px 0" }}>Published basis: <a href={DEFEND_PAPER_URL + "#T5"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 5 — cross-disciplinary epistemic matching</a>. The pairings are illustrative rather than universally prescriptive.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {EPISTEMIC_MATCHING.map((m, i) => (
                   <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "10px", overflow: "hidden" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: "0", alignItems: "stretch" }}>
+                    <div className="epistemic-row">
                       <div style={{ padding: "16px 18px" }}><p style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", margin: 0 }}>{m.format}</p><p style={{ fontSize: "11px", color: "#94a3b8", margin: "2px 0 0 0" }}>Assessment type</p></div>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "8px 14px", background: "#f5f3ff", borderLeft: "1px solid #ede9fe", borderRight: "1px solid #ede9fe", minWidth: "120px" }}>
+                      <div className="epistemic-operation" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "8px 14px", background: "#f5f3ff" }}>
                         <span style={{ fontSize: "11px", fontWeight: 700, color: "#6d28d9", textTransform: "uppercase" }}>{m.operation}</span>
                         <span style={{ fontSize: "9px", color: "#a78bfa", marginTop: "2px" }}>cognitive operation</span>
                       </div>
@@ -1036,7 +1077,7 @@ function SAGEDefendDashboard() {
           {/* ════ PRINCIPLES ════ */}
           {activeTab === "principles" && (
             <div>
-              <SectionHeader accent="#d4a03c" subtitle="These six principles define what makes a Defend checkpoint effective. They were derived from a systematic literature review and eight empirical implementations. They do not prescribe one single format — instead, they set the conditions any Defend mechanism must meet to provide genuine assurance.">Six Design Principles for the Defend Step</SectionHeader>
+              <SectionHeader accent="#d4a03c" subtitle="These six principles were developed through a structured synthesis of the assurance-task literature and practice-informed analysis of Defend-proximate implementations. They do not prescribe one format; they identify the conditions needed for a checkpoint to produce credible, proportionate evidence.">Six Design Principles for the Defend Step</SectionHeader>
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {DESIGN_PRINCIPLES.map(p => {
                   const isExp = expandedPrinciple === p.id;
@@ -1074,7 +1115,7 @@ function SAGEDefendDashboard() {
           {/* ════ EVIDENCE BASE ════ */}
           {activeTab === "cases" && (
             <div>
-              <SectionHeader accent="#c44d3f" subtitle="The SAGE framework has been validated across 30+ studies involving more than 1,500 students in Australia, China and the United Kingdom. Eight of these implementations are detailed here: the three reported in the accompanying JUTLP paper are presented in full below, with the remaining five summarised.">Evidence Base: Eight Empirical Implementations</SectionHeader>
+              <SectionHeader accent="#c44d3f" subtitle="The SAGE framework has been examined across 30+ studies involving more than 1,500 students in Australia, China and the United Kingdom. The three Defend-proximate implementations analysed in the published Frontiers in Education paper are presented below, followed by five related SAGE implementations.">Evidence Base: Eight Empirical Implementations</SectionHeader>
 
               {/* Detailed case studies */}
               <h3 style={{ fontSize: "14px", fontWeight: 700, color: "#475569", margin: "0 0 12px 0", textTransform: "uppercase", letterSpacing: "0.03em" }}>Detailed Case Studies (This Paper)</h3>
@@ -1139,6 +1180,7 @@ function SAGEDefendDashboard() {
           {activeTab === "plan" && (
             <div>
               <SectionHeader accent="#2d6a4f" subtitle="Design your Defend checkpoint step by step. The template is interlinked — your assessment task selection drives the recommended Defend format, and your format selection drives compatible challenge approaches. Soft warnings appear if your selections create a weaker design. Print the completed template as a contextual implementation brief.">Defend Planner</SectionHeader>
+              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 16px 16px" }}>The published assessment mappings are drawn from <a href={DEFEND_PAPER_URL + "#T5"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 5</a>. Additional mappings are explicitly identified as tool extensions.</p>
 
               <div ref={printRef} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "14px", padding: "24px", marginBottom: "20px" }}>
 
@@ -1189,8 +1231,9 @@ function SAGEDefendDashboard() {
                 {planValues.assessment && ASSESSMENT_FORMAT_MAP[planValues.assessment] && (
                   <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: "10px", padding: "14px 18px", marginBottom: "14px" }}>
                     <p style={{ fontSize: "12px", color: "#166534", margin: 0, lineHeight: 1.55 }}>
-                      <strong>Recommended format for "{planValues.assessment}":</strong> {ASSESSMENT_FORMAT_MAP[planValues.assessment].recommended}
+                      <strong>{ASSESSMENT_FORMAT_MAP[planValues.assessment].source}:</strong> {ASSESSMENT_FORMAT_MAP[planValues.assessment].checkpoint}
                       <br/><span style={{ color: "#15803d" }}>Cognitive operation: <em>{ASSESSMENT_FORMAT_MAP[planValues.assessment].operation}</em>. {ASSESSMENT_FORMAT_MAP[planValues.assessment].why}</span>
+                      <br/><span style={{ color: "#475569" }}>Suggested implementation format in this planner: <strong>{ASSESSMENT_FORMAT_MAP[planValues.assessment].recommended}</strong></span>
                     </p>
                   </div>
                 )}
