@@ -30,6 +30,12 @@
 .resource-tab:hover{color:#1b4332;}
 .resource-tab.active{color:#1b4332;font-weight:600;border-bottom-color:#2d6a4f;}
 .resource-tab .tab-icon{font-size:0.82rem;}
+.recommendation-detail-grid{display:grid;grid-template-columns:1fr 1fr;}
+.recommendation-primary-copy{border-right:1px solid #f1f5f9;}
+@media(max-width:700px){
+  .recommendation-detail-grid{grid-template-columns:1fr;}
+  .recommendation-primary-copy{border-right:0;border-bottom:1px solid #f1f5f9;}
+}
 </style>
 </head>
 <body>
@@ -138,8 +144,8 @@ const DECISION_MATRIX = [
   { context: "Large cohort, in-person, moderate stakes", cohort: "Large (>100)", delivery: "In-person", stakes: "Moderate", outcomeType: "Knowledge application", format: "Timed invigilated exam + sampled oral checkpoint", rationale: "Invigilated exam supplemented by sampled oral defence for flagged or randomly selected students.", constraints: "The exam alone may not reveal reasoning depth. Sampling strategy must be transparent to avoid perception of targeting. Resourcing the oral sample is the binding constraint.", example: "Health sciences: exam tests clinical knowledge; sampled students then explain reasoning for selected answers. Any discipline: random 15% oral sample after written exam." },
   { context: "Any cohort, hybrid delivery, high stakes", cohort: "Any", delivery: "Hybrid", stakes: "High", outcomeType: "AI-integrated process", format: "AI-integrated submission + embedded face-to-face Defend checkpoint", rationale: "Students complete the full SAGE cycle with open AI use, then verify reasoning ownership at a single controlled face-to-face or synchronous checkpoint.", constraints: "Scheduling the face-to-face component for large or dispersed cohorts is the main logistical challenge. The checkpoint must carry sufficient assessment weight to incentivise preparation (Principle 5).", example: "Any discipline using SAGE: students submit AI-integrated work online, then attend one in-person session to defend their reasoning." },
   { context: "Large cohort, online delivery, high stakes", cohort: "Large (>100)", delivery: "Online", stakes: "High", outcomeType: "Any", format: "Layered controls: synchronous oral + identity check + recording + randomised questions", rationale: "Online-only assurance is structurally weaker than in-person. A layered design with multi-factor identity verification is the minimum standard.", constraints: "Equity concerns are significant: remote proctoring disproportionately affects students with disabilities, limited internet, or shared living spaces. Provide alternative pathways where possible.", example: "Any online unit: 10-minute video viva with ID check, randomised question order, and session recorded for moderation." },
-  { context: "Any cohort, online, low–moderate stakes", cohort: "Any", delivery: "Online", stakes: "Low–Moderate", outcomeType: "Transparency / process", format: "Mandatory AI interaction log + disclosure form (transparency only)", rationale: "A transparency mechanism that signals institutional expectations around AI use. Not stand-alone assurance.", constraints: "This is not a Defend checkpoint — it is a supporting signal only. Logs can be fabricated. At one institution, 74% of students failed to declare AI use even when required.", example: "Low-stakes formative tasks: students submit their AI chat log alongside the task. Sets expectations without adding assessment burden." },
-  { context: "Supplementary signal only — pair with a primary task", cohort: "Any", delivery: "Any", stakes: "Any", outcomeType: "Any", format: "Behaviour analytics, authorship quiz, or AI interaction log", rationale: "These are monitoring and transparency mechanisms that flag potential concerns but cannot independently verify that a student owns their reasoning. They provide a supporting evidentiary signal when used alongside a primary assurance task such as a viva, oral presentation, or live practical.", constraints: "Never use as the sole basis for integrity decisions. Behaviour analytics are probabilistic and cannot prove misconduct. Authorship quizzes correlated with working memory, not authorship (Quesnel & Stoesz, 2025). AI interaction logs can be fabricated retrospectively. Remote proctoring raises significant equity and wellbeing concerns. All three must supplement — not replace — a primary Defend checkpoint.", example: "A cybersecurity unit pairs a viva (primary assurance) with mandatory AI interaction logs (transparency signal). A large online unit uses behaviour analytics to identify students for targeted follow-up oral questioning, not as evidence of misconduct." },
+  { context: "Any cohort, online, low–moderate stakes", cohort: "Any", delivery: "Online", stakes: "Low–Moderate", evidenceRole: "supplementary", outcomeType: "Transparency / process", format: "Mandatory AI interaction log + disclosure form (transparency only)", rationale: "A transparency mechanism that signals institutional expectations around AI use. Not stand-alone assurance.", constraints: "This is not a Defend checkpoint — it is a supporting signal only. Logs can be fabricated. At one institution, 74% of students failed to declare AI use even when required.", example: "Low-stakes formative tasks: students submit their AI chat log alongside the task. Sets expectations without adding assessment burden." },
+  { context: "Supplementary signal only — pair with a primary task", cohort: "Any", delivery: "Any", stakes: "Any", evidenceRole: "supplementary", outcomeType: "Any", format: "Behaviour analytics, authorship quiz, or AI interaction log", rationale: "These are monitoring and transparency mechanisms that flag potential concerns but cannot independently verify that a student owns their reasoning. They provide a supporting evidentiary signal when used alongside a primary assurance task such as a viva, oral presentation, or live practical.", constraints: "Never use as the sole basis for integrity decisions. Behaviour analytics are probabilistic and cannot prove misconduct. Authorship quizzes correlated with working memory, not authorship (Quesnel & Stoesz, 2025). AI interaction logs can be fabricated retrospectively. Remote proctoring raises significant equity and wellbeing concerns. All three must supplement — not replace — a primary Defend checkpoint.", example: "A cybersecurity unit pairs a viva (primary assurance) with mandatory AI interaction logs (transparency signal). A large online unit uses behaviour analytics to identify students for targeted follow-up oral questioning, not as evidence of misconduct." },
 ];
 
 const CASE_STUDIES = [
@@ -470,6 +476,7 @@ function SAGEDefendDashboard() {
   const [deliveryMode, setDeliveryMode] = useState("");
   const [assessmentStakes, setAssessmentStakes] = useState("");
   const [recommendations, setRecommendations] = useState([]);
+  const [supportingSignals, setSupportingSignals] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [planValues, setPlanValues] = useState({});
   const [checklistValues, setChecklistValues] = useState({});
@@ -477,14 +484,16 @@ function SAGEDefendDashboard() {
 
   const runRecommender = () => {
     setHasSearched(true);
-    setRecommendations(DECISION_MATRIX.filter(row => {
+    const matchesSelection = row => {
       const cm = !cohortSize || row.cohort === "Any" || row.cohort === cohortSize;
       const dm = !deliveryMode || row.delivery === "Any" || row.delivery === deliveryMode;
-      const sm = !assessmentStakes || row.stakes === "Any" || row.stakes === assessmentStakes || row.stakes === "Low–Moderate";
+      const sm = !assessmentStakes || row.stakes === "Any" || row.stakes === assessmentStakes;
       return cm && dm && sm;
-    }));
+    };
+    setRecommendations(DECISION_MATRIX.filter(row => row.evidenceRole !== "supplementary" && matchesSelection(row)));
+    setSupportingSignals(DECISION_MATRIX.filter(row => row.evidenceRole === "supplementary" && matchesSelection(row)));
   };
-  const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setRecommendations([]); setHasSearched(false); };
+  const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setRecommendations([]); setSupportingSignals([]); setHasSearched(false); };
 
   const filteredTypology = typologyFilter === "All" ? TYPOLOGY_FULL : TYPOLOGY_FULL.filter(t => t.category === typologyFilter);
 
@@ -851,13 +860,14 @@ function SAGEDefendDashboard() {
 
               {hasSearched && (
                 <div>
-                  <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "12px" }}>{recommendations.length} recommendation{recommendations.length !== 1 ? "s" : ""} found</p>
-                  {recommendations.length === 0 && <div style={{ background: "#fefce8", border: "1px solid #fde68a", borderRadius: "10px", padding: "16px", fontSize: "13px", color: "#92400e" }}>No exact matches. Try broadening your selection criteria.</div>}
+                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{recommendations.length} primary Defend recommendation{recommendations.length !== 1 ? "s" : ""} found</p>
+                  {recommendations.length === 0 && <div style={{ background: "#fefce8", border: "1px solid #fde68a", borderRadius: "10px", padding: "16px", fontSize: "13px", color: "#92400e" }}><strong>No primary Defend format exactly matches this combination.</strong> Try broadening your selection criteria. Any supplementary evidence shown below cannot replace a primary Defend task.</div>}
                   <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                     {recommendations.map((rec, i) => (
                       <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-                          <div style={{ padding: "20px", borderRight: "1px solid #f1f5f9" }}>
+                        <div className="recommendation-detail-grid">
+                          <div className="recommendation-primary-copy" style={{ padding: "20px" }}>
+                            <div style={{ display: "inline-flex", alignItems: "center", background: "#dcfce7", color: "#166534", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>Primary Defend recommendation</div>
                             <div style={{ fontSize: "11px", color: "#94a3b8", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "4px" }}>{rec.context}</div>
                             <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 10px 0" }}>{rec.format}</h3>
                             <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
@@ -879,6 +889,26 @@ function SAGEDefendDashboard() {
                       </div>
                     ))}
                   </div>
+                  {supportingSignals.length > 0 && (
+                    <div style={{ marginTop: "26px" }}>
+                      <div style={{ background: "#fff7ed", border: "1px solid #fdba74", borderRadius: "10px", padding: "14px 16px", marginBottom: "12px" }}>
+                        <div style={{ color: "#9a3412", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", marginBottom: "4px" }}>Supplementary evidence — not a Defend recommendation</div>
+                        <p style={{ color: "#7c2d12", fontSize: "12px", lineHeight: 1.55, margin: 0 }}>These signals may add context or corroboration, but they do not directly confirm capability and are not included in the recommendation count. {assessmentStakes === "High" ? "They do not satisfy high-stakes assurance and must be paired with a primary Defend task above." : "They must be paired with an appropriate primary Defend task."}</p>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                        {supportingSignals.map((signal, i) => (
+                          <div key={i} style={{ background: "white", border: "1px solid #fed7aa", borderLeft: "5px solid #f97316", borderRadius: "10px", padding: "18px 20px" }}>
+                            <div style={{ display: "inline-flex", alignItems: "center", background: "#ffedd5", color: "#9a3412", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>Supplementary only</div>
+                            <div style={{ fontSize: "11px", color: "#9a3412", fontWeight: 700, textTransform: "uppercase", marginBottom: "4px" }}>{signal.context}</div>
+                            <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 8px 0" }}>{signal.format}</h3>
+                            {assessmentStakes === "High" && <p style={{ fontSize: "12px", color: "#b91c1c", fontWeight: 800, margin: "0 0 8px 0" }}>Does not satisfy high-stakes assurance.</p>}
+                            <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: "0 0 8px 0" }}>{signal.rationale}</p>
+                            <p style={{ fontSize: "12px", color: "#7c2d12", lineHeight: 1.55, margin: 0 }}><strong>Use with care:</strong> {signal.constraints}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
               {!hasSearched && (
