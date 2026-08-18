@@ -57,6 +57,7 @@
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
 const DEFEND_PAPER_URL = "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1872630/full";
+const TEQSA_SECURITY_URL = "https://www.teqsa.gov.au/guides-resources/protecting-academic-integrity/academic-integrity-toolkit/assessment-design-and-security/assessment-security-understanding-risks";
 
 
 // ─── DATA ───
@@ -152,6 +153,106 @@ const DECISION_MATRIX = [
   { context: "Any, online, low–moderate", cohort: "Any", delivery: "Online", stakes: "Low–Moderate", evidenceRole: "corroborative", outcomeType: "Transparency / process", format: "AI interaction log + disclosure (supplementary)", rationale: "Declarations and logs support formative transparency but are unreliable as stand-alone assurance.", constraints: "This is a corroborative signal, not a Defend checkpoint. Logs can be incomplete or reconstructed.", example: "Students submit an AI interaction record alongside a low-stakes task to support transparency." },
   { context: "Any — corroborative only", cohort: "Any", delivery: "Any", stakes: "Any", evidenceRole: "corroborative", outcomeType: "Any", format: "Behaviour analytics, authorship quiz, or interaction log", rationale: "These mechanisms provide supporting signals only and never substitute for direct demonstration.", constraints: "Do not use probabilistic or reconstructable signals as sole evidence of misconduct or competency ownership.", example: "Use a signal to trigger proportionate follow-up through a direct, outcome-matched Defend task." },
 ];
+
+const TEQSA_HIGH_SECURITY_OPTIONS = [
+  {
+    format: "In-person supervised written exams",
+    securityExplanation: "Invigilation limits third-party help and collusion; no LMS is involved, and seating controls can reduce peer signalling.",
+    sageVerification: "Moderate", scalability: "High", equityRisk: "Moderate", supportsOnline: false,
+    outcomes: ["Knowledge application", "Procedural / applied"],
+    rationale: "A familiar, scalable format for directly observing individual completion under controlled conditions. Use application, transfer, or explanation tasks so the evidence reaches beyond recall.",
+    constraints: "SAGE Table 3 cautions that timed invigilated exams may evidence constrained completion more readily than AI-supported reasoning.",
+    example: "Use an unseen case or problem that requires students to apply the same principles developed in the AI-integrated task and explain key decisions."
+  },
+  {
+    format: "Oral exams / viva voce",
+    securityExplanation: "Real-time interaction with assessors makes impersonation very difficult and avoids LMS-based threats.",
+    sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true,
+    outcomes: ["Explanation / defence", "Explanation / judgement", "AI-integrated process", "Transparency / process"],
+    rationale: "Direct questioning makes reasoning, conceptual ownership, and claim defence observable in real time.",
+    constraints: "SAGE Table 3 identifies workload, assessor calibration, consistency, and equity as material design considerations.",
+    example: "Use a short, structured question set mapped to the learning outcomes, with one unseen counter-position or transfer question."
+  },
+  {
+    format: "In-class written tasks",
+    securityExplanation: "Live supervised conditions restrict collusion and external help, with little LMS exposure.",
+    sageVerification: "Moderate", scalability: "Moderate", equityRisk: "Low", supportsOnline: false,
+    outcomes: ["Procedural / applied", "Knowledge application", "AI-integrated process"],
+    rationale: "A supervised task can provide campus-scale authorship control. Add explanation or transfer where the outcome requires evidence of reasoning depth.",
+    constraints: "The supervised condition establishes attribution more clearly than it establishes understanding; task design must elicit the capability being claimed.",
+    example: "Ask students to respond to an unseen scenario and annotate or briefly explain the reasoning behind their decisions."
+  },
+  {
+    format: "Simulations / role plays (in-person)",
+    securityExplanation: "Live, interactive and usually spontaneous performance makes collusion difficult.",
+    sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: false,
+    outcomes: ["Applied performance", "Explanation / judgement", "Procedural / applied"],
+    rationale: "Structured scenarios make professional judgement and applied performance observable under assessor challenge.",
+    constraints: "SAGE Table 3 notes that assurance depends on scenario quality, assessor consistency, standardised conditions, and appropriate adjustments.",
+    example: "Introduce a changed constraint during the scenario and ask the student to act, explain the decision, and respond to a consequence."
+  },
+  {
+    format: "Viva voces",
+    securityExplanation: "Live questioning reduces collusion and prevents all content or answers from being prepared in advance.",
+    sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true,
+    outcomes: ["Explanation / defence", "Explanation / judgement", "AI-integrated process", "Transparency / process"],
+    rationale: "A sustained defence is particularly strong for conceptual ownership, methodological justification, and the defence of claims represented in submitted work.",
+    constraints: "Viva voces are resource-intensive and require calibrated questioning, transparent criteria, moderation, and reasonable adjustments.",
+    example: "Probe one central claim, one source or method choice, and one new application that the student could not fully prepare in advance."
+  },
+];
+
+function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType }) {
+  const context = [cohortSize || "Any cohort", deliveryMode || "Any delivery", "High stakes"].join(", ");
+
+  return TEQSA_HIGH_SECURITY_OPTIONS.map((option, sourceOrder) => {
+    let score = 75;
+    if (cohortSize === "Large (>100)") score += option.scalability === "High" ? 18 : option.scalability === "Moderate" ? 4 : -16;
+    if (cohortSize === "Medium (30–100)") score += option.scalability === "High" ? 12 : option.scalability === "Moderate" ? 14 : -4;
+    if (cohortSize === "Small (<30)") score += option.scalability === "High" ? 6 : option.scalability === "Moderate" ? 10 : 16;
+    if (deliveryMode === "In-person") score += 12;
+    if (deliveryMode === "Hybrid") score += option.supportsOnline ? 8 : 4;
+    if (deliveryMode === "Online") score += option.supportsOnline ? 8 : -12;
+    if (outcomeType) score += option.outcomes.includes(outcomeType) ? 24 : -2;
+
+    const cautions = [option.constraints];
+    if (cohortSize === "Large (>100)" && option.scalability === "Low") {
+      cautions.push("For a large cohort, use short checkpoints, calibrated question banks, parallel assessors or stations, staged scheduling, and moderation to manage scalability.");
+    } else if (cohortSize === "Large (>100)" && option.scalability === "Moderate") {
+      cautions.push("For a large cohort, plan rooms, staffing, parallel sessions, and consistent marking before selecting this format.");
+    }
+    if (deliveryMode === "Online" && option.supportsOnline) {
+      cautions.push("For online delivery, use synchronous questioning with proportionate identity, recording, randomisation, privacy, accessibility, and contingency arrangements.");
+    } else if (deliveryMode === "Online") {
+      cautions.push("For an online cohort, this option requires access to an approved supervised venue or an equivalent accessible controlled arrangement; the TEQSA High classification should not be transferred automatically to an unsupervised online version.");
+    } else if (deliveryMode === "Hybrid" && !option.supportsOnline) {
+      cautions.push("Schedule the high-security component in person and provide an equivalent accessible arrangement for students who cannot attend that setting.");
+    }
+    if (option.equityRisk === "Moderate") {
+      cautions.push("Publish criteria in advance and provide reasonable adjustments or equivalent pathways where the format may create disability, anxiety, language, cultural, or access barriers.");
+    }
+
+    const outcomeFit = !outcomeType
+      ? "Confirm that the task directly elicits the intended learning outcome."
+      : option.outcomes.includes(outcomeType)
+        ? `This format closely matches the selected ${outcomeType.toLowerCase()} outcome.`
+        : `For ${outcomeType.toLowerCase()}, adapt the task so the relevant reasoning, judgement, or performance is directly elicited rather than inferred from the secure conditions alone.`;
+
+    return {
+      context, cohort: cohortSize || "Any", delivery: deliveryMode || "Any", stakes: "High", outcomeType: outcomeType || "Any",
+      format: option.format, rationale: `${option.rationale} ${outcomeFit}`, constraints: cautions.join(" "), example: option.example,
+      securityExplanation: option.securityExplanation, sageVerification: option.sageVerification, scalability: option.scalability, equityRisk: option.equityRisk,
+      score, sourceOrder, isTeqsaHighSecurity: true,
+    };
+  }).sort((a, b) => b.score - a.score || a.sourceOrder - b.sourceOrder).map((recommendation, index) => {
+    const fit = recommendation.score >= 100
+      ? { label: "Priority fit", bg: "#dcfce7", text: "#166534", border: "#22c55e" }
+      : recommendation.score >= 78
+        ? { label: "Suitable", bg: "#eff6ff", text: "#1e40af", border: "#3b82f6" }
+        : { label: "Suitable with planning", bg: "#fef3c7", text: "#92400e", border: "#f59e0b" };
+    return { ...recommendation, priority: index + 1, fit };
+  });
+}
 
 const CONTEXTUAL_OUTCOME_PROFILES = {
   "Explanation / defence": { format: "Interactive oral or viva voce", rationale: "Direct questioning makes claim defence and conceptual ownership observable.", example: "Ask the student to defend a central claim and respond to a credible counter-position." },
@@ -555,10 +656,14 @@ function SAGEDefendDashboard() {
       const om = !outcomeType || row.outcomeType === "Any" || row.outcomeType === outcomeType;
       return cm && dm && sm && om;
     };
-    const exactRecommendations = DECISION_MATRIX.filter(row => row.evidenceRole !== "corroborative" && matchesSelection(row));
-    setRecommendations(exactRecommendations.length > 0
-      ? exactRecommendations
-      : [buildContextualRecommendation({ cohortSize, deliveryMode, assessmentStakes, outcomeType })]);
+    if (assessmentStakes === "High") {
+      setRecommendations(buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType }));
+    } else {
+      const exactRecommendations = DECISION_MATRIX.filter(row => row.evidenceRole !== "corroborative" && matchesSelection(row));
+      setRecommendations(exactRecommendations.length > 0
+        ? exactRecommendations
+        : [buildContextualRecommendation({ cohortSize, deliveryMode, assessmentStakes, outcomeType })]);
+    }
     setCorroborativeSignals(DECISION_MATRIX.filter(row => row.evidenceRole === "corroborative" && matchesSelection(row)));
   };
   const resetRecommender = () => { setCohortSize(""); setDeliveryMode(""); setAssessmentStakes(""); setOutcomeType(""); setRecommendations([]); setCorroborativeSignals([]); setHasSearched(false); };
@@ -942,23 +1047,41 @@ function SAGEDefendDashboard() {
 
               {hasSearched && (
                 <div>
-                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{recommendations.length} Defend recommendation{recommendations.length !== 1 ? "s" : ""} found</p>
+                  {assessmentStakes === "High" && (
+                    <div style={{ background: "#f0fdf4", border: "1px solid #86efac", borderLeft: "5px solid #15803d", borderRadius: "10px", padding: "14px 16px", marginBottom: "16px" }}>
+                      <div style={{ color: "#14532d", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", marginBottom: "5px" }}>All five High-security options remain available</div>
+                      <p style={{ color: "#166534", fontSize: "12px", lineHeight: 1.55, margin: 0 }}>
+                        The five assessment types classified as <strong>High security by TEQSA</strong> are ranked below. Cohort, delivery mode and outcome selections change their order, fit colour and implementation cautions; they do not remove an option. TEQSA’s security classification and SAGE’s judgements about verification value, scalability, equity and outcome fit describe different aspects of the design. <a href={TEQSA_SECURITY_URL} target="_blank" rel="noopener" style={{ color: "#14532d", fontWeight: 800 }}>View the TEQSA table</a> and <a href={DEFEND_PAPER_URL + "#T3"} target="_blank" rel="noopener" style={{ color: "#14532d", fontWeight: 800 }}>SAGE Table 3</a>.
+                      </p>
+                    </div>
+                  )}
+                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{assessmentStakes === "High" ? `${recommendations.length} high-security Defend options, ranked for your context` : `${recommendations.length} Defend recommendation${recommendations.length !== 1 ? "s" : ""} found`}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                     {recommendations.map((rec, i) => (
-                      <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
+                      <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderLeft: rec.isTeqsaHighSecurity ? `5px solid ${rec.fit.border}` : "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
                         <div className="recommendation-detail-grid">
                           <div className="recommendation-primary-copy" style={{ padding: "20px" }}>
-                            <div style={{ display: "inline-flex", alignItems: "center", background: rec.isContextual ? "#eff6ff" : "#dcfce7", color: rec.isContextual ? "#1e40af" : "#166534", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>{rec.isContextual ? "Contextual synthesis from Tables 3–5" : "Published Table 4 design"}</div>
+                            <div style={{ display: "inline-flex", alignItems: "center", background: rec.isTeqsaHighSecurity ? rec.fit.bg : rec.isContextual ? "#eff6ff" : "#dcfce7", color: rec.isTeqsaHighSecurity ? rec.fit.text : rec.isContextual ? "#1e40af" : "#166534", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>{rec.isTeqsaHighSecurity ? `TEQSA High security · Priority ${rec.priority} · ${rec.fit.label}` : rec.isContextual ? "Contextual synthesis from Tables 3–5" : "Published Table 4 design"}</div>
                             <div style={{ fontSize: "11px", color: "#94a3b8", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "4px" }}>{rec.context}</div>
                             {rec.isContextual && <p style={{ background: "#eff6ff", borderLeft: "3px solid #3b82f6", color: "#1e3a8a", fontSize: "12px", lineHeight: 1.5, margin: "8px 0 12px", padding: "9px 11px" }}>This recommendation extends the published Table 4 matrix by applying the paper’s evidence classes and epistemic matching logic to the selected context.</p>}
                             <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 10px 0" }}>{rec.format}</h3>
-                            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
-                              <Badge label={"Cohort: " + rec.cohort} colors={{ bg: "#eff6ff", text: "#1e40af" }} />
-                              <Badge label={rec.delivery} colors={{ bg: "#f0fdf4", text: "#166534" }} />
-                              <Badge label={"Stakes: " + rec.stakes} colors={{ bg: "#fef3c7", text: "#92400e" }} />
-                              <Badge label={"Outcome: " + rec.outcomeType} colors={{ bg: "#f5f3ff", text: "#6d28d9" }} />
-                            </div>
-                            <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: 0 }}>{rec.rationale}</p>
+                            {rec.isTeqsaHighSecurity ? (
+                              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
+                                <Badge label="TEQSA security: High" colors={{ bg: "#dcfce7", text: "#166534" }} />
+                                <Badge label={"SAGE verification: " + rec.sageVerification} colors={{ bg: "#eff6ff", text: "#1e40af" }} />
+                                <Badge label={"Scale: " + rec.scalability} colors={{ bg: "#f5f3ff", text: "#6d28d9" }} />
+                                <Badge label={"Equity risk: " + rec.equityRisk} colors={{ bg: "#fff7ed", text: "#9a3412" }} />
+                              </div>
+                            ) : (
+                              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
+                                <Badge label={"Cohort: " + rec.cohort} colors={{ bg: "#eff6ff", text: "#1e40af" }} />
+                                <Badge label={rec.delivery} colors={{ bg: "#f0fdf4", text: "#166534" }} />
+                                <Badge label={"Stakes: " + rec.stakes} colors={{ bg: "#fef3c7", text: "#92400e" }} />
+                                <Badge label={"Outcome: " + rec.outcomeType} colors={{ bg: "#f5f3ff", text: "#6d28d9" }} />
+                              </div>
+                            )}
+                            {rec.isTeqsaHighSecurity && <p style={{ fontSize: "12px", color: "#334155", lineHeight: 1.55, margin: "0 0 9px" }}><strong>TEQSA security basis:</strong> {rec.securityExplanation}</p>}
+                            <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: 0 }}>{rec.isTeqsaHighSecurity && <strong>SAGE fit: </strong>}{rec.rationale}</p>
                             <p style={{ fontSize: "12px", color: "#6366f1", lineHeight: 1.5, margin: "10px 0 0 0", fontStyle: "italic" }}>Example: {rec.example}</p>
                           </div>
                           <div style={{ padding: "20px", background: "#fffbeb" }}>
