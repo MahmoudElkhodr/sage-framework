@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SAGE Assurance Guidance Tool — Defend Step Design Tool</title>
 <meta name="description" content="Interactive tool for designing the SAGE Defend checkpoint (Step 6). Match cohort size, delivery mode, assessment stakes, intended outcome and assessment type to a fit-for-context assurance design, rubric, challenge prompts and printable implementation brief." />
-<meta name="keywords" content="SAGE Defend tool, AI assessment assurance, Defend checkpoint design, viva voce AI, oral assessment GenAI, assessment verification higher education, supervised checkpoint AI, epistemic matching, AI-integrated assessment, assurance format recommender, SAGE design principles, assessment rubric AI, challenge questions AI, Mahmoud Elkhodr, Ergun Gide, CQUniversity, TEQSA assessment assurance, academic integrity verification, Defend planner, interactive oral assessment, structured role-play assessment, cybersecurity assessment AI, programming viva, clinical reasoning AI" />
+<meta name="keywords" content="SAGE Defend tool, AI assessment assurance, Defend checkpoint design, viva voce AI, oral assessment GenAI, assessment verification higher education, supervised checkpoint AI, epistemic matching, AI-integrated assessment, assurance format recommender, SAGE design principles, assessment rubric AI, challenge questions AI, Mahmoud Elkhodr, Ergun Gide, CQUniversity, academic integrity verification, Defend planner, interactive oral assessment, structured role-play assessment, cybersecurity assessment AI, programming viva, clinical reasoning AI" />
 <meta name="author" content="Dr Mahmoud Elkhodr, Professor Ergun Gide" />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://sage-framework.com/defend_tool.html" />
@@ -57,7 +57,6 @@
 <script type="text/babel">
 const { useState, useRef, useEffect } = React;
 const DEFEND_PAPER_URL = "https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2026.1872630/full";
-const TEQSA_SECURITY_URL = "https://www.teqsa.gov.au/guides-resources/protecting-academic-integrity/academic-integrity-toolkit/assessment-design-and-security/assessment-security-understanding-risks";
 
 
 // ─── DATA ───
@@ -154,50 +153,50 @@ const DECISION_MATRIX = [
   { context: "Any — corroborative only", cohort: "Any", delivery: "Any", stakes: "Any", evidenceRole: "corroborative", outcomeType: "Any", format: "Behaviour analytics, authorship quiz, or interaction log", rationale: "These mechanisms provide supporting signals only and never substitute for direct demonstration.", constraints: "Do not use probabilistic or reconstructable signals as sole evidence of misconduct or competency ownership.", example: "Use a signal to trigger proportionate follow-up through a direct, outcome-matched Defend task." },
 ];
 
-const TEQSA_HIGH_SECURITY_OPTIONS = [
+const SAGE_HIGH_ASSURANCE_OPTIONS = [
   {
     format: "In-person supervised written exams",
-    securityExplanation: "Invigilation limits third-party help and collusion; no LMS is involved, and seating controls can reduce peer signalling.",
+    assuranceExplanation: "Invigilation limits third-party help and collusion; no LMS is involved, and seating controls can reduce peer signalling.",
     sageVerification: "Moderate", scalability: "High", equityRisk: "Moderate", supportsOnline: false,
     outcomes: ["Knowledge application", "Procedural / applied"],
     rationale: "A familiar, scalable format for directly observing individual completion under controlled conditions. Use application, transfer, or explanation tasks so the evidence reaches beyond recall.",
-    constraints: "SAGE Table 3 cautions that timed invigilated exams may evidence constrained completion more readily than AI-supported reasoning.",
+    constraints: "SAGE advice: timed invigilated exams may evidence constrained completion more readily than AI-supported reasoning.",
     example: "Use an unseen case or problem that requires students to apply the same principles developed in the AI-integrated task and explain key decisions."
   },
   {
     format: "Oral exams / viva voce",
-    securityExplanation: "Real-time interaction with assessors makes impersonation very difficult and avoids LMS-based threats.",
+    assuranceExplanation: "Real-time interaction with assessors makes impersonation very difficult and avoids LMS-based threats.",
     sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true,
     outcomes: ["Explanation / defence", "Explanation / judgement", "AI-integrated process", "Transparency / process"],
     rationale: "Direct questioning makes reasoning, conceptual ownership, and claim defence observable in real time.",
-    constraints: "SAGE Table 3 identifies workload, assessor calibration, consistency, and equity as material design considerations.",
+    constraints: "SAGE advice: plan explicitly for workload, assessor calibration, consistency, and equity.",
     example: "Use a short, structured question set mapped to the learning outcomes, with one unseen counter-position or transfer question."
   },
   {
     format: "In-class written tasks",
-    securityExplanation: "Live supervised conditions restrict collusion and external help, with little LMS exposure.",
+    assuranceExplanation: "Live supervised conditions restrict collusion and external help, with little LMS exposure.",
     sageVerification: "Moderate", scalability: "Moderate", equityRisk: "Low", supportsOnline: false,
     outcomes: ["Procedural / applied", "Knowledge application", "AI-integrated process"],
     rationale: "A supervised task can provide campus-scale authorship control. Add explanation or transfer where the outcome requires evidence of reasoning depth.",
-    constraints: "The supervised condition establishes attribution more clearly than it establishes understanding; task design must elicit the capability being claimed.",
+    constraints: "SAGE advice: supervised conditions establish attribution more clearly than understanding, so the task must elicit the capability being claimed.",
     example: "Ask students to respond to an unseen scenario and annotate or briefly explain the reasoning behind their decisions."
   },
   {
     format: "Simulations / role plays (in-person)",
-    securityExplanation: "Live, interactive and usually spontaneous performance makes collusion difficult.",
+    assuranceExplanation: "Live, interactive and usually spontaneous performance makes collusion difficult.",
     sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: false,
     outcomes: ["Applied performance", "Explanation / judgement", "Procedural / applied"],
     rationale: "Structured scenarios make professional judgement and applied performance observable under assessor challenge.",
-    constraints: "SAGE Table 3 notes that assurance depends on scenario quality, assessor consistency, standardised conditions, and appropriate adjustments.",
+    constraints: "SAGE advice: assurance depends on scenario quality, assessor consistency, standardised conditions, and appropriate adjustments.",
     example: "Introduce a changed constraint during the scenario and ask the student to act, explain the decision, and respond to a consequence."
   },
   {
     format: "Viva voces",
-    securityExplanation: "Live questioning reduces collusion and prevents all content or answers from being prepared in advance.",
+    assuranceExplanation: "Live questioning reduces collusion and prevents all content or answers from being prepared in advance.",
     sageVerification: "High", scalability: "Low", equityRisk: "Moderate", supportsOnline: true,
     outcomes: ["Explanation / defence", "Explanation / judgement", "AI-integrated process", "Transparency / process"],
     rationale: "A sustained defence is particularly strong for conceptual ownership, methodological justification, and the defence of claims represented in submitted work.",
-    constraints: "Viva voces are resource-intensive and require calibrated questioning, transparent criteria, moderation, and reasonable adjustments.",
+    constraints: "SAGE advice: viva voces are resource-intensive and require calibrated questioning, transparent criteria, moderation, and reasonable adjustments.",
     example: "Probe one central claim, one source or method choice, and one new application that the student could not fully prepare in advance."
   },
 ];
@@ -205,7 +204,7 @@ const TEQSA_HIGH_SECURITY_OPTIONS = [
 function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType }) {
   const context = [cohortSize || "Any cohort", deliveryMode || "Any delivery", "High stakes"].join(", ");
 
-  return TEQSA_HIGH_SECURITY_OPTIONS.map((option, sourceOrder) => {
+  return SAGE_HIGH_ASSURANCE_OPTIONS.map((option, sourceOrder) => {
     let score = 75;
     if (cohortSize === "Large (>100)") score += option.scalability === "High" ? 18 : option.scalability === "Moderate" ? 4 : -16;
     if (cohortSize === "Medium (30–100)") score += option.scalability === "High" ? 12 : option.scalability === "Moderate" ? 14 : -4;
@@ -224,7 +223,7 @@ function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType 
     if (deliveryMode === "Online" && option.supportsOnline) {
       cautions.push("For online delivery, use synchronous questioning with proportionate identity, recording, randomisation, privacy, accessibility, and contingency arrangements.");
     } else if (deliveryMode === "Online") {
-      cautions.push("For an online cohort, this option requires access to an approved supervised venue or an equivalent accessible controlled arrangement; the TEQSA High classification should not be transferred automatically to an unsupervised online version.");
+      cautions.push("For an online cohort, this option requires access to an approved supervised venue or an equivalent accessible controlled arrangement; do not treat an unsupervised online version as high assurance.");
     } else if (deliveryMode === "Hybrid" && !option.supportsOnline) {
       cautions.push("Schedule the high-security component in person and provide an equivalent accessible arrangement for students who cannot attend that setting.");
     }
@@ -241,8 +240,8 @@ function buildHighStakesRecommendations({ cohortSize, deliveryMode, outcomeType 
     return {
       context, cohort: cohortSize || "Any", delivery: deliveryMode || "Any", stakes: "High", outcomeType: outcomeType || "Any",
       format: option.format, rationale: `${option.rationale} ${outcomeFit}`, constraints: cautions.join(" "), example: option.example,
-      securityExplanation: option.securityExplanation, sageVerification: option.sageVerification, scalability: option.scalability, equityRisk: option.equityRisk,
-      score, sourceOrder, isTeqsaHighSecurity: true,
+      assuranceExplanation: option.assuranceExplanation, sageVerification: option.sageVerification, scalability: option.scalability, equityRisk: option.equityRisk,
+      score, sourceOrder, isSageHighAssurance: true,
     };
   }).sort((a, b) => b.score - a.score || a.sourceOrder - b.sourceOrder).map((recommendation, index) => {
     const fit = recommendation.score >= 100
@@ -275,7 +274,7 @@ function buildContextualRecommendation({ cohortSize, deliveryMode, assessmentSta
     format += " — embedded in-person or synchronous checkpoint";
   }
 
-  const cautions = ["This is a contextual synthesis, not a directly published Table 4 pairing. Confirm alignment with the specific learning outcome and institutional requirements."];
+  const cautions = ["This is contextual SAGE guidance. Confirm alignment with the specific learning outcome and institutional requirements."];
   if (assessmentStakes === "High") cautions.push("Use direct evidence and add proportionate controlled conditions; corroborative signals cannot carry the assurance claim.");
   if (deliveryMode === "Online") cautions.push("Plan identity, privacy, accessibility, connectivity, moderation, and reasonable-adjustment arrangements.");
   if (cohortSize === "Large (>100)") cautions.push("Use calibrated question banks, parallel stations, staged scheduling, or another resourcing model that preserves individual evidence at scale.");
@@ -323,20 +322,20 @@ const ASSESSMENT_OPTIONS = [
   "Group Report with Individual Contribution", "Oral Presentation", "Other"
 ];
 
-// Assessment task → observable checkpoint + implementation format (Table 5 plus labelled tool extensions)
+// Assessment task → observable checkpoint + implementation format
 const ASSESSMENT_FORMAT_MAP = {
-  "Essay / Written Argument": { source: "Published Table 5", checkpoint: "Oral examination of claims", recommended: "Interactive oral assessment (IOA)", operation: "Defend the claim", why: "Probe the argument in real time so the student must justify the position rather than restate it.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
-  "Literature Review": { source: "Published Table 5", checkpoint: "Source interrogation viva", recommended: "Viva voce examination", operation: "Justify the selection", why: "Question why sources were chosen, how they connect, and what was deliberately excluded.", alternates: ["Interactive oral assessment (IOA)"] },
-  "Code / Programming Assignment": { source: "Published Table 5", checkpoint: "Live walkthrough and debug", recommended: "Live practical demonstration", operation: "Transfer the skill", why: "Require the student to explain the design logic and resolve a seeded error introduced live.", alternates: ["Computer-lab exam (restricted access)", "Structured role-play/scenario defence"] },
-  "Data Analysis Report": { source: "Published Table 5", checkpoint: "Unseen dataset interpretation", recommended: "Live practical demonstration", operation: "Apply the method", why: "Require the student to apply the same analytical method to a new dataset under observation.", alternates: ["Supervised in-class task", "Oral presentation + targeted examiner questioning"] },
-  "Industry Case Study": { source: "Published Table 5", checkpoint: "Stakeholder presentation and questioning", recommended: "Oral presentation + targeted examiner questioning", operation: "Admit an external witness", why: "A relevant stakeholder challenges the findings and confirms that the engagement occurred.", alternates: ["Structured role-play/scenario defence", "Viva voce examination"] },
-  "Security / Risk Audit": { source: "Published Table 5", checkpoint: "Timed risk-scoring exercise", recommended: "Supervised in-class task", operation: "Transfer the risk judgement", why: "Require live prioritisation of an unseen scenario using the same frameworks studied in the unit.", alternates: ["Live practical demonstration", "Structured role-play/scenario defence"] },
-  "Research Proposal": { source: "Published Table 5", checkpoint: "Methodology challenge viva", recommended: "Viva voce examination", operation: "Justify the design", why: "Ask the student to defend design choices against credible rival approaches.", alternates: ["Interactive oral assessment (IOA)"] },
-  "Creative Writing / Portfolio": { source: "Published Table 5", checkpoint: "Reflective oral on craft decisions", recommended: "Interactive oral assessment (IOA)", operation: "Explain the choices", why: "Require explanation of structural, voice, and revision choices and why alternatives were rejected.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
-  "Clinical Placement Report": { source: "Published Table 5", checkpoint: "Clinical reasoning viva", recommended: "Viva voce examination", operation: "Demonstrate the reasoning", why: "Ask the student to account for decision-making in a specific case encountered during placement.", alternates: ["Structured role-play/scenario defence", "Interactive oral assessment (IOA)"] },
-  "Design Project": { source: "Published Table 5", checkpoint: "Design critique with an unseen constraint", recommended: "Live practical demonstration", operation: "Defend the iteration", why: "Require the student to explain the design rationale and adapt it when a new constraint is introduced live.", alternates: ["Oral presentation + targeted examiner questioning", "Structured role-play/scenario defence"] },
-  "Accounting / Financial Analysis": { source: "Published Table 5", checkpoint: "Unseen scenario under the same standards", recommended: "Supervised in-class task", operation: "Apply the judgement", why: "Require the student to apply the same standards to a new financial scenario under observation.", alternates: ["Live practical demonstration", "Computer-lab exam (restricted access)"] },
-  "Music / Performance": { source: "Published Table 5", checkpoint: "Live performance and technique questions", recommended: "Live practical demonstration", operation: "Demonstrate the mastery", why: "Require live performance followed by questions about interpretive and technical choices.", alternates: ["Interactive oral assessment (IOA)", "Oral presentation + targeted examiner questioning"] },
+  "Essay / Written Argument": { source: "Published SAGE mapping", checkpoint: "Oral examination of claims", recommended: "Interactive oral assessment (IOA)", operation: "Defend the claim", why: "Probe the argument in real time so the student must justify the position rather than restate it.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
+  "Literature Review": { source: "Published SAGE mapping", checkpoint: "Source interrogation viva", recommended: "Viva voce examination", operation: "Justify the selection", why: "Question why sources were chosen, how they connect, and what was deliberately excluded.", alternates: ["Interactive oral assessment (IOA)"] },
+  "Code / Programming Assignment": { source: "Published SAGE mapping", checkpoint: "Live walkthrough and debug", recommended: "Live practical demonstration", operation: "Transfer the skill", why: "Require the student to explain the design logic and resolve a seeded error introduced live.", alternates: ["Computer-lab exam (restricted access)", "Structured role-play/scenario defence"] },
+  "Data Analysis Report": { source: "Published SAGE mapping", checkpoint: "Unseen dataset interpretation", recommended: "Live practical demonstration", operation: "Apply the method", why: "Require the student to apply the same analytical method to a new dataset under observation.", alternates: ["Supervised in-class task", "Oral presentation + targeted examiner questioning"] },
+  "Industry Case Study": { source: "Published SAGE mapping", checkpoint: "Stakeholder presentation and questioning", recommended: "Oral presentation + targeted examiner questioning", operation: "Admit an external witness", why: "A relevant stakeholder challenges the findings and confirms that the engagement occurred.", alternates: ["Structured role-play/scenario defence", "Viva voce examination"] },
+  "Security / Risk Audit": { source: "Published SAGE mapping", checkpoint: "Timed risk-scoring exercise", recommended: "Supervised in-class task", operation: "Transfer the risk judgement", why: "Require live prioritisation of an unseen scenario using the same frameworks studied in the unit.", alternates: ["Live practical demonstration", "Structured role-play/scenario defence"] },
+  "Research Proposal": { source: "Published SAGE mapping", checkpoint: "Methodology challenge viva", recommended: "Viva voce examination", operation: "Justify the design", why: "Ask the student to defend design choices against credible rival approaches.", alternates: ["Interactive oral assessment (IOA)"] },
+  "Creative Writing / Portfolio": { source: "Published SAGE mapping", checkpoint: "Reflective oral on craft decisions", recommended: "Interactive oral assessment (IOA)", operation: "Explain the choices", why: "Require explanation of structural, voice, and revision choices and why alternatives were rejected.", alternates: ["Viva voce examination", "Oral presentation + targeted examiner questioning"] },
+  "Clinical Placement Report": { source: "Published SAGE mapping", checkpoint: "Clinical reasoning viva", recommended: "Viva voce examination", operation: "Demonstrate the reasoning", why: "Ask the student to account for decision-making in a specific case encountered during placement.", alternates: ["Structured role-play/scenario defence", "Interactive oral assessment (IOA)"] },
+  "Design Project": { source: "Published SAGE mapping", checkpoint: "Design critique with an unseen constraint", recommended: "Live practical demonstration", operation: "Defend the iteration", why: "Require the student to explain the design rationale and adapt it when a new constraint is introduced live.", alternates: ["Oral presentation + targeted examiner questioning", "Structured role-play/scenario defence"] },
+  "Accounting / Financial Analysis": { source: "Published SAGE mapping", checkpoint: "Unseen scenario under the same standards", recommended: "Supervised in-class task", operation: "Apply the judgement", why: "Require the student to apply the same standards to a new financial scenario under observation.", alternates: ["Live practical demonstration", "Computer-lab exam (restricted access)"] },
+  "Music / Performance": { source: "Published SAGE mapping", checkpoint: "Live performance and technique questions", recommended: "Live practical demonstration", operation: "Demonstrate the mastery", why: "Require live performance followed by questions about interpretive and technical choices.", alternates: ["Interactive oral assessment (IOA)", "Oral presentation + targeted examiner questioning"] },
   "Group Report with Individual Contribution": { source: "Tool extension based on SAGE design principles", checkpoint: "Individual contribution defence", recommended: "Oral presentation + targeted examiner questioning", operation: "Separate individual reasoning", why: "Each group member demonstrates ownership of their contribution through targeted questioning.", alternates: ["Interactive oral assessment (IOA)", "Viva voce examination"] },
   "Oral Presentation": { source: "Tool extension based on SAGE design principles", checkpoint: "Targeted examiner challenge", recommended: "Oral presentation + targeted examiner questioning", operation: "Defend claims under challenge", why: "The presentation itself is not the Defend; planned examiner questioning makes the reasoning observable.", alternates: ["Viva voce examination"] },
 };
@@ -946,7 +945,7 @@ function SAGEDefendDashboard() {
         {/* Understated provenance line */}
           <p style={{ fontSize: "11px", color: "#6a6a6a", textAlign: "center", margin: 0, lineHeight: 1.5 }}>
             Developed at Central Queensland University (17 March 2026). Drawing on the SAGE evidence base of 30+ studies involving more than 1,500 students across Australia, China, and the United Kingdom.
-         Disclaimer: This website presents independent scholarly resources developed by the authors. It is not an official CQUniversity or TEQSA publication.
+         Disclaimer: This website presents independent scholarly resources developed by the SAGE authors. It is not an official CQUniversity publication.
           </p>
         </div>
       )}
@@ -988,7 +987,7 @@ function SAGEDefendDashboard() {
               <SectionHeader accent="#2d6a4f" subtitle="Select your teaching context below to find the most appropriate Defend checkpoint format. The Defend step sits within the SAGE assessment sequence — students complete their AI-integrated work first (Generate → Evaluate → Refine → AI Critic → Reflect), then demonstrate reasoning ownership at a supervised checkpoint.">
                 Defend Format Recommender
               </SectionHeader>
-              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 16px 16px" }}>Published basis: <a href={DEFEND_PAPER_URL + "#T4"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 4 — fit-for-context decision matrix</a>. The matrix is a design aid, not a claim that one format is universally optimal.</p>
+              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 16px 16px" }}>SAGE evidence base: <a href={DEFEND_PAPER_URL} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>assurance-format selection and epistemic matching</a>. The recommender is a design aid, not a claim that one format is universally optimal.</p>
               <div style={{ background: "#e8f5ee", border: "1px solid #b7d9c4", borderRadius: "10px", padding: "14px 18px", marginBottom: "20px", display: "flex", gap: "10px", alignItems: "flex-start" }}>
                 <span style={{ fontSize: "16px", flexShrink: 0 }}>💡</span>
                 <p style={{ fontSize: "12px", color: "#1a3a2a", lineHeight: 1.55, margin: 0 }}>
@@ -1049,25 +1048,25 @@ function SAGEDefendDashboard() {
                 <div>
                   {assessmentStakes === "High" && (
                     <div style={{ background: "#f0fdf4", border: "1px solid #86efac", borderLeft: "5px solid #15803d", borderRadius: "10px", padding: "14px 16px", marginBottom: "16px" }}>
-                      <div style={{ color: "#14532d", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", marginBottom: "5px" }}>All five High-security options remain available</div>
+                      <div style={{ color: "#14532d", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", marginBottom: "5px" }}>All five SAGE high-assurance options remain available</div>
                       <p style={{ color: "#166534", fontSize: "12px", lineHeight: 1.55, margin: 0 }}>
-                        The five assessment types classified as <strong>High security by TEQSA</strong> are ranked below. Cohort, delivery mode and outcome selections change their order, fit colour and implementation cautions; they do not remove an option. TEQSA’s security classification and SAGE’s judgements about verification value, scalability, equity and outcome fit describe different aspects of the design. <a href={TEQSA_SECURITY_URL} target="_blank" rel="noopener" style={{ color: "#14532d", fontWeight: 800 }}>View the TEQSA table</a> and <a href={DEFEND_PAPER_URL + "#T3"} target="_blank" rel="noopener" style={{ color: "#14532d", fontWeight: 800 }}>SAGE Table 3</a>.
+                        SAGE presents five high-assurance assessment options for high-stakes contexts. Cohort, delivery mode and outcome selections change their order, fit colour and implementation cautions; they do not remove an option. The ranking considers how directly each format can evidence capability, together with scalability, equity and learning-outcome fit. <a href={DEFEND_PAPER_URL} target="_blank" rel="noopener" style={{ color: "#14532d", fontWeight: 800 }}>View the SAGE evidence base</a>.
                       </p>
                     </div>
                   )}
-                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{assessmentStakes === "High" ? `${recommendations.length} high-security Defend options, ranked for your context` : `${recommendations.length} Defend recommendation${recommendations.length !== 1 ? "s" : ""} found`}</p>
+                  <p style={{ fontSize: "13px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>{assessmentStakes === "High" ? `${recommendations.length} SAGE high-assurance options, ranked for your context` : `${recommendations.length} Defend recommendation${recommendations.length !== 1 ? "s" : ""} found`}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                     {recommendations.map((rec, i) => (
-                      <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderLeft: rec.isTeqsaHighSecurity ? `5px solid ${rec.fit.border}` : "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
+                      <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderLeft: rec.isSageHighAssurance ? `5px solid ${rec.fit.border}` : "1px solid #e2e8f0", borderRadius: "12px", overflow: "hidden" }}>
                         <div className="recommendation-detail-grid">
                           <div className="recommendation-primary-copy" style={{ padding: "20px" }}>
-                            <div style={{ display: "inline-flex", alignItems: "center", background: rec.isTeqsaHighSecurity ? rec.fit.bg : rec.isContextual ? "#eff6ff" : "#dcfce7", color: rec.isTeqsaHighSecurity ? rec.fit.text : rec.isContextual ? "#1e40af" : "#166534", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>{rec.isTeqsaHighSecurity ? `TEQSA High security · Priority ${rec.priority} · ${rec.fit.label}` : rec.isContextual ? "Contextual synthesis from Tables 3–5" : "Published Table 4 design"}</div>
+                            <div style={{ display: "inline-flex", alignItems: "center", background: rec.isSageHighAssurance ? rec.fit.bg : rec.isContextual ? "#eff6ff" : "#dcfce7", color: rec.isSageHighAssurance ? rec.fit.text : rec.isContextual ? "#1e40af" : "#166534", borderRadius: "4px", padding: "3px 7px", fontSize: "10px", fontWeight: 800, textTransform: "uppercase", marginBottom: "8px" }}>{rec.isSageHighAssurance ? `SAGE high assurance · Priority ${rec.priority} · ${rec.fit.label}` : rec.isContextual ? "SAGE contextual guidance" : "SAGE published design"}</div>
                             <div style={{ fontSize: "11px", color: "#94a3b8", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "4px" }}>{rec.context}</div>
-                            {rec.isContextual && <p style={{ background: "#eff6ff", borderLeft: "3px solid #3b82f6", color: "#1e3a8a", fontSize: "12px", lineHeight: 1.5, margin: "8px 0 12px", padding: "9px 11px" }}>This recommendation extends the published Table 4 matrix by applying the paper’s evidence classes and epistemic matching logic to the selected context.</p>}
+                            {rec.isContextual && <p style={{ background: "#eff6ff", borderLeft: "3px solid #3b82f6", color: "#1e3a8a", fontSize: "12px", lineHeight: 1.5, margin: "8px 0 12px", padding: "9px 11px" }}>This recommendation applies SAGE assurance and epistemic-matching guidance to the selected context.</p>}
                             <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#0f172a", margin: "0 0 10px 0" }}>{rec.format}</h3>
-                            {rec.isTeqsaHighSecurity ? (
+                            {rec.isSageHighAssurance ? (
                               <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
-                                <Badge label="TEQSA security: High" colors={{ bg: "#dcfce7", text: "#166534" }} />
+                                <Badge label="SAGE assurance: High" colors={{ bg: "#dcfce7", text: "#166534" }} />
                                 <Badge label={"SAGE verification: " + rec.sageVerification} colors={{ bg: "#eff6ff", text: "#1e40af" }} />
                                 <Badge label={"Scale: " + rec.scalability} colors={{ bg: "#f5f3ff", text: "#6d28d9" }} />
                                 <Badge label={"Equity risk: " + rec.equityRisk} colors={{ bg: "#fff7ed", text: "#9a3412" }} />
@@ -1080,8 +1079,8 @@ function SAGEDefendDashboard() {
                                 <Badge label={"Outcome: " + rec.outcomeType} colors={{ bg: "#f5f3ff", text: "#6d28d9" }} />
                               </div>
                             )}
-                            {rec.isTeqsaHighSecurity && <p style={{ fontSize: "12px", color: "#334155", lineHeight: 1.55, margin: "0 0 9px" }}><strong>TEQSA security basis:</strong> {rec.securityExplanation}</p>}
-                            <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: 0 }}>{rec.isTeqsaHighSecurity && <strong>SAGE fit: </strong>}{rec.rationale}</p>
+                            {rec.isSageHighAssurance && <p style={{ fontSize: "12px", color: "#334155", lineHeight: 1.55, margin: "0 0 9px" }}><strong>Why it strengthens assurance:</strong> {rec.assuranceExplanation}</p>}
+                            <p style={{ fontSize: "13px", color: "#475569", lineHeight: 1.55, margin: 0 }}>{rec.isSageHighAssurance && <strong>SAGE fit: </strong>}{rec.rationale}</p>
                             <p style={{ fontSize: "12px", color: "#6366f1", lineHeight: 1.5, margin: "10px 0 0 0", fontStyle: "italic" }}>Example: {rec.example}</p>
                           </div>
                           <div style={{ padding: "20px", background: "#fffbeb" }}>
@@ -1169,7 +1168,7 @@ function SAGEDefendDashboard() {
                 <strong style={{ color: "#854d0e" }}>Controlled assurance conditions</strong> restrict the environment but are not stand-alone evidence of competency.{" "}
                 <strong style={{ color: "#9a3412" }}>Corroborative assurance signals</strong> support an evidentiary picture or prompt follow-up but cannot independently verify ownership.
               </p>
-              <p style={{ color: "#64748b", fontSize: "12px", marginBottom: "14px" }}>Published basis: <a href={DEFEND_PAPER_URL + "#T3"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 3 — three-class assurance-task typology</a>. Verification value describes the directness of the evidence, not overall educational quality; scale and equity ratings are provisional design judgements.</p>
+              <p style={{ color: "#64748b", fontSize: "12px", marginBottom: "14px" }}>SAGE advice distinguishes direct assurance tasks, controlled assurance conditions and corroborative assurance signals. Verification value describes the directness of the evidence, not overall educational quality; scale and equity ratings are contextual design judgements. <a href={DEFEND_PAPER_URL} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>View the evidence base</a>.</p>
               <p style={{ color: "#94a3b8", fontSize: "12px", marginBottom: "20px", fontStyle: "italic" }}>Click any format to expand its function, SAGE Defend design implication, and implementation caution.</p>
               <div style={{ display: "flex", gap: "8px", marginBottom: "20px", flexWrap: "wrap" }}>
                 {["All", "Direct assurance task", "Controlled assurance condition", "Corroborative assurance signal"].map(f => (
@@ -1219,7 +1218,7 @@ function SAGEDefendDashboard() {
               <SectionHeader accent="#1a3a2a">Epistemic Matching: Aligning the Checkpoint to the Task</SectionHeader>
               <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "8px", maxWidth: "740px" }}>The most common mistake in implementing a Defend step is appending a generic oral exam to every assessment. This does not work. The verification checkpoint must match the <em>type of thinking</em> the assessment originally required.</p>
               <p style={{ color: "#475569", fontSize: "13px", lineHeight: 1.65, marginBottom: "20px", maxWidth: "740px" }}>If the assessment asked students to build an argument, the checkpoint should test whether they can defend it under questioning. If it asked them to write code, they should demonstrate they can walk through it and fix a new problem. The table below shows how different assessment types map to appropriate Defend checkpoints, with the cognitive operation that connects them.</p>
-              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 18px 0" }}>Published basis: <a href={DEFEND_PAPER_URL + "#T5"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 5 — cross-disciplinary epistemic matching</a>. The pairings are illustrative rather than universally prescriptive.</p>
+              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 18px 0" }}>SAGE advice matches each checkpoint to the reasoning, judgement or performance the assessment is intended to elicit. These pairings are illustrative rather than universally prescriptive. <a href={DEFEND_PAPER_URL} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>View the evidence base</a>.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {EPISTEMIC_MATCHING.map((m, i) => (
                   <div key={i} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "10px", overflow: "hidden" }}>
@@ -1337,7 +1336,7 @@ function SAGEDefendDashboard() {
 
               {/* Sector signal */}
               <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: "12px", padding: "16px 20px" }}>
-                <p style={{ fontSize: "12px", color: "#64748b", margin: 0, lineHeight: 1.5 }}>The SAGE framework has been referenced by the University of Warwick and the National University of Singapore. Three CQUniversity SAGE resources are listed on the TEQSA Generative AI Knowledge Hub under Academic Integrity and Assessment Reform and Student Resources and Support.</p>
+                <p style={{ fontSize: "12px", color: "#64748b", margin: 0, lineHeight: 1.5 }}>The SAGE framework has been referenced by the University of Warwick and the National University of Singapore.</p>
               </div>
             </div>
           )}
@@ -1346,7 +1345,7 @@ function SAGEDefendDashboard() {
           {activeTab === "plan" && (
             <div>
               <SectionHeader accent="#2d6a4f" subtitle="Design your Defend checkpoint step by step. The template is interlinked — your assessment task selection drives the recommended Defend format, and your format selection drives compatible challenge approaches. Soft warnings appear if your selections create a weaker design. Print the completed template as a contextual implementation brief.">Defend Planner</SectionHeader>
-              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 16px 16px" }}>The published assessment mappings are drawn from <a href={DEFEND_PAPER_URL + "#T5"} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>Table 5</a>. Additional mappings are explicitly identified as tool extensions.</p>
+              <p style={{ color: "#64748b", fontSize: "12px", margin: "-8px 0 16px 16px" }}>The planner uses published SAGE assessment mappings. Additional mappings are explicitly identified as tool extensions. <a href={DEFEND_PAPER_URL} target="_blank" rel="noopener" style={{ color: "#2d6a4f", fontWeight: 700 }}>View the evidence base</a>.</p>
 
               <div ref={printRef} style={{ background: "white", border: "1px solid #e2e8f0", borderRadius: "14px", padding: "24px", marginBottom: "20px" }}>
 
