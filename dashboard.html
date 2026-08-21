@@ -90,6 +90,18 @@
             line-height: 1.6;
         }
 
+        .reader-note {
+            background: #eaf4ef;
+            border-left: 4px solid #2d6a4f;
+            padding: 12px 16px;
+            margin: 4px 0 30px;
+            border-radius: 6px;
+            color: #315444;
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+        .reader-note strong { color: #1b4332; }
+
         /* Section Context - Simple Question Intro */
         .section-context {
             background: #f1f8ff;
@@ -198,22 +210,21 @@
 <div class="container">
     <header>
         <h1>How First-Year Students Report Using AI in Permitted Assessments</h1>
-        <div class="subtitle">Dashboard from task-proximal self-reports collected after a permitted AI assessment</div>
+        <div class="subtitle">Dashboard of post-activity metacognitive reflections following a structured SAGE assessment</div>
         
         <div class="context-box">
             <h3>Research Context</h3>
             <p><strong>The Challenge:</strong> Whilst institutional policies on generative AI proliferate across higher education, task-proximal evidence of how students report navigating these tools in authentic assessment contexts remains limited. Assumptions about student behaviour often circulate without evidence collected close to an actual assessment event.</p>
-            <p><strong>What We Studied:</strong> This research examined first-year ICT students at Central Queensland University during a supervised assessment where generative AI use was explicitly permitted under institutional AI Collaboration guidelines. Students analysed a peer-reviewed article and then completed an embedded 12-item reflection instrument.</p>
-            <p><strong>How We Collected Data:</strong> During Week 12 of Term 3, 2025, 167 students completed structured self-report questions about prompt frequency, source checking, revision and interaction strategies, and 163 provided usable open-ended reflections. The assessment included SAGE-aligned verification prompts. The dataset does not include prompt logs, screen recordings, grades or output-quality measures.</p>
-            <p><strong>Why This Matters:</strong> This dashboard presents exploratory descriptive evidence of declared AI-use practices and support needs in one permitted assessment context. Findings should be interpreted as task-proximal self-report rather than direct behavioural observation or evidence of causal effects.</p>
+            <p><strong>What We Studied:</strong> This research examined first-year ICT students at Central Queensland University during a supervised assessment in which generative AI use was explicitly permitted under institutional AI Collaboration guidelines. The assessment was structured around the five SAGE learning-process steps used in the activity: Generate, Evaluate, Refine, AI Critic and Reflect. Students completed a sequence of SAGE tasks. In selected tasks, they analysed a peer-reviewed article and used it, together with additional lecturer-provided sources, as authoritative anchors for evaluating and orchestrating AI-generated output. They then completed an embedded 12-item reflection instrument.</p>
+            <p><strong>How We Collected Data:</strong> During Term 2, 2025, 167 student responses were selected for analysis from a cohort of approximately 300 students. The analysed responses addressed prompt frequency, source checking, revision and interaction strategies through structured metacognitive questions; 163 of the 167 also contained usable open-ended reflections. The reflection instrument was embedded directly after the structured SAGE activity.</p>
+            <p><strong>Why This Matters:</strong> This dashboard presents exploratory descriptive evidence of how students understood and reported their orchestration of generative AI immediately after completing a complex, source-anchored SAGE activity. It examines metacognition following structured practice rather than general perceptions of AI in the abstract.</p>
         </div>
 
         <div class="badge-container">
             <span class="meta-tag">Unit: COIT11239 (Professional Communication for ICT)</span>
-            <span class="meta-tag">Participants: 167 Valid Responses</span>
+            <span class="meta-tag">Dataset: 167 analysed responses from a cohort of approximately 300</span>
             <span class="meta-tag">Context: First-year, first-term students</span>
             <span class="meta-tag">Framework: SAGE (Structured AI-Guided Education)</span>
-            <span class="meta-tag" style="background: #d4edda; color: #155724; border-color: #c3e6cb;">Self-reported reflection data</span>
         </div>
     </header>
 
@@ -245,13 +256,17 @@
         </div>
     </div>
 
+    <div class="reader-note">
+        <strong>Reader note applying to all questions:</strong> The questions below followed a complex, structured SAGE activity with defined Generate, Evaluate, Refine, AI Critic and Reflect stages. Students were taught and required to practise generative AI orchestration using authoritative sources. The instrument was therefore a post-activity metacognitive reflection, not a decontextualised perception survey. Its responses provide indirect evidence of how students understood and transferred orchestration skills into the assessment process.
+    </div>
+
     <!-- SECTION 1: Q1 Initial Approach -->
     <div class="section-title">1. Initial Approach Strategies (Q1)</div>
     <div class="section-context">
         <strong>What we asked:</strong> How did you begin interacting with the AI tool: conversation style, upload everything at once, or something different for each section?
     </div>
     <div class="section-intro">
-        <strong>Meaning Behind the Data:</strong> Conversational interaction (39.5%) and article-first sequential processing (36.5%) were the two most frequently selected starting approaches. The monolithic upload-and-extract option was selected by 7.2%. These selections describe declared starting strategies and do not establish interaction quality or the reasons underlying them.
+        <strong>Meaning Behind the Data:</strong> Conversational interaction (39.5%) and article-first sequential processing (36.5%) were the two most frequently selected starting approaches. The monolithic upload-and-extract option was selected by 7.2%. These selections describe declared starting strategies and do not establish interaction quality or the reasons underlying them. The study did not use statistical clustering or assign respondents to mutually exclusive profiles, so variation across items is reported by item and conceptual domain rather than as empirically identified student types.
     </div>
     <div class="grid-main">
         <div class="col-12 card">
@@ -268,11 +283,7 @@
         </div>
     </div>
 
-    <div class="section-title">2. Variation in Reported Approaches</div>
-    <div class="section-context"><strong>What this section clarifies:</strong> Response distributions varied across initial approach, prompt frequency, revision and verification items.</div>
-    <div class="section-intro"><strong>Interpretive boundary:</strong> The study did not use statistical clustering or assign respondents to mutually exclusive profiles. Variation is therefore reported by item and conceptual domain rather than as empirically identified student types.</div>
-
-    <div class="section-title">3. Prompt Frequency Patterns (Q2)</div>
+    <div class="section-title">2. Prompt Frequency Patterns (Q2)</div>
     <div class="section-context">
         <strong>What we asked:</strong> How many separate times did you interact with the AI during this assessment—just once, a few times, or many iterations?
     </div>
@@ -294,7 +305,7 @@
         </div>
     </div>
 
-    <div class="section-title">4. Depth of Engagement: Revision Strategies (Q3)</div>
+    <div class="section-title">3. Depth of Engagement: Revision Strategies (Q3)</div>
     <div class="section-context">
         <strong>What we asked:</strong> What did you do with AI outputs—use them as-is with minor tweaks, rewrite completely in your own words, or ask follow-up questions for refinement?
     </div>
@@ -340,7 +351,7 @@
         </div>
     </div>
 
-    <div class="section-title">5. The "SAGE" Verification Core (Q4)</div>
+    <div class="section-title">4. Reported Source-Checking in a SAGE-Aligned Context (Q4)</div>
     <div class="section-context">
         <strong>What we asked:</strong> How often did you check AI responses against the original article—regularly, occasionally, or rarely?
     </div>
@@ -362,7 +373,7 @@
         </div>
     </div>
 
-    <div class="section-title">6. Assessment Components Requiring Rewriting (Q5)</div>
+    <div class="section-title">5. Assessment Components Requiring Rewriting (Q5)</div>
     <div class="section-context">
         <strong>What we asked:</strong> Which part of the assessment required the most rewriting after receiving AI help—summary, analysis, recommendations, or something else?
     </div>
@@ -384,7 +395,7 @@
         </div>
     </div>
 
-    <div class="section-title">7. Reported Influences on AI Use (Q7)</div>
+    <div class="section-title">6. Reported Influences on AI Use (Q7)</div>
     <div class="section-context">
         <strong>What we asked:</strong> What factors influenced your decision to use AI—time pressure, English confidence, maintaining your voice, or something else? (Select up to 2)
     </div>
@@ -406,7 +417,7 @@
         </div>
     </div>
 
-    <div class="section-title">8. Engagement Patterns: Interaction Strategies (Q8)</div>
+    <div class="section-title">7. Engagement Patterns: Interaction Strategies (Q8)</div>
     <div class="section-context">
         <strong>What we asked:</strong> Which best describes your overall interaction pattern—provided all info at once, built responses step-by-step, or engaged multiple times with verification checks?
     </div>
@@ -428,7 +439,7 @@
         </div>
     </div>
 
-    <div class="section-title">9. Reported Challenges (Q9)</div>
+    <div class="section-title">8. Reported Challenges (Q9)</div>
     <div class="section-context">
         <strong>What we asked:</strong> What was most difficult about using AI effectively—creating useful prompts, verifying accuracy, maintaining your authentic style, or something else? (Select up to 3)
     </div>
@@ -450,7 +461,7 @@
         </div>
     </div>
 
-    <div class="section-title">10. Intended Strategy Changes (Q10)</div>
+    <div class="section-title">9. Intended Strategy Changes (Q10)</div>
     <div class="section-context">
         <strong>What we asked:</strong> If you could redo the assessment, would you change your AI approach—engage more iteratively, verify more thoroughly, or keep the same strategy?
     </div>
@@ -472,7 +483,7 @@
         </div>
     </div>
 
-    <div class="section-title">11. Requested Institutional Support (Q11)</div>
+    <div class="section-title">10. Requested Institutional Support (Q11)</div>
     <div class="section-context">
         <strong>What we asked:</strong> What kind of institutional support would most help you use AI correctly and ethically—verification guidance, prompt examples, practice opportunities, or integrity frameworks?
     </div>
@@ -494,7 +505,7 @@
         </div>
     </div>
 
-    <div class="section-title">12. Thematic Analysis of Concerns and Needs (Q12)</div>
+    <div class="section-title">11. Thematic Analysis of Concerns and Needs (Q12)</div>
     <div class="section-context">
         <strong>What we asked:</strong> In your own words (2-3 bullet points), what could CQUniversity do more to help you use AI correctly and ethically?
     </div>
@@ -528,7 +539,7 @@
         </div>
     </div>
 
-    <div class="section-title">13. Provisional Institutional Response Options</div>
+    <div class="section-title">12. Provisional Institutional Response Options</div>
     <div class="section-context">
         <strong>What this section provides:</strong> Provisional response options informed by reported needs; these actions were not tested in the study.
     </div>
@@ -574,7 +585,7 @@
         </div>
     </div>
 
-    <div class="section-title">14. Key Interpretive Implications</div>
+    <div class="section-title">13. Key Interpretive Implications</div>
     <div class="section-intro">
         <strong>From data to interpretation:</strong> The aggregate patterns suggest three cautious implications for AI literacy, assessment design and institutional support:
     </div>
