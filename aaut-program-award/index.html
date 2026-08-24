@@ -62,24 +62,26 @@
     .evidence-sidebar-links a { display:flex; align-items:center; width:100%; padding:.48rem .52rem; border-radius:6px; color:var(--slate); font-size:.8rem; font-weight:600; line-height:1.4; text-decoration:none; }
     .evidence-sidebar-links a:hover { background:var(--pale); color:var(--forest); }
     .evidence-sidebar-links a.active { padding-left:.68rem; background:var(--pale); box-shadow:inset 3px 0 0 var(--forest); color:var(--forest); font-weight:700; }
+    .sm1-source-note { margin:0 .2rem .75rem; color:var(--muted); font-size:.68rem; line-height:1.5; }
     .mobile-index { display:none; }
     .mobile-index summary { padding:.8rem 1rem; color:var(--forest); font-weight:700; cursor:pointer; }
     .mobile-index .evidence-sidebar-panel { border:0; border-top:1px solid var(--rule); border-radius:0; box-shadow:none; }
-    .hero { padding:clamp(3.4rem,7vw,6rem) 2rem 3.4rem; background:linear-gradient(135deg,var(--ink),var(--forest) 65%,#1e543d); color:#fff; border-bottom:3px solid var(--mid); }
+    .hero { padding:clamp(2.75rem,4.5vw,3.75rem) 2rem 2.8rem; background:linear-gradient(135deg,var(--ink),var(--forest) 65%,#1e543d); color:#fff; border-bottom:3px solid var(--mid); }
     .wrap { max-width:1160px; margin:auto; }
     .eyebrow,.label { display:flex; align-items:center; gap:.45rem; margin-bottom:.7rem; color:var(--light); font-size:.67rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
     .eyebrow::before,.label::before { content:""; width:18px; height:2px; background:currentColor; }
     h1,h2,h3 { color:var(--ink); font-family:"Fraunces",Georgia,serif; font-weight:400; line-height:1.12; letter-spacing:-.025em; }
-    h1 { max-width:900px; color:#fff; font-size:clamp(2.5rem,6vw,5rem); font-weight:300; }
+    h1 { max-width:1100px; color:#fff; font-size:clamp(2.45rem,4.5vw,4rem); font-weight:300; letter-spacing:0; }
     h1 em { color:var(--light); font-weight:300; }
     h2 { font-size:clamp(1.9rem,4vw,3rem); }
     h3 { font-size:1.23rem; }
     .hero-sub { margin-top:.8rem; color:var(--light); font-family:"Fraunces",Georgia,serif; font-size:clamp(1.1rem,2vw,1.45rem); }
     .team { margin-top:.45rem; color:rgba(255,255,255,.72); font-size:.9rem; }
     .hero-note { max-width:850px; margin-top:1.2rem; color:rgba(255,255,255,.84); font-size:1.02rem; }
-    .hero-video-action { margin-top:1rem; }
-    .hero-video-action .btn { padding:.58rem .85rem; border-color:rgba(255,255,255,.45); background:transparent; color:#fff; }
-    .hero-video-action .btn:hover { border-color:#fff; background:rgba(255,255,255,.08); }
+    .hero-note + .hero-note { margin-top:.65rem; }
+    .hero-video-action { margin-top:1.35rem; }
+    .hero-video-action .btn { padding:.82rem 1.05rem; border-color:var(--gold); background:var(--gold); box-shadow:0 10px 24px rgba(0,0,0,.18); color:var(--ink); }
+    .hero-video-action .btn:hover { border-color:#f5d977; background:#f5d977; }
     .metrics { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.75rem; max-width:1080px; margin-top:1.65rem; }
     .metric { padding:.95rem; border:1px solid rgba(255,255,255,.16); border-radius:10px; background:rgba(255,255,255,.07); }
     .metric strong { display:block; color:#fff; font-family:"Fraunces",Georgia,serif; font-size:1.55rem; font-weight:400; }
@@ -299,11 +301,11 @@
 <header class="hero">
 <div class="wrap">
 <div class="eyebrow">Supporting Material 1 (SM1) · 2026 AAUT Program Award</div>
-<h1>Structured <em>AI-Guided</em> Education Program</h1>
-<p class="hero-sub">Evidence website aligned to the nomination claims and supporting-material anchors</p>
-<p class="team">Dr Mahmoud Elkhodr and Professor Ergun Gide · Category 2.3 Curriculum transformation and innovative pedagogy</p>
-<p class="hero-note">This page presents the primary and corroborating evidence supporting the nomination. SM1-A1 to SM1-D7 are permanent claim anchors used by the nomination. The SAGE studies below are supporting sources within SM1 and are not numbered references in the nomination.</p>
-<p class="hero-video-action"><a class="btn" href="#program-video">Watch the three-minute program overview</a></p>
+<h1>Evidence supporting the 2026 AAUT Program Award nomination</h1>
+<p class="hero-sub">Structured AI-Guided Education (SAGE) Program · Dr Mahmoud Elkhodr and Professor Ergun Gide · CQUniversity Australia</p>
+<p class="hero-note">SAGE is a six-step pedagogy that teaches students to begin from their own work, test AI output against authoritative disciplinary sources, decide what to accept, revise or reject, and defend the final reasoning as their own. It has been implemented at CQUniversity since Term 3 2022.</p>
+<p class="hero-note">This page presents the primary and corroborating evidence supporting the nomination. The anchors SM1-A1 to SM1-D7 correspond to the claim identifiers used throughout the application.</p>
+<p class="hero-video-action"><a class="btn" href="#program-video">New to SAGE? Start with the three-minute overview →</a></p>
 <div class="metrics">
 <div class="metric"><strong>1,500+</strong><span>students represented across SAGE validation and implementation contexts</span></div>
 <div class="metric"><strong>2022–2026</strong><span>sustained classroom development, evaluation and refinement</span></div>
@@ -316,6 +318,7 @@
 </header>
 <div class="evidence-layout">
 <aside aria-label="Evidence index" class="evidence-sidebar">
+<p class="sm1-source-note">The SAGE studies listed below are supporting sources within SM1 and are not numbered references in the nomination.</p>
 <div class="evidence-sidebar-panel desktop-index">
 <div class="evidence-sidebar-label">Evidence index</div>
 <nav aria-label="Page sections" class="evidence-sidebar-links">
