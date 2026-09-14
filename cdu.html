@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <title>Oxford Brookes–Chengdu Implementation | SAGE</title>
+  <meta name="description" content="A SAGE-guided critical AI literacy intervention in a UK–China transnational computing program, with the accepted research paper available to download.">
+  <link rel="canonical" href="https://sage-framework.com/cdu.html">
+  <style>
+    :root{--paper:#f7f5ee;--white:#fffef9;--ink:#173c30;--forest:#173f32;--deep:#103427;--green:#37694e;--muted:#5e6b60;--line:#d6dcd0;--pale:#e9eee3;--mint:#dce7cc;--gold:#b6a35e;--amber:#9b702b;--serif:Georgia,'Times New Roman',serif;--sans:'Segoe UI',Arial,sans-serif;--width:1180px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:106px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-underline-offset:5px}
+    button,a{touch-action:manipulation}
+    button{font:inherit;color:inherit}
+    :focus-visible{outline:3px solid var(--amber);outline-offset:5px}
+    ::selection{background:var(--mint);color:var(--deep)}
+    h1,h2,h3,p,figure{margin:0}
+    h1,h2,h3{font-weight:400}
+    h1,h2{font-family:var(--serif);letter-spacing:-.045em;line-height:1.07;text-wrap:balance}
+    h1{font-size:clamp(46px,5.4vw,72px)}
+    h2{font-size:clamp(34px,4vw,52px)}
+    h3{font-family:var(--serif);font-size:27px;line-height:1.22;letter-spacing:-.025em}
+    p{max-width:68ch}
+    .wrap{width:min(var(--width),calc(100% - 96px));margin-inline:auto}
+    .skip{position:absolute;left:16px;top:-100px;z-index:100;background:var(--white);padding:12px 20px}
+    .skip:focus{top:12px}
+    .preview-bar{background:var(--deep);color:#e1e9dd;padding:7px 20px;text-align:center;font-size:10px;letter-spacing:.1em}
+    .preview-bar a{margin-left:12px;color:#fff}
+    .site-header{position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line);background:var(--paper)}
+    .header-inner{min-height:83px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:14px;text-decoration:none;flex-shrink:0}
+    .brand-name{font-family:var(--serif);font-size:37px;letter-spacing:-2px;line-height:1}
+    .brand-name::after{content:'.';color:#768d61}
+    .brand-caption{border-left:1px solid #b9c4b4;padding-left:14px;text-transform:uppercase;letter-spacing:.12em;font-size:9px;line-height:1.5}
+    .main-nav{display:block}
+    .nav-links{list-style:none;padding:0;margin:0;display:flex;align-items:center;gap:5px}
+    .nav-links>li>a,.nav-dropdown-heading>a{display:block;padding:10px 11px;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap}
+    .nav-links a:hover{background:var(--pale);color:var(--forest);border-radius:3px}
+    .nav-dropdown{position:relative}
+    .nav-dropdown-heading{display:flex;align-items:center}
+    .nav-dropdown-heading>a{padding-right:2px}
+    .dropdown-toggle{border:0;background:transparent;cursor:pointer;padding:8px 5px;min-width:25px;line-height:1}
+    .dropdown-toggle:hover{background:var(--pale)}
+    .dropdown-toggle[aria-expanded="true"] span{display:block;transform:rotate(180deg)}
+    .nav-dropdown-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:9px;z-index:40;width:310px}
+    .nav-dropdown.is-open>.nav-dropdown-menu{display:block}
+    .nav-dropdown-panel{background:var(--white);border:1px solid var(--line);border-radius:5px;padding:7px;box-shadow:0 12px 30px #173c3021}
+    .nav-dropdown-panel>a{display:flex;align-items:center;gap:10px;padding:11px 12px;text-decoration:none;white-space:normal}
+    .dd-icon{width:20px;flex:none;font-size:15px;text-align:center}
+    .dd-label{font-size:12px;font-weight:650;line-height:1.5}
+    .dd-desc{font-size:10px;font-weight:400;color:var(--muted);line-height:1.6;margin-top:3px}
+    .nav-links .nav-cta{background:var(--forest);color:var(--white);padding-inline:17px;border-radius:3px;margin-left:5px}
+    .nav-links .nav-cta:hover{background:var(--green);color:var(--white)}
+    .menu-toggle{display:none;background:transparent;border:1px solid var(--line);padding:8px 12px;border-radius:3px}
+    .eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:650;letter-spacing:.16em;text-transform:uppercase;line-height:1.5}
+    .eyebrow::before{content:'';width:24px;height:1px;background:currentColor;flex:none}
+    .hero{display:grid;grid-template-columns:1.18fr .82fr;gap:76px;align-items:center;padding-block:78px 64px}
+    .hero h1{margin:24px 0 24px;max-width:760px}
+    .hero h1 em{font-weight:400;color:var(--green)}
+    .hero-lead{font-size:17px;line-height:1.78;color:#516252;max-width:57ch}
+    .hero-lead strong{font-weight:650;color:var(--ink)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:17px;min-height:49px;padding:12px 21px;text-decoration:none;font-size:13px;font-weight:650;border:1px solid var(--forest);border-radius:3px;transition:background .2s,color .2s}
+    .btn-primary{background:var(--forest);color:var(--white)}
+    .btn-primary:hover{background:var(--green)}
+    .btn-secondary:hover{background:var(--pale)}
+    .brief{background:var(--pale);border:1px solid var(--line);padding:29px}
+    .status{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid #c6d0bf;padding:6px 10px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold)}
+    .brief h2{font-size:31px;margin:22px 0 11px;letter-spacing:-.03em}
+    .brief>p{font-size:12px;line-height:1.75;color:var(--muted)}
+    .brief-meta{list-style:none;padding:0;margin:24px 0 0;border-top:1px solid #c9d3c3}
+    .brief-meta li{display:grid;grid-template-columns:86px 1fr;gap:15px;padding:12px 0;border-bottom:1px solid #c9d3c3;font-size:11px;line-height:1.55}
+    .brief-meta span{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:9px;padding-top:2px}
+    .brief-meta strong{font-weight:600}
+    .evidence-strip{display:grid;grid-template-columns:repeat(4,1fr);padding:30px 0 33px;border-block:1px solid var(--line)}
+    .metric{padding:0 27px;border-left:1px solid var(--line)}
+    .metric:first-child{border-left:0;padding-left:0}
+    .metric:last-child{padding-right:0}
+    .metric strong{font-family:var(--serif);font-size:32px;line-height:1.12;font-weight:400;letter-spacing:-1px;display:block;margin-bottom:7px}
+    .metric span{font-size:11px;line-height:1.55;color:var(--muted);display:block;max-width:24ch}
+    .section{padding-block:85px}
+    .section-head{display:grid;grid-template-columns:1fr 1fr;gap:74px;align-items:end;margin-bottom:41px}
+    .section-head .eyebrow{margin-bottom:18px}
+    .section-head>p{font-size:15px;color:var(--muted);line-height:1.8;max-width:53ch;padding-bottom:3px}
+    .workflow{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .step{position:relative;padding:28px 20px 31px;border-left:1px solid var(--line)}
+    .step:first-child{border-left:0;padding-left:0}
+    .step:last-child{padding-right:0}
+    .step:not(:last-child)::after{content:'→';position:absolute;right:-9px;top:28px;z-index:2;background:var(--paper);color:#879878;padding:0 3px}
+    .step-num{font-size:10px;letter-spacing:.12em;color:var(--muted)}
+    .step h3{font-size:22px;margin:13px 0 11px}
+    .step p{font-size:12px;line-height:1.75;color:var(--muted)}
+    .mapping{display:block;margin-top:17px;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--green);font-weight:700}
+    .assurance-note{margin-top:26px;background:var(--white);border-left:3px solid var(--gold);padding:18px 22px;font-size:12px;color:var(--muted);line-height:1.75}
+    .assurance-note strong{color:var(--ink)}
+    .activity{background:var(--deep);color:var(--white)}
+    .activity .section-head>p{color:#c4d1c0}
+    .activity .eyebrow{color:#c5d5ad}
+    .activity-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:76px;align-items:start}
+    .activity-copy h3{font-size:34px;margin-bottom:19px}
+    .activity-copy p{font-size:14px;line-height:1.85;color:#c4d1c0;margin-bottom:22px}
+    .activity-list{list-style:none;padding:0;margin:0;border-top:1px solid #49634c}
+    .activity-list li{display:grid;grid-template-columns:34px 1fr;gap:13px;padding:19px 0;border-bottom:1px solid #49634c}
+    .activity-list b{font-family:var(--serif);font-size:18px;font-weight:400;color:#bdd0a8}
+    .activity-list strong{font-size:13px;font-weight:650;display:block;margin-bottom:5px}
+    .activity-list span{font-size:11px;line-height:1.7;color:#c4d1c0;display:block}
+    .findings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+    .finding{border-top:1px solid var(--forest);padding-top:22px}
+    .finding .label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+    .finding h3{margin:13px 0 13px}
+    .finding p{font-size:13px;color:var(--muted);line-height:1.85}
+    .finding strong{color:var(--ink)}
+    .limitations{margin-top:38px;display:grid;grid-template-columns:180px 1fr;gap:30px;padding:24px 0;border-block:1px solid var(--line)}
+    .limitations h3{font-size:22px}
+    .limitations p{font-size:12px;line-height:1.8;color:var(--muted);max-width:88ch}
+    .paper-section{background:#ececdd;border-block:1px solid #d6dbc8}
+    .paper-card{display:grid;grid-template-columns:1.15fr .85fr;gap:75px;align-items:center}
+    .paper-card h2{margin:19px 0 20px;max-width:17ch}
+    .paper-card>div>p{color:var(--muted);font-size:14px;line-height:1.85}
+    .paper-details{background:var(--white);border:1px solid var(--line);padding:28px}
+    .paper-details .paper-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:13px}
+    .paper-details h3{font-size:25px;margin-bottom:17px}
+    .paper-details p{font-size:11px;line-height:1.72;color:var(--muted);margin-bottom:20px}
+    .paper-details .btn{width:100%;margin-bottom:14px}
+    .paper-details .fine{font-size:10px;line-height:1.65;margin:0}
+    .citation{margin-top:26px;padding-top:23px;border-top:1px solid #c9d3c3;font-size:11px;line-height:1.75;color:var(--muted)}
+    .citation strong{display:block;color:var(--ink);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+    .site-footer{background:var(--deep);color:#dbe5d5;padding:40px 0 24px}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:35px;margin-bottom:27px}
+    .footer-brand{font-family:var(--serif);font-size:32px;letter-spacing:-1px}
+    .footer-top p{font-size:11px;color:#b8cbb2;margin-top:5px}
+    .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:11px 28px;width:min(560px,55%)}
+    .footer-links a{font-size:12px;text-decoration:none}
+    .footer-group-label{grid-column:1/-1;font-size:11px;font-weight:650;color:#b8cbb2;margin-top:6px}
+    .footer-links a[href="cqu-guided-assured.html"],.footer-links a[href="cdu.html"]{grid-column:1/-1}
+    .footer-bottom{display:flex;justify-content:space-between;gap:35px;border-top:1px solid #3f5946;padding-top:20px;font-size:10px;color:#bac9b4}
+    .footer-bottom p{max-width:83ch}
+    .footer-bottom span{white-space:nowrap}
+    .footer-citation{font-size:10px;color:#bac9b4;border-top:1px solid #3f5946;margin-top:18px;padding-top:18px;line-height:1.8}
+    @media(max-width:1100px){
+      .wrap{width:calc(100% - 64px)}
+      .menu-toggle{display:block}
+      .main-nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);padding:12px 22px 22px;max-height:calc(100dvh - 85px);overflow-y:auto;box-shadow:0 9px 16px #173c3014}
+      .main-nav.is-open{display:block}.nav-links{display:block}.nav-links>li>a,.nav-dropdown-heading>a{padding:11px 9px;font-size:14px}.nav-dropdown-heading>a{width:100%}.dropdown-toggle{display:none}.nav-dropdown-menu{display:block;position:static;transform:none;width:auto;padding:0}.nav-dropdown-panel{background:transparent;border:0;border-left:1px solid var(--line);border-radius:0;box-shadow:none;margin:0 0 7px 15px;padding:0 0 0 10px}.nav-dropdown-panel>a{padding:9px 12px}.dd-label{font-size:13px;font-weight:400}.dd-desc,.dd-icon{display:none}.nav-links .nav-cta{background:transparent;color:var(--ink);margin-left:0;padding:11px 9px}.nav-links .nav-cta:hover{background:var(--pale);color:var(--ink)}
+      .hero{gap:45px}.activity-grid{gap:45px}.paper-card{gap:45px}.workflow{grid-template-columns:repeat(3,1fr)}.step:nth-child(4){border-left:0}.step:nth-child(3)::after{display:none}
+    }
+    @media(max-width:760px){
+      html{scroll-padding-top:88px}.wrap{width:calc(100% - 44px)}.header-inner{min-height:72px}.hero{grid-template-columns:1fr;padding-block:49px}.brief{max-width:590px}.evidence-strip{grid-template-columns:repeat(2,1fr);gap:25px 0}.metric:nth-child(3){border-left:0;padding-left:0}.section{padding-block:60px}.section-head{grid-template-columns:1fr;gap:24px}.workflow{grid-template-columns:1fr 1fr}.step,.step:first-child,.step:last-child{padding:23px 19px}.step:nth-child(odd){border-left:0}.step:nth-child(3){border-left:0}.step:nth-child(3)::after{display:block}.step:nth-child(even)::after{display:none}.step:last-child{border-top:1px solid var(--line)}.activity-grid,.paper-card{grid-template-columns:1fr}.findings-grid{grid-template-columns:1fr}.finding{padding-top:18px}.limitations{grid-template-columns:1fr;gap:12px}.footer-top{flex-direction:column}.footer-links{width:100%}.footer-bottom{flex-direction:column;gap:15px}
+    }
+    @media(max-width:500px){
+      .wrap{width:calc(100% - 36px)}.preview-bar{font-size:9px;letter-spacing:.02em}.brand-name{font-size:34px}.brand-caption{font-size:8px;padding-left:10px}.brand{gap:10px}.hero h1{font-size:46px}.hero-lead{font-size:15px}.actions{flex-direction:column}.actions .btn{width:100%}.brief{padding:22px}.evidence-strip{gap:22px 0}.metric{padding-inline:18px}.metric strong{font-size:28px}.workflow{grid-template-columns:1fr}.step,.step:first-child,.step:last-child{border-left:0;border-top:1px solid var(--line);padding:22px 0}.step:first-child{border-top:0}.step::after{display:none!important}.footer-links{grid-template-columns:1fr}.footer-group-label{grid-column:auto}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+    @media print{.preview-bar,.site-header,.actions,.skip{display:none}.wrap{width:100%}.section{padding-block:28px}.activity,.site-footer{background:#fff;color:var(--ink)}.activity p,.activity .section-head>p,.activity .eyebrow,.activity-list span{color:var(--ink)}article,.brief,.paper-details{break-inside:avoid}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="SAGE Framework home"><span class="brand-name">SAGE</span><span class="brand-caption">Framework</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu <span aria-hidden="true">☰</span></button>
+      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="sage.html">The Framework</a></li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-heading"><a href="student_resources.html">Resources</a><button class="dropdown-toggle" type="button" aria-label="Show Resources links" aria-expanded="false" aria-controls="nav-resources"><span aria-hidden="true">⌄</span></button></div>
+            <div class="nav-dropdown-menu" id="nav-resources"><div class="nav-dropdown-panel">
+              <a href="student-guide.html"><span class="dd-icon">📄</span><div><div class="dd-label">Student Guide</div><div class="dd-desc">Six-step guide for responsible AI use and Defend preparation</div></div></a>
+              <a href="genai-101.html"><span class="dd-icon">📖</span><div><div class="dd-label">GenAI-101 Module</div><div class="dd-desc">11-lesson AI literacy course</div></div></a>
+              <a href="defend_tool.html"><span class="dd-icon">🛡️</span><div><div class="dd-label">Defend Tool</div><div class="dd-desc">Design an assurance checkpoint</div></div></a>
+              <a href="downloads.html"><span class="dd-icon">&#x2B07;</span><div><div class="dd-label">Downloads</div><div class="dd-desc">Guides, templates and implementation resources</div></div></a>
+            </div></div>
+          </li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-heading"><a href="policy.html">Assessment Policy</a><button class="dropdown-toggle" type="button" aria-label="Show Assessment Policy links" aria-expanded="false" aria-controls="nav-policy"><span aria-hidden="true">⌄</span></button></div>
+            <div class="nav-dropdown-menu" id="nav-policy"><div class="nav-dropdown-panel">
+              <a href="policy.html"><div><div class="dd-label">Student-Facing Policy</div><div class="dd-desc">Policy text, declarations, examples, and FAQ</div></div></a>
+              <a href="policy-guide.html"><div><div class="dd-label">Educator Guidance</div><div class="dd-desc">Implementation and adaptation guidance</div></div></a>
+            </div></div>
+          </li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-heading"><a href="cqu-guided-assured.html">SAGE in Practice</a><button class="dropdown-toggle" type="button" aria-label="Show SAGE in Practice links" aria-expanded="false" aria-controls="nav-practice"><span aria-hidden="true">⌄</span></button></div>
+            <div class="nav-dropdown-menu" id="nav-practice"><div class="nav-dropdown-panel">
+              <a href="cqu-guided-assured.html"><div><div class="dd-label">CQUniversity &mdash; Independent GAM Mapping</div><div class="dd-desc">Independent mapping to the Guided&ndash;Assured Assessment Model</div></div></a>
+              <a href="cdu.html" aria-current="page"><div><div class="dd-label">Oxford Brookes&ndash;Chengdu Implementation</div><div class="dd-desc">SAGE-guided critical AI literacy in transnational computing education</div></div></a>
+            </div></div>
+          </li>
+          <li><a href="publications.html">Evidence</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="about.html" class="nav-cta">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">SAGE in practice · international implementation</div>
+        <h1 id="hero-title">Critical AI literacy in a <em>UK–China computing classroom.</em></h1>
+        <p class="hero-lead"><strong>At Oxford Brookes College, Chengdu University of Technology, SAGE became a compact classroom intervention.</strong> Students solved an algorithmic problem themselves, challenged a plausible but flawed AI answer, justified corrections and tested their reasoning under a new constraint.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="files/Fostering-Critical-AI-Literacy-SAGE-Chengdu-Accepted.pdf" download>Download accepted paper <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-secondary" href="#design">Explore the intervention <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <aside class="brief" aria-label="Study at a glance">
+        <span class="status">Accepted and presented · ICAIES 2026</span>
+        <h2>A tutorial-scale test of transfer.</h2>
+        <p>The study examined whether SAGE could move from its Australian computing-education base into the linguistic, cultural and institutional conditions of UK–China transnational education.</p>
+        <ul class="brief-meta">
+          <li><span>Institution</span><strong>Oxford Brookes College, Chengdu University of Technology</strong></li>
+          <li><span>Students</span><strong>Level 4 Computer Science and Software Engineering</strong></li>
+          <li><span>Learning task</span><strong>Minimum Spanning Tree reasoning in Mathematics for Computing</strong></li>
+          <li><span>Format</span><strong>One formative, non-graded 50-minute tutorial</strong></li>
+        </ul>
+      </aside>
+    </section>
+
+    <div class="wrap evidence-strip" aria-label="Study evidence at a glance">
+      <div class="metric"><strong>131</strong><span>undergraduate students completed the activity and survey</span></div>
+      <div class="metric"><strong>2.84 → 3.63</strong><span>mean MST confidence before and after, on a 1–4 scale</span></div>
+      <div class="metric"><strong><em>d</em><sub>z</sub> = 0.91</strong><span>large paired-samples effect size, <em>p</em> &lt; .001</span></div>
+      <div class="metric"><strong>57.3%</strong><span>identified an AI error and supported it with valid MST reasoning</span></div>
+    </div>
+
+    <section id="design" class="wrap section" aria-labelledby="design-title">
+      <div class="section-head">
+        <div><div class="eyebrow">01 / Intervention design</div><h2 id="design-title">Human reasoning first.<br>AI as an object of critique.</h2></div>
+        <p>The five-stage workflow translated SAGE into a normal tutorial. Its design moved students from independent problem solving to comparison, correction, contextual adaptation and reflection.</p>
+      </div>
+      <div class="workflow" aria-label="Five-stage SAGE-guided tutorial workflow">
+        <article class="step"><span class="step-num">01</span><h3>Human baseline</h3><p>Construct an independent Minimum Spanning Tree solution before seeing any AI output.</p><span class="mapping">SAGE mapping · Generate</span></article>
+        <article class="step"><span class="step-num">02</span><h3>AI solution review</h3><p>Inspect a plausible AI response containing several non-optimal edge selections.</p><span class="mapping">SAGE mapping · Evaluate</span></article>
+        <article class="step"><span class="step-num">03</span><h3>AI solution evaluation</h3><p>Identify errors, explain the violated MST principles and propose better edges.</p><span class="mapping">SAGE mapping · Refine</span></article>
+        <article class="step"><span class="step-num">04</span><h3>Synthesis under constraint</h3><p>Rework the network when one location becomes highly congested and should be avoided.</p><span class="mapping">SAGE mapping · Audit</span></article>
+        <article class="step"><span class="step-num">05</span><h3>Reflection</h3><p>Explain responsible AI use and the need to verify technical answers.</p><span class="mapping">SAGE mapping · Reflect</span></article>
+      </div>
+      <p class="assurance-note"><strong>Defend was deliberately out of scope.</strong> This was a formative, non-graded tutorial, so the supervised assurance step was not implemented. The paper proposes a graded follow-up that adds Defend and tests students’ ownership of their reasoning under supervised conditions.</p>
+    </section>
+
+    <section class="activity section" aria-labelledby="activity-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">02 / The learning mechanism</div><h2 id="activity-title">A wrong answer became<br>a learning resource.</h2></div>
+          <p>The intervention did not ask students to improve a blank AI draft. It gave them prior ownership of a solution, then made AI’s reasoning available for disciplined challenge.</p>
+        </div>
+        <div class="activity-grid">
+          <div class="activity-copy">
+            <h3>Minimum Spanning Tree reasoning made verification visible.</h3>
+            <p>Optimisation problems suit critical AI literacy because errors can be located, compared and defended. Students could not simply say that the AI was wrong; they had to connect a correction to minimum-edge selection and total-distance reasoning.</p>
+            <p>The added congestion constraint then tested whether students could adapt the solution rather than repeat a memorised procedure.</p>
+          </div>
+          <ol class="activity-list">
+            <li><b>01</b><div><strong>Find the faulty choice</strong><span>Identify a genuine non-optimal edge in the generated solution.</span></div></li>
+            <li><b>02</b><div><strong>Justify the error</strong><span>Explain why the selection conflicts with Minimum Spanning Tree principles.</span></div></li>
+            <li><b>03</b><div><strong>Replace it with evidence</strong><span>Propose a shorter valid edge and explain why the corrected network is preferable.</span></div></li>
+            <li><b>04</b><div><strong>Transfer the reasoning</strong><span>Adapt the network under a contextual constraint and reflect on when AI output should be trusted.</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" aria-labelledby="findings-title">
+      <div class="section-head">
+        <div><div class="eyebrow">03 / What the study found</div><h2 id="findings-title">Promising evidence,<br>with clear limits.</h2></div>
+        <p>The results combine a significant pre–post confidence change, survey perceptions, an open-ended reasoning check and instructor observations. They support feasibility and early transfer, while leaving stronger causal and longitudinal questions open.</p>
+      </div>
+      <div class="findings-grid">
+        <article class="finding"><span class="label">Confidence</span><h3>A measurable shift in one session.</h3><p>Mean MST confidence rose by <strong>0.79 points</strong>, from 2.84 to 3.63 on the study’s 1–4 scale. The paired comparison was statistically significant, <em>t</em>(130) = 10.36, <em>p</em> &lt; .001, with a large effect size.</p></article>
+        <article class="finding"><span class="label">Verification</span><h3>Students became more cautious about AI output.</h3><p>The strongest reflection result was being less likely to accept an AI-generated technical solution without checking it: <strong>3.57 out of 4</strong>. Comparing solutions also helped students identify mistakes.</p></article>
+        <article class="finding"><span class="label">Reasoning</span><h3>Critique was visible—and incomplete.</h3><p><strong>75 of 131 responses</strong> correctly identified and justified an AI error. The remaining responses show why confidence alone is insufficient and why repeated practice in disciplinary justification matters.</p></article>
+      </div>
+      <div class="limitations"><h3>Interpret with care.</h3><p>The intervention took place at one institution, in one tutorial activity, without a control group. Confidence and perceptions were self-reported, the open-ended responses were brief, and the study did not test long-term performance. Instructor observations provided context rather than a formal multi-observer qualitative dataset.</p></div>
+    </section>
+
+    <section class="paper-section section" aria-labelledby="paper-title">
+      <div class="wrap paper-card">
+        <div>
+          <div class="eyebrow">04 / Read the research</div>
+          <h2 id="paper-title">The accepted paper is available directly.</h2>
+          <p>The conference paper reports the research questions, tutorial design, participant profile, statistical analysis, student response patterns, classroom observations, limitations and proposed next study.</p>
+          <div class="citation"><strong>Suggested in-press citation</strong>Fakirah, M., Elkhodr, M., &amp; Hussain, S. (2026). “Fostering Critical AI Literacy in UK–China Transnational Computing Education: An Implementation of the SAGE Framework.” In <em>Proceedings of the 2026 2nd International Conference on Artificial Intelligence and Educational Systems (ICAIES 2026)</em>, Chengdu, China, 24–26 July 2026. In press.</div>
+        </div>
+        <aside class="paper-details">
+          <div class="paper-label">Accepted author manuscript · PDF · 8 pages</div>
+          <h3>Fostering Critical AI Literacy in UK–China Transnational Computing Education</h3>
+          <p>Maged Fakirah · Mahmoud Elkhodr · Sajjad Hussain<br>ICAIES 2026 · Chengdu, China</p>
+          <a class="btn btn-primary" href="files/Fostering-Critical-AI-Literacy-SAGE-Chengdu-Accepted.pdf" download>Download accepted paper <span aria-hidden="true">↓</span></a>
+          <p class="fine">Publication status checked 14 September 2026: no public ACM Digital Library record was found, and current SAGE publications cite the paper as in press. The DOI printed in this manuscript is a placeholder and should not be used as a final identifier.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div><div class="footer-brand">SAGE.</div><p>Structured AI-Guided Education<br>A research-informed program for learning with AI.</p></div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="sage.html">The Framework</a>
+          <a href="student_resources.html">Resources</a>
+          <a href="policy.html">Assessment Policy</a>
+          <a href="downloads.html">Downloads</a>
+          <span class="footer-group-label">SAGE in Practice</span>
+          <a href="cqu-guided-assured.html">CQUniversity &mdash; Independent GAM Mapping</a>
+          <a href="cdu.html" aria-current="page">Oxford Brookes&ndash;Chengdu Implementation</a>
+          <a href="publications.html">Evidence</a>
+          <a href="community.html">Community of Practice</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+      <div class="footer-bottom"><p>Independent scholarly resources developed by Dr Mahmoud Elkhodr and Professor Ergun Gide. This implementation page summarises an accepted research paper and does not imply institutional endorsement.</p><span>CC BY 4.0 · SAGE in Practice</span></div>
+      <div class="footer-citation">Elkhodr, M. &amp; Gide, E. (2026). <em>The SAGE Framework: Structured AI-Guided Education</em>. Central Queensland University. DOI: <a href="https://doi.org/10.5281/zenodo.18383951" target="_blank" rel="noopener">10.5281/zenodo.18383951</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const menuButton = document.querySelector('.menu-toggle');
+      const navigation = document.getElementById('main-nav');
+      const desktop = matchMedia('(min-width: 1101px)');
+      const dropdowns = [...navigation.querySelectorAll('.nav-dropdown')];
+      const setDropdown = (item, open) => {
+        item.classList.toggle('is-open', open);
+        item.querySelector('.dropdown-toggle').setAttribute('aria-expanded', String(open));
+      };
+      const closeDropdowns = () => dropdowns.forEach(item => setDropdown(item, false));
+      const setMenu = open => {
+        menuButton.setAttribute('aria-expanded', String(open));
+        navigation.classList.toggle('is-open', open);
+        if (!open) closeDropdowns();
+      };
+      menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+      dropdowns.forEach(item => {
+        const toggle = item.querySelector('.dropdown-toggle');
+        toggle.addEventListener('click', () => {
+          const open = !item.classList.contains('is-open');
+          closeDropdowns();
+          setDropdown(item, open);
+        });
+        item.addEventListener('pointerenter', event => {
+          if (desktop.matches && event.pointerType === 'mouse') { closeDropdowns(); setDropdown(item, true); }
+        });
+        item.addEventListener('pointerleave', event => {
+          if (desktop.matches && event.pointerType === 'mouse' && !item.contains(document.activeElement)) setDropdown(item, false);
+        });
+        item.addEventListener('focusout', event => {
+          if (!item.contains(event.relatedTarget)) setDropdown(item, false);
+        });
+      });
+      navigation.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+      document.addEventListener('click', event => { if (!event.target.closest('.site-header')) setMenu(false); });
+      document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        const activeDropdown = dropdowns.find(item => item.classList.contains('is-open'));
+        if (desktop.matches && activeDropdown) { closeDropdowns(); activeDropdown.querySelector('.dropdown-toggle').focus(); }
+        else if (menuButton.getAttribute('aria-expanded') === 'true') { setMenu(false); menuButton.focus(); }
+      });
+      desktop.addEventListener('change', () => setMenu(false));
+    })();
+  </script>
+</body>
+</html>
