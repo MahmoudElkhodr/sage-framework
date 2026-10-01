@@ -47,12 +47,19 @@
     if (toc) toc.open = false;
   });
   document.querySelectorAll('[data-print]').forEach(button => button.addEventListener('click', () => window.print()));
+  document.querySelectorAll('[data-print-cycle]').forEach(button => button.addEventListener('click', () => {
+    document.body.dataset.printCycle = 'true';
+    window.print();
+  }));
   let closedDetails = [];
   window.addEventListener('beforeprint', () => {
     closedDetails = [...document.querySelectorAll('details.sample:not([open])')];
     closedDetails.forEach(item => item.open = true);
   });
-  window.addEventListener('afterprint', () => closedDetails.forEach(item => item.open = false));
+  window.addEventListener('afterprint', () => {
+    closedDetails.forEach(item => item.open = false);
+    delete document.body.dataset.printCycle;
+  });
   // Keep existing links to the former single-page modules useful.
   if (document.body.dataset.page === 'overview') {
     const legacy = {'#educator': 'sager-supervisors.html', '#student': 'sager-candidates.html'};

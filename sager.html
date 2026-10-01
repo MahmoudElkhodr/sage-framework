@@ -5,7 +5,7 @@
 <meta property="og:type" content="website"><meta property="og:title" content="Structured AI-Guided Education for Research | SAGE-R"><meta property="og:description" content="A proposed framework for helping researchers and supervisors decide how AI-assisted research should be checked and explained."><meta property="og:url" content="https://sage-framework.com/sager">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="sager.css"><script src="sager.js" defer></script><style>
-/* Overview editorial layout. Guidance pages continue to use sager.css unchanged. */
+/* Overview editorial layout; shared cycle and guidance styles live in sager.css. */
 body[data-page="overview"]{background:#f8f6f1}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .research-cover{padding:36px 0 0}
@@ -77,15 +77,28 @@ body[data-page="overview"]{background:#f8f6f1}
         <h1 id="research-title"><span class="sr-only">SAGE-R: </span>Structured AI-Guided Education for Research</h1>
       </div>
       <div class="cover-deck">
-        <p class="standfirst">A practical framework for deciding how AI-assisted research should be checked. The researcher remains responsible for the decisions, evidence and claims.</p>
+        <p class="standfirst">Practical guidance for candidates and supervisors working with AI in research.</p>
         <div class="author-note"><strong>Dr Mahmoud Elkhodr &amp; Professor Ergun Gide</strong>Author affiliation: CQUniversity Australia<br>Policy and evidence reviewed up to April 2026</div>
       </div>
-      <div class="reading-links"><a href="sager-supervisors.html"><span><small>Supervision &amp; assurance</small><strong>Supervisor guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a><a href="sager-candidates.html"><span><small>Research practice &amp; verification</small><strong>Candidate guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div>
       <p class="draft-note">An independent scholarly proposal developed by CQUniversity researchers. Presented for consultation; not currently an official CQUniversity policy or procedure.</p>
     </section>
-    <section class="editorial-section" id="proposal" aria-labelledby="proposal-label">
-      <div class="margin-heading"><h2 id="proposal-label">SAGE-R in one view</h2><p>A practical way to decide what needs checking when AI assists research.</p></div>
-      <div class="essay"><h3>Start with what the AI-assisted work could change.</h3><p class="opening">SAGE-R asks three plain questions: what did AI contribute, how much does the decision matter, and can the result be checked using evidence beyond the AI?</p>
+    <section class="student-rule" id="researcher-cycle" aria-labelledby="cycle-title">
+      <div class="cycle-heading"><span class="cycle-kicker">A rule for every AI-assisted research task</span><h2 id="cycle-title">Use AI. Keep the research yours.</h2><p>Apply these six actions whenever AI assists your research.</p></div>
+      <ol class="research-cycle" aria-label="Six actions for AI-assisted research">
+        <li class="cycle-step cycle-one"><span class="cycle-number">01</span><div><h3>Check permission</h3><p>Is this use permitted by your institution, ethics approval, funder or publisher?</p></div></li>
+        <li class="cycle-step cycle-two"><span class="cycle-number">02</span><div><h3>Protect the research</h3><p>Keep confidential data and unpublished work out of unapproved tools.</p></div></li>
+        <li class="cycle-step cycle-three"><span class="cycle-number">03</span><div><h3>Set the boundary</h3><p>Decide what AI may help with and what judgement stays yours.</p></div></li>
+        <li class="cycle-step cycle-four"><span class="cycle-number">04</span><div><h3>Verify independently</h3><p>Check against original sources, data, code, methods or other evidence.</p></div></li>
+        <li class="cycle-step cycle-five"><span class="cycle-number">05</span><div><h3>Record and disclose</h3><p>Follow the record-keeping and disclosure requirements that apply to your research.</p></div></li>
+        <li class="cycle-step cycle-six"><span class="cycle-number">06</span><div><h3>Defend the work</h3><p>Explain, justify, verify and stand behind your decisions and claims.</p></div></li>
+        <li class="cycle-centre" role="presentation" aria-hidden="true"><strong>You own the research</strong><span>Decisions · Evidence · Claims</span></li>
+      </ol><p class="sr-only">At the centre of the cycle: you own the research, including its decisions, evidence and claims.</p>
+      <p class="cycle-rule">If you cannot explain, justify, verify and stand behind it, it is not ready to enter the research.</p>
+    </section>
+    <div class="reading-links cycle-guides"><a href="sager-supervisors.html"><span><small>Supervision &amp; assurance</small><strong>Supervisor guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a><a href="sager-candidates.html"><span><small>Research practice &amp; verification</small><strong>Candidate guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div>
+    <section class="editorial-section" id="calibration" aria-labelledby="calibration-label">
+      <div class="margin-heading"><h2 id="calibration-label">How SAGE-R determines the level of assurance</h2><p>The model supervisors use to calibrate checking to the research.</p></div>
+      <div class="essay"><h3>Set the level of checking to the work’s contribution and risk.</h3><p class="opening">SAGE-R asks three questions: what did AI contribute, how much does the decision matter, and can the result be checked using evidence beyond the AI?</p>
         <div class="model-flow" role="group" aria-label="How SAGE-R calibrates assurance">
           <div class="model-start"><span class="model-kicker">Start here</span><strong>An AI-assisted research activity</strong><small>For example: finding sources, translating, coding, analysing or drafting</small></div>
           <div class="model-arrow" aria-hidden="true">↓</div>
@@ -102,7 +115,6 @@ body[data-page="overview"]{background:#f8f6f1}
           </div>
           <p class="model-note">The same kind of task can fall on either side: code that formats a table may be routine support; code that determines the findings needs closer checking. The framework considers the activity and its impact, not a tool label alone.</p>
         </div>
-        <div class="principle-strip" aria-label="Four principles that guide SAGE-R"><div><strong>Researcher ownership</strong>The researcher owns important decisions.</div><div><strong>Check the evidence</strong>Test AI output against original sources and data.</div><div><strong>Part of supervision</strong>Build checks into existing conversations and milestones.</div><div><strong>Build over time</strong>Adjust support as the research and candidate develop.</div></div>
       </div>
     </section>
   </div>
