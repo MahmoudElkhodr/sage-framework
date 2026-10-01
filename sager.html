@@ -5,7 +5,7 @@
 <meta property="og:type" content="website"><meta property="og:title" content="Structured AI-Guided Education for Research | SAGE-R"><meta property="og:description" content="A proposed framework for helping researchers and supervisors decide how AI-assisted research should be checked and explained."><meta property="og:url" content="https://sage-framework.com/sager">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="sager.css"><script src="sager.js" defer></script><style>
-/* Overview editorial layout; shared cycle and guidance styles live in sager.css. */
+/* SAGE-R overview hero and Defend layout; the responsive cycle lives in sager.css. */
 body[data-page="overview"]{background:#f8f6f1}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .research-cover{padding:36px 0 0}
@@ -55,6 +55,7 @@ body[data-page="overview"]{background:#f8f6f1}
 .consultation-section{padding-bottom:55px;border:0}.consultation-section .essay h3{font-size:29px}
 .consultation-section .boundary-note{font-size:12px;color:var(--muted);border-left:2px solid #bfcbbf;padding-left:18px;margin:25px 0 0}
 .bottom-guides{border-top:2px solid var(--forest);margin-bottom:55px}.bottom-guides .reading-links{border-top:0}
+.cycle-heading h1{font-size:clamp(2rem,4vw,3rem);margin:8px 0}
 @media(min-width:1400px){.research-cover{padding-top:45px}.cover-title{padding:48px 0}.editorial-section{padding:75px 0}}
 @media(max-width:900px){.cover-title,.cover-deck{gap:30px}.research-mark{font-size:clamp(65px,11vw,110px)}.cover-title h1{font-size:28px}.editorial-section,.defend-feature .wrap{grid-template-columns:170px minmax(0,1fr);gap:30px}.cover-deck .standfirst{font-size:17px}.path-ledger{column-gap:20px}.essay h3{font-size:28px}.benefits div{grid-template-columns:100px 1fr;gap:15px}}
 @media(max-width:600px){.research-cover{padding-top:25px}.issue-line{font-size:10px;gap:15px;line-height:1.5}.issue-line span:last-child{text-align:right}.cover-title{grid-template-columns:1fr;gap:22px;padding:30px 0 25px}.research-mark{font-size:clamp(75px,23vw,112px)}.mark-caption{margin:11px 0 0;font-size:9px}.cover-title h1{font-size:29px;max-width:24ch}.cover-deck{grid-template-columns:1fr;gap:22px;padding:24px 0}.cover-deck .standfirst{font-size:17px}.author-note{padding-left:15px;font-size:11px}.reading-links{grid-template-columns:1fr}.reading-links a{padding:15px 0}.reading-links a+a{border-left:0;border-top:1px solid var(--rule);margin:0;padding-left:0}.reading-links strong{font-size:22px}.reading-links small{font-size:9px}.draft-note{font-size:11px}.editorial-section,.defend-feature .wrap{grid-template-columns:1fr;gap:22px}.editorial-section{padding:38px 0}.margin-heading h2{font-size:12px;margin:0}.margin-heading p{display:none}.essay h3{font-size:29px}.essay .opening{font-size:18px}.essay p{font-size:15px}.benefits div{grid-template-columns:95px 1fr;gap:15px}.defend-feature{margin-top:38px;padding:32px 0}.defend-feature blockquote{font-size:29px}.path-ledger{grid-template-columns:1fr;margin:22px 0}.path-ledger a{padding:13px 0}.consultation-section .essay h3{font-size:27px}.bottom-guides{margin-bottom:35px}.model-flow{padding:17px 13px;margin-top:20px}.model-start strong,.model-question strong{font-size:19px}.test-grid{grid-template-columns:1fr}.test-card{display:grid;grid-template-columns:27px 1fr;column-gap:8px;padding:13px}.test-card>span{grid-row:span 2}.test-card h4{margin:0 0 4px}.model-branches{grid-template-columns:1fr}.principle-strip{grid-template-columns:1fr 1fr;gap:8px}.principle-strip div{font-size:11px}.defend-steps{grid-template-columns:1fr 1fr}.defend-step{padding:12px}.defend-step strong{font-size:17px}}
@@ -69,21 +70,8 @@ body[data-page="overview"]{background:#f8f6f1}
 </header>
 
 <main id="main-content">
-  <div class="wrap">
-    <section class="research-cover" id="framework" aria-labelledby="research-title">
-      <div class="issue-line"><span>Research higher degrees</span><span>Working draft for consultation · April 2026</span></div>
-      <div class="cover-title">
-        <div><div class="research-mark" aria-hidden="true">SAGE<span>–R</span></div><p class="mark-caption">The SAGE research framework</p></div>
-        <h1 id="research-title"><span class="sr-only">SAGE-R: </span>Structured AI-Guided Education for Research</h1>
-      </div>
-      <div class="cover-deck">
-        <p class="standfirst">Practical guidance for candidates and supervisors working with AI in research.</p>
-        <div class="author-note"><strong>Dr Mahmoud Elkhodr &amp; Professor Ergun Gide</strong>Author affiliation: CQUniversity Australia<br>Policy and evidence reviewed up to April 2026</div>
-      </div>
-      <p class="draft-note">An independent scholarly proposal developed by CQUniversity researchers. Presented for consultation; not currently an official CQUniversity policy or procedure.</p>
-    </section>
     <section class="student-rule" id="researcher-cycle" aria-labelledby="cycle-title">
-      <div class="cycle-heading"><span class="cycle-kicker">A rule for every AI-assisted research task</span><h2 id="cycle-title">Use AI. Keep the research yours.</h2><p>Apply these six actions whenever AI assists your research.</p></div>
+      <div class="cycle-heading"><span class="cycle-kicker">A rule for every AI-assisted research task</span><h1 id="cycle-title">Use AI. Keep the research yours.</h1><p>Apply these six actions whenever AI assists your research.</p></div>
       <ol class="research-cycle" aria-label="Six actions for AI-assisted research">
         <li class="cycle-step cycle-one"><span class="cycle-number">01</span><div><h3>Check permission</h3><p>Is this use permitted by your institution, ethics approval, funder or publisher?</p></div></li>
         <li class="cycle-step cycle-two"><span class="cycle-number">02</span><div><h3>Protect the research</h3><p>Keep confidential data and unpublished work out of unapproved tools.</p></div></li>
@@ -95,46 +83,12 @@ body[data-page="overview"]{background:#f8f6f1}
       </ol><p class="sr-only">At the centre of the cycle: you own the research, including its decisions, evidence and claims.</p>
       <p class="cycle-rule">If you cannot explain, justify, verify and stand behind it, it is not ready to enter the research.</p>
     </section>
-    <div class="reading-links cycle-guides"><a href="sager-supervisors.html"><span><small>Supervision &amp; assurance</small><strong>Supervisor guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a><a href="sager-candidates.html"><span><small>Research practice &amp; verification</small><strong>Candidate guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div>
-    <section class="editorial-section" id="calibration" aria-labelledby="calibration-label">
-      <div class="margin-heading"><h2 id="calibration-label">How SAGE-R determines the level of assurance</h2><p>The model supervisors use to calibrate checking to the research.</p></div>
-      <div class="essay"><h3>Set the level of checking to the work’s contribution and risk.</h3><p class="opening">SAGE-R asks three questions: what did AI contribute, how much does the decision matter, and can the result be checked using evidence beyond the AI?</p>
-        <div class="model-flow" role="group" aria-label="How SAGE-R calibrates assurance">
-          <div class="model-start"><span class="model-kicker">Start here</span><strong>An AI-assisted research activity</strong><small>For example: finding sources, translating, coding, analysing or drafting</small></div>
-          <div class="model-arrow" aria-hidden="true">↓</div>
-          <div class="model-question"><span class="model-kicker">Ask three questions</span><strong>Could this shape the knowledge or claims the research produces?</strong></div>
-          <div class="test-grid">
-            <article class="test-card"><span>01</span><div><h4>Contribution</h4><p>Could AI shape the research question, evidence, method, analysis or claim?</p></div></article>
-            <article class="test-card"><span>02</span><div><h4>Consequence</h4><p>How much would this decision matter to the result or its interpretation?</p></div></article>
-            <article class="test-card"><span>03</span><div><h4>Independent check</h4><p>Can you check the result against sources, data, code or other evidence beyond the AI?</p></div></article>
-          </div>
-          <p class="branch-label">Use the answers to set a proportionate level of checking</p>
-          <div class="model-branches">
-            <article class="model-branch"><span>Supports the work</span><h4>Routine quality checks</h4><p>For assistance that does not shape a research claim, check that the output is accurate and suitable for its purpose.</p></article>
-            <article class="model-branch defend"><span>Shapes a research claim</span><h4>Proportionate Defend</h4><p>Where AI materially shapes evidence, method, analysis or interpretation, the candidate explains the decisions and verifies the result.</p></article>
-          </div>
-          <p class="model-note">The same kind of task can fall on either side: code that formats a table may be routine support; code that determines the findings needs closer checking. The framework considers the activity and its impact, not a tool label alone.</p>
-        </div>
-      </div>
-    </section>
-  </div>
+
   <section class="defend-feature" id="how" aria-labelledby="defend-label"><div class="wrap">
     <div class="margin-heading"><h2 id="defend-label">The Defend conversation</h2><p>A practical expression of scholarly responsibility.</p></div>
     <div><blockquote>“Why did you choose this method—and how did you check what the AI produced?”</blockquote><p class="quote-caption">An illustrative question in a supervisory meeting</p><div class="defend-steps" aria-label="The four parts of Defend"><div class="defend-step"><span>01</span><strong>Explain</strong><p>What did you do, and how did AI contribute?</p></div><div class="defend-step"><span>02</span><strong>Justify</strong><p>Why was this approach appropriate?</p></div><div class="defend-step"><span>03</span><strong>Verify</strong><p>What evidence beyond AI checks the result?</p></div><div class="defend-step"><span>04</span><strong>Stand behind</strong><p>Can you take responsibility for the claim?</p></div></div><p class="explanation">Defend is a proportionate conversation about consequential research decisions, embedded in proposal, draft and analysis discussions. Required disclosure of tools and their use continues to apply.</p></div>
   </div></section>
   <div class="wrap">
-    <section class="editorial-section" id="pathway" aria-labelledby="pathway-label">
-      <div class="margin-heading"><h2 id="pathway-label">Across the research pathway</h2><p>Eight assurance points, informed by CQU processes.</p></div>
-      <div class="essay"><h3>Assurance throughout the work.</h3><p>The framework brings together existing milestones and ordinary supervisory interactions. These are not eight compulsory sequential milestones. Their timing follows the research and its applicable requirements.</p><div class="path-ledger"><a href="sager-supervisors.html#assurance-1"><span class="point-number">01</span><span><strong>Research proposal</strong><small>Before enrolment</small></span></a><a href="sager-supervisors.html#assurance-2"><span class="point-number">02</span><span><strong>Foundation work</strong><small>Supervisory conversations</small></span></a><a href="sager-supervisors.html#assurance-3"><span class="point-number">03</span><span><strong>COC development</strong><small>Milestone preparation</small></span></a><a href="sager-supervisors.html#assurance-4"><span class="point-number">04</span><span><strong>COC examination</strong><small>Two independent examiners</small></span></a><a href="sager-supervisors.html#assurance-5"><span class="point-number">05</span><span><strong>Ethics application</strong><small>Where required</small></span></a><a href="sager-supervisors.html#assurance-6"><span class="point-number">06</span><span><strong>Progress review</strong><small>Ongoing review</small></span></a><a href="sager-supervisors.html#assurance-7"><span class="point-number">07</span><span><strong>Submission readiness</strong><small>Supervisory assurance</small></span></a><a href="sager-supervisors.html#assurance-8" class="proposed-point"><span class="point-number">08</span><span><strong>Informal oral Defend</strong><small>Proposed additional checkpoint</small></span></a></div><p>The informal oral Defend is a proposed additional checkpoint. Institutional consultation and pilot evaluation would be needed before formal adoption.</p><a class="text-link" href="sager-supervisors.html#pathway">Read the assurance-point guidance →</a></div>
-    </section>
-    <section class="editorial-section" id="evidence" aria-labelledby="evidence-label">
-      <div class="margin-heading"><h2 id="evidence-label">Research foundation</h2><p>A proposed extension of the SAGE program.</p></div>
-      <div class="essay"><h3>From learning assurance to research ownership.</h3><p>SAGE-R draws on SAGE’s emphasis on human judgement and defensible work. Evidence from learning and assessment provides a foundation for the proposal; it does not establish validation of SAGE-R in research candidature.</p><p>The authors’ policy review, covering material up to April 2026, identified a need for assurance of human epistemic responsibility across the research pathway. Institutional fit, workload and recordkeeping implications remain matters for consultation and evaluation.</p><nav class="resource-links" aria-label="Research foundation"><a href="/sage.html">SAGE Framework</a><a href="/genai-101.html">GenAI-101</a><a href="/publications.html">Evidence and Impact</a></nav><details class="sample"><summary>Paper status and supporting resources</summary><div><p>M. Elkhodr and E. Gide, “Supervising Research in the Age of Generative AI: The SAGE Research Framework,” submitted to <em>Journal of Applied Learning and Teaching</em>, 2026. <strong>Under review</strong>; not presented as an accepted publication.</p><p><a href="/publications.html#pub-p10">Research-program entry</a>. The linked evidence page is a living resource and may include work after this draft’s April 2026 cutoff.</p><p>TEQSA Knowledge Hub resource listings: <a href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-academic-integrity-and-assessment-reform">academic integrity and assessment reform</a> and <a href="https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub/gen-ai-student-resources-and-support">student resources and support</a>. Listing does not imply endorsement of SAGE-R.</p></div></details></div>
-    </section>
-    <section class="editorial-section consultation-section" id="consultation" aria-labelledby="consultation-label">
-      <div class="margin-heading"><h2 id="consultation-label">For consideration</h2><p>Feedback on the framework and its practical fit.</p></div>
-      <div class="essay"><h3>Could this support research supervision?</h3><p>Feedback is invited on the framework’s usefulness, its fit with existing research processes, and whether further Graduate School discussion or a scoped pilot would be worthwhile.</p><p class="boundary-note">SAGE-R does not independently authorise AI use. Institutional policies, ethics approvals, data and privacy requirements, intellectual-property arrangements, funder and publisher conditions, disciplinary standards and supervisory guidance take precedence.</p></div>
-    </section>
     <nav class="bottom-guides" id="guidance" aria-label="Practical SAGE-R guidance"><div class="reading-links"><a href="sager-supervisors.html"><span><small>Supervision &amp; assurance</small><strong>Supervisor guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a><a href="sager-candidates.html"><span><small>Research practice &amp; verification</small><strong>Candidate guidance</strong></span><span class="arrow" aria-hidden="true">↗</span></a></div></nav>
   </div>
 </main>
