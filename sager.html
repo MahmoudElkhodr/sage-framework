@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Structured AI-Guided Education for Research | SAGE-R</title><meta name="description" content="SAGE-R is a proposed framework for helping researchers and supervisors decide how AI-assisted research should be checked and explained.">
+<title>Structured AI-Guided Education for Research | SAGE-R</title><meta name="description" content="SAGE-R extends the SAGE framework into higher-degree research, guiding candidate AI use across the research lifecycle and helping supervisors assess understanding, independent verification and scholarly responsibility.">
 <link rel="canonical" href="https://sage-framework.com/sager">
-<meta property="og:type" content="website"><meta property="og:title" content="Structured AI-Guided Education for Research | SAGE-R"><meta property="og:description" content="A proposed framework for helping researchers and supervisors decide how AI-assisted research should be checked and explained."><meta property="og:url" content="https://sage-framework.com/sager">
+<meta property="og:type" content="website"><meta property="og:title" content="Structured AI-Guided Education for Research | SAGE-R"><meta property="og:description" content="A research-informed assurance framework extending SAGE into higher-degree research, with practical guidance for candidates and supervisors."><meta property="og:url" content="https://sage-framework.com/sager">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="sager.css"><script src="sager.js" defer></script><style>
 /* SAGE-R overview hero and Defend layout; the responsive cycle lives in sager.css. */
@@ -85,17 +85,48 @@ body[data-page="overview"] .defend-step:last-child span,body[data-page="overview
 @media(max-width:600px){body[data-page="overview"] .student-rule{padding:30px 18px 32px}.body[data-page="overview"] .research-cycle{padding:16px}.research-cover{padding-top:25px}.issue-line{font-size:10px;gap:15px;line-height:1.5}.issue-line span:last-child{text-align:right}.cover-title{grid-template-columns:1fr;gap:22px;padding:30px 0 25px}.research-mark{font-size:clamp(75px,23vw,112px)}.mark-caption{margin:11px 0 0;font-size:9px}.cover-title h1{font-size:29px;max-width:24ch}.cover-deck{grid-template-columns:1fr;gap:22px;padding:24px 0}.cover-deck .standfirst{font-size:17px}.author-note{padding-left:15px;font-size:11px}.reading-links{grid-template-columns:1fr}.reading-links a{padding:15px 0}.reading-links a+a{border-left:0;border-top:1px solid var(--rule);margin:0;padding-left:0}.reading-links strong{font-size:22px}.reading-links small{font-size:9px}.draft-note{font-size:11px}.editorial-section,.defend-feature .wrap{grid-template-columns:1fr;gap:22px}.editorial-section{padding:38px 0}.margin-heading h2{font-size:12px;margin:0}.margin-heading p{display:none}.essay h3{font-size:29px}.essay .opening{font-size:18px}.essay p{font-size:15px}.benefits div{grid-template-columns:95px 1fr;gap:15px}.defend-feature{margin-top:38px;padding:32px 0}.defend-feature blockquote{font-size:29px}.path-ledger{grid-template-columns:1fr;margin:22px 0}.path-ledger a{padding:13px 0}.consultation-section .essay h3{font-size:27px}.bottom-guides{margin-bottom:35px}.model-flow{padding:17px 13px;margin-top:20px}.model-start strong,.model-question strong{font-size:19px}.test-grid{grid-template-columns:1fr}.test-card{display:grid;grid-template-columns:27px 1fr;column-gap:8px;padding:13px}.test-card>span{grid-row:span 2}.test-card h4{margin:0 0 4px}.model-branches{grid-template-columns:1fr}.principle-strip{grid-template-columns:1fr 1fr;gap:8px}.principle-strip div{font-size:11px}.defend-steps{grid-template-columns:1fr 1fr}.defend-step{padding:12px}.defend-step strong{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.reading-links .arrow{transition:none}}
 @media print{.research-cover{padding:0}.research-mark{font-size:75px}.cover-title{padding:20px 0}.cover-title h1{font-size:25px}.cover-deck{padding:20px 0}.editorial-section{display:block;padding:25px 0}.margin-heading{margin-bottom:15px}.defend-feature{background:#fff;color:#000;border-block:1px solid #999;margin-top:25px;padding:25px 0}.defend-feature .wrap{display:block}.defend-feature .margin-heading h2,.defend-feature .explanation,.defend-feature .quote-caption{color:#333}.defend-feature blockquote{font-size:24px}.reading-links{display:none}.essay h3{font-size:23px}}
+/* Let a senior reader take in the six actions without a second oversized hero. */
+body[data-page="overview"] .student-rule{padding:24px 24px 28px}
+body[data-page="overview"] .cycle-heading{max-width:760px;margin-bottom:6px}
+body[data-page="overview"] .cycle-heading h2{font-size:clamp(1.9rem,3vw,2.6rem);margin:5px 0 4px}
+body[data-page="overview"] .cycle-heading p{font-size:13px;margin:0}
+body[data-page="overview"] .cycle-kicker{font-size:9px;letter-spacing:.11em}
+body[data-page="overview"] .research-cycle{grid-template-rows:repeat(3,minmax(98px,auto));gap:11px;margin:16px auto;padding:18px}
+body[data-page="overview"] .cycle-step{gap:9px;padding:12px 11px}
+body[data-page="overview"] .cycle-step h3{font-size:15px;margin:1px 0 4px}
+body[data-page="overview"] .cycle-step p{font-size:11px;line-height:1.4}
+body[data-page="overview"] .cycle-number{flex-basis:28px;height:28px;font-size:10px}
+body[data-page="overview"] .cycle-centre{width:min(100%,165px);padding:15px}
+body[data-page="overview"] .cycle-centre strong{font-size:19px}
+body[data-page="overview"] .cycle-rule{margin-top:12px;padding:12px 18px;font-size:16px}
+@media(max-width:720px){body[data-page="overview"] .student-rule{padding:23px 17px 25px}body[data-page="overview"] .research-cycle{margin:14px auto;padding:0;gap:9px}body[data-page="overview"] .cycle-step{padding:12px}}
 </style></head>
 <body data-page="overview"><a class="skip" href="#main-content">Skip to content</a>
 
-<header class="site-header"><div class="wrap header-inner"><a class="brand" href="/" aria-label="SAGE Framework home"><span class="brand-name">SAGE</span><span class="brand-caption">Structured AI-Guided<br>Education</span></a>
-<nav class="header-links" aria-label="Site navigation"><a class="main-site" href="/sage.html">The Framework</a><a class="main-site" href="/publications.html">Evidence</a><div class="menu" data-open="false"><div class="menu-heading"><a href="sager.html">SAGE-R</a><button class="dropdown-toggle" aria-label="Show SAGE-R pages" aria-expanded="false" aria-controls="sager-menu">⌄</button></div><div class="dropdown" id="sager-menu"><a href="sager.html" aria-current="page"><strong>Overview and background</strong><small>The proposal, rationale and research pathway</small></a><a href="sager-supervisors.html"><strong>Supervisor guidance</strong><small>Assurance points and supervisory conversations</small></a><a href="sager-candidates.html"><strong>Candidate guidance</strong><small>Practical examples and verification habits</small></a></div></div>
+<header class="site-header"><div class="wrap header-inner sager-header-inner"><a class="brand" href="/" aria-label="SAGE Framework home"><span class="brand-name">SAGE</span><span class="brand-caption">Structured AI-Guided<br>Education</span></a>
+<nav class="header-links sager-site-nav" aria-label="Site navigation">
+<a class="main-site" href="/sage.html">The Framework</a>
+<div class="menu" data-open="false"><div class="menu-heading"><a href="/student_resources.html">Resources</a><button class="dropdown-toggle" aria-label="Show Resources pages" aria-expanded="false" aria-controls="resources-menu">⌄</button></div><div class="dropdown" id="resources-menu"><a href="/student-guide.html"><strong>Student Guide</strong><small>Six-step guide for responsible AI use and Defend preparation</small></a><a href="/genai-101.html"><strong>GenAI-101 Module</strong><small>AI literacy course</small></a><a href="/defend_tool.html"><strong>Defend Tool</strong><small>Design an assurance checkpoint</small></a><a href="/downloads.html"><strong>Downloads</strong><small>Guides, templates and implementation resources</small></a></div></div>
+<div class="menu" data-open="false"><div class="menu-heading"><a href="/policy.html">Assessment Policy</a><button class="dropdown-toggle" aria-label="Show Assessment Policy pages" aria-expanded="false" aria-controls="policy-menu">⌄</button></div><div class="dropdown" id="policy-menu"><a href="/policy.html"><strong>Student-Facing Policy</strong><small>Policy text, declarations, examples and FAQ</small></a><a href="/policy-guide.html"><strong>Educator Guidance</strong><small>Implementation and adaptation guidance</small></a></div></div>
+<div class="menu" data-open="false"><div class="menu-heading"><a href="/cqu-guided-assured.html">SAGE in Practice</a><button class="dropdown-toggle" aria-label="Show SAGE in Practice pages" aria-expanded="false" aria-controls="practice-menu">⌄</button></div><div class="dropdown" id="practice-menu"><a href="/cqu-guided-assured.html"><strong>CQUniversity — Independent GAM Mapping</strong><small>Independent mapping to the Guided–Assured Assessment Model</small></a><a href="/cdu.html"><strong>Oxford Brookes–Chengdu Implementation</strong><small>SAGE-guided critical AI literacy in transnational computing education</small></a><a href="/community.html"><strong>Community</strong><small>Connect with the SAGE community of practice</small></a></div></div>
+<div class="menu" data-open="false"><div class="menu-heading"><a href="sager.html" aria-current="page">SAGE-R</a><button class="dropdown-toggle" aria-label="Show SAGE-R pages" aria-expanded="false" aria-controls="sager-menu">⌄</button></div><div class="dropdown" id="sager-menu"><a href="sager.html" aria-current="page"><strong>Overview and background</strong><small>The proposal, rationale and research pathway</small></a><a href="sager-supervisors.html"><strong>Supervisor guidance</strong><small>Assurance points and supervisory conversations</small></a><a href="sager-candidates.html"><strong>Candidate guidance</strong><small>Practical examples and verification habits</small></a></div></div>
+<a class="main-site" href="/publications.html">Evidence</a>
+<a class="main-site" href="/about.html">About</a>
 </nav></div>
 </header>
 
 <main id="main-content">
+    <section class="sager-intro" aria-labelledby="sager-intro-title">
+      <div class="sager-intro-inner">
+        <p class="sager-intro-eyebrow">SAGE-R · Structured AI-Guided Education for Research</p>
+        <h1 id="sager-intro-title">From AI assistance to research ownership.</h1>
+        <p class="sager-intro-copy">SAGE-R is a research-informed assurance framework that extends SAGE into higher-degree research. It guides candidates’ use of AI across the research lifecycle and gives supervisors <strong>Defend</strong>—a practical way to check whether candidates understand the work, verify its evidence independently, and can defend their claims.</p>
+        <nav class="sager-intro-actions" aria-label="SAGE-R guidance"><a href="sager-candidates.html">Candidate guidance <span aria-hidden="true">↗</span></a><a href="sager-supervisors.html">Supervisor guidance <span aria-hidden="true">↗</span></a></nav>
+        <p class="sager-intro-note">Designed to fit existing candidature milestones and supervisory conversations.</p>
+      </div>
+    </section>
     <section class="student-rule" id="researcher-cycle" aria-labelledby="cycle-title">
-      <div class="cycle-heading"><span class="cycle-kicker">A rule for every AI-assisted research task</span><h1 id="cycle-title">Use AI. Keep the research yours.</h1><p>Apply these six actions whenever AI assists your research.</p></div>
+      <div class="cycle-heading"><span class="cycle-kicker">A rule for every AI-assisted research task</span><h2 id="cycle-title">Use AI. Keep the research yours.</h2><p>Apply these six actions whenever AI assists your research.</p></div>
       <ol class="research-cycle" aria-label="Six actions for AI-assisted research">
         <li class="cycle-step cycle-one"><span class="cycle-number">01</span><div><h3>Check permission</h3><p>Is this use permitted by your institution, ethics approval, funder or publisher?</p></div></li>
         <li class="cycle-step cycle-two"><span class="cycle-number">02</span><div><h3>Protect the research</h3><p>Keep confidential data and unpublished work out of unapproved tools.</p></div></li>

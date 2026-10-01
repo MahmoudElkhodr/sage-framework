@@ -1,29 +1,38 @@
 (() => {
-  const menu = document.querySelector('.menu');
-  const toggle = document.querySelector('.dropdown-toggle');
-  const setOpen = open => {
+  const menus = [...document.querySelectorAll('.menu')];
+  const setOpen = (menu, open) => {
     menu.dataset.open = String(open);
-    toggle.setAttribute('aria-expanded', String(open));
+    menu.querySelector('.dropdown-toggle')?.setAttribute('aria-expanded', String(open));
   };
-  toggle.addEventListener('click', () => setOpen(menu.dataset.open !== 'true'));
-  menu.addEventListener('pointerenter', event => {
-    if (event.pointerType === 'mouse') setOpen(true);
-  });
-  menu.addEventListener('pointerleave', event => {
-    if (event.pointerType === 'mouse' && !menu.contains(document.activeElement)) setOpen(false);
-  });
-  menu.addEventListener('focusout', event => {
-    if (!menu.contains(event.relatedTarget)) setOpen(false);
-  });
-  document.addEventListener('click', event => {
-    if (!menu.contains(event.target)) setOpen(false);
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && menu.dataset.open === 'true') {
-      setOpen(false);
-      toggle.focus();
-    }
-  });
+  for (const menu of menus) {
+    const toggle = menu.querySelector('.dropdown-toggle');
+    toggle.addEventListener('click', () => {
+      if (menu.dataset.open !== 'true') {
+        menus.forEach(item => setOpen(item, false));
+        setOpen(menu, true);
+      }
+    });
+    menu.addEventListener('pointerenter', event => {
+      if (event.pointerType === 'mouse') {
+        menus.forEach(item => setOpen(item, item === menu));
+      }
+    });
+    menu.addEventListener('pointerleave', event => {
+      if (event.pointerType === 'mouse' && !menu.contains(document.activeElement)) setOpen(menu, false);
+    });
+    menu.addEventListener('focusout', event => {
+      if (!menu.contains(event.relatedTarget)) setOpen(menu, false);
+    });
+    document.addEventListener('click', event => {
+      if (!menu.contains(event.target)) setOpen(menu, false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && menu.dataset.open === 'true') {
+        setOpen(menu, false);
+        toggle.focus();
+      }
+    });
+  }
   const links = [...document.querySelectorAll('.sidebar-links a[href^="#"]')];
   const sections = [...document.querySelectorAll('.guide-content > section[id]')];
   const update = () => {

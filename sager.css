@@ -17,4 +17,139 @@
 @media print{.research-cycle{break-inside:avoid;grid-template-rows:repeat(3,minmax(110px,auto));gap:8px;padding:12px}.cycle-step{padding:11px;box-shadow:none}.cycle-step p{font-size:10px}.cycle-centre{width:165px}.cycle-rule{break-inside:avoid}}
 .practice-groups article{padding:16px 18px;background:#fff;border:1px solid var(--rule);border-left:3px solid var(--sage);border-radius:7px}.practice-groups article h3{font:500 18px/1.25 var(--fd);color:var(--forest);margin:0 0 8px}.practice-groups article a{display:block;width:fit-content;text-decoration:underline;font-size:12px;line-height:1.55;margin:4px 0;padding:0;border:0;background:transparent;color:var(--sage)}.practice-groups article a:hover{color:var(--forest);background:transparent}
 .cycle-print{display:flex;align-items:center;gap:14px;margin:15px 0 0}.cycle-print span{font-size:12px;color:var(--muted)}
-@media print{body[data-print-cycle="true"]>.site-header,body[data-print-cycle="true"]>.site-footer,body[data-print-cycle="true"] #main-content>.guide-masthead,body[data-print-cycle="true"] #main-content>.local-nav,body[data-print-cycle="true"] .guide-layout>.sidebar,body[data-print-cycle="true"] .guide-content>section:not(#start){display:none!important}body[data-print-cycle="true"] .guide-layout{display:block}body[data-print-cycle="true"] .guide-content{padding:0}body[data-print-cycle="true"] .guide-content>section{display:none!important}body[data-print-cycle="true"] .guide-content>#start{display:block!important;max-width:900px;margin:0 auto;padding:16px 0;border:0}body[data-print-cycle="true"] #start>h2,body[data-print-cycle="true"] #start>.warning-band,body[data-print-cycle="true"] #start>.cycle-print,body[data-print-cycle="true"] #start>p:not(.lead):not(.candidate-rule):not(.cycle-rule):not(.sr-only){display:none!important}body[data-print-cycle="true"] .candidate-rule{margin:0 0 8px!important}body[data-print-cycle="true"] .candidate-rule strong{font-size:28px}body[data-print-cycle="true"] .candidate-rule span{font-size:13px;margin-top:2px}body[data-print-cycle="true"] #start>.lead{font-size:12px;margin:0;text-align:center}body[data-print-cycle="true"] .research-cycle{grid-template-rows:repeat(3,minmax(100px,auto));gap:7px;margin:8px auto;padding:8px}body[data-print-cycle="true"] .cycle-step{padding:9px;gap:8px}body[data-print-cycle="true"] .cycle-number{flex-basis:26px;height:26px;font-size:10px}body[data-print-cycle="true"] .cycle-step h3{font-size:14px}body[data-print-cycle="true"] .cycle-step p{font-size:9px}body[data-print-cycle="true"] .cycle-centre{width:150px}body[data-print-cycle="true"] .cycle-centre strong{font-size:18px}body[data-print-cycle="true"] .cycle-centre span{font-size:8px}body[data-print-cycle="true"] .cycle-rule{font-size:15px;margin-top:8px;padding:9px 12px}body[data-print-cycle="true"] .sr-only{display:none!important}}
+/* Candidate guide: clear pre-flight checks and a readable research-lifecycle map. */
+body[data-page="candidates"] .before-start{margin:18px 0 24px;padding:22px;border:1px solid #d8e4dc;border-radius:12px;background:linear-gradient(135deg,#e8f1eb 0%,#f3f1e8 100%)}
+body[data-page="candidates"] .before-start-intro{max-width:70ch;font-size:15px;font-weight:600;color:var(--forest);margin:0 0 16px}
+body[data-page="candidates"] .before-start-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+body[data-page="candidates"] .before-start-grid article{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:17px;background:#fff;border:1px solid #dce5df;border-radius:9px}
+body[data-page="candidates"] .before-start-number{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--forest);color:#fff;font-size:11px;font-weight:700}
+body[data-page="candidates"] .before-start-grid h3{font:600 15px/1.3 var(--fb);color:var(--forest);margin:2px 0 7px}
+body[data-page="candidates"] .before-start-grid p{font-size:12px;line-height:1.6;color:#45594e;margin:0}
+body[data-page="candidates"] .cycle-print{justify-content:space-between;padding:13px 16px;margin-top:17px;border:1px solid var(--rule);border-radius:8px;background:#f1f4ef}
+body[data-page="candidates"] .cycle-print .button{min-height:40px;padding:8px 15px}
+body[data-page="candidates"] .practice-map{padding:24px 0 34px!important}
+body[data-page="candidates"] .lifecycle-heading{max-width:78ch;margin-bottom:22px}
+body[data-page="candidates"] .lifecycle-kicker{display:inline-block;margin-bottom:9px;color:var(--sage);font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+body[data-page="candidates"] .lifecycle-heading h2{margin-bottom:10px}
+body[data-page="candidates"] .lifecycle-heading p{color:var(--muted);margin:0}
+body[data-page="candidates"] .lifecycle-flow{list-style:none;counter-reset:lifecycle;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0}
+body[data-page="candidates"] .lifecycle-flow li{counter-increment:lifecycle;position:relative;display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:218px;margin:0;padding:19px 18px 17px;border:1px solid #d8e3dc;border-top:4px solid var(--sage);border-radius:10px;background:linear-gradient(180deg,#edf4ee 0%,#fff 65%);box-shadow:0 8px 22px #173d2910}
+body[data-page="candidates"] .lifecycle-number{display:grid;place-items:center;width:32px;height:32px;margin-bottom:13px;border-radius:50%;background:var(--forest);color:#fff;font-size:11px;font-weight:700}
+body[data-page="candidates"] .lifecycle-flow h3{font:600 15px/1.25 var(--fb);color:var(--forest);margin:0 0 8px}
+body[data-page="candidates"] .lifecycle-flow p{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 12px}
+body[data-page="candidates"] .lifecycle-flow a{display:block;width:100%;margin-top:auto;padding:6px 0;border-top:1px solid #e2e9e4;font-size:11px;line-height:1.4;font-weight:600;text-decoration:none}
+body[data-page="candidates"] .lifecycle-flow a+a{margin-top:0}
+body[data-page="candidates"] .lifecycle-flow a:hover{color:var(--forest);text-decoration:underline}
+@media(max-width:900px){body[data-page="candidates"] .lifecycle-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){body[data-page="candidates"] .before-start{padding:16px}body[data-page="candidates"] .before-start-grid{grid-template-columns:1fr}body[data-page="candidates"] .lifecycle-flow{grid-template-columns:1fr}body[data-page="candidates"] .lifecycle-flow li{min-height:0;padding:16px}.cycle-print{gap:10px}body[data-page="candidates"] .cycle-print span{font-size:11px}}
+@media print{body[data-print-cycle="true"]>.site-header,body[data-print-cycle="true"]>.site-footer,body[data-print-cycle="true"] #main-content>.guide-masthead,body[data-print-cycle="true"] #main-content>.local-nav,body[data-print-cycle="true"] .guide-layout>.sidebar,body[data-print-cycle="true"] .guide-content>section:not(#start){display:none!important}body[data-print-cycle="true"] .guide-layout{display:block}body[data-print-cycle="true"] .guide-content{padding:0}body[data-print-cycle="true"] .guide-content>section{display:none!important}body[data-print-cycle="true"] .guide-content>#start{display:block!important;max-width:900px;margin:0 auto;padding:16px 0;border:0}body[data-print-cycle="true"] #start>h2,body[data-print-cycle="true"] #start>.warning-band,body[data-print-cycle="true"] #start>.before-start,body[data-print-cycle="true"] #start>.cycle-print,body[data-print-cycle="true"] #start>p:not(.lead):not(.candidate-rule):not(.cycle-rule):not(.sr-only){display:none!important}body[data-print-cycle="true"] .candidate-rule{margin:0 0 8px!important}body[data-print-cycle="true"] .candidate-rule strong{font-size:28px}body[data-print-cycle="true"] .candidate-rule span{font-size:13px;margin-top:2px}body[data-print-cycle="true"] #start>.lead{font-size:12px;margin:0;text-align:center}body[data-print-cycle="true"] .research-cycle{grid-template-rows:repeat(3,minmax(100px,auto));gap:7px;margin:8px auto;padding:8px}body[data-print-cycle="true"] .cycle-step{padding:9px;gap:8px}body[data-print-cycle="true"] .cycle-number{flex-basis:26px;height:26px;font-size:10px}body[data-print-cycle="true"] .cycle-step h3{font-size:14px}body[data-print-cycle="true"] .cycle-step p{font-size:9px}body[data-print-cycle="true"] .cycle-centre{width:150px}body[data-print-cycle="true"] .cycle-centre strong{font-size:18px}body[data-print-cycle="true"] .cycle-centre span{font-size:8px}body[data-print-cycle="true"] .cycle-rule{font-size:15px;margin-top:8px;padding:9px 12px}body[data-print-cycle="true"] .sr-only{display:none!important}}
+/* Candidate guidance uses warmer, low-glare surfaces to carry the SAGE palette through the page. */
+body[data-page="candidates"] .guide-content>section:not(.practice-map){border-bottom-color:#d4ded5}
+body[data-page="candidates"] .local-nav{background:#e9efe7;border-bottom-color:#d2ddd2}
+body[data-page="candidates"] .sidebar-panel{background:#edf1e8;border-color:#d5dfd4}
+body[data-page="candidates"] .mobile-toc{background:#edf1e8;border-color:#d5dfd4}
+body[data-page="candidates"] .example-head{padding:15px 18px;margin:18px 0 20px;border:1px solid #d5e0d6;border-radius:10px;background:linear-gradient(115deg,#e2ece3 0%,#eee9dc 100%)}
+body[data-page="candidates"] .ex-num{background:#cbdccf;color:var(--forest)}
+body[data-page="candidates"] .step-row{padding:12px 14px;border:1px solid #e0e7de;border-radius:8px;background:#edf2e9}
+body[data-page="candidates"] .step-dot{background:#d2e2d5;color:var(--forest)}
+body[data-page="candidates"] .defend-check{border-left-color:var(--gold);background:#f1ead8}
+body[data-page="candidates"] .boundary-box{background:#f0eee4;border-color:#dedccf}
+body[data-page="candidates"] .info-card,body[data-page="candidates"] .analogy-card{background:#eaf0e9;border-color:#d5e0d6}
+body[data-page="candidates"] .info-card.amber,body[data-page="candidates"] .analogy-card.amber{background:#f1ead8;border-color:#e1d6b9}
+body[data-page="candidates"] .sample{background:#eff2e9;border-color:#d4dfd5}
+body[data-page="candidates"] .sample summary:hover{background:#e3ece2;color:var(--forest)}
+body[data-page="candidates"] .table-scroll{border-color:#cdd9cf;box-shadow:0 8px 22px #173d290c}
+body[data-page="candidates"] table{background:#f5f3e9}
+body[data-page="candidates"] td{border-bottom-color:#d9e0d7}
+body[data-page="candidates"] .practice-map{position:relative;overflow:hidden;margin:0 -18px 30px;padding:26px 18px 28px!important;border:1px solid #345e47;border-radius:14px;background:linear-gradient(145deg,#183b2b 0%,#214b36 58%,#304d39 100%);box-shadow:0 14px 34px #183b2b20}
+body[data-page="candidates"] .practice-map:before{content:"";position:absolute;top:-115px;right:-85px;width:300px;height:300px;border:1px solid #ffffff18;border-radius:50%;box-shadow:0 0 0 28px #ffffff08,0 0 0 58px #ffffff05;pointer-events:none}
+body[data-page="candidates"] .lifecycle-heading{position:relative;z-index:1}
+body[data-page="candidates"] .lifecycle-kicker{color:#e1c982}
+body[data-page="candidates"] .lifecycle-heading h2{color:#fff;font-size:clamp(1.75rem,3vw,2.25rem)}
+body[data-page="candidates"] .lifecycle-heading p{color:#d8e4da}
+body[data-page="candidates"] .lifecycle-flow{position:relative;z-index:1}
+body[data-page="candidates"] .lifecycle-flow li{min-height:206px;padding:17px 17px 15px;border:1px solid #d3dfd3;border-top:4px solid #7eaf88;background:linear-gradient(150deg,#e4ede2 0%,#f0ecdf 100%);box-shadow:0 9px 20px #0b251a35}
+body[data-page="candidates"] .lifecycle-flow li:nth-child(3n+2){background:linear-gradient(150deg,#e8ebdd 0%,#f3ead8 100%);border-top-color:#c8a85b}
+body[data-page="candidates"] .lifecycle-flow li:nth-child(3n){background:linear-gradient(150deg,#dce9df 0%,#e9eee4 100%);border-top-color:#5c9471}
+body[data-page="candidates"] .lifecycle-number{background:var(--forest);color:#f1e4b8;box-shadow:0 0 0 4px #d0ddcf}
+body[data-page="candidates"] .lifecycle-flow h3{font-size:16px;color:#173d2a}
+body[data-page="candidates"] .lifecycle-flow p{color:#43574b}
+body[data-page="candidates"] .lifecycle-flow a{color:#1c563a;border-top-color:#cbd8cb}
+body[data-page="candidates"] .lifecycle-flow a:hover{color:#704f14}
+@media(max-width:600px){body[data-page="candidates"] .practice-map{margin-right:-10px;margin-left:-10px;padding:22px 14px!important}body[data-page="candidates"] .example-head{padding:13px 14px}}
+@media print{body[data-page="candidates"] .practice-map{background:#e6ece4!important;color:#1b4332!important;box-shadow:none;border:1px solid #bfcdbf;break-inside:avoid}body[data-page="candidates"] .lifecycle-heading h2{color:#1b4332!important}body[data-page="candidates"] .lifecycle-heading p{color:#37483d!important}body[data-page="candidates"] .lifecycle-flow li{background:#f0f1e8!important;box-shadow:none;break-inside:avoid}}
+/* Supervisor guide: carry the same SAGE green and warm gold into the assurance pathway. */
+body[data-page="supervisors"] .local-nav{background:#e9efe7;border-bottom-color:#d2ddd2}
+body[data-page="supervisors"] .sidebar-panel{background:#edf1e8;border-color:#d5dfd4}
+body[data-page="supervisors"] .mobile-toc{background:#edf1e8;border-color:#d5dfd4}
+body[data-page="supervisors"] .ownership-panel{padding:23px 25px;border:1px solid #d4dfd3;border-left:4px solid var(--sage);border-radius:0 12px 12px 0;background:linear-gradient(130deg,#e4eee4 0%,#f1edde 100%);box-shadow:0 8px 20px #173d290b}
+body[data-page="supervisors"] .ownership-panel p{max-width:82ch;font-size:15px;line-height:1.7;color:#32483a}
+body[data-page="supervisors"] .ownership-panel p:last-child{margin:19px 0 0;padding:14px 17px;border-left:3px solid var(--gold);border-radius:0 7px 7px 0;background:#f5efdf;color:#4a452f;font-weight:500}
+body[data-page="supervisors"] #pathway{position:relative;overflow:hidden;margin:0 -18px 30px;padding:26px 18px 30px!important;border:1px solid #345e47;border-radius:14px;background:linear-gradient(145deg,#183b2b 0%,#214b36 58%,#304d39 100%);box-shadow:0 14px 34px #183b2b20}
+body[data-page="supervisors"] #pathway:before{content:"";position:absolute;top:-115px;right:-85px;width:300px;height:300px;border:1px solid #ffffff18;border-radius:50%;box-shadow:0 0 0 28px #ffffff08,0 0 0 58px #ffffff05;pointer-events:none}
+body[data-page="supervisors"] #pathway>h2,body[data-page="supervisors"] #pathway>p{position:relative;z-index:1}
+body[data-page="supervisors"] #pathway>h2{color:#fff}
+body[data-page="supervisors"] #pathway>p{color:#d8e4da;max-width:82ch}
+body[data-page="supervisors"] #pathway .stages{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:14px;margin:24px 0 0}
+body[data-page="supervisors"] #pathway .stages article{min-width:0;margin:0;padding:20px 21px;border:1px solid #d3dfd3;border-top:4px solid #7eaf88;border-radius:10px;background:linear-gradient(150deg,#e4ede2 0%,#f0ecdf 100%);box-shadow:0 9px 20px #0b251a35;scroll-margin-top:110px}
+body[data-page="supervisors"] #pathway .stages article:nth-of-type(3n+2){border-top-color:#c8a85b;background:linear-gradient(150deg,#e8ebdd 0%,#f3ead8 100%)}
+body[data-page="supervisors"] #pathway .stages article:nth-of-type(3n){border-top-color:#5c9471;background:linear-gradient(150deg,#dce9df 0%,#e9eee4 100%)}
+body[data-page="supervisors"] #pathway .stages article:first-child{grid-column:1/-1}
+body[data-page="supervisors"] #pathway .stage-type{display:inline-block;padding:5px 9px;margin:0 0 12px;border-radius:20px;background:#d1e0d1;color:#355842;font-size:10px;font-weight:700;letter-spacing:.03em}
+body[data-page="supervisors"] #pathway .stages article:nth-of-type(3n+2) .stage-type{background:#e9dfc2;color:#695525}
+body[data-page="supervisors"] #pathway .stages h3{color:#173d2a;font-size:1.3rem;margin:0 0 11px}
+body[data-page="supervisors"] #pathway .stages p{font-size:14px;line-height:1.65;color:#3f5145;margin:0 0 12px}
+body[data-page="supervisors"] #pathway .stages p:last-child{margin-bottom:0}
+@media(max-width:700px){body[data-page="supervisors"] #pathway{margin-right:-10px;margin-left:-10px;padding:22px 14px!important}body[data-page="supervisors"] #pathway .stages{grid-template-columns:1fr}body[data-page="supervisors"] #pathway .stages article:first-child{grid-column:auto}body[data-page="supervisors"] #pathway .stages article{padding:18px}}
+@media print{body[data-page="supervisors"] #pathway{background:#e6ece4!important;color:#1b4332!important;box-shadow:none;border:1px solid #bfcdbf;break-inside:auto}body[data-page="supervisors"] #pathway>h2{color:#1b4332!important}body[data-page="supervisors"] #pathway>p{color:#37483d!important}body[data-page="supervisors"] #pathway .stages{display:block!important}body[data-page="supervisors"] #pathway .stages article{margin:0 0 12px;background:#f0f1e8!important;box-shadow:none;break-inside:avoid}}
+body[data-page="supervisors"] .supervisor-action{margin-top:17px;padding:13px 16px 14px 18px;border:1px solid #dfd1aa;border-left:4px solid var(--gold);border-radius:0 9px 9px 0;background:linear-gradient(120deg,#f5efdd 0%,#f0ead8 100%);box-shadow:0 4px 12px #6c54100d}
+body[data-page="supervisors"] .action-label{display:block;margin:0 0 6px;color:#725a1c;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+body[data-page="supervisors"] .supervisor-action p{margin:0;color:#423d2d;font-size:13px;line-height:1.6;font-weight:500}
+body[data-page="supervisors"] #oral-defend .stages article{padding:20px 21px;border:1px solid #d3dfd3;border-top:4px solid #c8a85b;border-radius:10px;background:linear-gradient(150deg,#e8ebdd 0%,#f3ead8 100%);box-shadow:0 9px 20px #0b251a25}
+@media print{body[data-page="supervisors"] .supervisor-action{background:#f3efdf!important;box-shadow:none;break-inside:avoid}}
+
+/* SAGE-R pages only: mirror the main site's grouped navigation without changing its pages. */
+.sager-site-nav{gap:clamp(7px,1vw,14px);flex-wrap:nowrap}
+.sager-site-nav>.main-site,.sager-site-nav .menu-heading>a{font-size:11px;white-space:nowrap}
+.sager-site-nav .menu-heading{gap:1px}
+.sager-site-nav .dropdown-toggle{min-width:25px;min-height:34px;padding:0 3px}
+.sager-site-nav .dropdown{z-index:40;width:270px;max-height:min(72vh,560px);overflow:auto}
+.sager-site-nav .dropdown a{padding:10px}
+.sager-site-nav .dropdown strong{font-size:13px}
+.sager-site-nav .dropdown small{font-size:11px}
+.sager-site-nav [aria-current="page"]{color:var(--forest);font-weight:700;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px}
+.sager-intro{padding:48px 24px 44px;background:linear-gradient(125deg,#e7eee5 0%,#f2eddf 100%);border-bottom:1px solid #d2dbd0}
+.sager-intro-inner{max-width:850px;margin:0 auto}
+.sager-intro-eyebrow{margin:0 0 14px;color:#735b24;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.sager-intro h1{max-width:18ch;margin:0;color:#173d2a;font:500 clamp(2.4rem,5vw,4.4rem)/1.04 var(--fd);letter-spacing:-.045em}
+.sager-intro-copy{max-width:76ch;margin:20px 0 0;color:#344a3c;font-size:17px;line-height:1.65}
+.sager-intro-copy strong{color:#173d2a}
+.sager-intro-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:23px}
+.sager-intro-actions a{display:inline-flex;align-items:center;gap:22px;min-height:46px;padding:10px 15px;border:1px solid #9aab9c;border-radius:5px;background:#f8f7f0;color:#173d2a;font-size:13px;font-weight:700;text-decoration:none}
+.sager-intro-actions a:first-child{background:#1b503b;border-color:#1b503b;color:#fff}
+.sager-intro-actions a:hover{transform:translateY(-1px);box-shadow:0 5px 14px #173d2d18}
+.sager-intro-actions a span{font-size:17px}
+.sager-intro-note{margin:15px 0 0;color:#59695d;font-size:12px;letter-spacing:.015em}
+body[data-page="overview"] .cycle-heading h2{font-size:clamp(2rem,4vw,3rem);margin:8px 0;color:#153d2e;font-weight:500;letter-spacing:-.04em}
+@media(max-width:1050px){.sager-site-nav{gap:5px}.sager-site-nav>.main-site,.sager-site-nav .menu-heading>a{font-size:10px}.sager-site-nav .dropdown-toggle{min-width:22px}}
+@media(max-width:850px){.header-inner.sager-header-inner{flex-wrap:wrap;padding-top:11px;padding-bottom:9px}.sager-header-inner>.brand{flex:0 0 auto}.sager-site-nav{flex:1 0 100%;justify-content:center;flex-wrap:wrap;gap:2px 10px}.sager-site-nav>.main-site,.sager-site-nav .menu-heading>a{font-size:12px}.sager-site-nav .dropdown-toggle{min-width:28px;min-height:36px}}
+@media(max-width:600px){.header-inner.sager-header-inner{align-items:center;gap:4px}.sager-site-nav{justify-content:flex-start;gap:0 8px;padding:3px 0 2px}.sager-site-nav>.main-site{display:inline-flex}.sager-site-nav>.main-site,.sager-site-nav .menu-heading>a{font-size:11px}.sager-site-nav .menu-heading{gap:0}.sager-site-nav .dropdown-toggle{min-width:22px;min-height:32px;padding:0}.sager-site-nav .dropdown{left:0;right:auto;width:min(280px,calc(100vw - 36px))}.sager-intro{padding:34px 19px 31px}.sager-intro-eyebrow{font-size:9px;line-height:1.5}.sager-intro h1{font-size:clamp(2.35rem,11vw,3.2rem)}.sager-intro-copy{font-size:15px;line-height:1.6;margin-top:15px}.sager-intro-actions{gap:8px}.sager-intro-actions a{flex:1;justify-content:space-between;gap:8px;padding:9px 10px;font-size:12px}.sager-intro-note{font-size:11px}.body[data-page="overview"] .research-cycle{padding:16px}}
+@media(prefers-reduced-motion:reduce){.sager-intro-actions a{transition:none}}.sager-site-nav .sager-current{color:var(--forest);font-weight:700;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px}@media(max-width:600px){
+  .sager-site-nav .dropdown{box-sizing:border-box;width:min(240px,calc(100vw - 36px))}
+  .sager-site-nav .menu:nth-of-type(2) .dropdown,.sager-site-nav .menu:nth-of-type(4) .dropdown{left:auto;right:0}
+}
+/* Compact SAGE-R introduction: connect the framework identity to its practical model. */
+.sager-intro{position:relative;overflow:hidden;padding:23px 28px 22px;background:linear-gradient(112deg,#173d2f 0%,#1f4936 60%,#2a503d 100%);border-bottom:3px solid #c5aa5a;color:#fff}
+.sager-intro:after{content:"";position:absolute;right:-95px;top:-190px;width:360px;height:360px;border:1px solid #ffffff18;border-radius:50%;box-shadow:0 0 0 24px #ffffff08,0 0 0 50px #ffffff05;pointer-events:none}
+.sager-intro-inner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(275px,.9fr) minmax(0,1.2fr);column-gap:clamp(28px,5vw,66px);align-items:center;max-width:1080px}
+.sager-intro-eyebrow{grid-column:1;grid-row:1;margin:0 0 7px;padding-bottom:6px;width:fit-content;border-bottom:1px solid #c5aa5a;color:#e0cc86;font-size:9px;font-weight:700;letter-spacing:.095em;text-transform:uppercase}
+.sager-intro h1{grid-column:1;grid-row:2;max-width:16ch;margin:0;color:#fff;font:500 clamp(2rem,3.3vw,3.05rem)/1.03 var(--fd);letter-spacing:-.04em}
+.sager-intro-copy{grid-column:2;grid-row:1 / 3;max-width:68ch;margin:0;color:#e2eae3;font-size:15px;line-height:1.55}
+.sager-intro-copy strong{color:#f1d983}
+.sager-intro-actions{grid-column:2;grid-row:3;gap:9px;margin-top:13px}
+.sager-intro-actions a{min-height:39px;padding:8px 12px;border-color:#b3c1b5;background:#edf1e8;color:#173d2f;font-size:12px}
+.sager-intro-actions a:first-child{background:#d8c16f;border-color:#d8c16f;color:#173d2f}
+.sager-intro-actions a:hover{box-shadow:0 4px 14px #07180f30}
+.sager-intro-note{grid-column:2;grid-row:4;margin:8px 0 0;color:#c8d6cb;font-size:10px}
+@media(max-width:850px){.sager-intro{padding:22px 22px 20px}.sager-intro-inner{column-gap:24px;grid-template-columns:minmax(230px,.85fr) minmax(0,1.15fr)}.sager-intro h1{font-size:clamp(1.9rem,4vw,2.55rem)}.sager-intro-copy{font-size:14px}}
+@media(max-width:600px){.sager-intro{padding:21px 19px 19px}.sager-intro-inner{grid-template-columns:1fr;row-gap:0}.sager-intro-eyebrow{grid-column:1;grid-row:1;margin-bottom:8px;font-size:9px;letter-spacing:.08em}.sager-intro h1{grid-column:1;grid-row:2;max-width:18ch;font-size:clamp(2rem,9vw,2.5rem)}.sager-intro-copy{grid-column:1;grid-row:3;margin-top:12px;font-size:14px;line-height:1.52}.sager-intro-actions{grid-column:1;grid-row:4;margin-top:13px}.sager-intro-actions a{min-height:37px;font-size:11px}.sager-intro-note{grid-column:1;grid-row:5;margin-top:7px;font-size:10px}}
