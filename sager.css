@@ -153,3 +153,23 @@ body[data-page="overview"] .cycle-heading h2{font-size:clamp(2rem,4vw,3rem);marg
 .sager-intro-note{grid-column:2;grid-row:4;margin:8px 0 0;color:#c8d6cb;font-size:10px}
 @media(max-width:850px){.sager-intro{padding:22px 22px 20px}.sager-intro-inner{column-gap:24px;grid-template-columns:minmax(230px,.85fr) minmax(0,1.15fr)}.sager-intro h1{font-size:clamp(1.9rem,4vw,2.55rem)}.sager-intro-copy{font-size:14px}}
 @media(max-width:600px){.sager-intro{padding:21px 19px 19px}.sager-intro-inner{grid-template-columns:1fr;row-gap:0}.sager-intro-eyebrow{grid-column:1;grid-row:1;margin-bottom:8px;font-size:9px;letter-spacing:.08em}.sager-intro h1{grid-column:1;grid-row:2;max-width:18ch;font-size:clamp(2rem,9vw,2.5rem)}.sager-intro-copy{grid-column:1;grid-row:3;margin-top:12px;font-size:14px;line-height:1.52}.sager-intro-actions{grid-column:1;grid-row:4;margin-top:13px}.sager-intro-actions a{min-height:37px;font-size:11px}.sager-intro-note{grid-column:1;grid-row:5;margin-top:7px;font-size:10px}}
+
+/* Candidate guide: make the mandatory checks easy to spot and use. */
+body[data-page="candidates"] .minimum-conditions{margin:26px 0 8px;padding:26px clamp(20px,4vw,42px);border:1px solid #c8b978;border-radius:12px;background:linear-gradient(135deg,#eef1e6 0%,#e5ede4 100%);color:#203d2e;box-shadow:0 8px 24px #173d2a12}
+body[data-page="candidates"] .minimum-conditions-heading>span{display:inline-block;margin-bottom:8px;color:#755f23;font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+body[data-page="candidates"] .minimum-conditions-heading h3{margin:0 0 8px;color:#183d2c;font-size:clamp(1.25rem,2.3vw,1.65rem);font-weight:600}
+body[data-page="candidates"] .minimum-conditions-heading p{max-width:75ch;margin:0 0 17px;color:#43584a;font-size:14px}
+body[data-page="candidates"] .minimum-condition-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px;margin:0;padding:0;list-style:none}
+body[data-page="candidates"] .minimum-condition-grid li{position:relative;padding:0 0 0 23px;color:#304637;font-size:13px;line-height:1.5}
+body[data-page="candidates"] .minimum-condition-grid li:before{content:"✓";position:absolute;left:0;top:0;color:#8a6c22;font-weight:800}
+body[data-page="candidates"] .minimum-condition-grid strong{color:#173d2b}
+body[data-page="candidates"] .minimum-conditions-caution,body[data-page="candidates"] .minimum-conditions-stop{margin:17px 0 0;padding:11px 14px;border-left:3px solid #9b7929;background:#f8f5e9;color:#414733;font-size:12px;line-height:1.5}
+body[data-page="candidates"] .minimum-conditions-stop{margin-top:8px;border-left-color:#7e4c32;background:#f7eeea}
+body[data-page="candidates"] .minimum-conditions-caution strong,body[data-page="candidates"] .minimum-conditions-stop strong{color:#5f4b1d}
+body[data-page="candidates"] .minimum-checks{margin:20px 0 18px;padding:16px 19px;border:1px solid #ddd4b8;border-left:4px solid #b69a4c;border-radius:0 8px 8px 0;background:#f7f5ed}
+body[data-page="candidates"] .minimum-checks h4{margin:0 0 9px;color:#294a35;font-size:13px;font-weight:700;letter-spacing:.01em}
+body[data-page="candidates"] .minimum-checks ul{display:grid;gap:6px;margin:0;padding-left:19px}
+body[data-page="candidates"] .minimum-checks li{padding-left:2px;color:#3b493f;font-size:13px;line-height:1.48}
+body[data-page="candidates"] .minimum-checks li::marker{color:#8a6c22}
+@media(max-width:700px){body[data-page="candidates"] .minimum-condition-grid{grid-template-columns:1fr;gap:9px}body[data-page="candidates"] .minimum-conditions{padding:21px 19px}body[data-page="candidates"] .minimum-checks{padding:14px 15px}}
+@media print{body[data-page="candidates"] .minimum-conditions,body[data-page="candidates"] .minimum-checks{break-inside:avoid;box-shadow:none}body[data-page="candidates"] .minimum-conditions{background:#f0f0e9!important}}
