@@ -184,8 +184,8 @@
     }
     .nav-dropdown-panel a:last-child { border-bottom: 0; }
     .nav-dropdown-panel a:hover, .nav-dropdown-panel a:focus { background: var(--sage-soft); }
-    .dd-label { font-size: 0.81rem; font-weight: 700; }
-    .dd-desc { margin-top: 0.12rem; color: var(--muted); font-size: 0.7rem; line-height: 1.38; }
+    .dd-label { display: block; font-size: 0.81rem; font-weight: 700; line-height: 1.35; }
+    .dd-desc { display: block; margin-top: 0.22rem; color: var(--muted); font-size: 0.7rem; line-height: 1.45; }
 
     .global-nav-hamburger {
       display: none;
@@ -734,6 +734,7 @@
       a { color: var(--ink); text-decoration: none; }
     }
   </style>
+<link rel="stylesheet" href="nav-indicators.css?v=1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -764,10 +765,19 @@
           <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
             <a href="cqu-guided-assured.html"><span class="dd-label">CQUniversity &mdash; Independent GAM Mapping</span><span class="dd-desc">Independent mapping to the Guided&ndash;Assured Assessment Model</span></a>
             <a href="cdu.html"><span class="dd-label">Oxford Brookes&ndash;Chengdu Implementation</span><span class="dd-desc">SAGE-guided critical AI literacy in transnational computing education</span></a>
+            <a href="community.html"><div><div class="dd-label">Community</div><div class="dd-desc">Connect with the SAGE community of practice</div></div></a>
+          </div></div>
+        </li>
+        <li class="nav-dropdown">
+          <a href="sager.html">SAGE-R</a>
+          <div class="nav-dropdown-menu"><div class="nav-dropdown-panel">
+            <a href="sager.html"><span class="dd-label">Overview and background</span><span class="dd-desc">The proposal, rationale and research pathway</span></a>
+            <a href="sager-supervisors.html"><span class="dd-label">Supervisor guidance</span><span class="dd-desc">Assurance points and supervisory conversations</span></a>
+            <a href="sager-candidates.html"><span class="dd-label">Candidate guidance</span><span class="dd-desc">Practical examples and verification habits</span></a>
           </div></div>
         </li>
         <li><a href="publications.html">Evidence</a></li>
-        <li><a href="community.html">Community</a></li>
+
         <li><a class="nav-cta" href="about.html">About</a></li>
       </ul>
       <button class="global-nav-hamburger" type="button" aria-label="Open navigation" aria-controls="global-nav-mobile" aria-expanded="false">Menu</button>
@@ -788,8 +798,13 @@
     <a href="cqu-guided-assured.html">SAGE in Practice</a>
     <a class="sub-link" href="cqu-guided-assured.html">CQUniversity &mdash; Independent GAM Mapping</a>
     <a class="sub-link" href="cdu.html">Oxford Brookes&ndash;Chengdu Implementation</a>
+    <a href="community.html" class="sub-link">Community</a>
+    <a href="sager.html" style="font-weight:600;">SAGE-R</a>
+    <a href="sager.html" class="sub-link">Overview and background</a>
+    <a href="sager-supervisors.html" class="sub-link">Supervisor guidance</a>
+    <a href="sager-candidates.html" class="sub-link">Candidate guidance</a>
     <a href="publications.html">Evidence</a>
-    <a href="community.html">Community</a>
+
     <a href="about.html">About</a>
   </div>
 
@@ -821,7 +836,7 @@
 
           <div class="tier-strip" aria-label="Assessment-security tiers named in the Educator Guide">
             <div class="tier-name">Tier 1: high-security (assured)</div>
-            <div class="tier-name">Tier 2: medium-security (guided assured)</div>
+            <div class="tier-name" id="tier2">Tier 2: medium-security (guided assured)</div>
             <div class="tier-name">Tier 3: low-security (guided)</div>
           </div>
 

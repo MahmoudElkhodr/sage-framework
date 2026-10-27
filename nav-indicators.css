@@ -1,0 +1,20 @@
+/* Keep the dropdown cue consistent across the site's navigation variants. */
+nav .nav-dropdown > a:not(.nav-cta)::after {
+  content: "⌄";
+  display: inline-block;
+  margin-left: 0.38em;
+  font-size: 0.82em;
+  line-height: 1;
+  vertical-align: 0.08em;
+}
+
+nav .nav-dropdown .dropdown-toggle > span[aria-hidden="true"] {
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+.sager-site-nav .dropdown-toggle {
+  font-size: 0.9em;
+  line-height: 1;
+}

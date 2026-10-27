@@ -75,15 +75,19 @@ body[data-page="overview"] .cycle-centre{background:#1b4332;border:5px solid #d7
 body[data-page="overview"] .cycle-centre strong{color:#fff}
 body[data-page="overview"] .cycle-centre span{color:#e4dfc8}
 body[data-page="overview"] .cycle-rule{background:#e9dfc4;border-left-color:#9b7625;color:#243d2d}
-body[data-page="overview"] .sager-paper-reference{grid-column:2;grid-row:3;margin-top:12px;padding:12px 15px;border:1px solid #647d68;border-left:3px solid #d1b75f;border-radius:4px;background:#ffffff12;color:#edf3ed}
-body[data-page="overview"] .sager-paper-meta{display:flex;align-items:center;flex-wrap:wrap;gap:7px 11px;margin:0 0 5px;color:#d7e2d8;font-size:9px;letter-spacing:.06em;text-transform:uppercase}
-body[data-page="overview"] .sager-paper-status{padding:3px 7px;border-radius:2px;background:#d1b75f;color:#173d2d;font-size:8px;font-weight:800;letter-spacing:.055em}
-body[data-page="overview"] .sager-paper-title{margin:0;font-size:13px;line-height:1.4}
-body[data-page="overview"] .sager-paper-title a{color:#fff;font-family:var(--fd);font-size:16px;text-decoration-color:#d1b75f;text-decoration-thickness:1px;text-underline-offset:3px}
-body[data-page="overview"] .sager-paper-title a:hover{text-decoration-thickness:2px}
-body[data-page="overview"] .sager-paper-authors{margin:5px 0 0;color:#d5e0d6;font-size:10px;letter-spacing:.02em}
-body[data-page="overview"] .sager-intro-actions{grid-row:4}
-body[data-page="overview"] .sager-intro-note{grid-row:5}
+body[data-page="overview"] .sager-intro{padding:10px 22px 9px}
+body[data-page="overview"] .sager-intro-inner{column-gap:clamp(22px,4vw,48px)}
+body[data-page="overview"] .sager-intro-eyebrow{margin-bottom:4px}
+body[data-page="overview"] .sager-intro h1{font-size:clamp(1.8rem,2.8vw,2.4rem)}
+body[data-page="overview"] .sager-intro-copy{font-size:12px;line-height:1.4}
+body[data-page="overview"] .sager-paper-reference{grid-column:1;grid-row:3;margin-top:6px;padding:7px 10px;border:1px solid #647d68;border-left:3px solid #d1b75f;border-radius:4px;background:#ffffff12;color:#edf3ed}
+body[data-page="overview"] .sager-paper-meta{display:flex;align-items:center;flex-wrap:wrap;gap:5px 9px;margin:0 0 3px;color:#d7e2d8;font-size:8px;letter-spacing:.06em;text-transform:uppercase}
+body[data-page="overview"] .sager-paper-status{padding:2px 6px;border-radius:2px;background:#d1b75f;color:#173d2d;font-size:7px;font-weight:800;letter-spacing:.055em}
+body[data-page="overview"] .sager-paper-title{margin:0;color:#fff;font-family:var(--fd);font-size:12px;line-height:1.25}
+body[data-page="overview"] .sager-paper-authors{margin:2px 0 0;color:#d5e0d6;font-size:8px;letter-spacing:.02em}
+body[data-page="overview"] .sager-intro-actions{grid-row:3;margin-top:7px}
+body[data-page="overview"] .sager-intro-actions a{min-height:34px;padding:6px 10px;font-size:11px}
+body[data-page="overview"] .sager-intro-note{grid-row:4;margin-top:4px;font-size:9px}
 body[data-page="overview"] .defend-step{background:#28533f;border-color:#73947b}
 body[data-page="overview"] .defend-step span{color:#e2c36b}
 body[data-page="overview"] .defend-step:last-child{background:#e3c264;border-color:#f4dda0}
@@ -109,19 +113,21 @@ body[data-page="overview"] .cycle-centre{width:min(100%,165px);padding:15px}
 body[data-page="overview"] .cycle-centre strong{font-size:19px}
 body[data-page="overview"] .cycle-rule{margin-top:12px;padding:12px 18px;font-size:16px}
 @media(max-width:720px){body[data-page="overview"] .student-rule{padding:23px 17px 25px}body[data-page="overview"] .research-cycle{margin:14px auto;padding:0;gap:9px}body[data-page="overview"] .cycle-step{padding:12px}}
-@media(max-width:600px){body[data-page="overview"] .sager-paper-reference{grid-column:1;grid-row:4;margin-top:14px}body[data-page="overview"] .sager-intro-actions{grid-row:5}body[data-page="overview"] .sager-intro-note{grid-row:6}body[data-page="overview"] .sager-paper-title a{font-size:15px}}
-</style></head>
+@media(max-width:850px){body[data-page="overview"] .sager-intro{padding:9px 18px 8px}body[data-page="overview"] .sager-intro h1{font-size:clamp(1.75rem,3.3vw,2.15rem)}body[data-page="overview"] .sager-intro-copy{font-size:11px}}
+@media(max-width:600px){body[data-page="overview"] .sager-intro{padding:12px 15px 10px}body[data-page="overview"] .sager-paper-reference{grid-column:1;grid-row:3;margin-top:8px}body[data-page="overview"] .sager-intro-copy{grid-row:4;margin-top:8px;font-size:12px}body[data-page="overview"] .sager-intro-actions{grid-row:5;margin-top:8px}body[data-page="overview"] .sager-intro-note{grid-row:6;margin-top:4px}body[data-page="overview"] .sager-intro h1{font-size:clamp(1.8rem,8vw,2.1rem)}}
+</style><link rel="stylesheet" href="nav-indicators.css?v=1">
+</head>
 <body data-page="overview"><a class="skip" href="#main-content">Skip to content</a>
 
-<header class="site-header"><div class="wrap header-inner sager-header-inner"><a class="brand" href="/" aria-label="SAGE Framework home"><span class="brand-name">SAGE</span><span class="brand-caption">Structured AI-Guided<br>Education</span></a>
+<header class="site-header"><div class="wrap header-inner sager-header-inner"><a class="brand" href="index.html" aria-label="SAGE Framework home"><span class="brand-name">SAGE</span><span class="brand-caption">Structured AI-Guided<br>Education</span></a>
 <nav class="header-links sager-site-nav" aria-label="Site navigation">
-<a class="main-site" href="/sage.html">The Framework</a>
-<div class="menu" data-open="false"><div class="menu-heading"><a href="/student_resources.html">Resources</a><button class="dropdown-toggle" aria-label="Show Resources pages" aria-expanded="false" aria-controls="resources-menu">⌄</button></div><div class="dropdown" id="resources-menu"><a href="/student-guide.html"><strong>Student Guide</strong><small>Six-step guide for responsible AI use and Defend preparation</small></a><a href="/genai-101.html"><strong>GenAI-101 Module</strong><small>AI literacy course</small></a><a href="/defend_tool.html"><strong>Defend Tool</strong><small>Design an assurance checkpoint</small></a><a href="/downloads.html"><strong>Downloads</strong><small>Guides, templates and implementation resources</small></a></div></div>
-<div class="menu" data-open="false"><div class="menu-heading"><a href="/policy.html">Assessment Policy</a><button class="dropdown-toggle" aria-label="Show Assessment Policy pages" aria-expanded="false" aria-controls="policy-menu">⌄</button></div><div class="dropdown" id="policy-menu"><a href="/policy.html"><strong>Student-Facing Policy</strong><small>Policy text, declarations, examples and FAQ</small></a><a href="/policy-guide.html"><strong>Educator Guidance</strong><small>Implementation and adaptation guidance</small></a></div></div>
-<div class="menu" data-open="false"><div class="menu-heading"><a href="/cqu-guided-assured.html">SAGE in Practice</a><button class="dropdown-toggle" aria-label="Show SAGE in Practice pages" aria-expanded="false" aria-controls="practice-menu">⌄</button></div><div class="dropdown" id="practice-menu"><a href="/cqu-guided-assured.html"><strong>CQUniversity — Independent GAM Mapping</strong><small>Independent mapping to the Guided–Assured Assessment Model</small></a><a href="/cdu.html"><strong>Oxford Brookes–Chengdu Implementation</strong><small>SAGE-guided critical AI literacy in transnational computing education</small></a><a href="/community.html"><strong>Community</strong><small>Connect with the SAGE community of practice</small></a></div></div>
+<a class="main-site" href="sage.html">The Framework</a>
+<div class="menu" data-open="false"><div class="menu-heading"><a href="student_resources.html">Resources</a><button class="dropdown-toggle" aria-label="Show Resources pages" aria-expanded="false" aria-controls="resources-menu">⌄</button></div><div class="dropdown" id="resources-menu"><a href="student-guide.html"><strong>Student Guide</strong><small>Six-step guide for responsible AI use and Defend preparation</small></a><a href="genai-101.html"><strong>GenAI-101 Module</strong><small>AI literacy course</small></a><a href="defend_tool.html"><strong>Defend Tool</strong><small>Design an assurance checkpoint</small></a><a href="downloads.html"><strong>Downloads</strong><small>Guides, templates and implementation resources</small></a></div></div>
+<div class="menu" data-open="false"><div class="menu-heading"><a href="policy.html">Assessment Policy</a><button class="dropdown-toggle" aria-label="Show Assessment Policy pages" aria-expanded="false" aria-controls="policy-menu">⌄</button></div><div class="dropdown" id="policy-menu"><a href="policy.html"><strong>Student-Facing Policy</strong><small>Policy text, declarations, examples and FAQ</small></a><a href="policy-guide.html"><strong>Educator Guidance</strong><small>Implementation and adaptation guidance</small></a></div></div>
+<div class="menu" data-open="false"><div class="menu-heading"><a href="cqu-guided-assured.html">SAGE in Practice</a><button class="dropdown-toggle" aria-label="Show SAGE in Practice pages" aria-expanded="false" aria-controls="practice-menu">⌄</button></div><div class="dropdown" id="practice-menu"><a href="cqu-guided-assured.html"><strong>CQUniversity — Independent GAM Mapping</strong><small>Independent mapping to the Guided–Assured Assessment Model</small></a><a href="cdu.html"><strong>Oxford Brookes–Chengdu Implementation</strong><small>SAGE-guided critical AI literacy in transnational computing education</small></a><a href="community.html"><strong>Community</strong><small>Connect with the SAGE community of practice</small></a></div></div>
 <div class="menu" data-open="false"><div class="menu-heading"><a href="sager.html" aria-current="page">SAGE-R</a><button class="dropdown-toggle" aria-label="Show SAGE-R pages" aria-expanded="false" aria-controls="sager-menu">⌄</button></div><div class="dropdown" id="sager-menu"><a href="sager.html" aria-current="page"><strong>Overview and background</strong><small>The proposal, rationale and research pathway</small></a><a href="sager-supervisors.html"><strong>Supervisor guidance</strong><small>Assurance points and supervisory conversations</small></a><a href="sager-candidates.html"><strong>Candidate guidance</strong><small>Practical examples and verification habits</small></a></div></div>
-<a class="main-site" href="/publications.html">Evidence</a>
-<a class="main-site" href="/about.html">About</a>
+<a class="main-site" href="publications.html">Evidence</a>
+<a class="main-site" href="about.html">About</a>
 </nav></div>
 </header>
 
@@ -130,12 +136,12 @@ body[data-page="overview"] .cycle-rule{margin-top:12px;padding:12px 18px;font-si
       <div class="sager-intro-inner">
         <p class="sager-intro-eyebrow">SAGE-R · Structured AI-Guided Education for Research</p>
         <h1 id="sager-intro-title">From AI assistance to research ownership.</h1>
-        <p class="sager-intro-copy">SAGE-R is a research-informed assurance framework extending SAGE into higher degree research. It guides candidates’ responsible use of AI across the research lifecycle and provides supervisors with <strong>Defend</strong>—a practical mechanism for making candidate understanding, independent verification and research ownership visible.</p>
         <div class="sager-paper-reference" role="group" aria-label="Related SAGE-R research paper">
           <p class="sager-paper-meta"><span>Related research paper</span><span class="sager-paper-status">Accepted · to be published soon</span></p>
-          <p class="sager-paper-title"><a href="https://review.frontiersin.org/Document/DownloadPDF?articleId=2030368&amp;userId=1367937&amp;roleId=16" target="_blank" rel="noopener noreferrer">Supervising AI-mediated research: the SAGE-R framework for accountable research ownership</a></p>
+          <p class="sager-paper-title">Supervising AI-mediated research: the SAGE-R framework for accountable research ownership</p>
           <p class="sager-paper-authors">Mahmoud Elkhodr and Ergun Gide</p>
         </div>
+        <p class="sager-intro-copy">SAGE-R is a research-informed assurance framework extending SAGE into higher degree research. It guides candidates’ responsible use of AI across the research lifecycle and provides supervisors with <strong>Defend</strong>—a practical mechanism for making candidate understanding, independent verification and research ownership visible.</p>
         <nav class="sager-intro-actions" aria-label="SAGE-R guidance"><a href="sager-candidates.html">Candidate guidance <span aria-hidden="true">↗</span></a><a href="sager-supervisors.html">Supervisor guidance <span aria-hidden="true">↗</span></a></nav>
         <p class="sager-intro-note">Designed to fit existing candidature milestones and supervisory conversations.</p>
       </div>
@@ -164,7 +170,7 @@ body[data-page="overview"] .cycle-rule{margin-top:12px;padding:12px 18px;font-si
 </main>
 
 <footer class="site-footer"><div class="wrap"><div class="footer-top"><div><div class="footer-brand">SAGE.</div><small>Structured AI-Guided Education</small></div>
-<nav class="resource-links" aria-label="Footer navigation"><a href="sager.html">SAGE-R overview</a><a href="sager-supervisors.html">Supervisor guidance</a><a href="sager-candidates.html">Candidate guidance</a><a href="/sage.html">SAGE Framework</a><a href="/publications.html">Evidence and Impact</a><a href="/about.html">About the authors</a>
-</nav></div><p>SAGE-R is an independent scholarly framework developed by CQUniversity researchers. This working draft is for consultation and is not currently an official CQUniversity policy or procedure. Resource listing does not imply CQUniversity or TEQSA endorsement of every program component.</p><div class="footer-bottom"><span>Dr Mahmoud Elkhodr &amp; Professor Ergun Gide · CQUniversity Australia</span><span>CC BY 4.0 · Working draft · April 2026</span></div></div>
+<nav class="resource-links" aria-label="Footer navigation"><a href="sager.html">SAGE-R overview</a><a href="sager-supervisors.html">Supervisor guidance</a><a href="sager-candidates.html">Candidate guidance</a><a href="sage.html">SAGE Framework</a><a href="publications.html">Evidence and Impact</a><a href="about.html">About the authors</a>
+</nav></div><p>SAGE-R is an independent scholarly framework developed by CQUniversity researchers.</p><div class="footer-bottom"><span>Dr Mahmoud Elkhodr &amp; Professor Ergun Gide · CQUniversity Australia</span><span>CC BY 4.0 · Working draft · April 2026</span></div></div>
 </footer>
 </body></html>
