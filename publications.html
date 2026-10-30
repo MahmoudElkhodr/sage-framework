@@ -875,6 +875,31 @@
       line-height: 1.55;
     }
 
+    .media-pickups {
+      margin-top: 0.15rem;
+      padding: 0.75rem 0.8rem;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .media-pickups-label {
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+      font-size: 0.61rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+    .media-pickups ul { display: grid; gap: 0.28rem; list-style: none; }
+    .media-pickups li { display: flex; align-items: baseline; justify-content: space-between; gap: 0.7rem; font-size: 0.72rem; line-height: 1.4; }
+    .media-pickups a { color: var(--forest); font-weight: 600; text-decoration: underline; text-decoration-color: #c6b893; text-underline-offset: 0.16em; }
+    .media-pickups a:hover { color: var(--sage); }
+    .media-pickups li span { color: var(--muted); white-space: nowrap; }
+    .media-pickups-note { color: var(--muted); font-size: 0.63rem; line-height: 1.4; }
+    .media-card-doi { color: var(--muted); font-size: 0.68rem; line-height: 1.4; }
+    .media-card-doi a { color: var(--forest); font-weight: 600; text-decoration: underline; text-decoration-color: #c6b893; text-underline-offset: 0.16em; }
+
     /* ─── RADIO / BROADCAST ─── */
     .radio-subsection {
       padding-top: 3rem;
@@ -1223,6 +1248,41 @@
     </div>
 
     <div class="media-grid">
+
+      <!-- The Conversation: Internet outage article and syndicated coverage -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-the">The Conversation</span>
+          <span class="media-date">29 Oct 2026</span>
+        </div>
+        <a href="https://theconversation.com/what-would-happen-if-the-internet-went-down-295249" target="_blank" rel="noopener noreferrer" class="media-card-title">What would happen if the internet went down?</a>
+        <p class="media-card-desc">Explains why the internet has no single off switch, how shared dependencies can disrupt services, and why outages are more plausible than a complete global blackout. The article was republished by three outlets in the reporting period.</p>
+        <p class="media-card-doi">DOI: <a href="https://doi.org/10.64628/AA.7rmmwnqna" target="_blank" rel="noopener noreferrer">10.64628/AA.7rmmwnqna</a></p>
+        <div class="media-pickups">
+          <div class="media-pickups-label">Further coverage · reach reported by media monitor</div>
+          <ul>
+            <li><a href="https://www.digitalinformationworld.com/2026/10/what-would-happen-if-internet-went-down.html" target="_blank" rel="noopener noreferrer">Digital Information World</a><span>18k</span></li>
+            <li><a href="https://www.downtoearth.org.in/science-technology/what-would-happen-if-the-internet-went-down" target="_blank" rel="noopener noreferrer">Down To Earth</a><span>395k</span></li>
+            <li><a href="https://www.nationaltribune.com.au/what-would-happen-if-the-internet-went-down/" target="_blank" rel="noopener noreferrer">The National Tribune</a><span>15.9k</span></li>
+          </ul>
+        </div>
+        <p class="media-pickups-note">Reach figures are reproduced from the media monitoring report for 23–30 October 2026.</p>
+      </div>
+
+      <!-- CQUniversity research-tools story and syndicated coverage -->
+      <div class="media-card">
+        <div class="media-card-top">
+          <span class="outlet-badge outlet-cqu">CQUniversity News</span>
+          <span class="media-date">27 Oct 2026</span>
+        </div>
+        <a href="https://www.cqu.edu.au/news/1322685/ai-research-tools-can-distort-findings-and-misattribute-authors-cquniversity-researcher-warns" target="_blank" rel="noopener noreferrer" class="media-card-title">AI research tools can distort findings and misattribute authors, CQUniversity researcher warns</a>
+        <p class="media-card-desc">A warning that AI-generated research summaries can omit or misattribute authors, references and findings, and must be checked against original sources.</p>
+        <div class="media-pickups">
+          <div class="media-pickups-label">Further coverage · reach reported by media monitor</div>
+          <ul><li><a href="https://targetednews.com/pr_display.php?pr_id=9804791" target="_blank" rel="noopener noreferrer">Targeted News Service</a><span>3.53k</span></li></ul>
+          <p class="media-pickups-note">Reach figure is reproduced from the media monitoring report for 23–30 October 2026.</p>
+        </div>
+      </div>
 
       <!-- Be Magazine: Future-proofing careers -->
       <div class="media-card">
