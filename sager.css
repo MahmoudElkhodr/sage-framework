@@ -339,3 +339,8 @@ body[data-page="supervisors"] #pathway .stages p{color:#3f4542}
 body[data-page="supervisors"] .supervisor-action{background:#faf6ec}
 body[data-page="candidates"] .cycle-centre{background:var(--forest);border:4px solid #d7c17b}
 body[data-page="candidates"] .cycle-centre strong{color:#fff}body[data-page="candidates"] .cycle-centre span{color:#e4dfc8}
+.not-expected{margin:22px 0 0;padding:20px 24px 6px;background:#fff;border:1px solid var(--rule);border-left:4px solid var(--gold);border-radius:8px}
+.not-expected h3{font:500 22px/1.25 var(--fd);color:var(--forest);margin:0 0 12px}
+.not-expected p{font-size:15px;line-height:1.65;max-width:76ch;margin:0 0 14px}
+.not-expected strong{color:var(--ink)}
+@media(max-width:600px){.not-expected{padding:16px 16px 4px}.not-expected p{font-size:14px}}
