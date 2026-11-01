@@ -236,3 +236,16 @@ body[data-page="candidates"] .minimum-conditions{background:linear-gradient(135d
 @media(max-width:860px){.uod-stages,.guiding-questions,.own-groups{grid-template-columns:1fr}.institution-list{grid-template-columns:1fr}}
 @media(max-width:600px){.uod-section{padding:32px 0}.uod-section .section-head p{font-size:15px}.uod-figure{padding:10px}.self-check{padding:16px}.self-check .sc-question{font-size:19px}}
 @media print{.uod-figure{border:0;padding:0}.uod-stages li,.own-groups article,.institution-list li{break-inside:avoid}}
+/* Plain-language introduction: help with the work versus a changed claim */
+.brief-section{padding:46px 0 40px;border-bottom:1px solid var(--rule)}
+.brief-section h2{max-width:34ch;margin:6px 0 14px}
+.brief-section p{max-width:74ch;font-size:16px}
+.contrast{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:22px 0}
+.contrast>div{padding:18px 20px;border-radius:8px;border:1px solid var(--rule)}
+.contrast .helps{background:#f2f2f2}.contrast .changes{background:#f3ece0;border-color:#e2d6bf}
+.contrast h3{font:500 21px/1.25 var(--fd);margin:0 0 4px;color:var(--forest)}
+.contrast .sub{display:block;font-size:12px;color:var(--muted);margin-bottom:10px}
+.contrast ul{margin:0;padding-left:18px;font-size:14px;line-height:1.5}.contrast li{margin:5px 0}
+.contrast .term{display:block;margin-top:12px;font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.contrast .term em{color:var(--ink);font-style:italic}
+@media(max-width:700px){.contrast{grid-template-columns:1fr}.brief-section{padding:32px 0 28px}.brief-section p{font-size:15px}}
