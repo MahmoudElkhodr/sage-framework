@@ -249,3 +249,6 @@ body[data-page="candidates"] .minimum-conditions{background:linear-gradient(135d
 .contrast .term{display:block;margin-top:12px;font-size:12px;letter-spacing:.04em;color:var(--muted)}
 .contrast .term em{color:var(--ink);font-style:italic}
 @media(max-width:700px){.contrast{grid-template-columns:1fr}.brief-section{padding:32px 0 28px}.brief-section p{font-size:15px}}
+.stage-word{font-style:italic;font-weight:700;color:#8a6a1f}
+.contrast .term{font-size:13px;letter-spacing:0;color:var(--ink)}
+.contrast .term em{font-weight:600}
