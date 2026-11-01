@@ -269,3 +269,16 @@ body[data-page="candidates"] .minimum-conditions{background:linear-gradient(135d
 .uod-diagram summary{cursor:pointer;padding:13px 16px;font-size:14px;font-weight:600;color:var(--forest)}
 .uod-diagram .uod-figure{margin:0;border:0;border-top:1px solid var(--rule);border-radius:0 0 8px 8px}
 @media print{.uod-diagram{border:0}.uod-diagram summary{display:none}}
+/* Candidate page: parts and lessons */
+.part-divider{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;margin:56px 0 28px;padding:22px 26px 20px;background:#fff;border:1px solid var(--rule);border-top:4px solid var(--gold);border-radius:10px;box-shadow:0 8px 22px #173d2d10}
+#part-1.part-divider{margin-top:6px}
+.part-num{font:500 64px/0.9 var(--fd);color:var(--gold);text-align:center;min-width:76px}
+.part-num span{display:block;font:700 10px/1.4 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--forest);margin-bottom:6px}
+.part-title{font:500 30px/1.15 var(--fd);color:var(--forest);margin:0 0 6px;letter-spacing:-.02em}
+.part-text{font-size:14px;color:var(--muted);margin:0;max-width:66ch}
+.lesson-label{display:inline-block;margin:0 0 10px;padding:3px 10px;border-radius:12px;background:var(--forest);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.guide-content>section.lesson{border-top:3px solid var(--sage)}
+.toc-part{display:block;margin:14px 0 4px;padding:0 9px;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.sidebar-links .toc-part:first-child{margin-top:0}
+@media(max-width:600px){.part-divider{gap:14px;margin:38px 0 20px;padding:16px}.part-num{font-size:46px;min-width:52px}.part-title{font-size:24px}.part-text{font-size:13px}}
+@media print{.part-divider{break-before:page}#part-1.part-divider{break-before:auto}}
