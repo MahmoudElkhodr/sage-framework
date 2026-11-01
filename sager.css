@@ -344,3 +344,12 @@ body[data-page="candidates"] .cycle-centre strong{color:#fff}body[data-page="can
 .not-expected p{font-size:15px;line-height:1.65;max-width:76ch;margin:0 0 14px}
 .not-expected strong{color:var(--ink)}
 @media(max-width:600px){.not-expected{padding:16px 16px 4px}.not-expected p{font-size:14px}}
+/* Milestone cards: align the parts of paired cards so Supervisor action boxes line up */
+body[data-page="supervisors"] #pathway .stages{align-items:stretch;row-gap:0}
+body[data-page="supervisors"] #pathway .stages article{display:flex;flex-direction:column;margin-bottom:14px}
+body[data-page="supervisors"] #pathway .stages article .supervisor-action{margin-top:auto}
+@supports (grid-template-rows:subgrid){
+body[data-page="supervisors"] #pathway .stages article{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0}
+body[data-page="supervisors"] #pathway .stages article .stage-type{justify-self:start;align-self:start}
+body[data-page="supervisors"] #pathway .stages article .supervisor-action{margin-top:0;align-self:stretch}
+}
