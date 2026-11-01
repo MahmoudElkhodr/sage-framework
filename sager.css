@@ -282,3 +282,60 @@ body[data-page="candidates"] .minimum-conditions{background:linear-gradient(135d
 .sidebar-links .toc-part:first-child{margin-top:0}
 @media(max-width:600px){.part-divider{gap:14px;margin:38px 0 20px;padding:16px}.part-num{font-size:46px;min-width:52px}.part-title{font-size:24px}.part-text{font-size:13px}}
 @media print{.part-divider{break-before:page}#part-1.part-divider{break-before:auto}}
+
+/* ---- Academic tone (November 2026): neutral paper and white surfaces on the guidance pages.
+   Green is kept for the masthead, footer, headings and small accents only. ---- */
+:is(body[data-page="candidates"],body[data-page="supervisors"]){--paper:#fbfaf7;--line:#e3e0d8;--tint:#f5f3ee;background:var(--paper)}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .local-nav{background:#fff}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) :is(.sidebar-panel,.mobile-toc){background:#fff;border-color:var(--line)}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .sidebar-links a:is(:hover,[aria-current=location]){background:var(--tint)}
+body[data-page="candidates"] .guide-content{background:transparent}
+body[data-page="candidates"] .guide-content>section:not(.practice-map){background:#fff!important;border:1px solid var(--line);border-bottom-color:var(--line)}
+body[data-page="candidates"] .guide-content>section.lesson{border-top:3px solid var(--forest)}
+/* research lifecycle map: from dark green panel to a white index */
+body[data-page="candidates"] .practice-map{background:#fff;border:1px solid var(--line);border-top:3px solid var(--forest);box-shadow:none}
+body[data-page="candidates"] .practice-map:before{display:none}
+body[data-page="candidates"] .lifecycle-kicker{color:#7a5b18}
+body[data-page="candidates"] .lifecycle-heading h2{color:var(--ink)}
+body[data-page="candidates"] .lifecycle-heading p{color:var(--muted)}
+body[data-page="candidates"] .lifecycle-flow li,body[data-page="candidates"] .lifecycle-flow li:is(:nth-child(3n+2),:nth-child(3n)){background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--forest);box-shadow:none}
+body[data-page="candidates"] .lifecycle-flow h3{color:var(--ink)}
+body[data-page="candidates"] .lifecycle-flow p{color:#4b524e}
+body[data-page="candidates"] .lifecycle-flow a{color:var(--forest);border-top-color:var(--line)}
+/* boxes inside sections */
+body[data-page="candidates"] :is(.before-start,.minimum-conditions){background:var(--paper)!important;border-color:var(--line)}
+body[data-page="candidates"] .before-start-grid article{border-color:var(--line)}
+body[data-page="candidates"] .cycle-print{background:var(--paper)}
+body[data-page="candidates"] .example-head{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--forest)}
+body[data-page="candidates"] :is(.ex-num,.step-dot){background:#ece9e1;color:var(--ink)}
+body[data-page="candidates"] .step-row{background:#fff;border:1px solid var(--line)}
+body[data-page="candidates"] .minimum-checks{background:#fff!important;border-color:var(--line)}
+body[data-page="candidates"] :is(.info-card,.analogy-card,.sample,.boundary-box){background:#fff;border-color:var(--line)}
+body[data-page="candidates"] :is(.info-card.amber,.analogy-card.amber){background:#faf6ec}
+body[data-page="candidates"] .sample summary:hover{background:var(--tint)}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) table{background:#fff}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) th{background:#26302c}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) :is(.pullquote,.principle,.boundaries-strip){background:var(--tint);border-left-color:var(--forest)}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .guiding-questions li{background:var(--tint)}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .guiding-questions li:before{background:var(--forest)}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .self-check{border-left-color:var(--forest)}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .stage-tag{background:#ece9e1;color:#3a403c}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .stage-tag.own{background:#e3e9f1;color:#1f3a5f}
+:is(body[data-page="candidates"],body[data-page="supervisors"]) .uod-stages li.use{border-top-color:#7d847f}
+body[data-page="candidates"] .research-cycle{background:var(--paper);border-color:var(--line)}
+body[data-page="candidates"] :is(.cycle-step,.cycle-centre){background:#fff;border-color:var(--line)}
+body[data-page="candidates"] .cycle-number{background:#ece9e1;color:var(--ink)}
+/* supervisor page */
+body[data-page="supervisors"] .ownership-panel{background:#fff;border:1px solid var(--line)}
+body[data-page="supervisors"] .ownership-panel p:last-child{background:var(--tint)}
+body[data-page="supervisors"] #pathway{background:#fff;border:1px solid var(--line);border-top:3px solid var(--forest);box-shadow:none}
+body[data-page="supervisors"] #pathway:before{display:none}
+body[data-page="supervisors"] #pathway>h2{color:var(--ink)}
+body[data-page="supervisors"] #pathway>p{color:var(--muted)}
+body[data-page="supervisors"] #pathway .stages article,body[data-page="supervisors"] #pathway .stages article:is(:nth-of-type(3n+2),:nth-of-type(3n)),body[data-page="supervisors"] #oral-defend .stages article{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--forest)}
+body[data-page="supervisors"] #pathway .stage-type,body[data-page="supervisors"] #pathway .stages article:nth-of-type(3n+2) .stage-type{background:#ece9e1;color:#3a403c}
+body[data-page="supervisors"] #pathway .stages h3{color:var(--ink)}
+body[data-page="supervisors"] #pathway .stages p{color:#3f4542}
+body[data-page="supervisors"] .supervisor-action{background:#faf6ec}
+body[data-page="candidates"] .cycle-centre{background:var(--forest);border:4px solid #d7c17b}
+body[data-page="candidates"] .cycle-centre strong{color:#fff}body[data-page="candidates"] .cycle-centre span{color:#e4dfc8}
