@@ -262,3 +262,6 @@ body[data-page="candidates"] .minimum-conditions{background:linear-gradient(135d
 .ownership-pair .epistemic h4{color:#1f3a5f}
 .ownership-pair p{font-size:14px;line-height:1.55;margin:0}
 @media(max-width:700px){.ownership-pair{grid-template-columns:1fr}}
+.ownership-pair .def{font-weight:600;color:var(--ink);margin:0 0 8px}
+.ownership-pair ul{margin:0;padding-left:18px;font-size:14px;line-height:1.5}.ownership-pair li{margin:4px 0}
+.ownership-pair .built{display:block;margin-top:10px;font-size:13px;color:#1f3a5f}
