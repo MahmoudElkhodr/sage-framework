@@ -265,3 +265,7 @@ body[data-page="candidates"] .minimum-conditions{background:linear-gradient(135d
 .ownership-pair .def{font-weight:600;color:var(--ink);margin:0 0 8px}
 .ownership-pair ul{margin:0;padding-left:18px;font-size:14px;line-height:1.5}.ownership-pair li{margin:4px 0}
 .ownership-pair .built{display:block;margin-top:10px;font-size:13px;color:#1f3a5f}
+.uod-diagram{margin:18px 0 0;border:1px solid var(--rule);border-radius:8px;background:#fff}
+.uod-diagram summary{cursor:pointer;padding:13px 16px;font-size:14px;font-weight:600;color:var(--forest)}
+.uod-diagram .uod-figure{margin:0;border:0;border-top:1px solid var(--rule);border-radius:0 0 8px 8px}
+@media print{.uod-diagram{border:0}.uod-diagram summary{display:none}}
