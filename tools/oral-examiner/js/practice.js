@@ -17,6 +17,7 @@ const S = {
 // ------------------------------------------------------------------ steps
 function step(name) {
   for (const s of ["join", "work", "setup", "exam", "feedback"]) show($(`#s-${s}`), s === name);
+  document.body.classList.toggle("in-exam", name === "exam");
   document.querySelectorAll("#steps span").forEach((sp) => sp.classList.toggle("on", sp.dataset.s === name));
   hideError();
   window.scrollTo({ top: 0, behavior: "smooth" });
