@@ -1,4 +1,4 @@
-name = "sage-oral-examiner"
+name = "square-lake-bf88"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
 
@@ -6,7 +6,7 @@ compatibility_date = "2026-10-01"
 # then paste the id it prints below.
 [[kv_namespaces]]
 binding = "ORAL_KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "df6d60aa9ef843b1a9cb979e17e1f19c"
 
 [vars]
 LLM_PROVIDER = "anthropic"          # or "openai"
