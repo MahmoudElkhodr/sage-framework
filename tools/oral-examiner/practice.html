@@ -89,6 +89,22 @@
             <button class="mic-btn" id="mic" type="button" disabled>Wait</button>
             <div class="meter"><div id="meter"></div></div>
             <div class="small muted" id="mic-hint">Sage is speaking...</div>
+            <div id="typed-area" class="hidden" style="margin-top:14px;text-align:left">
+              <label for="typed">Type your answer</label>
+              <textarea id="typed" style="min-height:90px"></textarea>
+              <div class="actions" style="margin-top:8px"><button class="btn small" id="send-typed" type="button">Send typed answer</button></div>
+            </div>
+            <p class="small"><button type="button" class="btn small secondary hidden" id="type-toggle">Type instead</button> <button type="button" class="btn small secondary" id="end-early">End session</button></p>
+          </div>
+          <details class="card" style="margin-top:14px;padding:14px 18px"><summary class="small">Conversation so far</summary><div class="log" id="log"></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5 -->
+    <section id="s-feedback" class="card hidden">
+      <h2>Your practice feedback</h2>
+      <div id="report"><p class="muted">Sage is preparing your feedback...</p></div>
       <div class="actions no-print">
         <button class="btn" id="again" type="button">Practise again</button>
         <button class="btn secondary" type="button" onclick="window.print()">Print or save as PDF</button>
