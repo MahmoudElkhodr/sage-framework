@@ -278,15 +278,20 @@ $("#begin").addEventListener("click", async () => {
 async function examinerSays(text) {
   setMic("wait");
   $("#sub-who").textContent = "Sage";
-  $("#sub-text").textContent = text;
-  addLog("Sage", text);
-  if (S.examiner) {
+  if (S.examiner && S.examiner.engine !== "none") {
+    // The words appear only once Sage has finished saying them, so the
+    // subtitle never runs ahead of the voice.
+    $("#sub-text").textContent = "...";
     try {
       await S.examiner.say(text);
     } catch (err) {
       console.warn(err);
     }
+    $("#sub-text").textContent = text;
+    addLog("Sage", text);
   } else {
+    $("#sub-text").textContent = text;
+    addLog("Sage", text);
     await new Promise((r) => setTimeout(r, Math.min(8000, 900 + text.split(/\s+/).length * 280)));
   }
   if (S.done) return;
