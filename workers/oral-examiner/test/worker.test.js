@@ -15,6 +15,9 @@ class MemoryKV {
 }
 
 function fakeLLM({ system }) {
+  if (system.includes("teacher's question bank")) {
+    return { text: JSON.stringify({ summary: "Encryption basics", keyPoints: ["keys"], questions: [{ text: "How would a hospital share records securely?", focus: "x", source: "teacher" }], opening: "Hello Ann. How would a hospital share records securely?" }) };
+  }
   if (system.includes("prepare a short practice oral examination plan")) {
     return { text: "```json\n" + JSON.stringify({
       summary: "The student designed a small office network with VLANs.",
@@ -105,4 +108,14 @@ test("full practice flow", async () => {
   assert.equal((await call("POST", `/api/practice/${a.code}/start`, { studentName: "Sam Lee", studentId: "S123", submissionText })).status, 200);
   const third = await call("POST", `/api/practice/${a.code}/start`, { studentName: "Sam Lee", studentId: "s123", submissionText });
   assert.equal(third.status, 429);
+});
+
+test("question bank mode needs no submission", async () => {
+  const created = await call("POST", "/api/teacher/assessments", { title: "Crypto viva", mode: "questions", spec: "Oral questions on symmetric and asymmetric encryption for revision.", baseQuestions: ["Q1", "Q2", "Q3"] }, "secret-key-123");
+  const a = created.data.assessment;
+  assert.equal(a.mode, "questions");
+  assert.equal((await call("GET", `/api/practice/${a.code}`)).data.assessment.mode, "questions");
+  const start = await call("POST", `/api/practice/${a.code}/start`, { studentName: "Ann Wu", studentId: "s9", submissionText: "" });
+  assert.equal(start.status, 200, JSON.stringify(start.data));
+  assert.match(start.data.opening, /hospital/);
 });

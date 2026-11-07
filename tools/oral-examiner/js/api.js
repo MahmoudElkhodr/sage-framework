@@ -106,10 +106,10 @@ async function demo(method, path, body, key) {
   if (p[1] === "practice") {
     const a = list.find((x) => x.code === String(p[2]).toUpperCase());
     if (!a) err('Access code not found. In demo mode try "DEMO01".');
-    if (!p[3]) return { assessment: { title: a.title, unit: a.unit, durationMin: a.durationMin, allowTyping: a.allowTyping, voice: a.voice, dailyAttempts: a.dailyAttempts, questionCount: a.baseQuestions.length } };
+    if (!p[3]) return { assessment: { title: a.title, unit: a.unit, durationMin: a.durationMin, allowTyping: a.allowTyping, voice: a.voice, dailyAttempts: a.dailyAttempts, questionCount: a.baseQuestions.length, mode: a.mode || "submission" } };
     if (p[3] === "start") {
       if (!body.studentName || !body.studentId) err("Please enter your name and student ID.");
-      if ((body.submissionText || "").length < 200) err("The submission text is too short to examine. Please upload your full assignment.");
+      if (a.mode !== "questions" && (body.submissionText || "").length < 200) err("The submission text is too short to examine. Please upload your full assignment.");
       const first = body.studentName.split(/\s+/)[0];
       const questions = [...a.baseQuestions, "Which source or piece of evidence in your work are you most confident about, and why?", "What is one limitation of your work that you would address with more time?"].slice(0, Math.max(3, a.baseQuestions.length));
       const at = {
@@ -194,6 +194,7 @@ function saveDemoAttempt(at) {
 
 function normalise(b) {
   return {
+    mode: b.mode === "questions" ? "questions" : "submission",
     title: String(b.title || "").slice(0, 200),
     unit: String(b.unit || "").slice(0, 100),
     spec: String(b.spec || ""),

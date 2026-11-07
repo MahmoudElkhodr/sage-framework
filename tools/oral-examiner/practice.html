@@ -42,12 +42,15 @@
     <section id="s-work" class="card narrow hidden">
       <h2 id="a-title">Assessment</h2>
       <p class="muted" id="a-meta"></p>
+      <div id="upload-block">
       <label for="file">Upload your assignment <span class="hint">(PDF, Word .docx or text)</span></label>
       <input id="file" type="file" accept=".pdf,.docx,.txt,.md">
       <p class="small muted">The text is read inside your browser. <button type="button" class="btn small secondary" id="paste-toggle">Paste text instead</button></p>
       <textarea id="paste" class="hidden" placeholder="Paste the full text of your assignment here"></textarea>
       <div id="work-preview" class="notice hidden"></div>
-      <label class="check"><input type="checkbox" id="consent"> <span>I understand that this is a practice session. The text of my submission and my answers (as text, not audio) will be processed by an AI service and saved so that my teacher can review my practice.</span></label>
+      </div>
+      <p id="bank-note" class="notice hidden">There is nothing to upload for this practice. Sage will ask you questions set by your teacher, in your own words and from your own knowledge.</p>
+      <label class="check"><input type="checkbox" id="consent"> <span id="consent-text">I understand that this is a practice session. The text of my submission and my answers (as text, not audio) will be processed by an AI service and saved so that my teacher can review my practice.</span></label>
       <div class="actions"><button class="btn secondary" type="button" data-back="join">Back</button><button class="btn" id="work-next" type="button" disabled>Continue</button></div>
     </section>
 

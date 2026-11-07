@@ -62,7 +62,7 @@ async function loadList() {
           el("thead", {}, el("tr", {}, el("th", { text: "Assessment" }), el("th", { text: "Access code" }), el("th", { text: "Status" }), el("th", { text: "" }))),
           el("tbody", {}, assessments.map((a) =>
             el("tr", {},
-              el("td", {}, el("strong", { text: a.title }), a.unit ? el("div", { class: "small muted", text: a.unit }) : null),
+              el("td", {}, el("strong", { text: a.title }), el("div", { class: "small muted", text: [a.unit, a.mode === "questions" ? "Question bank" : "Own work"].filter(Boolean).join(" · ") })),
               el("td", {}, el("code", { text: a.code })),
               el("td", { text: a.open === false ? "Closed" : "Open" }),
               el("td", { style: "white-space:nowrap" },
@@ -90,6 +90,16 @@ function addQuestion(text = "") {
   $("#q-list").append(row);
 }
 $("#add-q").addEventListener("click", () => addQuestion());
+function modeText() {
+  const bank = $("#f-mode").value === "questions";
+  $("#q-hint").textContent = bank
+    ? "(your question bank, up to 15; each student gets a random selection, reworded with a different scenario or angle)"
+    : "(asked of every student, rephrased around each student's own submission; for a 5-minute session, 2 or 3 work best)";
+  $("#q-note").textContent = bank
+    ? "About 3 questions are asked in a 5-minute session, so a bank of 6 or more gives students different questions on each attempt."
+    : "Sage fills any remaining time with adaptive questions about the student's own work.";
+}
+$("#f-mode").addEventListener("change", modeText);
 $("#new").addEventListener("click", () => openEditor(null));
 $("#cancel").addEventListener("click", () => loadList());
 
@@ -119,6 +129,8 @@ async function openEditor(id) {
   }
   const a = current || { durationMin: 5, maxFollowups: 1, dailyAttempts: 3, voice: "bf_emma", open: true, baseQuestions: ["", ""] };
   $("#edit-title").textContent = current ? `Edit: ${current.title}` : "New practice assessment";
+  $("#f-mode").value = a.mode || "submission";
+  modeText();
   $("#f-title").value = a.title || "";
   $("#f-unit").value = a.unit || "";
   $("#f-spec").value = a.spec || "";
@@ -137,6 +149,7 @@ async function openEditor(id) {
 $("#edit-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const body = {
+    mode: $("#f-mode").value,
     title: $("#f-title").value,
     unit: $("#f-unit").value,
     spec: $("#f-spec").value,

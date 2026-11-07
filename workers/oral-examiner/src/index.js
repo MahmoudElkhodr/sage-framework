@@ -3,14 +3,14 @@
 // See README.md in this folder for deployment steps.
 
 import { callLLM, parseJSON, HttpError, modelFor } from "./llm.js";
-import { planPrompt, turnPrompt, markPrompt } from "./prompts.js";
+import { planPrompt, bankPrompt, turnPrompt, markPrompt } from "./prompts.js";
 
 const LIMITS = {
   submissionChars: 40000,
   specChars: 20000,
   rubricChars: 10000,
   answerChars: 3000,
-  baseQuestions: 8,
+  baseQuestions: 15,
   questionChars: 400,
 };
 
@@ -127,6 +127,7 @@ async function saveAssessment(env, teacher, id, input) {
       .map((q) => str(q, LIMITS.questionChars).trim())
       .filter(Boolean)
       .slice(0, LIMITS.baseQuestions),
+    mode: input.mode === "questions" ? "questions" : "submission",
     durationMin: clampInt(input.durationMin, 3, 15, 5),
     maxFollowups: clampInt(input.maxFollowups, 0, 3, 1),
     dailyAttempts: clampInt(input.dailyAttempts, 1, 20, 3),
@@ -198,6 +199,7 @@ async function publicAssessment(env, code) {
       voice: a.voice,
       dailyAttempts: a.dailyAttempts,
       questionCount: a.baseQuestions.length,
+      mode: a.mode || "submission",
     },
   };
 }
@@ -208,7 +210,9 @@ async function startAttempt(env, code, input) {
   const studentId = normaliseId(input.studentId);
   const submission = str(input.submissionText, LIMITS.submissionChars).trim();
   if (!studentName || !studentId) throw new HttpError(400, "Please enter your name and student ID.");
-  if (submission.length < 200) throw new HttpError(400, "The submission text is too short to examine. Please upload your full assignment.");
+  const questionMode = a.mode === "questions";
+  if (!questionMode && submission.length < 200) throw new HttpError(400, "The submission text is too short to examine. Please upload your full assignment.");
+  if (questionMode && !a.baseQuestions.length) throw new HttpError(409, "This practice has no questions set yet. Please tell your teacher.");
 
   // Cost guards: attempts per student per day, and a global daily ceiling.
   const day = new Date().toISOString().slice(0, 10);
@@ -222,7 +226,9 @@ async function startAttempt(env, code, input) {
 
   const targetQuestions = Math.max(2, Math.min(6, Math.round(a.durationMin * 0.6)));
   const firstName = studentName.split(/\s+/)[0];
-  const { system, user } = planPrompt({ assessment: { ...a, __studentFirstName: firstName }, submission, targetQuestions });
+  const { system, user } = questionMode
+    ? bankPrompt({ assessment: { ...a, __studentFirstName: firstName }, targetQuestions })
+    : planPrompt({ assessment: { ...a, __studentFirstName: firstName }, submission, targetQuestions });
   const r = await callLLM(env, { tier: "smart", system, user, maxTokens: 1400 });
   let plan;
   try {
@@ -230,7 +236,7 @@ async function startAttempt(env, code, input) {
   } catch (_) {
     throw new HttpError(502, "The examiner could not prepare questions. Please try again.");
   }
-  plan.questions = (plan.questions || []).filter((q) => q && q.text).slice(0, Math.max(targetQuestions, a.baseQuestions.length));
+  plan.questions = (plan.questions || []).filter((q) => q && q.text).slice(0, questionMode ? targetQuestions : Math.max(targetQuestions, a.baseQuestions.length));
   if (!plan.questions.length) throw new HttpError(502, "The examiner could not prepare questions. Please try again.");
   const opening = str(plan.opening, 600) || `Hello ${firstName}. ${plan.questions[0].text}`;
 
@@ -242,6 +248,7 @@ async function startAttempt(env, code, input) {
     token: randomId(24),
     studentName,
     studentId,
+    mode: a.mode || "submission",
     submissionChars: submission.length,
     submissionExcerpt: submission.slice(0, 1500),
     plan: { summary: str(plan.summary, 1500), keyPoints: (plan.keyPoints || []).slice(0, 8).map((k) => str(k, 300)), questions: plan.questions },

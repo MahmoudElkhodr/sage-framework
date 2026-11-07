@@ -58,6 +58,10 @@ $("#join-form").addEventListener("submit", async (e) => {
       sessionStorage.setItem("sage-oral-student", JSON.stringify({ name: S.name, id: S.id }));
     } catch (_) {}
     $("#a-title").textContent = assessment.title;
+    const bank = assessment.mode === "questions";
+    show($("#upload-block"), !bank);
+    show($("#bank-note"), bank);
+    if (bank) $("#consent-text").textContent = "I understand that this is a practice session. My answers (as text, not audio) will be processed by an AI service and saved so that my teacher can review my practice.";
     $("#a-meta").textContent = `${assessment.unit ? assessment.unit + " · " : ""}${assessment.durationMin}-minute spoken practice · up to ${assessment.dailyAttempts} attempts per day`;
     step("work");
   } catch (err) {
@@ -76,8 +80,9 @@ function updateWorkState() {
     pv.textContent = "";
     pv.append(el("strong", { text: `${words.toLocaleString()} words read. ` }), el("span", { class: "muted", text: `Begins: "${t.slice(0, 180).replace(/\s+/g, " ")}..."` }));
   }
-  show(pv, words > 0);
-  $("#work-next").disabled = !(words >= 40 && $("#consent").checked);
+  show(pv, words > 0 && S.assessment?.mode !== "questions");
+  const bank = S.assessment?.mode === "questions";
+  $("#work-next").disabled = !((bank || words >= 40) && $("#consent").checked);
 }
 $("#file").addEventListener("change", async (e) => {
   const f = e.target.files[0];

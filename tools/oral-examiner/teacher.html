@@ -43,6 +43,12 @@
           <div><label for="f-unit">Unit code <span class="hint">(optional)</span></label><input id="f-unit" type="text" maxlength="100" placeholder="e.g. COIT11238"></div>
         </div>
 
+        <label for="f-mode">Type of practice</label>
+        <select id="f-mode">
+          <option value="submission">Student's own work: students upload their assignment and defend it</option>
+          <option value="questions">Question bank: no upload; students answer varied versions of your questions</option>
+        </select>
+
         <label for="f-spec">Assessment specification <span class="hint">(paste, or upload a file)</span></label>
         <input type="file" id="f-spec-file" accept=".pdf,.docx,.txt,.md">
         <textarea id="f-spec" required placeholder="The task description students were given"></textarea>
@@ -51,10 +57,10 @@
         <input type="file" id="f-rubric-file" accept=".pdf,.docx,.txt,.md">
         <textarea id="f-rubric" placeholder="e.g. Understanding of design (25); Justification of decisions (25); Use of evidence (25); Communication (25)"></textarea>
 
-        <label>Base questions <span class="hint">(asked of every student, rephrased around each student's own submission; for a 5-minute session, 2 or 3 work best)</span></label>
+        <label>Questions <span class="hint" id="q-hint">(asked of every student, rephrased around each student's own submission; for a 5-minute session, 2 or 3 work best)</span></label>
         <div class="q-list" id="q-list"></div>
         <button type="button" class="btn small secondary" id="add-q">Add question</button>
-        <p class="small muted">Sage fills any remaining time with adaptive questions about the student's own work.</p>
+        <p class="small muted" id="q-note">Sage fills any remaining time with adaptive questions about the student's own work.</p>
 
         <div class="row">
           <div><label for="f-dur">Session length</label><select id="f-dur"><option value="3">3 minutes</option><option value="5" selected>5 minutes</option><option value="8">8 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option></select></div>
