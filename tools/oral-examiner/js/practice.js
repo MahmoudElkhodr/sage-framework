@@ -442,7 +442,8 @@ document.addEventListener("visibilitychange", () => {
 async function finish() {
   S.done = true;
   clearInterval(timerHandle);
-  clearInterval(answerTimer);
+  clearInterval(listenLoop);
+  if (S.micState === "recording") S.recorder?.stop().catch(() => {});
   S.examiner?.stop();
   step("feedback");
   const box = $("#report");
