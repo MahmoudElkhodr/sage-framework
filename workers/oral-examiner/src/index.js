@@ -287,7 +287,8 @@ async function takeTurn(env, assessId, attemptId, input) {
   const typed = Boolean(input.typed) && at.typingAllowed;
   const elapsed = (Date.now() - Date.parse(at.startedAt)) / 1000;
   const remainingSec = at.durationSec - elapsed;
-  at.transcript.push({ role: "student", text: answer, t: Math.round(elapsed), typed });
+  const latencyMs = Number.isFinite(input.latencyMs) ? Math.max(0, Math.min(120000, Math.round(input.latencyMs))) : null;
+  at.transcript.push({ role: "student", text: answer, t: Math.round(elapsed), typed, latencyMs });
   if (typed) at.typedCount++;
 
   const questionsLeft = at.plan.questions.length - at.qIndex - 1;
@@ -340,7 +341,7 @@ async function takeTurn(env, assessId, attemptId, input) {
 async function logEvent(env, assessId, attemptId, input) {
   const at = await loadAttempt(env, assessId, attemptId, input.token);
   const type = str(input.type, 40);
-  if (!["tab_hidden", "tab_visible", "window_blur", "mic_fallback", "typed_mode"].includes(type)) throw new HttpError(400, "Unknown event.");
+  if (!["tab_hidden", "tab_visible", "window_blur", "mic_fallback", "typed_mode", "slow_start", "paste_blocked"].includes(type)) throw new HttpError(400, "Unknown event.");
   if (at.events.length < 200) {
     at.events.push({ type, t: Math.round((Date.now() - Date.parse(at.startedAt)) / 1000) });
     await saveAttempt(env, at);
@@ -398,6 +399,7 @@ async function saveAttempt(env, at) {
       band: at.report?.overall?.band ?? null,
       authenticity: at.report?.authenticity?.level ?? null,
       tabSwitches,
+      slowStarts: at.events.filter((e) => e.type === "slow_start").length,
       typed: at.typedCount,
     },
   });

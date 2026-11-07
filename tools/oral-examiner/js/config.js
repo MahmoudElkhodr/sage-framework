@@ -6,5 +6,5 @@ export const CONFIG = {
   apiBase: "https://square-lake-bf88.elkhodr.workers.dev",
   avatarUrl: new URL("../assets/examiner.glb", import.meta.url).href,
   examinerName: "Sage",
-  answerSeconds: 90, // maximum length of one spoken answer
+  answerSeconds: 60, // maximum length of one spoken answer
 };

@@ -165,7 +165,7 @@ ${clip(answer, 3e3)}
 }
 __name(turnPrompt, "turnPrompt");
 function markPrompt({ attempt, assessment }) {
-  const transcript = attempt.transcript.map((t) => `${t.role === "examiner" ? "Sage" : "Student"}${t.typed ? " (typed)" : ""}: ${t.text}`).join("\n");
+  const transcript = attempt.transcript.map((t) => `${t.role === "examiner" ? "Sage" : "Student"}${t.typed ? " (typed)" : ""}${t.latencyMs != null ? ` [began after ${(t.latencyMs / 1e3).toFixed(1)} s]` : ""}: ${t.text}`).join("\n");
   const system = `You are an experienced, fair university marker reviewing a short practice oral examination in which a student defended their own written submission.
 Mark the student's ORAL performance: understanding of their own work, quality of reasoning, ability to justify decisions and evidence, and consistency with the submission. Use the rubric where it applies to oral defence; where a criterion only concerns the written product, judge how well the student explained and justified that aspect.
 Speech-to-text errors are likely: do not penalise grammar, filler words or transcription mistakes.
@@ -176,7 +176,7 @@ Reply with JSON only, matching:
  "strengths": string[] (max 3),
  "improvements": string[] (max 3, each a concrete action for the next practice attempt),
  "studentFeedback": string (max 90 words, addressed to the student, encouraging and constructive),
- "authenticity": {"level": "consistent" | "some concerns" | "significant concerns", "notes": string (max 60 words, for the teacher only: does the oral explanation match the depth and content of the submission?)}}
+ "authenticity": {"level": "consistent" | "some concerns" | "significant concerns", "notes": string (max 60 words, for the teacher only: does the oral explanation match the depth and content of the submission? Note unusually long pauses before answers, or answers that sound read from a script, as possible signs of outside assistance)}}
 Bands follow Australian conventions: Fail below 50, Pass 50-64, Credit 65-74, Distinction 75-84, High Distinction 85 and above. Keep score and band consistent. Use 3 to 6 criteria.`;
   const user = `Assessment title: ${clip(assessment.title, 200)}
 
@@ -450,7 +450,8 @@ async function takeTurn(env, assessId, attemptId, input) {
   const typed = Boolean(input.typed) && at.typingAllowed;
   const elapsed = (Date.now() - Date.parse(at.startedAt)) / 1e3;
   const remainingSec = at.durationSec - elapsed;
-  at.transcript.push({ role: "student", text: answer, t: Math.round(elapsed), typed });
+  const latencyMs = Number.isFinite(input.latencyMs) ? Math.max(0, Math.min(12e4, Math.round(input.latencyMs))) : null;
+  at.transcript.push({ role: "student", text: answer, t: Math.round(elapsed), typed, latencyMs });
   if (typed) at.typedCount++;
   const questionsLeft = at.plan.questions.length - at.qIndex - 1;
   const examinerTurns = at.transcript.filter((t) => t.role === "examiner").length;
@@ -498,7 +499,7 @@ __name(takeTurn, "takeTurn");
 async function logEvent(env, assessId, attemptId, input) {
   const at = await loadAttempt(env, assessId, attemptId, input.token);
   const type = str(input.type, 40);
-  if (!["tab_hidden", "tab_visible", "window_blur", "mic_fallback", "typed_mode"].includes(type)) throw new HttpError(400, "Unknown event.");
+  if (!["tab_hidden", "tab_visible", "window_blur", "mic_fallback", "typed_mode", "slow_start", "paste_blocked"].includes(type)) throw new HttpError(400, "Unknown event.");
   if (at.events.length < 200) {
     at.events.push({ type, t: Math.round((Date.now() - Date.parse(at.startedAt)) / 1e3) });
     await saveAttempt(env, at);
@@ -554,6 +555,7 @@ async function saveAttempt(env, at) {
       band: at.report?.overall?.band ?? null,
       authenticity: at.report?.authenticity?.level ?? null,
       tabSwitches,
+      slowStarts: at.events.filter((e) => e.type === "slow_start").length,
       typed: at.typedCount
     }
   });

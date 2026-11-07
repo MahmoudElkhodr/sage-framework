@@ -86,7 +86,7 @@ ${clip(answer, 3000)}
 
 export function markPrompt({ attempt, assessment }) {
   const transcript = attempt.transcript
-    .map((t) => `${t.role === "examiner" ? "Sage" : "Student"}${t.typed ? " (typed)" : ""}: ${t.text}`)
+    .map((t) => `${t.role === "examiner" ? "Sage" : "Student"}${t.typed ? " (typed)" : ""}${t.latencyMs != null ? ` [began after ${(t.latencyMs / 1000).toFixed(1)} s]` : ""}: ${t.text}`)
     .join("\n");
 
   const system = `You are an experienced, fair university marker reviewing a short practice oral examination in which a student defended their own written submission.
@@ -99,7 +99,7 @@ Reply with JSON only, matching:
  "strengths": string[] (max 3),
  "improvements": string[] (max 3, each a concrete action for the next practice attempt),
  "studentFeedback": string (max 90 words, addressed to the student, encouraging and constructive),
- "authenticity": {"level": "consistent" | "some concerns" | "significant concerns", "notes": string (max 60 words, for the teacher only: does the oral explanation match the depth and content of the submission?)}}
+ "authenticity": {"level": "consistent" | "some concerns" | "significant concerns", "notes": string (max 60 words, for the teacher only: does the oral explanation match the depth and content of the submission? Note unusually long pauses before answers, or answers that sound read from a script, as possible signs of outside assistance)}}
 Bands follow Australian conventions: Fail below 50, Pass 50-64, Credit 65-74, Distinction 75-84, High Distinction 85 and above. Keep score and band consistent. Use 3 to 6 criteria.`;
 
   const user = `Assessment title: ${clip(assessment.title, 200)}

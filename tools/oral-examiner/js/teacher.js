@@ -127,7 +127,6 @@ async function openEditor(id) {
   $("#f-fu").value = String(a.maxFollowups);
   $("#f-att").value = String(a.dailyAttempts);
   $("#f-voice").value = a.voice;
-  $("#f-typing").checked = !!a.allowTyping;
   $("#f-exempt").value = (a.typingExemptIds || []).join(", ");
   $("#f-open").checked = a.open !== false;
   (a.baseQuestions.length ? a.baseQuestions : [""]).forEach(addQuestion);
@@ -147,7 +146,7 @@ $("#edit-form").addEventListener("submit", async (e) => {
     maxFollowups: $("#f-fu").value,
     dailyAttempts: $("#f-att").value,
     voice: $("#f-voice").value,
-    allowTyping: $("#f-typing").checked,
+    allowTyping: false,
     typingExemptIds: $("#f-exempt").value,
     open: $("#f-open").checked,
   };
@@ -201,7 +200,7 @@ async function openResults(id) {
   } else {
     box.append(
       el("table", {},
-        el("thead", {}, el("tr", {}, ["Student", "ID", "Started", "Status", "AI mark", "Authenticity", "Tab switches", "Typed"].map((h) => el("th", { text: h })))),
+        el("thead", {}, el("tr", {}, ["Student", "ID", "Started", "Status", "AI mark", "Authenticity", "Tab switches", "Slow starts", "Typed"].map((h) => el("th", { text: h })))),
         el("tbody", {}, attempts.map((a) =>
           el("tr", { class: "clickable", onclick: () => openAttempt(a.attemptId) },
             el("td", { text: a.studentName }),
@@ -211,6 +210,7 @@ async function openResults(id) {
             el("td", { text: a.score == null ? "" : `${a.score} (${a.band || ""})` }),
             el("td", { text: a.authenticity || "" }),
             el("td", { text: String(a.tabSwitches ?? 0) }),
+            el("td", { text: String(a.slowStarts ?? 0) }),
             el("td", { text: String(a.typed ?? 0) })
           )
         ))
@@ -233,7 +233,7 @@ async function openAttempt(attemptId) {
       el("h3", { text: "AI feedback" }),
       renderReport(at.report, { teacher: true }),
       el("h3", { text: "Transcript" }),
-      el("div", { class: "log", style: "max-height:none" }, at.transcript.map((t) => el("p", {}, el("b", { text: `${t.role === "examiner" ? "Sage" : "Student"}${t.typed ? " (typed)" : ""} [${fmtTime(t.t || 0)}]: ` }), t.text))),
+      el("div", { class: "log", style: "max-height:none" }, at.transcript.map((t) => el("p", {}, el("b", { text: `${t.role === "examiner" ? "Sage" : "Student"}${t.typed ? " (typed)" : ""} [${fmtTime(t.t || 0)}]${t.latencyMs != null ? ` (began after ${(t.latencyMs / 1000).toFixed(1)} s)` : ""}: ` }), t.text))),
       at.plan?.summary ? el("div", {}, el("h3", { text: "Sage's reading of the submission" }), el("p", { text: at.plan.summary })) : null,
       at.plan?.questions ? el("div", {}, el("h3", { text: "Question plan" }), el("ol", {}, at.plan.questions.map((q) => el("li", { text: `${q.text}${q.source ? ` (${q.source})` : ""}` })))) : null,
       at.events.length ? el("div", {}, el("h3", { text: "Session events" }), el("p", { class: "small", text: at.events.map((e) => `${e.type.replace(/_/g, " ")} at ${fmtTime(e.t)}`).join("; ") })) : null
