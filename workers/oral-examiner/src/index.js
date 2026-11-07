@@ -112,7 +112,12 @@ async function saveAssessment(env, teacher, id, input) {
   const title = str(input.title, 200).trim();
   if (!title) throw new HttpError(400, "A title is required.");
   const spec = str(input.spec, LIMITS.specChars);
-  if (spec.trim().length < 30) throw new HttpError(400, "Please provide the assessment specification (at least a few sentences).");
+  const topics = str(input.topics, 2000).trim();
+  const isBank = input.mode === "questions";
+  if (isBank) {
+    const hasQ = Array.isArray(input.baseQuestions) && input.baseQuestions.some((q) => String(q || "").trim());
+    if (!topics && !hasQ) throw new HttpError(400, "Please enter at least one key topic or question.");
+  } else if (spec.trim().length < 30) throw new HttpError(400, "Please provide the assessment specification (at least a few sentences).");
 
   const a = {
     id: existing?.id || randomId(10),
@@ -120,6 +125,7 @@ async function saveAssessment(env, teacher, id, input) {
     owner: teacher.id,
     ownerName: teacher.name,
     title,
+    topics,
     unit: str(input.unit, 100),
     spec,
     rubric: str(input.rubric, LIMITS.rubricChars),
@@ -212,7 +218,7 @@ async function startAttempt(env, code, input) {
   if (!studentName || !studentId) throw new HttpError(400, "Please enter your name and student ID.");
   const questionMode = a.mode === "questions";
   if (!questionMode && submission.length < 200) throw new HttpError(400, "The submission text is too short to examine. Please upload your full assignment.");
-  if (questionMode && !a.baseQuestions.length) throw new HttpError(409, "This practice has no questions set yet. Please tell your teacher.");
+  if (questionMode && !a.baseQuestions.length && !a.topics) throw new HttpError(409, "This practice has no questions set yet. Please tell your teacher.");
 
   // Cost guards: attempts per student per day, and a global daily ceiling.
   const day = new Date().toISOString().slice(0, 10);

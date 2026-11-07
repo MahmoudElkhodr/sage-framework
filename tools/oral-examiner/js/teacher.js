@@ -92,6 +92,10 @@ function addQuestion(text = "") {
 $("#add-q").addEventListener("click", () => addQuestion());
 function modeText() {
   const bank = $("#f-mode").value === "questions";
+  show($("#topics-block"), bank);
+  $("#details-summary").textContent = bank ? "Optional: specification, rubric and your own questions" : "Specification, rubric and questions";
+  if (bank && !$("#f-spec").value && !document.querySelector("#q-list input")?.value) $("#details-block").open = false;
+  else $("#details-block").open = true;
   $("#q-hint").textContent = bank
     ? "(your question bank, up to 15; each student gets a random selection, reworded with a different scenario or angle)"
     : "(asked of every student, rephrased around each student's own submission; for a 5-minute session, 2 or 3 work best)";
@@ -101,6 +105,11 @@ function modeText() {
 }
 $("#f-mode").addEventListener("change", modeText);
 $("#new").addEventListener("click", () => openEditor(null));
+$("#quick").addEventListener("click", async () => {
+  await openEditor(null, { mode: "questions", durationMin: 5, maxFollowups: 1, dailyAttempts: 5, voice: "bf_emma", open: true, baseQuestions: [] });
+  $("#edit-title").textContent = "Quick practice";
+  $("#f-title").focus();
+});
 $("#cancel").addEventListener("click", () => loadList());
 
 for (const [fileSel, areaSel] of [["#f-spec-file", "#f-spec"], ["#f-rubric-file", "#f-rubric"]]) {
@@ -116,7 +125,7 @@ for (const [fileSel, areaSel] of [["#f-spec-file", "#f-spec"], ["#f-rubric-file"
   });
 }
 
-async function openEditor(id) {
+async function openEditor(id, preset = null) {
   current = null;
   $("#edit-form").reset();
   $("#q-list").textContent = "";
@@ -127,9 +136,10 @@ async function openEditor(id) {
       return error(err.message);
     }
   }
-  const a = current || { durationMin: 5, maxFollowups: 1, dailyAttempts: 3, voice: "bf_emma", open: true, baseQuestions: ["", ""] };
+  const a = current || preset || { durationMin: 5, maxFollowups: 1, dailyAttempts: 3, voice: "bf_emma", open: true, baseQuestions: ["", ""] };
   $("#edit-title").textContent = current ? `Edit: ${current.title}` : "New practice assessment";
   $("#f-mode").value = a.mode || "submission";
+  $("#f-topics").value = a.topics || "";
   modeText();
   $("#f-title").value = a.title || "";
   $("#f-unit").value = a.unit || "";
@@ -142,6 +152,7 @@ async function openEditor(id) {
   $("#f-exempt").value = (a.typingExemptIds || []).join(", ");
   $("#f-open").checked = a.open !== false;
   (a.baseQuestions.length ? a.baseQuestions : [""]).forEach(addQuestion);
+  modeText();
   show($("#delete"), !!current);
   view("edit");
 }
@@ -150,6 +161,7 @@ $("#edit-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const body = {
     mode: $("#f-mode").value,
+    topics: $("#f-topics").value,
     title: $("#f-title").value,
     unit: $("#f-unit").value,
     spec: $("#f-spec").value,

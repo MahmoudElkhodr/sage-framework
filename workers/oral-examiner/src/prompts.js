@@ -53,7 +53,9 @@ export function bankPrompt({ assessment, targetQuestions }) {
   const bank = assessment.baseQuestions || [];
   // Shuffle on the server so the selection differs between students.
   const shuffled = bank.map((q) => [Math.random(), q]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
-  const n = Math.min(targetQuestions, bank.length);
+  const n = bank.length ? Math.min(targetQuestions, bank.length) : targetQuestions;
+  const topics = (assessment.topics || "").split(/[\n,;]+/).map((t) => t.trim()).filter(Boolean);
+  const shuffledTopics = topics.map((t) => [Math.random(), t]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
   const system = `${PERSONA}
 
 Your task now is to prepare a short practice oral examination from the teacher's question bank. There is no student submission: the student answers from their own knowledge. Reply with JSON only, matching:
@@ -66,18 +68,24 @@ Session length: ${assessment.durationMin} minutes.
 Student first name: ${clip(assessment.__studentFirstName, 60)}
 
 <specification>
-${clip(assessment.spec, 12000)}
+${clip(assessment.spec, 12000) || "(not provided)"}
 </specification>
 
 <rubric>
-${clip(assessment.rubric, 6000)}
+${clip(assessment.rubric, 6000) || "(not provided)"}
 </rubric>
 
+<key_topics>
+${shuffledTopics.join("\n") || "(none listed)"}
+</key_topics>
+
 <base_questions>
-${shuffled.map((q, i) => `${i + 1}. ${q}`).join("\n")}
+${shuffled.map((q, i) => `${i + 1}. ${q}`).join("\n") || "(none: write your own from the key topics)"}
 </base_questions>
 
-Rules: use exactly the first ${n} base questions, in the order given. Write a VARIATION of each: keep the same concept and difficulty, but change the wording, and where it suits, the scenario, example, numbers or angle (for instance "a hospital" instead of "a bank", or asking the student to compare rather than define). Do not make questions easier or harder, and do not reveal answers.`;
+${bank.length ? "" : `Rules: write exactly ${n} questions of your own, each on a different key topic, taking topics in the order given. Pitch them at the level the specification implies (otherwise at undergraduate level). Favour questions that need explanation, comparison or application to a short scenario, rather than recall of a definition. Use a fresh scenario each time so that different students get different questions.
+
+`}${bank.length ? `Rules for teacher questions: use exactly the first ${n} base questions, in the order given. Write a VARIATION of each: keep the same concept and difficulty, but change the wording, and where it suits, the scenario, example, numbers or angle (for instance "a hospital" instead of "a bank", or asking the student to compare rather than define). Do not make questions easier or harder, and do not reveal answers.` : ""}`;
   return { system, user };
 }
 

@@ -133,7 +133,9 @@ __name(planPrompt, "planPrompt");
 function bankPrompt({ assessment, targetQuestions }) {
   const bank = assessment.baseQuestions || [];
   const shuffled = bank.map((q) => [Math.random(), q]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
-  const n = Math.min(targetQuestions, bank.length);
+  const n = bank.length ? Math.min(targetQuestions, bank.length) : targetQuestions;
+  const topics = (assessment.topics || "").split(/[\n,;]+/).map((t) => t.trim()).filter(Boolean);
+  const shuffledTopics = topics.map((t) => [Math.random(), t]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
   const system = `${PERSONA}
 
 Your task now is to prepare a short practice oral examination from the teacher's question bank. There is no student submission: the student answers from their own knowledge. Reply with JSON only, matching:
@@ -146,18 +148,24 @@ Session length: ${assessment.durationMin} minutes.
 Student first name: ${clip(assessment.__studentFirstName, 60)}
 
 <specification>
-${clip(assessment.spec, 12e3)}
+${clip(assessment.spec, 12e3) || "(not provided)"}
 </specification>
 
 <rubric>
-${clip(assessment.rubric, 6e3)}
+${clip(assessment.rubric, 6e3) || "(not provided)"}
 </rubric>
 
+<key_topics>
+${shuffledTopics.join("\n") || "(none listed)"}
+</key_topics>
+
 <base_questions>
-${shuffled.map((q, i) => `${i + 1}. ${q}`).join("\n")}
+${shuffled.map((q, i) => `${i + 1}. ${q}`).join("\n") || "(none: write your own from the key topics)"}
 </base_questions>
 
-Rules: use exactly the first ${n} base questions, in the order given. Write a VARIATION of each: keep the same concept and difficulty, but change the wording, and where it suits, the scenario, example, numbers or angle (for instance "a hospital" instead of "a bank", or asking the student to compare rather than define). Do not make questions easier or harder, and do not reveal answers.`;
+${bank.length ? "" : `Rules: write exactly ${n} questions of your own, each on a different key topic, taking topics in the order given. Pitch them at the level the specification implies (otherwise at undergraduate level). Favour questions that need explanation, comparison or application to a short scenario, rather than recall of a definition. Use a fresh scenario each time so that different students get different questions.
+
+`}${bank.length ? `Rules for teacher questions: use exactly the first ${n} base questions, in the order given. Write a VARIATION of each: keep the same concept and difficulty, but change the wording, and where it suits, the scenario, example, numbers or angle (for instance "a hospital" instead of "a bank", or asking the student to compare rather than define). Do not make questions easier or harder, and do not reveal answers.` : ""}`;
   return { system, user };
 }
 __name(bankPrompt, "bankPrompt");
@@ -323,13 +331,19 @@ async function saveAssessment(env, teacher, id, input) {
   const title = str(input.title, 200).trim();
   if (!title) throw new HttpError(400, "A title is required.");
   const spec = str(input.spec, LIMITS.specChars);
-  if (spec.trim().length < 30) throw new HttpError(400, "Please provide the assessment specification (at least a few sentences).");
+  const topics = str(input.topics, 2e3).trim();
+  const isBank = input.mode === "questions";
+  if (isBank) {
+    const hasQ = Array.isArray(input.baseQuestions) && input.baseQuestions.some((q) => String(q || "").trim());
+    if (!topics && !hasQ) throw new HttpError(400, "Please enter at least one key topic or question.");
+  } else if (spec.trim().length < 30) throw new HttpError(400, "Please provide the assessment specification (at least a few sentences).");
   const a = {
     id: existing?.id || randomId(10),
     code: existing?.code || await uniqueCode(env),
     owner: teacher.id,
     ownerName: teacher.name,
     title,
+    topics,
     unit: str(input.unit, 100),
     spec,
     rubric: str(input.rubric, LIMITS.rubricChars),
@@ -414,7 +428,7 @@ async function startAttempt(env, code, input) {
   if (!studentName || !studentId) throw new HttpError(400, "Please enter your name and student ID.");
   const questionMode = a.mode === "questions";
   if (!questionMode && submission.length < 200) throw new HttpError(400, "The submission text is too short to examine. Please upload your full assignment.");
-  if (questionMode && !a.baseQuestions.length) throw new HttpError(409, "This practice has no questions set yet. Please tell your teacher.");
+  if (questionMode && !a.baseQuestions.length && !a.topics) throw new HttpError(409, "This practice has no questions set yet. Please tell your teacher.");
   const day = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
   const rateKey = `rate:${a.id}:${studentId}:${day}`;
   const used = parseInt(await env.ORAL_KV.get(rateKey) || "0", 10);

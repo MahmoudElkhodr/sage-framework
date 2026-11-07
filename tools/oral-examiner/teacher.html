@@ -30,7 +30,7 @@
     <section id="v-list" class="hidden">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
         <h1 style="margin:0">Practice assessments</h1>
-        <div><span class="muted small" id="who"></span> <button class="btn" id="new" type="button">New assessment</button> <button class="btn secondary small" id="logout" type="button">Sign out</button></div>
+        <div><span class="muted small" id="who"></span> <button class="btn" id="quick" type="button">Quick practice</button> <button class="btn secondary" id="new" type="button">Full assessment</button> <button class="btn secondary small" id="logout" type="button">Sign out</button></div>
       </div>
       <div class="card" style="margin-top:20px"><div id="list"></div></div>
     </section>
@@ -49,9 +49,16 @@
           <option value="questions">Question bank: no upload; students answer varied versions of your questions</option>
         </select>
 
+        <div id="topics-block" class="hidden">
+          <label for="f-topics">Key topics to examine <span class="hint">(one per line or separated by commas; Sage writes fresh questions on these for every student)</span></label>
+          <textarea id="f-topics" style="min-height:110px" placeholder="e.g.&#10;Symmetric vs asymmetric encryption&#10;Hashing and salting passwords&#10;Digital signatures and PKI"></textarea>
+        </div>
+
+        <details id="details-block" open>
+        <summary class="small" id="details-summary" style="margin-top:14px;cursor:pointer">Specification, rubric and questions</summary>
         <label for="f-spec">Assessment specification <span class="hint">(paste, or upload a file)</span></label>
         <input type="file" id="f-spec-file" accept=".pdf,.docx,.txt,.md">
-        <textarea id="f-spec" required placeholder="The task description students were given"></textarea>
+        <textarea id="f-spec" placeholder="The task description students were given"></textarea>
 
         <label for="f-rubric">Marking rubric <span class="hint">(criteria and weightings; paste, or upload a file)</span></label>
         <input type="file" id="f-rubric-file" accept=".pdf,.docx,.txt,.md">
@@ -61,6 +68,8 @@
         <div class="q-list" id="q-list"></div>
         <button type="button" class="btn small secondary" id="add-q">Add question</button>
         <p class="small muted" id="q-note">Sage fills any remaining time with adaptive questions about the student's own work.</p>
+
+        </details>
 
         <div class="row">
           <div><label for="f-dur">Session length</label><select id="f-dur"><option value="3">3 minutes</option><option value="5" selected>5 minutes</option><option value="8">8 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option></select></div>

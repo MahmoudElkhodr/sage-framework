@@ -195,6 +195,7 @@ function saveDemoAttempt(at) {
 function normalise(b) {
   return {
     mode: b.mode === "questions" ? "questions" : "submission",
+    topics: String(b.topics || ""),
     title: String(b.title || "").slice(0, 200),
     unit: String(b.unit || "").slice(0, 100),
     spec: String(b.spec || ""),
