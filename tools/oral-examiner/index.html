@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Defend Practice: AI oral examiner | SAGE Framework</title>
+  <meta name="description" content="Practise defending your assignment in a short spoken examination with Sage, an AI examiner, and receive instant indicative feedback.">
+  <link rel="stylesheet" href="css/oral.css">
+</head>
+<body>
+  <header class="topbar"><div class="inner">
+    <a class="brand" href="../../index.html">SAGE <span>Defend Practice</span></a>
+    <nav><a href="index.html" aria-current="page">About</a><a href="practice.html">Student</a><a href="teacher.html">Teacher</a></nav>
+  </div></header>
+
+  <main class="wrap">
+    <div id="banner"></div>
+    <h1>Practise defending your work, out loud</h1>
+    <p class="muted" style="max-width:720px;font-size:18px">Defend Practice puts the Defend step of the SAGE Framework into students' hands. Sage, an AI examiner, reads the assignment brief and the student's own submission, then holds a short spoken conversation about it. Students receive an indicative mark and specific feedback straight away, and may practise again.</p>
+
+    <div class="choice-grid" style="margin:30px 0">
+      <a class="choice" href="practice.html">
+        <h2>I am a student</h2>
+        <p class="muted">Enter the access code from your teacher, upload your assignment and start a five-minute practice conversation.</p>
+        <span class="btn">Start practising</span>
+      </a>
+      <a class="choice" href="teacher.html">
+        <h2>I am a teacher</h2>
+        <p class="muted">Set up a practice assessment: upload the specification and rubric, write the base questions, and share the link with your class.</p>
+        <span class="btn secondary">Open teacher section</span>
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>How it works</h2>
+      <p>The teacher sets the base questions that every student must be asked. Sage rephrases each one around what the individual student actually wrote, and adds adaptive follow-up questions when an answer is vague or does not match the submission. When the time is up, an AI marker reviews the conversation against the rubric and returns a mark, evidence-based comments and concrete improvements.</p>
+      <p>Speech is recognised by an open-source Whisper model running inside the student's browser, so recordings never leave the device; only the transcribed text is sent to the examiner. The examiner's voice is also generated in the browser where the device supports it.</p>
+      <p class="notice">This is a practice and formative tool. Marks are AI-generated, indicative only and may differ from a human marker's judgement. Teachers can review every attempt, including transcripts and an authenticity indicator.</p>
+    </div>
+  </main>
+  <footer>SAGE Framework &middot; Elkhodr &amp; Gide, CQUniversity Australia &middot; Examiner character built with open-source TalkingHead, HeadTTS (Kokoro) and Whisper.</footer>
+  <script type="module">
+    import { isDemo } from "./js/api.js";
+    import { demoBanner } from "./js/ui.js";
+    demoBanner(isDemo, document.getElementById("banner"));
+  </script>
+</body>
+</html>

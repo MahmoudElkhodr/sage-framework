@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student practice | SAGE Defend Practice</title>
+  <link rel="stylesheet" href="css/oral.css">
+  <script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+  } }
+  </script>
+</head>
+<body>
+  <header class="topbar"><div class="inner">
+    <a class="brand" href="index.html">SAGE <span>Defend Practice</span></a>
+    <nav><a href="index.html">About</a><a href="practice.html" aria-current="page">Student</a><a href="teacher.html">Teacher</a></nav>
+  </div></header>
+
+  <main class="wrap">
+    <div id="banner"></div>
+    <div class="steps" id="steps"><span data-s="join">1. Join</span><span data-s="work">2. Your work</span><span data-s="setup">3. Set up</span><span data-s="exam">4. Practice</span><span data-s="feedback">5. Feedback</span></div>
+    <div id="error" class="error hidden" role="alert"></div>
+
+    <!-- Step 1 -->
+    <section id="s-join" class="card narrow">
+      <h1>Join a practice session</h1>
+      <p class="muted">Your teacher will have given you an access code or a link.</p>
+      <form id="join-form">
+        <label for="code">Access code</label>
+        <input id="code" type="text" autocomplete="off" required maxlength="12" style="text-transform:uppercase;letter-spacing:.1em">
+        <div class="row">
+          <div><label for="sname">Your name</label><input id="sname" type="text" autocomplete="name" required maxlength="100"></div>
+          <div><label for="sid">Student ID</label><input id="sid" type="text" autocomplete="off" required maxlength="40"></div>
+        </div>
+        <div class="actions"><button class="btn" type="submit">Continue</button></div>
+      </form>
+    </section>
+
+    <!-- Step 2 -->
+    <section id="s-work" class="card narrow hidden">
+      <h2 id="a-title">Assessment</h2>
+      <p class="muted" id="a-meta"></p>
+      <label for="file">Upload your assignment <span class="hint">(PDF, Word .docx or text)</span></label>
+      <input id="file" type="file" accept=".pdf,.docx,.txt,.md">
+      <p class="small muted">The text is read inside your browser. <button type="button" class="btn small secondary" id="paste-toggle">Paste text instead</button></p>
+      <textarea id="paste" class="hidden" placeholder="Paste the full text of your assignment here"></textarea>
+      <div id="work-preview" class="notice hidden"></div>
+      <label class="check"><input type="checkbox" id="consent"> <span>I understand that this is a practice session. The text of my submission and my answers (as text, not audio) will be processed by an AI service and saved so that my teacher can review my practice.</span></label>
+      <div class="actions"><button class="btn secondary" type="button" data-back="join">Back</button><button class="btn" id="work-next" type="button" disabled>Continue</button></div>
+    </section>
+
+    <!-- Step 3 -->
+    <section id="s-setup" class="card narrow hidden">
+      <h2>Getting Sage ready</h2>
+      <p class="muted">The first time, your browser downloads the examiner character and a speech recognition model (the voice and speech models can total several hundred megabytes on a first visit). Later visits are much faster.</p>
+      <div id="setup-slot" style="max-width:340px;margin:14px auto"></div>
+      <p class="small" id="load-avatar-label">Examiner character</p><div class="progress"><div id="load-avatar"></div></div>
+      <p class="small" id="load-stt-label">Speech recognition</p><div class="progress"><div id="load-stt"></div></div>
+      <p class="small" id="voice-status"></p>
+      <div class="card" style="background:var(--paper);margin-top:18px">
+        <h3>Microphone check</h3>
+        <p class="small muted">Press the button, say a sentence such as "My assignment is about network design", then press it again.</p>
+        <button class="btn secondary" type="button" id="mic-test">Test microphone</button>
+        <div class="meter"><div id="test-meter"></div></div>
+        <p class="small" id="mic-result"></p>
+      </div>
+      <ul class="small muted">
+        <li>Sit somewhere quiet and speak clearly, as you would to a lecturer.</li>
+        <li>Tap the microphone button to start each answer and tap again when you finish. Each answer can be up to 90 seconds.</li>
+        <li>Stay on this page during the session. Leaving the page is noted for your teacher.</li>
+      </ul>
+      <div class="actions"><button class="btn" id="begin" type="button" disabled>Begin practice</button></div>
+    </section>
+
+    <!-- Step 4 -->
+    <section id="s-exam" class="hidden">
+      <div class="stage">
+        <div id="stage-slot">
+          <div class="avatar-box" id="avatar-box"><div id="avatar"></div><div class="loading" id="avatar-loading">Loading examiner...</div><span class="nameplate">Sage &middot; AI examiner</span></div>
+        </div>
+        <div>
+          <div class="status-bar"><span class="pill" id="q-pill">Question 1</span><span class="timer" id="timer">5:00</span></div>
+          <div class="subtitle" aria-live="polite"><span class="who" id="sub-who">Sage</span><span id="sub-text"></span></div>
+          <div class="mic-area">
+            <button class="mic-btn" id="mic" type="button" disabled>Wait</button>
+            <div class="meter"><div id="meter"></div></div>
+            <div class="small muted" id="mic-hint">Sage is speaking...</div>
+            <div class="heard hidden" id="heard">
+              <div class="small muted">Sage heard:</div>
+              <div id="heard-text"></div>
+              <div class="actions" style="margin-top:10px"><button class="btn small" id="send" type="button">Send answer</button><button class="btn small secondary" id="redo" type="button">Record again</button></div>
+            </div>
+            <div id="typed-area" class="hidden" style="margin-top:14px;text-align:left">
+              <label for="typed">Type your answer</label>
+              <textarea id="typed" style="min-height:90px"></textarea>
+              <div class="actions" style="margin-top:8px"><button class="btn small" id="send-typed" type="button">Send typed answer</button></div>
+            </div>
+            <p class="small"><button type="button" class="btn small secondary hidden" id="type-toggle">Type instead</button> <button type="button" class="btn small secondary" id="end-early">End session</button></p>
+          </div>
+          <details class="card" style="margin-top:14px;padding:14px 18px"><summary class="small">Conversation so far</summary><div class="log" id="log"></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5 -->
+    <section id="s-feedback" class="card hidden">
+      <h2>Your practice feedback</h2>
+      <div id="report"><p class="muted">Sage is preparing your feedback...</p><div class="progress"><div style="width:60%;animation:none"></div></div></div>
+      <div class="actions no-print">
+        <button class="btn" id="again" type="button">Practise again</button>
+        <button class="btn secondary" type="button" onclick="window.print()">Print or save as PDF</button>
+      </div>
+      <p class="small muted" id="attempts-left"></p>
+    </section>
+  </main>
+  <footer>SAGE Framework &middot; Defend Practice &middot; Practice marks are AI-generated and indicative only.</footer>
+  <script type="module" src="js/practice.js"></script>
+</body>
+</html>

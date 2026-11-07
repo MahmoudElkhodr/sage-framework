@@ -1,0 +1,21 @@
+name = "sage-oral-examiner"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Create the namespace with:  npx wrangler kv namespace create ORAL_KV
+# then paste the id it prints below.
+[[kv_namespaces]]
+binding = "ORAL_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+LLM_PROVIDER = "anthropic"          # or "openai"
+# LLM_MODEL_FAST = "claude-haiku-5-5"
+# LLM_MODEL_SMART = "claude-sonnet-5-5"
+ALLOWED_ORIGINS = "https://sage-framework.com,https://www.sage-framework.com,http://localhost:8080,http://127.0.0.1:8080"
+MAX_SESSIONS_PER_DAY = "300"        # global ceiling across all students, protects API credit
+RETENTION_DAYS = "180"              # attempts are deleted automatically after this many days
+
+# Secrets (never put these in this file):
+#   npx wrangler secret put LLM_API_KEY
+#   npx wrangler secret put TEACHER_KEYS    e.g.  Mahmoud Elkhodr:long-random-key

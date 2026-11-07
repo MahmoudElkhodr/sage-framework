@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teacher section | SAGE Defend Practice</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/oral.css">
+</head>
+<body>
+  <header class="topbar"><div class="inner">
+    <a class="brand" href="index.html">SAGE <span>Defend Practice</span></a>
+    <nav><a href="index.html">About</a><a href="practice.html">Student</a><a href="teacher.html" aria-current="page">Teacher</a></nav>
+  </div></header>
+
+  <main class="wrap">
+    <div id="banner"></div>
+    <div id="error" class="error hidden" role="alert"></div>
+
+    <section id="v-login" class="card narrow">
+      <h1>Teacher section</h1>
+      <p class="muted">Enter your teacher key. Keys are issued by the administrator of this tool.</p>
+      <form id="login-form">
+        <label for="tkey">Teacher key</label>
+        <input id="tkey" type="password" autocomplete="current-password" required>
+        <div class="actions"><button class="btn" type="submit">Sign in</button></div>
+      </form>
+    </section>
+
+    <section id="v-list" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h1 style="margin:0">Practice assessments</h1>
+        <div><span class="muted small" id="who"></span> <button class="btn" id="new" type="button">New assessment</button> <button class="btn secondary small" id="logout" type="button">Sign out</button></div>
+      </div>
+      <div class="card" style="margin-top:20px"><div id="list"></div></div>
+    </section>
+
+    <section id="v-edit" class="hidden">
+      <form id="edit-form" class="card">
+        <h2 id="edit-title">New practice assessment</h2>
+        <div class="row">
+          <div><label for="f-title">Title</label><input id="f-title" type="text" required maxlength="200" placeholder="e.g. Assessment 2: Network design report"></div>
+          <div><label for="f-unit">Unit code <span class="hint">(optional)</span></label><input id="f-unit" type="text" maxlength="100" placeholder="e.g. COIT11238"></div>
+        </div>
+
+        <label for="f-spec">Assessment specification <span class="hint">(paste, or upload a file)</span></label>
+        <input type="file" id="f-spec-file" accept=".pdf,.docx,.txt,.md">
+        <textarea id="f-spec" required placeholder="The task description students were given"></textarea>
+
+        <label for="f-rubric">Marking rubric <span class="hint">(criteria and weightings; paste, or upload a file)</span></label>
+        <input type="file" id="f-rubric-file" accept=".pdf,.docx,.txt,.md">
+        <textarea id="f-rubric" placeholder="e.g. Understanding of design (25); Justification of decisions (25); Use of evidence (25); Communication (25)"></textarea>
+
+        <label>Base questions <span class="hint">(asked of every student, rephrased around each student's own submission; for a 5-minute session, 2 or 3 work best)</span></label>
+        <div class="q-list" id="q-list"></div>
+        <button type="button" class="btn small secondary" id="add-q">Add question</button>
+        <p class="small muted">Sage fills any remaining time with adaptive questions about the student's own work.</p>
+
+        <div class="row">
+          <div><label for="f-dur">Session length</label><select id="f-dur"><option value="3">3 minutes</option><option value="5" selected>5 minutes</option><option value="8">8 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option></select></div>
+          <div><label for="f-fu">Follow-ups per question</label><select id="f-fu"><option value="0">None</option><option value="1" selected>Up to 1</option><option value="2">Up to 2</option><option value="3">Up to 3</option></select></div>
+          <div><label for="f-att">Attempts per student per day</label><input id="f-att" type="number" min="1" max="20" value="3"></div>
+          <div><label for="f-voice">Examiner voice</label><select id="f-voice"><option value="bf_emma">Emma (British English)</option><option value="bf_isabella">Isabella (British English)</option><option value="af_heart">Heart (American English)</option><option value="af_bella">Bella (American English)</option></select></div>
+        </div>
+
+        <label class="check"><input type="checkbox" id="f-typing"> <span>Allow all students to type answers instead of speaking</span></label>
+        <label for="f-exempt">Students allowed to type <span class="hint">(student IDs separated by commas, for example those with adjustments)</span></label>
+        <input id="f-exempt" type="text" placeholder="e.g. 12345678, 23456789">
+        <label class="check"><input type="checkbox" id="f-open" checked> <span>Open: students can start practice sessions</span></label>
+
+        <div class="actions">
+          <button class="btn" type="submit">Save assessment</button>
+          <button class="btn secondary" type="button" id="cancel">Cancel</button>
+          <button class="btn danger hidden" type="button" id="delete">Delete</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="v-results" class="hidden">
+      <button class="btn secondary small" type="button" data-go="list">&larr; All assessments</button>
+      <h1 id="r-title" style="margin-top:16px">Results</h1>
+      <div class="share" id="r-share"></div>
+      <div class="card" style="margin-top:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h2 style="margin:0">Practice attempts</h2><button class="btn small secondary" id="csv" type="button">Download CSV</button></div>
+        <div id="attempts" style="margin-top:12px"></div>
+      </div>
+      <div class="card hidden" id="detail"></div>
+    </section>
+  </main>
+  <footer>SAGE Framework &middot; Defend Practice teacher section</footer>
+  <script type="module" src="js/teacher.js"></script>
+</body>
+</html>
