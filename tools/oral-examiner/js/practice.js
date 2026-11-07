@@ -320,6 +320,7 @@ let listenLoop = null;
 function startListening() {
   startRecording();
   setMic("recording");
+  S.examiner?.listening();
   meterLoop("#meter", () => S.micState === "recording");
   const t0 = Date.now();
   let firstSpeech = 0, lastSpeech = 0, flagged = false;
@@ -330,6 +331,7 @@ function startListening() {
     if (lvl > VAD.speech) {
       if (!firstSpeech) firstSpeech = now;
       lastSpeech = now;
+      if (now - firstSpeech > 3000 && Math.random() < 0.02) S.examiner?.nod();
     }
     if (!firstSpeech) {
       const wait = now - t0;
@@ -351,6 +353,7 @@ async function stopListening(t0, firstSpeech) {
   clearInterval(listenLoop);
   if (S.micState !== "recording") return;
   setMic("thinking");
+  S.examiner?.thinking();
   $("#mic-hint").textContent = "Transcribing your answer...";
   let text = "";
   try {

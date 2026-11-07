@@ -51,7 +51,7 @@ export class Examiner {
           const mats = Array.isArray(o.material) ? o.material : [o.material];
           for (const m of mats) {
             m.map = null;
-            m.color.set(0x234f3d);
+            m.color.set(0x1f3a30);
             m.roughness = 0.85;
             m.needsUpdate = true;
           }
@@ -107,6 +107,29 @@ export class Examiner {
     }
     this.engine = "none";
     return this.engine;
+  }
+
+  // Attentive listening: steady eye contact, with an occasional small nod
+  // while the student is speaking (called from the voice-activity loop).
+  listening() {
+    try {
+      this.head.makeEyeContact(60000);
+    } catch (_) {}
+  }
+  nod() {
+    const now = Date.now();
+    if (now - (this.lastNod || 0) < 4500) return;
+    this.lastNod = now;
+    try {
+      this.head.playGesture("yes", 1.2);
+    } catch (_) {}
+  }
+  // Thinking: glance up and to the side while the next question is prepared.
+  thinking() {
+    try {
+      const r = this.container.getBoundingClientRect();
+      this.head.lookAt(r.left + r.width * 0.15, r.top + r.height * 0.05, 1800);
+    } catch (_) {}
   }
 
   setMood(mood) {
