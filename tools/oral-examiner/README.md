@@ -37,6 +37,21 @@ Until `apiBase` is set in `js/config.js`, the pages run in **demo mode**: data s
 
 To use OpenAI instead of Claude, set `LLM_PROVIDER = "openai"` in `wrangler.toml` and redeploy.
 
+## How the spoken interaction works
+
+- **Turn-taking** (`js/vad.js`, `js/speech.js`, `js/mic-worklet.js`). The microphone is read in frames of about 30 ms through an audio worklet. The background noise of the room is measured during the microphone check and tracked throughout the session, so speech is detected relative to the room and not against a fixed level. The silence that ends an answer adapts between about 1.3 and 3.5 seconds: it is short after a long, fluent answer, longer when the student has only just begun, and longer again for a student who has already paused mid-answer and carried on. While a pause is running, "Still listening" is shown with a bar that fills until the answer is taken as finished. The "I'm done" button and the Enter key end an answer at once.
+- **Latency**. When an answer ends, Sage nods and gives a short spoken acknowledgement immediately, and then looks aside while the reply is prepared. During the answer, the audio is passed to Whisper in segments at natural pauses, so little remains to transcribe at the end. With the neural voice, each sentence is played as soon as it has been synthesised. Set `spokenAcknowledgement: false` in `js/config.js` for a nod without the spoken acknowledgement.
+- **Recorded timings**. Time to first speech is measured on the audio clock from the moment the microphone opens to the detected start of speech, including when the student presses "I'm done".
+- **Browser-voice fallback**. Text is spoken one sentence at a time. Where the voice reports word boundaries, the lips follow them; otherwise word timings are estimated and corrected against the measured speaking rate of the voice.
+- **Accessibility**. Steps move keyboard focus, the answer button keeps focus between turns, status changes are announced to screen readers without repeating Sage's spoken words, microphone errors state the cause and the remedy, and the system "reduce motion" setting is respected. The 3D rendering resolution and frame rate are reduced automatically on slow devices.
+
+## Tests
+
+```bash
+node --test tools/oral-examiner/test/vad.test.mjs   # turn-taking logic
+cd workers/oral-examiner && npm test                # Worker
+```
+
 ## Cost controls
 
 - Live turns use the fast, low-cost model (default Claude Haiku 5.5); planning and marking use the stronger model (default Claude Sonnet 5.5). Both can be changed with `LLM_MODEL_FAST` and `LLM_MODEL_SMART`.

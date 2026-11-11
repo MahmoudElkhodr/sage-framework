@@ -13,15 +13,17 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <header class="topbar"><div class="inner">
     <a class="brand" href="./">SAGE <span>Defend Practice</span></a>
     <nav><a href="./">About</a><a href="practice.html" aria-current="page">Student</a><a href="teacher.html">Teacher</a></nav>
   </div></header>
 
-  <main class="wrap">
+  <main class="wrap" id="main">
     <div id="banner"></div>
-    <div class="steps" id="steps"><span data-s="join">1. Join</span><span data-s="work">2. Your work</span><span data-s="setup">3. Set up</span><span data-s="exam">4. Practice</span><span data-s="feedback">5. Feedback</span></div>
+    <ol class="steps" id="steps" aria-label="Progress"><li data-s="join" class="on" aria-current="step">1. Join</li><li data-s="work">2. Your work</li><li data-s="setup">3. Set up</li><li data-s="exam">4. Practice</li><li data-s="feedback">5. Feedback</li></ol>
     <div id="error" class="error hidden" role="alert"></div>
+    <p id="sr-status" class="sr-only" role="status" aria-live="polite"></p>
 
     <!-- Step 1 -->
     <section id="s-join" class="card narrow">
@@ -64,15 +66,16 @@
       <p class="small" id="voice-status"></p>
       <div class="card" style="background:var(--paper);margin-top:18px">
         <h3>Microphone check</h3>
-        <p class="small muted">Press the button, say a sentence such as "My assignment is about network design", then press it again.</p>
+        <p class="small muted">Press the button and say a sentence such as "My assignment is about network design". The test stops by itself when you pause, just as Sage does during the session, and it also measures the background noise in your room.</p>
         <button class="btn secondary" type="button" id="mic-test">Test microphone</button>
-        <div class="meter"><div id="test-meter"></div></div>
-        <p class="small" id="mic-result"></p>
+        <div class="meter" aria-hidden="true"><div id="test-meter"></div></div>
+        <p class="small" id="mic-result" role="status" aria-live="polite"></p>
       </div>
       <p class="notice"><strong>This is practice, not an assessment.</strong> Nothing you do here counts towards your grade. Using ChatGPT, Claude or any other AI to answer for you would only rob you of the practice: your real oral examination will be with a person, and only your own understanding will help you there.</p>
       <ul class="small muted">
         <li>Sit somewhere quiet and speak clearly, as you would to a lecturer.</li>
-        <li>Sage listens automatically as soon as she finishes each question, so answer straight away, as you would in a real oral examination. Sage replies when you pause. Each answer can be up to 1 minute.</li>
+        <li>Sage listens automatically as soon as she finishes each question, so answer straight away, as you would in a real oral examination. Each answer can be up to 1 minute.</li>
+        <li>Sage replies when you have finished. If you pause to think, "Still listening" is shown and you may carry on; you can also press "I'm done" (or the Enter key) as soon as you have finished.</li>
         <li>How quickly you begin each answer is recorded for your teacher.</li>
         <li>Stay on this page during the session. Leaving the page is noted for your teacher.</li>
       </ul>
@@ -83,15 +86,16 @@
     <section id="s-exam" class="hidden">
       <div class="stage">
         <div id="stage-slot">
-          <div class="avatar-box" id="avatar-box"><div id="avatar"></div><div class="loading" id="avatar-loading">Loading examiner...</div><span class="nameplate">Sage &middot; AI examiner</span></div>
+          <div class="avatar-box" id="avatar-box"><div id="avatar" role="img" aria-label="Sage, the AI examiner, shown as an animated character"></div><div class="loading" id="avatar-loading">Loading examiner...</div><span class="nameplate">Sage &middot; AI examiner</span><span class="state-chip hidden" id="avatar-state" aria-hidden="true"></span></div>
         </div>
         <div>
-          <div class="status-bar"><span class="pill" id="q-pill">Question 1</span><span class="timer" id="timer">5:00</span></div>
-          <div class="subtitle" aria-live="polite"><span class="who" id="sub-who">Sage</span><span id="sub-text"></span></div>
+          <div class="status-bar"><span class="pill" id="q-pill">Question 1</span><span class="timer" id="timer" role="timer" aria-label="Time remaining">5:00</span></div>
+          <div class="subtitle" id="sub-box"><span class="who" id="sub-who">Sage</span><span id="sub-text"></span></div>
           <div class="mic-area">
-            <button class="mic-btn" id="mic" type="button" disabled>Wait</button>
-            <div class="meter"><div id="meter"></div></div>
+            <button class="mic-btn" id="mic" type="button" aria-disabled="true">Wait</button>
+            <div class="meter" aria-hidden="true"><div id="meter"></div></div>
             <div class="small muted" id="mic-hint">Sage is speaking...</div>
+            <div class="pause-cue" id="pause-cue" aria-hidden="true"><div id="pause-bar"></div></div>
             <div id="typed-area" class="hidden" style="margin-top:14px;text-align:left">
               <label for="typed">Type your answer</label>
               <textarea id="typed" style="min-height:90px"></textarea>

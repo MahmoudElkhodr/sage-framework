@@ -2,34 +2,55 @@
 import { api, isDemo } from "./api.js";
 import { $, el, show, fmtTime, demoBanner, renderReport } from "./ui.js";
 import { extractText } from "./extract.js";
-import { Recorder, Transcriber, BrowserRecogniser } from "./speech.js";
+import { Recorder, Transcriber, BrowserRecogniser, micErrorMessage } from "./speech.js";
+import { TurnDetector, assessMicCheck, endsDangling } from "./vad.js";
 import { CONFIG } from "./config.js";
 
 demoBanner(isDemo, $("#banner"));
+
+const REDUCED_MOTION = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const S = {
   code: "", name: "", id: "", assessment: null, submission: "",
   attemptRef: null, token: null, durationSec: 300, typingAllowed: false,
   startedAt: 0, examiner: null, recorder: null, transcriber: null, browserRec: null,
-  stt: "none", avatarReady: false, sttReady: false, busy: false, done: false, pendingAnswer: "",
+  stt: "none", avatarReady: false, sttReady: false, busy: false, done: false,
+  detector: null, micState: "wait", typedMode: false,
 };
 
 // ------------------------------------------------------------------ steps
 function step(name) {
   for (const s of ["join", "work", "setup", "exam", "feedback"]) show($(`#s-${s}`), s === name);
   document.body.classList.toggle("in-exam", name === "exam");
-  document.querySelectorAll("#steps span").forEach((sp) => sp.classList.toggle("on", sp.dataset.s === name));
+  document.querySelectorAll("#steps li").forEach((sp) => {
+    const on = sp.dataset.s === name;
+    sp.classList.toggle("on", on);
+    if (on) sp.setAttribute("aria-current", "step");
+    else sp.removeAttribute("aria-current");
+  });
   hideError();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? "auto" : "smooth" });
+  // Move keyboard and screen-reader focus to the new step.
+  const target = name === "exam" ? $("#mic") : $(`#s-${name}`).querySelector("h1, h2");
+  if (target) {
+    if (!target.hasAttribute("tabindex") && target.tagName !== "BUTTON") target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+  }
 }
-function error(msg) {
+// Shows an error. An optional action adds a button (for example to reconnect the microphone).
+function error(msg, action) {
   const e = $("#error");
   e.textContent = msg;
+  if (action) e.append(" ", el("button", { class: "btn small secondary", type: "button", text: action.label, onclick: action.run }));
   show(e, true);
-  e.scrollIntoView({ behavior: "smooth", block: "center" });
+  e.scrollIntoView({ behavior: REDUCED_MOTION ? "auto" : "smooth", block: "center" });
 }
 function hideError() {
   show($("#error"), false);
+}
+// A short message for screen-reader users (not shown on screen).
+function announce(msg) {
+  $("#sr-status").textContent = msg;
 }
 document.querySelectorAll("[data-back]").forEach((b) => b.addEventListener("click", () => step(b.dataset.back)));
 
@@ -112,7 +133,9 @@ $("#work-next").addEventListener("click", () => {
 // ------------------------------------------------------------------ 3. setup
 async function setup() {
   $("#setup-slot").appendChild($("#avatar-box"));
+  setStateChip("");
   if (!S.examiner && !S.avatarReady) loadAvatar();
+  else S.examiner?.idle();
   if (!S.transcriber && S.stt === "none") {
     try {
       S.transcriber = new Transcriber();
@@ -150,6 +173,7 @@ async function loadAvatar() {
     show($("#avatar-loading"), false);
     S.examiner = null;
     S.avatarReady = true;
+    $("#sub-box").setAttribute("aria-live", "polite"); // without a voice, the subtitle is the question
     checkReady();
   };
   let Examiner;
@@ -166,6 +190,7 @@ async function loadAvatar() {
     show($("#avatar-loading"), false);
     const engine = await S.examiner.prepareVoice((m) => ($("#voice-status").textContent = m));
     $("#voice-status").textContent = engine === "kokoro" ? "Examiner voice: ready (neural voice on this device)" : engine === "browser" ? "Examiner voice: ready (browser voice)" : "No voice is available in this browser; Sage's words will appear as subtitles.";
+    if (engine === "none") $("#sub-box").setAttribute("aria-live", "polite");
     S.avatarReady = true;
     checkReady();
   } catch (err) {
@@ -178,9 +203,24 @@ function checkReady() {
   $("#begin").disabled = !(S.avatarReady && S.sttReady && canAnswer);
 }
 
-// Microphone check
-let testing = false;
+// Opens the microphone if it is not already open. Throws the browser's error on failure.
+async function ensureMic() {
+  if (!S.detector) S.detector = new TurnDetector();
+  if (S.recorder?.isOpen) {
+    S.recorder.resume();
+    return;
+  }
+  S.recorder?.close();
+  S.recorder = new Recorder();
+  await S.recorder.open();
+  S.recorder.onLost = micLost;
+}
+
+// Microphone check: records one sentence, plays back what was understood, and
+// measures the room's background noise so that Sage can tell speech from silence.
+let testing = null;
 $("#mic-test").addEventListener("click", async () => {
+  if (testing) return stopMicTest();
   if (!S.sttReady) {
     $("#mic-result").textContent = "Please wait until speech recognition has finished loading.";
     return;
@@ -189,40 +229,63 @@ $("#mic-test").addEventListener("click", async () => {
     $("#mic-result").textContent = "Speech recognition is not available in this browser.";
     return;
   }
+  $("#mic-test").disabled = true;
   try {
-    if (!S.recorder) {
-      S.recorder = new Recorder();
-      await S.recorder.open();
-    }
-  } catch (_) {
-    $("#mic-result").textContent = "The microphone could not be opened. Please allow microphone access in your browser and try again.";
+    await ensureMic();
+  } catch (err) {
+    $("#mic-result").textContent = micErrorMessage(err);
     return;
+  } finally {
+    $("#mic-test").disabled = false;
   }
-  if (!testing) {
-    testing = true;
-    $("#mic-test").textContent = "Stop test";
-    startRecording();
-    meterLoop("#test-meter", () => testing);
-  } else {
-    testing = false;
-    $("#mic-test").textContent = "Test microphone";
-    $("#mic-result").textContent = "Listening back...";
-    const text = await stopRecording();
-    $("#mic-result").textContent = text ? `Heard: "${text}"` : "Nothing was heard. Check that the correct microphone is selected and try again.";
-  }
+  if (testing || $("#s-setup").classList.contains("hidden")) return; // the session began meanwhile
+  const rec = S.recorder;
+  const det = new TurnDetector({ noise: S.detector.noise });
+  const t0 = rec.now();
+  det.beginTurn(t0);
+  testing = { frames: [] };
+  $("#mic-test").textContent = "Stop test";
+  $("#mic-result").textContent = "Listening. Please say a sentence now; the test stops when you pause.";
+  beginCapture();
+  rec.onFrame = (rms, t) => {
+    if (!testing) return;
+    testing.frames.push(rms);
+    const st = det.push(rms, t);
+    setMeter("#test-meter", st.level);
+    if (st.ended || t - t0 > 15000) stopMicTest();
+  };
 });
 
-function meterLoop(sel, active) {
-  const bar = $(sel);
-  const tick = () => {
-    bar.style.width = `${Math.round((S.recorder?.level() || 0) * 100)}%`;
-    if (active()) requestAnimationFrame(tick);
-    else bar.style.width = "0";
-  };
-  tick();
+async function stopMicTest() {
+  const tst = testing;
+  if (!tst) return;
+  testing = null;
+  S.recorder.onFrame = null;
+  setMeter("#test-meter", 0);
+  $("#mic-test").textContent = "Test microphone";
+  $("#mic-result").textContent = "Listening back...";
+  let text = "";
+  try {
+    text = await endCapture();
+  } catch (err) {
+    console.warn(err);
+  }
+  const a = assessMicCheck(tst.frames);
+  if (a.verdict !== "silent") S.detector.noise = a.noise;
+  const heard = text ? `Heard: "${text}". ` : "";
+  $("#mic-result").textContent =
+    a.verdict === "silent" ? "Nothing was heard. Please check that the correct microphone is selected and not muted, and then try again."
+    : a.verdict === "noisy" ? `${heard}There is a lot of background noise. A quieter room or a headset will help Sage to hear when you have finished speaking.`
+    : a.verdict === "quiet" ? `${heard}Your voice is quite soft. Please move closer to the microphone or speak a little louder.`
+    : text ? `${heard}Your microphone level is good.`
+    : "Your voice was heard, but the words were not recognised. Please try again, speaking clearly.";
 }
 
-function startRecording() {
+function setMeter(sel, level) {
+  $(sel).style.width = `${Math.round(Math.max(0, Math.min(1, level)) * 100)}%`;
+}
+
+function beginCapture() {
   if (S.stt === "browser") {
     S.browserRec = new BrowserRecogniser();
     S.browserRec.start();
@@ -230,7 +293,8 @@ function startRecording() {
   S.recorder.start();
 }
 
-async function stopRecording() {
+// Ends a simple capture (the microphone check) and returns the recognised text.
+async function endCapture() {
   const samples = await S.recorder.stop();
   if (S.stt === "whisper") return S.transcriber.transcribe(samples);
   if (S.stt === "browser" && S.browserRec) return S.browserRec.stop();
@@ -242,36 +306,30 @@ $("#begin").addEventListener("click", async () => {
   const btn = $("#begin");
   btn.disabled = true;
   btn.textContent = "Starting...";
+  if (testing) await stopMicTest();
   try {
-    if (!S.recorder && S.stt !== "typing") {
-      S.recorder = new Recorder();
-      await S.recorder.open();
-    }
-  } catch (_) {
-    {
-      error("The microphone could not be opened. Please allow microphone access and try again.");
-      btn.disabled = false;
-      btn.textContent = "Begin practice";
-      return;
-    }
-    S.stt = "typing";
+    if (S.stt !== "typing") await ensureMic();
+  } catch (err) {
+    error(micErrorMessage(err));
+    btn.disabled = false;
+    btn.textContent = "Begin practice";
+    return;
   }
   if (S.examiner) await S.examiner.unlockAudio();
   try {
     const r = await api("POST", `/api/practice/${S.code}/start`, { studentName: S.name, studentId: S.id, submissionText: S.submission });
-    Object.assign(S, { attemptRef: r.attemptRef, token: r.token, durationSec: r.durationSec, typingAllowed: r.typingAllowed, attemptsLeft: r.attemptsLeftToday, done: false });
+    Object.assign(S, { attemptRef: r.attemptRef, token: r.token, durationSec: r.durationSec, typingAllowed: r.typingAllowed, attemptsLeft: r.attemptsLeftToday, done: false, busy: false });
     S.startedAt = Date.now();
     $("#log").textContent = "";
     $("#stage-slot").appendChild($("#avatar-box"));
     step("exam");
     show($("#type-toggle"), S.typingAllowed);
-    if (S.stt === "typing") {
-      show($("#typed-area"), true);
-      event("typed_mode");
-    }
+    S.typedMode = S.stt === "typing";
+    show($("#typed-area"), S.typedMode);
+    if (S.typedMode) event("typed_mode");
     if (S.stt === "browser") event("mic_fallback");
     startTimer();
-    await examinerSays(r.opening);
+    await examinerSays(r.opening, { warm: true });
   } catch (err) {
     error(err.message);
   } finally {
@@ -280,7 +338,8 @@ $("#begin").addEventListener("click", async () => {
   }
 });
 
-async function examinerSays(text) {
+async function examinerSays(text, { warm = false } = {}) {
+  if (S.recorder) S.recorder.onFrame = null;
   setMic("wait");
   $("#sub-who").textContent = "Sage";
   if (S.examiner && S.examiner.engine !== "none") {
@@ -288,7 +347,7 @@ async function examinerSays(text) {
     // subtitle never runs ahead of the voice.
     $("#sub-text").textContent = "...";
     try {
-      await S.examiner.say(text);
+      await S.examiner.say(text, { warm });
     } catch (err) {
       console.warn(err);
     }
@@ -297,131 +356,296 @@ async function examinerSays(text) {
   } else {
     $("#sub-text").textContent = text;
     addLog("Sage", text);
-    await new Promise((r) => setTimeout(r, Math.min(8000, 900 + text.split(/\s+/).length * 280)));
+    S.examiner?.say(text, { warm }).catch(() => {});
+    await sleep(Math.min(8000, 900 + text.split(/\s+/).length * 280));
   }
   if (S.done) return;
-  if (S.stt === "typing") setMic("typing");
+  if (S.typedMode) setMic("typing");
   else startListening(); // the microphone opens the moment Sage stops speaking
 }
 
+const MIC_LABEL = { wait: "Wait", recording: "I'm done", thinking: "...", typing: "Typing" };
+const MIC_HINT = {
+  wait: "Sage is speaking...",
+  recording: "Listening. Start speaking now.",
+  thinking: "Sage is thinking...",
+  typing: "Type your answer below.",
+};
+const CHIP = { wait: "Speaking", recording: "Listening", thinking: "Thinking", typing: "" };
 function setMic(state) {
   const mic = $("#mic");
   mic.classList.toggle("recording", state === "recording");
-  mic.disabled = state !== "recording";
-  mic.textContent = { wait: "Wait", recording: "I'm done", thinking: "...", typing: "Typing" }[state] || "Wait";
-  $("#mic-hint").textContent = {
-    wait: "Sage is speaking...",
-    recording: "Listening. Start speaking now.",
-    thinking: "Sage is thinking...",
-    typing: "Type your answer below.",
-  }[state] || "";
+  // aria-disabled (rather than disabled) keeps keyboard focus on the button between turns.
+  mic.setAttribute("aria-disabled", state === "recording" ? "false" : "true");
+  mic.textContent = MIC_LABEL[state] || "Wait";
+  mic.setAttribute("aria-label", state === "recording" ? "I'm done: finish my answer" : state === "thinking" ? "Sage is thinking" : state === "typing" ? "Typing mode" : "Please wait: Sage is speaking");
+  setHint(MIC_HINT[state] || "");
+  setStateChip(CHIP[state] || "");
+  showPauseCue(false);
+  if (state !== "recording") setMeter("#meter", 0);
   S.micState = state;
+}
+let lastHint = "";
+function setHint(text) {
+  if (text === lastHint) return;
+  lastHint = text;
+  $("#mic-hint").textContent = text;
+}
+function setStateChip(text) {
+  const chip = $("#avatar-state");
+  chip.textContent = text;
+  chip.dataset.state = text.toLowerCase().replace(/\s+/g, "-");
+  show(chip, Boolean(text));
+}
+function showPauseCue(on, ratio = 0) {
+  $("#pause-cue").classList.toggle("on", on);
+  $("#pause-bar").style.width = on ? `${Math.round(Math.min(1, ratio) * 100)}%` : "0";
 }
 
 // Automatic turn-taking: listen straight after the question, detect when the
 // student starts and stops speaking, and send the answer without a review step.
-const VAD = { speech: 0.12, endSilenceMs: 2200, noStartMs: 25000, slowStartMs: 6000 };
-let listenLoop = null;
+// The silence that ends an answer adapts to the student (see vad.js); while it
+// runs, a "Still listening" cue shows that there is time to carry on.
+const TURN = { noStartMs: 25000, slowStartMs: 6000, segmentMinMs: 4000, segmentPauseMs: 650, tailMs: 350 };
+let turn = null;
+
 function startListening() {
-  startRecording();
+  if (S.done) return;
+  const rec = S.recorder;
+  if (!rec?.isOpen) return micLost();
+  rec.resume();
+  const t0 = rec.now();
+  S.detector.beginTurn(t0);
+  turn = { t0, first: 0, parts: [], segStart: t0, cutThisPause: false, slow: false, ending: false };
+  beginCapture();
   setMic("recording");
   S.examiner?.listening();
-  meterLoop("#meter", () => S.micState === "recording");
-  const t0 = Date.now();
-  let firstSpeech = 0, lastSpeech = 0, flagged = false;
-  clearInterval(listenLoop);
-  listenLoop = setInterval(() => {
-    const now = Date.now();
-    const lvl = S.recorder?.level() || 0;
-    if (lvl > VAD.speech) {
-      if (!firstSpeech) firstSpeech = now;
-      lastSpeech = now;
-      if (now - firstSpeech > 3000 && Math.random() < 0.02) S.examiner?.nod();
-    }
-    if (!firstSpeech) {
-      const wait = now - t0;
-      if (wait > VAD.slowStartMs && !flagged) {
-        flagged = true;
-        event("slow_start");
-      }
-      $("#mic-hint").textContent = wait > VAD.slowStartMs ? "Sage is waiting for your answer. Please start speaking." : "Listening. Start speaking now.";
-      if (wait > VAD.noStartMs) stopListening(t0, 0);
+  announce("Sage has finished speaking. Listening now.");
+  rec.onFrame = onListenFrame;
+  // Watchdog: if the browser stops delivering audio (a suspended audio context
+  // or a stalled device), try to resume and then ask the student to reconnect.
+  const tn = turn;
+  const dog = setInterval(() => {
+    if (turn !== tn || tn.ending) return clearInterval(dog);
+    if (tn.frames > 0) {
+      tn.frames = 0;
+      tn.stalls = 0;
       return;
     }
-    const left = CONFIG.answerSeconds - (now - firstSpeech) / 1000;
-    $("#mic-hint").textContent = `Listening. Sage will reply when you pause. ${Math.ceil(left)} s left for this answer.`;
-    if (now - lastSpeech > VAD.endSilenceMs || left <= 0) stopListening(t0, firstSpeech);
-  }, 100);
+    tn.stalls = (tn.stalls || 0) + 1;
+    rec.resume();
+    if (tn.stalls >= 4) {
+      clearInterval(dog);
+      micLost();
+    }
+  }, 1000);
 }
 
-async function stopListening(t0, firstSpeech) {
-  clearInterval(listenLoop);
-  if (S.micState !== "recording") return;
+function onListenFrame(rms, t) {
+  const tn = turn;
+  if (!tn || tn.ending) return;
+  tn.frames = (tn.frames || 0) + 1;
+  const det = S.detector;
+  const st = det.push(rms, t);
+  setMeter("#meter", st.level);
+
+  if (!st.hasSpoken) {
+    const wait = t - tn.t0;
+    if (wait > TURN.slowStartMs && !tn.slow) {
+      tn.slow = true;
+      event("slow_start");
+    }
+    setHint(tn.slow ? "Sage is waiting for your answer. Please start speaking." : "Listening. Start speaking now.");
+    if (wait > TURN.noStartMs) endAnswer();
+    return;
+  }
+
+  if (st.started) {
+    tn.first = det.firstSpeechT;
+    // Drop the wait before the student began, keeping a short lead-in.
+    S.recorder.trimStart(tn.first - TURN.tailMs);
+    tn.segStart = tn.first;
+  }
+  if (st.speaking) tn.cutThisPause = false;
+  if (st.paused && det.speechMs > 3500) S.examiner?.backchannel();
+
+  // At a natural pause, hand the audio so far to the speech recogniser so that
+  // little remains to transcribe when the answer ends.
+  if (S.stt === "whisper" && !st.speaking && !tn.cutThisPause && st.silenceMs >= TURN.segmentPauseMs && det.lastVoiceT - tn.segStart >= TURN.segmentMinMs) {
+    tn.cutThisPause = true;
+    const until = det.lastVoiceT + TURN.tailMs;
+    tn.segStart = until;
+    const index = tn.parts.length;
+    const part = S.recorder.take(until).then((samples) => S.transcriber.transcribe(samples));
+    tn.parts.push(part);
+    part.then((text) => {
+      // If the words so far stop mid-sentence, allow a longer pause.
+      if (turn === tn && !tn.ending && index === tn.parts.length - 1 && endsDangling(text)) det.extendForDangling();
+    }).catch(() => {});
+  }
+
+  const left = CONFIG.answerSeconds - (t - tn.first) / 1000;
+  if (st.cue) {
+    showPauseCue(true, st.silenceMs / st.limitMs);
+    setStateChip("Still listening");
+    setHint("Still listening. Carry on when you are ready, or stay silent to finish.");
+  } else {
+    showPauseCue(false);
+    setStateChip("Listening");
+    setHint(left <= 15 ? `Listening. ${Math.max(0, Math.ceil(left))} s left for this answer.` : "Listening. Sage will reply when you pause.");
+  }
+  if (st.ended || left <= 0) endAnswer();
+}
+
+// The answer is over (silence, the time limit, or the "I'm done" button).
+// Sage acknowledges at once; transcription of the last part and the AI call follow.
+async function endAnswer({ manual = false } = {}) {
+  const tn = turn;
+  if (!tn || tn.ending) return;
+  tn.ending = true;
+  const rec = S.recorder;
+  const det = S.detector;
+  const spoke = Boolean(det.firstSpeechT);
+  const latencyMs = spoke ? Math.max(0, Math.round(det.firstSpeechT - tn.t0)) : null;
   setMic("thinking");
+  announce("Answer received. Sage is thinking.");
+  S.examiner?.acknowledge({ spoken: spoke });
   S.examiner?.thinking();
-  $("#mic-hint").textContent = "Transcribing your answer...";
+  watchForCutOff();
   let text = "";
   try {
-    text = await stopRecording();
+    if (S.stt === "whisper") {
+      // Pressing the button with no speech detected still transcribes what was
+      // recorded, in case a very soft voice was missed.
+      if (spoke || manual) tn.parts.push(rec.stop(spoke ? det.lastVoiceT + TURN.tailMs : Infinity).then((s) => S.transcriber.transcribe(s)));
+      else await rec.stop(0);
+      const texts = await Promise.all(tn.parts.map((p) => p.catch(() => "")));
+      text = texts.filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+    } else {
+      await rec.stop(0);
+      text = S.browserRec ? await S.browserRec.stop() : "";
+    }
   } catch (err) {
     console.warn(err);
   }
-  const latencyMs = firstSpeech ? firstSpeech - t0 : null;
-  sendAnswer(text || "(no answer given)", false, latencyMs);
+  if (turn === tn) turn = null;
+  if (S.done) return;
+  sendAnswer(text || "(no answer given)", false, latencyMs, spoke);
+}
+
+// If the student carries on speaking just after Sage took the answer as
+// finished, later answers are given a longer pause before Sage replies.
+function watchForCutOff() {
+  const rec = S.recorder;
+  const det = S.detector;
+  const until = rec.now() + 2600;
+  let voiced = 0, last = rec.now();
+  rec.onFrame = (rms, t) => {
+    const dt = t - last;
+    last = t;
+    if (t > until) return (rec.onFrame = null);
+    if (S.examiner?.isSpeaking) return; // ignore Sage's own acknowledgement
+    if (rms > det.onThreshold * 1.5) voiced += dt;
+    if (voiced >= 450) {
+      det.noteCutOff();
+      rec.onFrame = null;
+    }
+  };
+}
+
+function micLost() {
+  if (S.done || $("#s-exam").classList.contains("hidden")) return;
+  if (turn) turn.ending = true;
+  turn = null;
+  if (S.recorder) S.recorder.onFrame = null;
+  setMic("wait");
+  setHint("The microphone is not available.");
+  setStateChip("");
+  error("The microphone was disconnected or stopped. Please reconnect it and then continue.", {
+    label: "Reconnect microphone",
+    run: async () => {
+      try {
+        S.recorder?.close();
+        S.recorder = null;
+        await ensureMic();
+        hideError();
+        if (!S.busy && !S.done) startListening();
+      } catch (err) {
+        error(micErrorMessage(err), { label: "Try again", run: micLost });
+      }
+    },
+  });
 }
 
 $("#mic").addEventListener("click", () => {
-  // Manual "I'm done", for students who pause mid-answer less than expected.
-  if (S.micState === "recording") document.dispatchEvent(new Event("sage-stop"));
+  // Manual "I'm done", for students who would rather not wait for the pause.
+  if (S.micState === "recording") endAnswer({ manual: true });
 });
-document.addEventListener("sage-stop", () => {
-  if (S.micState === "recording") stopListening(Date.now(), Date.now());
+// The Enter key also finishes the answer, wherever the keyboard focus is.
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" || e.repeat || S.micState !== "recording") return;
+  if (e.target instanceof Element && e.target.closest("button, a, input, textarea, select, summary")) return;
+  e.preventDefault();
+  endAnswer({ manual: true });
 });
 
 // Typed answers exist only for students listed by the teacher (adjustments).
 $("#type-toggle").addEventListener("click", () => {
-  clearInterval(listenLoop);
-  if (S.micState === "recording") S.recorder.stop().catch(() => {});
+  if (turn) turn.ending = true;
+  turn = null;
+  if (S.recorder) {
+    S.recorder.onFrame = null;
+    S.recorder.stop(0).catch(() => {});
+  }
+  S.browserRec?.stop().catch(() => {});
+  S.typedMode = true;
   setMic("typing");
   show($("#typed-area"), true);
+  $("#typed").focus();
   event("typed_mode");
 });
 $("#typed").addEventListener("paste", (e) => {
   e.preventDefault();
   event("paste_blocked");
-  $("#mic-hint").textContent = "Pasting is not allowed. Please type your answer in your own words.";
+  setHint("Pasting is not allowed. Please type your answer in your own words.");
 });
 $("#send-typed").addEventListener("click", () => {
   const t = $("#typed").value.trim();
   if (!t) return;
   $("#typed").value = "";
-  sendAnswer(t, true, null);
+  sendAnswer(t, true, null, false);
 });
 $("#end-early").addEventListener("click", () => {
   if (confirm("End the practice session now and get feedback on the answers so far?")) finish();
 });
 
-async function sendAnswer(text, typed, latencyMs) {
+async function sendAnswer(text, typed, latencyMs, acknowledged = false) {
   if (S.busy || S.done) return;
   S.busy = true;
-  setMic("thinking");
+  if (!S.typedMode) setMic("thinking");
+  else S.examiner?.thinking();
   addLog("You", text);
   $("#sub-who").textContent = "You";
   $("#sub-text").textContent = text;
   try {
-    const r = await api("POST", `/api/attempt/${S.attemptRef}/turn`, { token: S.token, answer: text, typed, latencyMs });
+    // A short beat lets the acknowledgement finish, so Sage never replies unnaturally fast.
+    const [r] = await Promise.all([
+      api("POST", `/api/attempt/${S.attemptRef}/turn`, { token: S.token, answer: text, typed, latencyMs }),
+      sleep(acknowledged ? 700 : 350),
+    ]);
     $("#q-pill").textContent = `Question ${Math.min(r.questionNumber, r.questionTotal)} of ${r.questionTotal}`;
     S.busy = false;
     if (r.done) {
       S.done = true;
-      await examinerSays(r.say);
+      await examinerSays(r.say, { warm: true });
       finish();
     } else {
       await examinerSays(r.say);
     }
   } catch (err) {
     S.busy = false;
-    if (S.stt === "typing") setMic("typing");
+    S.examiner?.idle();
+    if (S.typedMode) setMic("typing");
     else startListening();
     error(err.message);
   }
@@ -448,16 +672,28 @@ function event(type) {
   api("POST", `/api/attempt/${S.attemptRef}/event`, { token: S.token, type }).catch(() => {});
 }
 document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) S.recorder?.resume(); // browsers suspend audio in background tabs
   if (S.attemptRef && !S.done && !$("#s-exam").classList.contains("hidden")) event(document.hidden ? "tab_hidden" : "tab_visible");
 });
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
 
 // ------------------------------------------------------------------ 5. feedback
 async function finish() {
   S.done = true;
   clearInterval(timerHandle);
-  clearInterval(listenLoop);
-  if (S.micState === "recording") S.recorder?.stop().catch(() => {});
+  if (turn) turn.ending = true;
+  turn = null;
+  // Release the microphone as soon as the session ends.
+  S.browserRec?.stop().catch(() => {});
+  S.recorder?.close();
+  S.recorder = null;
   S.examiner?.stop();
+  S.examiner?.idle();
+  setMic("wait");
+  setStateChip("");
   step("feedback");
   const box = $("#report");
   box.textContent = "";
@@ -467,6 +703,7 @@ async function finish() {
       const r = await api("POST", `/api/attempt/${S.attemptRef}/finish`, { token: S.token });
       box.textContent = "";
       box.append(r.report ? renderReport(r.report) : el("p", { text: r.message || "No feedback was produced." }));
+      announce("Your practice feedback is ready.");
       break;
     } catch (err) {
       if (i === 1) {
@@ -483,7 +720,9 @@ $("#again").addEventListener("click", () => {
   S.attemptRef = null;
   S.token = null;
   S.done = false;
+  S.micState = "wait";
   $("#q-pill").textContent = "Question 1";
+  $("#mic-result").textContent = "";
   step("setup");
   setup();
 });
