@@ -102,7 +102,12 @@ export class Examiner {
         { p: contact, delay: [0, 300], dt: [0, hold], vs: { eyeContact: [1], headMove: [REDUCED_MOTION ? 0 : 0.3] } },
         { delay: [0, 300], dt: [[150, 260], [500, 1300]], vs: { eyesRotateY: [[-spread, spread]], eyesRotateX: [[-0.05, 0.2]] } },
       ] },
-      speaking: h.animTemplateEyes.speaking,
+      // While speaking, Sage looks at the student most of the time; the stock
+      // speaking gaze wanders widely and often drops, as if reading notes.
+      speaking: { alt: [
+        { p: 0.75, delay: [0, 300], dt: [0, [2000, 5000]], vs: { eyeContact: [1], headMove: [REDUCED_MOTION ? 0 : 0.3] } },
+        { delay: [0, 200], dt: [[150, 260], [400, 1000]], vs: { eyesRotateY: [[-0.3, 0.3]], eyesRotateX: [[-0.1, 0.2]] } },
+      ] },
     });
     const mood = (baseline, head, eyes) => ({
       baseline,
@@ -327,31 +332,33 @@ export class Examiner {
     this.setMood("sagethinking");
     this.head.opt.avatarIdleEyeContact = 0.15;
     let side = Math.random() < 0.5 ? -1 : 1;
+    const k = REDUCED_MOTION ? 0.4 : 1;
     const glance = () => {
       try {
-        const r = this.container.getBoundingClientRect();
-        const eyes = this.eyesOnScreen(r);
+        const h = this.head;
         const ms = 1500 + Math.random() * 1500;
-        // Up and to one side, by a modest angle, as people do when composing a reply.
-        this.head.lookAt(eyes.x + side * r.width * (0.09 + Math.random() * 0.06), eyes.y - r.height * (0.03 + Math.random() * 0.06), ms);
+        // Eyes up and to one side with a small turn of the head, as people do
+        // when composing a reply. (TalkingHead's own lookAt scales with the
+        // window size and turns the head much too far at this framing.)
+        h.animQueue = h.animQueue.filter((x) => x.template.name !== "lookat");
+        h.animQueue.push(h.animFactory({
+          name: "lookat",
+          dt: [650, ms],
+          vs: {
+            bodyRotateY: [side * k * (0.04 + Math.random() * 0.04)],
+            bodyRotateX: [-k * Math.random() * 0.03],
+            eyesRotateY: [side * (0.25 + Math.random() * 0.2)],
+            eyesRotateX: [-(0.08 + Math.random() * 0.14)],
+            browInnerUp: [0.15],
+            eyeContact: [0],
+            headMove: [0],
+          },
+        }));
         if (Math.random() < 0.3) side = -side;
-        this.thinkTimer = setTimeout(glance, ms + 400 + Math.random() * 900);
+        this.thinkTimer = setTimeout(glance, ms + 900 + Math.random() * 900);
       } catch (_) {}
     };
     this.thinkTimer = setTimeout(glance, 450); // after the acknowledging nod
-  }
-
-  // Where Sage's eyes are in the viewport (falls back to an estimate).
-  eyesOnScreen(r) {
-    try {
-      const h = this.head;
-      const v = h.camera.position.clone().setFromMatrixPosition(h.objectLeftEye.matrixWorld);
-      const w = h.camera.position.clone().setFromMatrixPosition(h.objectRightEye.matrixWorld);
-      v.add(w).multiplyScalar(0.5).project(h.camera);
-      return { x: r.left + ((v.x + 1) / 2) * r.width, y: r.top + ((1 - v.y) / 2) * r.height };
-    } catch (_) {
-      return { x: r.left + r.width / 2, y: r.top + r.height * 0.42 };
-    }
   }
 
   // A warmer expression for a few seconds, used for the greeting and the close.

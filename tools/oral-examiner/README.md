@@ -45,6 +45,21 @@ To use OpenAI instead of Claude, set `LLM_PROVIDER = "openai"` in `wrangler.toml
 - **Browser-voice fallback**. Text is spoken one sentence at a time. Where the voice reports word boundaries, the lips follow them; otherwise word timings are estimated and corrected against the measured speaking rate of the voice.
 - **Accessibility**. Steps move keyboard focus, the answer button keeps focus between turns, status changes are announced to screen readers without repeating Sage's spoken words, microphone errors state the cause and the remedy, and the system "reduce motion" setting is respected. The 3D rendering resolution and frame rate are reduced automatically on slow devices.
 
+## Replacing the avatar
+
+`assets/examiner.glb` is the MakeHuman/MPFB sample avatar distributed with TalkingHead (CC0), compressed with meshopt and WebP. A different outfit or character has to be prepared in Blender on a desktop computer; it cannot be built in the browser or in a cloud workspace, because the MakeHuman asset packs and the Mixamo rigging service are needed.
+
+- **MakeHuman/MPFB (CC0)**: follow `blender/MPFB/MPFB.md` in the TalkingHead repository. Choose a business outfit (for example "female elegantsuit01" from the MakeHuman system assets), add the "Visemes 02" and "Faceunits 01" packs, use the TalkingHead rig and export to GLB.
+- **Microsoft Rocketbox (MIT)**: use a "facial" business avatar, re-rig it in Mixamo and rename the shape keys with `blender/rename-rocketbox-shapekeys.py` from the TalkingHead repository.
+
+Compress the export before committing it, and keep it under about 5 MB:
+
+```bash
+npx @gltf-transform/cli optimize avatar.glb examiner.glb --compress meshopt --texture-compress webp --texture-size 1024
+```
+
+`refineAppearance()` in `js/avatar.js` recolours the top and softens the brows, lashes and eyes by mesh name; review it when the model changes.
+
 ## Tests
 
 ```bash
